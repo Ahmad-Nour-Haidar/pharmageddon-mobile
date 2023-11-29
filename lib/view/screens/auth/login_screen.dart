@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
           final cubit = LoginCubit.get(context);
           return Container(
             decoration: const BoxDecoration(
-              color: AppColor.thirdColor,
+              color: AppColor.background,
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: AssetImage(
@@ -132,7 +132,7 @@ class LoginScreen extends StatelessWidget {
                     const Gap(25),
                     if (state is LoginLoadingState)
                       const SpinKitThreeBounce(
-                        color: AppColor.primaryColor,
+                        color: AppColor.buttonColor,
                       ),
                     if (state is! LoginLoadingState)
                       CustomButton(

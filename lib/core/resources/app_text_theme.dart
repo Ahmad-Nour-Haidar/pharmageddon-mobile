@@ -32,15 +32,9 @@ abstract class AppTextTheme {
         fontWeight: FontWeight.w400,
       );
 
-  static TextStyle get f18w400TextColor => const TextStyle(
-        fontSize: 18,
-        color: AppColor.textColor,
-        fontWeight: FontWeight.w400,
-      );
-
   static TextStyle get f16w600TextColor2 => const TextStyle(
         fontSize: 16,
-        color: AppColor.textColor2,
+        color: AppColor.textColor,
         fontWeight: FontWeight.w600,
       );
 
@@ -101,12 +95,6 @@ abstract class AppTextTheme {
   static TextStyle get f24w600SecondColor => const TextStyle(
         fontSize: 24.0,
         color: AppColor.secondColor,
-        fontWeight: FontWeight.w600,
-      );
-
-  static TextStyle get f28w600buttonColor => const TextStyle(
-        fontSize: 28.0,
-        color: AppColor.buttonColor2,
         fontWeight: FontWeight.w600,
       );
 

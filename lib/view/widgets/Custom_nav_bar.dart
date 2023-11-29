@@ -39,7 +39,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
       height: 75,
       margin: const EdgeInsets.only(top: 55),
       decoration: const BoxDecoration(
-        color: AppColor.buttonColor,
+        color: AppColor.green2,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),
           topRight: Radius.circular(10),
@@ -67,7 +67,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                     // height: 55,
                     // width: 55,
                     decoration: BoxDecoration(
-                        color: AppColor.buttonColor,
+                        color: AppColor.green2,
                         borderRadius: BorderRadius.circular(10)),
                     child: Align(
                       child: SvgImage(

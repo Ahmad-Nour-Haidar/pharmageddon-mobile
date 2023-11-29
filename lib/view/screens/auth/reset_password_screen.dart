@@ -53,7 +53,7 @@ class ResetPasswordScreen extends StatelessWidget {
           final focusNode = FocusNode();
           return Container(
             decoration: const BoxDecoration(
-              color: AppColor.thirdColor,
+              color: AppColor.background,
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: AssetImage(
@@ -75,7 +75,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     const LogoApp(),
                     const Gap(30),
                     if (state is ResetPasswordLoadingGetState)
-                      const SpinKitFoldingCube(color: AppColor.primaryColor),
+                      const SpinKitFoldingCube(color: AppColor.buttonColor),
                     if (cubit.email != null)
                       Text(
                         cubit.message,
@@ -93,7 +93,7 @@ class ResetPasswordScreen extends StatelessWidget {
                             numberOfFields: 6,
                             filled: true,
                             borderColor: AppColor.white,
-                            focusedBorderColor: AppColor.buttonColor2,
+                            focusedBorderColor: AppColor.secondColor,
                             enabledBorderColor: AppColor.white,
                             showFieldAsBox: true,
                             onSubmit: cubit.onSubmit, // end onSubmit
@@ -165,7 +165,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     const Gap(25),
                     if (state is ResetPasswordLoadingState)
                       const SpinKitThreeBounce(
-                        color: AppColor.primaryColor,
+                        color: AppColor.buttonColor,
                       ),
                     if (state is! ResetPasswordLoadingState)
                       CustomButton(

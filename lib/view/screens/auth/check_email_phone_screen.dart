@@ -42,7 +42,7 @@ class CheckEmailScreen extends StatelessWidget {
           final cubit = CheckEmailCubit.get(context);
           return Container(
             decoration: const BoxDecoration(
-              color: AppColor.thirdColor,
+              color: AppColor.background,
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: AssetImage(
@@ -88,7 +88,7 @@ class CheckEmailScreen extends StatelessWidget {
                     const Gap(25),
                     if (state is CheckEmailLoadingState)
                       const SpinKitThreeBounce(
-                        color: AppColor.primaryColor,
+                        color: AppColor.buttonColor,
                       ),
                     if (state is! CheckEmailLoadingState)
                       CustomButton(
