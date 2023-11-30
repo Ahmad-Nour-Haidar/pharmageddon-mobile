@@ -19,7 +19,18 @@ class AppConstant {
     AppSvg.text,
     AppSvg.all,
     AppSvg.chemistry,
-    AppSvg.chemistry,
-    AppSvg.chemistry
+  ];
+
+  static const pharmaceuticalCompanies = [
+    'Pfizer',
+    'Johnson & Johnson',
+    'Roche',
+    'Novartis',
+    'Merck & Co.',
+    'Sanofi',
+    'GlaxoSmithKline',
+    'AstraZeneca',
+    'Eli Lilly and Company',
+    'AbbVie',
   ];
 }

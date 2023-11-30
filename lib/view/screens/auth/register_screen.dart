@@ -57,7 +57,8 @@ class RegisterScreen extends StatelessWidget {
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
                 title: AppStrings.createAccount.tr,
-                showArrowBack: false,showOptions: false,
+                showArrowBack: false,
+                showOptions: false,
               ).build(),
               body: Form(
                 key: cubit.formKey,
@@ -127,7 +128,7 @@ class RegisterScreen extends StatelessWidget {
                         onTapSuffix: cubit.showPassword,
                         obscureText: cubit.obscureText,
                         suffixIcon:
-                        cubit.obscureText ? AppSvg.eye : AppSvg.eyeClose,
+                            cubit.obscureText ? AppSvg.eye : AppSvg.eyeClose,
                       );
                     }),
                     const Gap(25),

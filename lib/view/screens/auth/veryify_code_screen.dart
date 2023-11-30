@@ -55,7 +55,8 @@ class VerifyCodeScreen extends StatelessWidget {
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
                 onTapBack: () => Navigator.pop(context),
-                title: AppStrings.verifyCode.tr,showOptions: false,
+                title: AppStrings.verifyCode.tr,
+                showOptions: false,
               ).build(),
               body: ListView(
                 padding: const EdgeInsets.all(AppSize.screenPadding),

@@ -6,7 +6,6 @@ class AppStrings {
   static const arabic = 'arabic';
   static const login = 'login';
   static const createAccount = 'createAccount';
-  static const letGetStarted = 'letGetStarted';
 
   // register screen
   static const email = 'email';
@@ -66,12 +65,18 @@ class AppStrings {
       'enterTheCompleteVerificationCode';
   static const somethingWentWrong = 'somethingWentWrong';
 
-  // item details
+  // medicine details
   static const name = 'name';
   static const price = 'price';
   static const totalPrice = 'totalPrice';
   static const addToCart = 'addToCart';
   static const done = 'done';
+  static const medicationDetails = 'medicationDetails';
+  static const scientificName = 'scientificName';
+  static const commercialName = 'commercialName';
+  static const description = 'description';
+  static const availableQuantity = 'availableQuantity';
+  static const expirationDate = 'expirationDate';
 
   // drawer
   static const home = 'home';
@@ -83,13 +88,10 @@ class AppStrings {
   static const yes = 'yes';
   static const no = 'no';
 
-  // favorite
-  static const youHaveNoFoodsFavoriteYet = 'youHaveNoFoodsFavoriteYet';
-
   // search
   static const resultsSearchFor = 'resultsSearchFor';
+  static const search = 'search';
 
   // other
   static const pressBackAgainToExit = 'pressBackAgainToExit';
-  static const openInFullScreen = 'openInFullScreen';
 }

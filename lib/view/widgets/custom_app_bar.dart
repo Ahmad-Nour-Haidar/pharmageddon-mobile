@@ -10,16 +10,20 @@ class CustomAppBar {
     this.title = '',
     this.onTapBack,
     this.onTapOptions,
+    this.onTapSearch,
     this.showArrowBack = true,
     this.showOptions = true,
+    this.showSearch = false,
     this.colorAppBar = AppColor.transparent,
   });
 
   final void Function()? onTapBack;
   final void Function()? onTapOptions;
+  final void Function()? onTapSearch;
   final String title;
   final bool showArrowBack;
   final bool showOptions;
+  final bool showSearch;
   final Color colorAppBar;
 
   AppBar build() {
@@ -38,6 +42,11 @@ class CustomAppBar {
             )
           : null,
       actions: [
+        if (showSearch)
+          IconButton(
+            onPressed: onTapSearch,
+            icon: SvgPicture.asset(AppSvg.search),
+          ),
         if (showOptions)
           IconButton(
             onPressed: onTapOptions,

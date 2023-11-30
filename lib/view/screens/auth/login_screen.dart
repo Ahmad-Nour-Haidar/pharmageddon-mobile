@@ -64,7 +64,8 @@ class LoginScreen extends StatelessWidget {
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
                 title: AppStrings.login.tr,
-                showArrowBack: false,showOptions: false,
+                showArrowBack: false,
+                showOptions: false,
               ).build(),
               body: Form(
                 key: cubit.formKey,

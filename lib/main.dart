@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 import 'controllers/local_controller.dart';
@@ -30,14 +31,17 @@ class MyApp extends StatelessWidget {
     // if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
     // initialRoute = AppRoute.home;
     // }
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Pharmageddon',
-      locale: controller.locale,
-      translations: MyTranslation(),
-      theme: themeData(),
-      routes: routes,
-      initialRoute: initialRoute,
+    return BlocProvider(
+      create: (context) => AppInjection.getIt<HomeCubit>(),
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Pharmageddon',
+        locale: controller.locale,
+        translations: MyTranslation(),
+        theme: themeData(),
+        routes: routes,
+        initialRoute: initialRoute,
+      ),
     );
   }
 }

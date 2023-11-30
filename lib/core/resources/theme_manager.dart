@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../constant/app_color.dart';
 
 ThemeData themeData() => ThemeData(
@@ -9,6 +10,10 @@ ThemeData themeData() => ThemeData(
       scaffoldBackgroundColor: AppColor.background,
       appBarTheme: const AppBarTheme(
         scrolledUnderElevation: 0,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: AppColor.transparent,
+          statusBarIconBrightness: Brightness.dark,
+        ),
       ),
       primaryColor: AppColor.primaryColor,
     );

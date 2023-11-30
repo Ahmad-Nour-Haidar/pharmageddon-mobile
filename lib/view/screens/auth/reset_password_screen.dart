@@ -65,7 +65,8 @@ class ResetPasswordScreen extends StatelessWidget {
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
                 onTapBack: () => Navigator.pop(context),
-                title: AppStrings.resetPassword.tr,showOptions: false,
+                title: AppStrings.resetPassword.tr,
+                showOptions: false,
               ).build(),
               body: Form(
                 key: cubit.formKey,

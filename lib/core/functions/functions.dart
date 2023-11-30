@@ -8,7 +8,7 @@ import '../constant/app_constant.dart';
 import '../constant/app_keys_storage.dart';
 import '../constant/app_local_data.dart';
 import '../services/dependency_injection.dart';
-import 'package:pharmageddon_mobile/print.dart';
+
 bool isEnglish() => AppConstant.currentLocal == AppConstant.localEn;
 
 String getCodeLang() =>

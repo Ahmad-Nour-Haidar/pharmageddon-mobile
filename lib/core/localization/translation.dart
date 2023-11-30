@@ -10,7 +10,6 @@ class MyTranslation extends Translations {
           AppStrings.english: 'English',
           AppStrings.login: 'Login',
           AppStrings.createAccount: 'Create account',
-          AppStrings.letGetStarted: 'Let\'s get started ...',
           AppStrings.email: 'Email',
           AppStrings.emailOrPhone: 'Email or Phone',
           AppStrings.emailOrPhoneNotValid: 'Email or Phone not valid',
@@ -74,10 +73,14 @@ class MyTranslation extends Translations {
           AppStrings.yes: 'Yes',
           AppStrings.no: 'No',
           AppStrings.pressBackAgainToExit: 'Press back again to exit',
-          AppStrings.youHaveNoFoodsFavoriteYet:
-              'You have no foods favorite yet',
           AppStrings.resultsSearchFor: 'Results search for',
-          AppStrings.openInFullScreen: 'Open in full screen',
+          AppStrings.search: 'Search',
+          AppStrings.medicationDetails: 'Medication details',
+          AppStrings.scientificName: 'Scientific name',
+          AppStrings.commercialName: 'Commercial name',
+          AppStrings.description: 'Description',
+          AppStrings.availableQuantity: 'Available quantity',
+          AppStrings.expirationDate: 'Expiration Date',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -85,7 +88,6 @@ class MyTranslation extends Translations {
           AppStrings.english: 'English',
           AppStrings.login: 'تسجيل الدخول',
           AppStrings.createAccount: 'انشاء حساب',
-          AppStrings.letGetStarted: 'دعنا نبدأ ...',
           AppStrings.email: 'البريد الإلكتروني',
           AppStrings.emailOrPhone: 'البريد الإلكتروني او رقم الهاتف',
           AppStrings.emailOrPhoneNotValid:
@@ -149,10 +151,14 @@ class MyTranslation extends Translations {
           AppStrings.yes: 'نعم',
           AppStrings.no: 'لا',
           AppStrings.pressBackAgainToExit: 'اضغط مرة أخرى للخروج',
-          AppStrings.youHaveNoFoodsFavoriteYet:
-              'ليس لديك أي أطعمة مفضلة حتى الآن',
           AppStrings.resultsSearchFor: 'نتائج البحث عن',
-          AppStrings.openInFullScreen: 'فتح في وضع ملء الشاشة',
+          AppStrings.search: 'بحث',
+          AppStrings.medicationDetails: 'تفاصيل الدواء',
+          AppStrings.scientificName: 'الاسم العلمي',
+          AppStrings.commercialName: 'الاسم التجاري',
+          AppStrings.description: 'الوصف',
+          AppStrings.availableQuantity: 'الكمية المتوفرة',
+          AppStrings.expirationDate: 'تاريخ انتهاء الصلاحية',
         },
       };
 }

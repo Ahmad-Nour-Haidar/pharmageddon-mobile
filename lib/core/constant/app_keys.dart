@@ -1,4 +1,5 @@
 class AppKeys {
   AppKeys._();
-// static const tag = 'tag';
+
+  static const tag = 'tag';
 }

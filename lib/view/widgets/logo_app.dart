@@ -21,7 +21,7 @@ class LogoApp extends StatelessWidget {
           ),
         ),
         const Gap(20),
-        Center(
+        const Center(
           child: Text(
             'Pharmageddon',
             style: AppTextTheme.f24w600SecondColor,
