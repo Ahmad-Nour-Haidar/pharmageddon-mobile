@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
@@ -32,9 +33,11 @@ class _CustomNavBarState extends State<CustomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    final s = AppSize.width * 0.15;
+    printme.cyan(s);
     return Container(
-      height: 75,
-      margin: const EdgeInsets.only(top: 55),
+      height: 60,
+      margin: const EdgeInsets.only(top: 20),
       decoration: const BoxDecoration(
         color: AppColor.green2,
         borderRadius: BorderRadius.only(
@@ -46,7 +49,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
         clipBehavior: Clip.none,
         children: [
           Positioned(
-            top: -35,
+            top: -(s / 2),
             left: 0,
             right: 0,
             child: Row(
@@ -60,13 +63,13 @@ class _CustomNavBarState extends State<CustomNavBar> {
                             child: Transform.rotate(
                               angle: -math.pi / 4,
                               child: Container(
-                                height: AppSize.width / 6,
-                                width: AppSize.width / 6,
+                                height: s,
+                                width: s,
                                 decoration: BoxDecoration(
                                   color: AppColor.white,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                padding: const EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(7),
                                 child: Align(
                                   child: Container(
                                     height: 55,
@@ -79,7 +82,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                                       child: SvgImage(
                                         path: widget.list[index],
                                         color: AppColor.white,
-                                        size: 32,
+                                        size: 24,
                                       ),
                                     ),
                                   ),
@@ -106,14 +109,11 @@ class _CustomNavBarState extends State<CustomNavBar> {
                           });
                           widget.onChange(index);
                         },
-                        child: SizedBox(
-                          height: 75,
-                          child: Align(
-                            child: SvgImage(
-                              path: widget.list[index],
-                              color: AppColor.white,
-                              size: 32,
-                            ),
+                        child: Align(
+                          child: SvgImage(
+                            path: widget.list[index],
+                            color: AppColor.white,
+                            size: s/2,
                           ),
                         ),
                       ),
