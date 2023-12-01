@@ -4,29 +4,33 @@ import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
-import 'package:pharmageddon_mobile/print.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 class ManufacturerWidget extends StatelessWidget {
-  const ManufacturerWidget({super.key});
+  const ManufacturerWidget({
+    super.key,
+    required this.text,
+  });
 
-  static final s = (AppSize.width * .35).toInt() * 1.0;
-  static const ss = 'Ahmad Nour';
+  final String text;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: AppPadding.padding20,
-      height: 100,
-      width: s,
-      decoration: BoxDecoration(
-        color: AppColor.cardColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: const AutoSizeText(
-        ss,
-        style: AppTextTheme.f26w600black,
-        maxLines: 3,
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        padding: AppPadding.padding20,
+        height: 100,
+        width: AppSize.widthManufacturer,
+        decoration: BoxDecoration(
+          color: AppColor.cardColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: AutoSizeText(
+          text,
+          style: AppTextTheme.f26w600black,
+          maxLines: 3,
+        ),
       ),
     );
   }
@@ -50,11 +54,14 @@ class ManufacturersListWidget extends StatelessWidget {
         child: ListView(
           children: [
             Wrap(
-              spacing: 20,
-              runSpacing: 10,
+              spacing: 50,
+              runSpacing: 20,
+              alignment: WrapAlignment.center,
               children: List.generate(
                 AppConstant.pharmaceuticalCompanies.length,
-                (index) => const ManufacturerWidget(),
+                (index) => ManufacturerWidget(
+                  text: AppConstant.pharmaceuticalCompanies[index],
+                ),
               ),
             ),
           ],

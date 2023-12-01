@@ -4,6 +4,7 @@ import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 abstract class AppPadding {
   static const screenPadding = EdgeInsets.all(AppSize.screenPadding);
   static const zero = EdgeInsets.all(0);
+  static const padding5 = EdgeInsets.all(5);
   static const padding7 = EdgeInsets.all(7);
   static const padding10 = EdgeInsets.all(10);
   static const padding20 = EdgeInsets.all(20);

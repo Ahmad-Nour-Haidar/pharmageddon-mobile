@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import '../../core/constant/app_strings.dart';
+import '../../view/widgets/home/effect_category_widget.dart';
 import '../../view/widgets/home/manufacturers_widget.dart';
 import '../../view/widgets/home/medication_widget.dart';
+import '../../view/widgets/loading/effect_category_loading.dart';
+import '../../view/widgets/loading/manufacturers_loading.dart';
+import '../../view/widgets/loading/medications_loading.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -13,7 +19,16 @@ class HomeCubit extends Cubit<HomeState> {
   final _screens = [
     ManufacturersListWidget(onRefresh: () async {}),
     MedicationsListWidget(onRefresh: () async {}),
-    const Text('cy'),
+    EffectCategoriesListWidget(onRefresh: () async {}),
+    // ManufacturersLoading(onRefresh: () async {}),
+    // MedicationsLoading(onRefresh: () async {}),
+    // EffectCategoryLoading(onRefresh: () async {}),
+  ];
+
+  final _titles = [
+    AppStrings.manufacturers.tr,
+    AppStrings.home.tr,
+    AppStrings.pharmacologicalEffect.tr,
   ];
 
   int get indexScreen => _indexScreen;
@@ -24,4 +39,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Widget get screen => _screens[_indexScreen];
+
+  String get title => _titles[_indexScreen];
 }

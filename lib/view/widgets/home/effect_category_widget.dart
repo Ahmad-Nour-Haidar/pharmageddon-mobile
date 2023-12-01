@@ -11,14 +11,11 @@ import '../../../core/resources/app_text_theme.dart';
 import '../../../model/screen_arguments.dart';
 import '../../../routes.dart';
 
-class MedicationWidget extends StatelessWidget {
-  const MedicationWidget({super.key});
+class EffectCategoryWidget extends StatelessWidget {
+  const EffectCategoryWidget({super.key});
 
   String get textName =>
       'medicament name medicament name'.split(' ').take(2).join(' ');
-
-  String get textCompanyName =>
-      'Company Name Company Name'.split(' ').take(2).join(' ');
 
   @override
   Widget build(BuildContext context) {
@@ -59,25 +56,14 @@ class MedicationWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const Gap(10),
             Padding(
-              padding: AppPadding.symmetric(horizontal: 10),
+              padding: AppPadding.padding10,
               child: AutoSizeText(
                 textName,
                 style: AppTextTheme.f15w400black,
                 maxLines: 1,
               ),
             ),
-            const Gap(3),
-            Padding(
-              padding: AppPadding.symmetric(horizontal: 10),
-              child: AutoSizeText(
-                textCompanyName,
-                style: AppTextTheme.f15w400black,
-                maxLines: 1,
-              ),
-            ),
-            const Gap(10),
           ],
         ),
       ),
@@ -85,8 +71,8 @@ class MedicationWidget extends StatelessWidget {
   }
 }
 
-class MedicationsListWidget extends StatelessWidget {
-  const MedicationsListWidget({
+class EffectCategoriesListWidget extends StatelessWidget {
+  const EffectCategoriesListWidget({
     super.key,
     // required this.medicines,
     required this.onRefresh,
@@ -107,7 +93,7 @@ class MedicationsListWidget extends StatelessWidget {
               runSpacing: 10,
               children: List.generate(
                 15,
-                (index) => const MedicationWidget(),
+                (index) => const EffectCategoryWidget(),
               ),
             ),
           ],

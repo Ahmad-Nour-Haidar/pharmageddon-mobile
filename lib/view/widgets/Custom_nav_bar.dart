@@ -2,7 +2,6 @@ import 'dart:math' as math;
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
-import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
@@ -37,7 +36,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
     final s = AppSize.width * 0.15;
     return Container(
       height: 60,
-      margin: AppPadding.only(top: 20),
+      margin: AppPadding.only(top: 15),
       decoration: const BoxDecoration(
         color: AppColor.green2,
         borderRadius: BorderRadius.only(

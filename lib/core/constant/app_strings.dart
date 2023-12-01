@@ -55,6 +55,11 @@ class AppStrings {
   static const verify = 'verify';
   static const verifyCode = 'verifyCode';
 
+  // home
+  static const home = 'home';
+  static const manufacturers = 'manufacturers';
+  static const pharmacologicalEffect = 'pharmacologicalEffect';
+
   // other
   static const youAreOffline = 'youAreOffline';
   static const field = 'field';
@@ -79,7 +84,6 @@ class AppStrings {
   static const expirationDate = 'expirationDate';
 
   // drawer
-  static const home = 'home';
   static const profile = 'profile';
   static const favorite = 'favorite';
   static const myOrders = 'orders';

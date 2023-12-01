@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
-import 'package:pharmageddon_mobile/core/constant/app_size.dart';
-import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/routes.dart';
@@ -29,7 +26,7 @@ class HomeScreen extends StatelessWidget {
             initialIndex: cubit.indexScreen,
           ),
           appBar: CustomAppBar(
-            title: AppStrings.home.tr,
+            title: cubit.title,
             showArrowBack: false,
             showSearch: true,
             onTapSearch: () => pushNamed(AppRoute.search, context),

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
 
@@ -145,8 +146,8 @@ class SnackBarContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const as.only(top: AppSize.padding20),
-      padding: const as.all(AppSize.padding10),
+      margin: AppPadding.only(top: AppSize.padding20),
+      padding: AppPadding.padding10,
       width: AppSize.width - (2 * AppSize.screenPadding),
       // height: AppSize.size60,
       decoration: BoxDecoration(
@@ -157,8 +158,7 @@ class SnackBarContent extends StatelessWidget {
         children: [
           if (iconData != null)
             Padding(
-              padding:
-                  const as.symmetric(horizontal: AppSize.padding20),
+              padding: AppPadding.symmetric(horizontal: AppSize.padding20),
               child: Icon(
                 iconData,
                 color: AppColor.white,

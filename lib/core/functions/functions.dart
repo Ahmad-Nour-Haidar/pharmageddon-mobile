@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pharmageddon_mobile/core/constant/app_keys_request.dart';
@@ -60,3 +61,5 @@ void initialUser() {
   // printme.green(user.authorization);
   return;
 }
+
+int getRandom() => Random().nextInt(5) + 5;

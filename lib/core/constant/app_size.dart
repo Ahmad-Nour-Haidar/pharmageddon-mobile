@@ -7,9 +7,10 @@ class AppSize {
     final size = MediaQuery.sizeOf(context);
     width = size.width;
     height = size.height;
-    // cart
+    // card
     widthCard = ((width - 50) / 2);
     heightCard = widthCard + 60;
+    widthManufacturer = (AppSize.width * .35).toInt() * 1.0;
     // radius = (AppSize.width / 2) - 50;
     // radiusImage = radius - 5;
     // widthHeight = radiusImage * 2;
@@ -22,6 +23,7 @@ class AppSize {
 
   // card
   static late double widthCard;
+  static late double widthManufacturer;
   static late double heightCard;
 
   // size
