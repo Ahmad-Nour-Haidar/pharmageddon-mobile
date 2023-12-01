@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
@@ -23,7 +24,7 @@ class CustomTextFormField extends StatelessWidget {
     this.sizePrefix = AppSize.size20,
     this.hintStyle,
     this.borderRadius = AppSize.radius10,
-    this.contentPadding = const EdgeInsets.all(0),
+    this.contentPadding = AppPadding.zero,
     this.height,
     this.onTap,
     this.onTapPrefix,
@@ -50,7 +51,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextDirection? textDirection;
   final TextStyle? hintStyle;
   final bool enabled;
-  final EdgeInsetsGeometry? contentPadding;
+  final EdgeInsets? contentPadding;
   final void Function()? onTap;
   final FocusNode? focusNode;
 
@@ -92,7 +93,7 @@ class CustomTextFormField extends StatelessWidget {
           //     isEnglish() ? TextDirection.ltr : TextDirection.rtl,
           prefixIcon: prefixIcon != null
               ? IconButton(
-                  padding: const EdgeInsets.all(0),
+                  padding: AppPadding.zero,
                   onPressed: onTapPrefix,
                   icon: SvgImage(
                     path: prefixIcon!,
@@ -106,7 +107,7 @@ class CustomTextFormField extends StatelessWidget {
                   borderRadius: BorderRadius.circular(borderRadius),
                   onTap: onTapSuffix,
                   child: Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: AppPadding.padding10,
                     child: SvgImage(
                       path: suffixIcon!,
                       color: AppColor.gray3,

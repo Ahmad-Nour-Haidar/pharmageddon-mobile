@@ -9,6 +9,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_image.dart';
+import '../../../core/constant/app_padding.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_strings.dart';
 import '../../../core/constant/app_svg.dart';
@@ -71,7 +72,7 @@ class ResetPasswordScreen extends StatelessWidget {
               body: Form(
                 key: cubit.formKey,
                 child: ListView(
-                  padding: const EdgeInsets.all(AppSize.screenPadding),
+                  padding: AppPadding.screenPadding,
                   children: [
                     const LogoApp(),
                     const Gap(30),

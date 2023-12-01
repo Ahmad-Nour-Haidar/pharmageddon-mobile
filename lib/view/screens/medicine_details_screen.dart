@@ -12,6 +12,7 @@ import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
+import '../../core/constant/app_padding.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/medication_details/counter_widget.dart';
 import '../widgets/medication_details/medication_image.dart';
@@ -35,7 +36,7 @@ class MedicationDetailsScreen extends StatelessWidget {
               onTapBack: () => Navigator.pop(context),
             ).build(),
             body: ListView(
-              padding: const EdgeInsets.all(AppSize.screenPadding),
+              padding: AppPadding.screenPadding,
               children: [
                 const MedicationImage(),
                 const Gap(30),
@@ -43,8 +44,8 @@ class MedicationDetailsScreen extends StatelessWidget {
                   clipBehavior: Clip.none,
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(top: 20),
-                      padding: const EdgeInsets.all(10),
+                      margin: AppPadding.only(top: 20),
+                      padding: AppPadding.padding10,
                       decoration: BoxDecoration(
                         color: AppColor.white,
                         borderRadius: BorderRadius.circular(10),

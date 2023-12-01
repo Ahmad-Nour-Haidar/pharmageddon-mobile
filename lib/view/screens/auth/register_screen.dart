@@ -16,6 +16,7 @@ import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_button.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_row_text.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_text_form_field.dart';
+import '../../../core/constant/app_padding.dart';
 import '../../../core/functions/navigator.dart';
 import '../../../routes.dart';
 import '../../widgets/custom_other_auth.dart';
@@ -63,7 +64,7 @@ class RegisterScreen extends StatelessWidget {
               body: Form(
                 key: cubit.formKey,
                 child: ListView(
-                  padding: const EdgeInsets.all(AppSize.screenPadding),
+                  padding: AppPadding.screenPadding,
                   children: [
                     const LogoApp(),
                     const Gap(30),

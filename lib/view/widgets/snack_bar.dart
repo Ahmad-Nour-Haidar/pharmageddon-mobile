@@ -145,8 +145,8 @@ class SnackBarContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: AppSize.padding20),
-      padding: const EdgeInsets.all(AppSize.padding10),
+      margin: const as.only(top: AppSize.padding20),
+      padding: const as.all(AppSize.padding10),
       width: AppSize.width - (2 * AppSize.screenPadding),
       // height: AppSize.size60,
       decoration: BoxDecoration(
@@ -158,7 +158,7 @@ class SnackBarContent extends StatelessWidget {
           if (iconData != null)
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: AppSize.padding20),
+                  const as.symmetric(horizontal: AppSize.padding20),
               child: Icon(
                 iconData,
                 color: AppColor.white,

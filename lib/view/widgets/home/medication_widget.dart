@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_cached_network_image.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_keys.dart';
@@ -9,8 +10,8 @@ import '../../../core/resources/app_text_theme.dart';
 import '../../../model/screen_arguments.dart';
 import '../../../routes.dart';
 
-class MedicineWidget extends StatelessWidget {
-  const MedicineWidget({super.key});
+class MedicationWidget extends StatelessWidget {
+  const MedicationWidget({super.key});
 
   String get textName =>
       'medicament name medicament name'.split(' ').take(2).join(' ');
@@ -60,7 +61,7 @@ class MedicineWidget extends StatelessWidget {
             ),
             const Gap(10),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: AppPadding.symmetric(horizontal: 10),
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(textName, style: AppTextTheme.f15w400black),
@@ -70,7 +71,7 @@ class MedicineWidget extends StatelessWidget {
             FittedBox(
               fit: BoxFit.scaleDown,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: AppPadding.symmetric(horizontal: 10),
                 child: Text(textCompanyName, style: AppTextTheme.f15w400black),
               ),
             ),
@@ -82,8 +83,8 @@ class MedicineWidget extends StatelessWidget {
   }
 }
 
-class MedicineListWidget extends StatelessWidget {
-  const MedicineListWidget({
+class MedicationsListWidget extends StatelessWidget {
+  const MedicationsListWidget({
     super.key,
     // required this.medicines,
     required this.onRefresh,
@@ -104,7 +105,7 @@ class MedicineListWidget extends StatelessWidget {
               runSpacing: 10,
               children: List.generate(
                 15,
-                (index) => const MedicineWidget(),
+                (index) => const MedicationWidget(),
               ),
             ),
           ],

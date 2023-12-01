@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
@@ -34,10 +35,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
   @override
   Widget build(BuildContext context) {
     final s = AppSize.width * 0.15;
-    printme.cyan(s);
     return Container(
       height: 60,
-      margin: const EdgeInsets.only(top: 20),
+      margin: AppPadding.only(top: 20),
       decoration: const BoxDecoration(
         color: AppColor.green2,
         borderRadius: BorderRadius.only(
@@ -59,7 +59,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                   child: index == this.index
                       ? Align(
                           child: SlideInUp(
-                            duration: const Duration(milliseconds: 300),
+                            duration: const Duration(milliseconds: 200),
                             child: Transform.rotate(
                               angle: -math.pi / 4,
                               child: Container(
@@ -69,7 +69,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                                   color: AppColor.white,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                padding: const EdgeInsets.all(7),
+                                padding: AppPadding.padding7,
                                 child: Align(
                                   child: Container(
                                     height: 55,

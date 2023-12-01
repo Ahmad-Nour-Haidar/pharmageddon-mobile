@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
+import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/functions/navigator.dart';
@@ -34,8 +35,7 @@ class HomeScreen extends StatelessWidget {
             onTapSearch: () => pushNamed(AppRoute.search, context),
           ).build(),
           body: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: AppSize.screenPadding),
+            padding: AppPadding.screenPadding,
             child: Column(
               children: [
                 cubit.screen,

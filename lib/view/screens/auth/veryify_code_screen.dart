@@ -11,6 +11,7 @@ import 'package:pharmageddon_mobile/routes.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_image.dart';
+import '../../../core/constant/app_padding.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_strings.dart';
 import '../../../core/functions/functions.dart';
@@ -46,9 +47,7 @@ class VerifyCodeScreen extends StatelessWidget {
               color: AppColor.background,
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage(
-                  AppImage.backgroundMobile,
-                ),
+                image: AssetImage(AppImage.backgroundMobile),
               ),
             ),
             child: Scaffold(
@@ -59,7 +58,7 @@ class VerifyCodeScreen extends StatelessWidget {
                 showOptions: false,
               ).build(),
               body: ListView(
-                padding: const EdgeInsets.all(AppSize.screenPadding),
+                padding: AppPadding.screenPadding,
                 children: [
                   const LogoApp(),
                   const Gap(30),

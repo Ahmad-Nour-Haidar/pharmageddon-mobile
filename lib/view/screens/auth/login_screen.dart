@@ -12,6 +12,7 @@ import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_image.dart';
+import '../../../core/constant/app_padding.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_strings.dart';
 import '../../../core/constant/app_svg.dart';
@@ -70,7 +71,7 @@ class LoginScreen extends StatelessWidget {
               body: Form(
                 key: cubit.formKey,
                 child: ListView(
-                  padding: const EdgeInsets.all(AppSize.screenPadding),
+                  padding: AppPadding.screenPadding,
                   children: [
                     const LogoApp(),
                     const Gap(30),
