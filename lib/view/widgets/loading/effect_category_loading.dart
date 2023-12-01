@@ -24,7 +24,6 @@ class EffectCategoryLoading extends StatelessWidget {
                 spacing: 50,
                 runSpacing: 20,
                 children: List.generate(
-                  // test
                   getRandom(),
                   (index) => CustomShimmer(
                     child: Container(
