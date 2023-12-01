@@ -19,7 +19,7 @@ class ManufacturerWidget extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        padding: AppPadding.padding20,
+        padding: AppPadding.padding15,
         height: 100,
         width: AppSize.widthManufacturer,
         decoration: BoxDecoration(
@@ -28,7 +28,7 @@ class ManufacturerWidget extends StatelessWidget {
         ),
         child: AutoSizeText(
           text,
-          style: AppTextTheme.f26w600black,
+          style: AppTextTheme.f18w500black,
           maxLines: 3,
         ),
       ),

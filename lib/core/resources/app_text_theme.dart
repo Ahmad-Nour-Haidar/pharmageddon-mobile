@@ -49,9 +49,9 @@ abstract class AppTextTheme {
     color: AppColor.black,
     fontWeight: FontWeight.w600,
   );
-  static const f16w600green2 = TextStyle(
-    fontSize: 16,
-    color: AppColor.green2,
+  static const f18w600red = TextStyle(
+    fontSize: 18,
+    color: AppColor.red,
     fontWeight: FontWeight.w600,
   );
   static const f16w400black = TextStyle(
@@ -59,9 +59,9 @@ abstract class AppTextTheme {
     color: AppColor.black,
     fontWeight: FontWeight.w400,
   );
-  static const f16w400green2 = TextStyle(
-    fontSize: 16,
-    color: AppColor.green2,
+  static const f18w400red = TextStyle(
+    fontSize: 18,
+    color: AppColor.red,
     fontWeight: FontWeight.w400,
   );
 

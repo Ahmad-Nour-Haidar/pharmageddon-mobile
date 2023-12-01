@@ -19,19 +19,20 @@ class ManufacturersLoading extends StatelessWidget {
         onRefresh: onRefresh,
         child: ListView(
           children: [
-            Wrap(
-              alignment: WrapAlignment.center,
-            spacing: 50,
-              runSpacing: 20,
-              children: List.generate(
-                getRandom(),
-                (index) => CustomShimmer(
-                  child: Container(
-                    height: 100,
-                    width: AppSize.widthManufacturer,
-                    decoration: BoxDecoration(
-                      color: AppColor.white,
-                      borderRadius: BorderRadius.circular(AppSize.radius10),
+            Center(
+              child: Wrap(
+              spacing: 50,
+                runSpacing: 20,
+                children: List.generate(
+                  getRandom(),
+                  (index) => CustomShimmer(
+                    child: Container(
+                      height: 100,
+                      width: AppSize.widthManufacturer,
+                      decoration: BoxDecoration(
+                        color: AppColor.white,
+                        borderRadius: BorderRadius.circular(AppSize.radius10),
+                      ),
                     ),
                   ),
                 ),

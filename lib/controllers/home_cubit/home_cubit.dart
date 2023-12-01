@@ -17,12 +17,12 @@ class HomeCubit extends Cubit<HomeState> {
 
   int _indexScreen = 1;
   final _screens = [
-    ManufacturersListWidget(onRefresh: () async {}),
-    MedicationsListWidget(onRefresh: () async {}),
-    EffectCategoriesListWidget(onRefresh: () async {}),
-    // ManufacturersLoading(onRefresh: () async {}),
-    // MedicationsLoading(onRefresh: () async {}),
-    // EffectCategoryLoading(onRefresh: () async {}),
+    // ManufacturersListWidget(onRefresh: () async {}),
+    // MedicationsListWidget(onRefresh: () async {}),
+    // EffectCategoriesListWidget(onRefresh: () async {}),
+    ManufacturersLoading(onRefresh: () async {}),
+    MedicationsLoading(onRefresh: () async {}),
+    EffectCategoryLoading(onRefresh: () async {}),
   ];
 
   final _titles = [

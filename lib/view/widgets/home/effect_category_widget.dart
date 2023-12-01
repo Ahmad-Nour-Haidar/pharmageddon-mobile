@@ -29,7 +29,7 @@ class EffectCategoryWidget extends StatelessWidget {
             }));
       },
       child: Container(
-        width: AppSize.widthCard,
+        width: AppSize.widthManufacturer,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
             color: AppColor.white,
@@ -48,8 +48,8 @@ class EffectCategoryWidget extends StatelessWidget {
                   bottomRight: Radius.circular(2),
                 ),
                 child: CustomCachedNetworkImage(
-                  width: AppSize.widthCard,
-                  height: AppSize.widthCard,
+                  width: AppSize.widthManufacturer,
+                  height: AppSize.widthManufacturer - 30,
                   imageUrl:
                       'https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg',
                   errorWidget: ErrorWidgetShow.picture,
@@ -58,10 +58,10 @@ class EffectCategoryWidget extends StatelessWidget {
             ),
             Padding(
               padding: AppPadding.padding10,
-              child: AutoSizeText(
+              child: Text(
                 textName,
-                style: AppTextTheme.f15w400black,
-                maxLines: 1,
+                style: AppTextTheme.f20w600black,
+                maxLines: 2,
               ),
             ),
           ],
@@ -88,12 +88,14 @@ class EffectCategoriesListWidget extends StatelessWidget {
         onRefresh: onRefresh,
         child: ListView(
           children: [
-            Wrap(
-              spacing: 20,
-              runSpacing: 10,
-              children: List.generate(
-                15,
-                (index) => const EffectCategoryWidget(),
+            Center(
+              child: Wrap(
+                spacing: 50,
+                runSpacing: 20,
+                children: List.generate(
+                  15,
+                  (index) => const EffectCategoryWidget(),
+                ),
               ),
             ),
           ],

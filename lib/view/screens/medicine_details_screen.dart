@@ -86,11 +86,11 @@ class MedicationDetailsScreen extends StatelessWidget {
                           const Gap(15),
                           RowTextSpan(
                             s1: '${AppStrings.totalPrice.tr} : ',
-                            ts1: AppTextTheme.f16w600green2,
+                            ts1: AppTextTheme.f18w600red,
                             s2: '250 S.P',
-                            ts2: AppTextTheme.f16w400green2,
+                            ts2: AppTextTheme.f18w400red,
                           ),
-                          const Gap(35),
+                          const Gap(30),
                           if (state is MedicationDetailsLoadingState)
                             const SpinKitThreeBounce(
                               color: AppColor.buttonColor,

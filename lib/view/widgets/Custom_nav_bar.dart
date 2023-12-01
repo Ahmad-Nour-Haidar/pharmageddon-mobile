@@ -36,7 +36,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
     final s = AppSize.width * 0.15;
     return Container(
       height: 60,
-      margin: AppPadding.only(top: 15),
+      margin: AppPadding.only(top: 45),
       decoration: const BoxDecoration(
         color: AppColor.green2,
         borderRadius: BorderRadius.only(
