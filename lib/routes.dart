@@ -6,7 +6,6 @@ import 'package:pharmageddon_mobile/view/screens/auth/register_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/auth/reset_password_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/auth/veryify_code_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/medicine_details_screen.dart';
-import 'package:pharmageddon_mobile/view/screens/search_screen.dart';
 
 abstract class AppRoute {
   // auth
@@ -20,8 +19,6 @@ abstract class AppRoute {
   static const home = '/home';
   static const medicineDetails = '/medicine-details';
 
-  // search
-  static const search = '/search';
 }
 
 final Map<String, Widget Function(BuildContext)> routes = {
@@ -36,6 +33,4 @@ final Map<String, Widget Function(BuildContext)> routes = {
   AppRoute.home: (_) => const HomeScreen(),
   AppRoute.medicineDetails: (_) => const MedicationDetailsScreen(),
 
-  // search
-  AppRoute.search: (_) => const SearchScreen(),
 };

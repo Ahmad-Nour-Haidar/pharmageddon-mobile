@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,23 +41,44 @@ class CustomSearch extends SearchDelegate {
         },
         builder: (context, state) {
           final cubit = SearchCubit.get(context);
-          Widget widget = Column(children: [
+          Widget body = Column(children: [
             MedicationsLoading(onRefresh: () async {}),
           ]);
           if (state is SearchFailureState) {
-            widget = Center(child: Lottie.asset(AppLottie.somethingWentWrong));
+            body = Center(child: Lottie.asset(AppLottie.somethingWentWrong));
           }
           if (state is SearchSuccessState && cubit.data.isEmpty) {
-            widget = Center(child: Lottie.asset(AppLottie.noDataAfterSearch));
+            final s = '${AppStrings.searchResultsFor.tr} : ${state.value}';
+            body = Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AutoSizeText(
+                  s,
+                  style: AppTextTheme.f18w500black,
+                  maxLines: 1,
+                ),
+                Lottie.asset(AppLottie.noDataAfterSearch),
+              ],
+            );
           }
           if (state is SearchSuccessState && cubit.data.isNotEmpty) {
-            widget = Column(children: [
-              MedicationsListWidget(onRefresh: () async {}),
-            ]);
+            final s = '${AppStrings.searchResultsFor.tr} : ${state.value}';
+            body = Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AutoSizeText(
+                  s,
+                  style: AppTextTheme.f18w500black,
+                  maxLines: 1,
+                ),
+                const Gap(10),
+                MedicationsListWidget(onRefresh: () async {}),
+              ],
+            );
           }
           return Padding(
             padding: AppPadding.screenPaddingAll,
-            child: widget,
+            child: body,
           );
         },
       ),

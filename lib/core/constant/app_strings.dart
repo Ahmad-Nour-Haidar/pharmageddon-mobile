@@ -94,7 +94,7 @@ class AppStrings {
 
   // search
   static const search = 'search';
-  static const resultsSearchFor = 'resultsSearchFor';
+  static const searchResultsFor = 'searchResultsFor';
   static const typeSomethingToSearchOnIt = 'typeSomethingToSearchOnIt';
 
   // other
