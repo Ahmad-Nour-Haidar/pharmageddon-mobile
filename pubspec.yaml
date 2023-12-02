@@ -53,6 +53,7 @@ dependencies:
   animate_do: ^3.1.2
   hive: ^2.2.3
   auto_size_text: ^3.0.0
+  lottie: ^2.7.0
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +84,7 @@ flutter:
   assets:
     - assets/svgs/
     - assets/images/
+    - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

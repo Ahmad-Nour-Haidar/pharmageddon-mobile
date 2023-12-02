@@ -9,11 +9,8 @@ class AppConstant {
   static const en = 'en';
   static const pharmacist = 'pharmacist';
 
-  // static const warehouseowner = 'warehouseowner';
-
   static const localEn = Locale(en);
-  static const localAr = Locale(ar);
-  static late Locale currentLocal;
+  // static const localAr = Locale(ar);
 
   static const homeList = [
     AppSvg.text,

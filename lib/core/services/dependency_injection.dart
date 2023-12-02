@@ -7,6 +7,7 @@ import '../../controllers/login_cubit/login_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../controllers/register_cubit/register_cubit.dart';
 import '../../controllers/reset_password_cubit/reset_password_cubit.dart';
+import '../../controllers/search_cubit/search_cubit.dart';
 import '../../controllers/verify_code_cubit/verify_code_cubit.dart';
 import '../../data/remote/auth_data.dart';
 import '../../my_bloc_observer.dart';
@@ -45,5 +46,9 @@ class AppInjection {
 
     // medication details
     getIt.registerFactory(() => MedicationDetailsCubit());
+
+    // search
+    getIt.registerFactory(() => SearchCubit());
+
   }
 }

@@ -93,8 +93,9 @@ class AppStrings {
   static const no = 'no';
 
   // search
-  static const resultsSearchFor = 'resultsSearchFor';
   static const search = 'search';
+  static const resultsSearchFor = 'resultsSearchFor';
+  static const typeSomethingToSearchOnIt = 'typeSomethingToSearchOnIt';
 
   // other
   static const pressBackAgainToExit = 'pressBackAgainToExit';

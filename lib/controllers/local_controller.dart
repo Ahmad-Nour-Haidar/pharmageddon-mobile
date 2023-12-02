@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:pharmageddon_mobile/core/functions/functions.dart';
+import 'package:pharmageddon_mobile/print.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../core/constant/app_constant.dart';
 import '../core/constant/app_keys_storage.dart';
@@ -18,7 +20,6 @@ class LocaleController extends GetxController {
     final locale = Locale(codeLang);
     sh.setString(AppKeysStorage.langKey, codeLang);
     await Jiffy.setLocale(codeLang);
-    AppConstant.currentLocal = locale;
     Get.updateLocale(locale);
   }
 
@@ -32,7 +33,6 @@ class LocaleController extends GetxController {
     } else {
       locale = Locale(Get.deviceLocale!.languageCode);
     }
-    AppConstant.currentLocal = locale;
     await Jiffy.setLocale(locale.languageCode);
     super.onInit();
   }

@@ -8,6 +8,7 @@ import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
+import 'package:pharmageddon_mobile/view/widgets/home/Custom_search_widget.dart';
 import '../widgets/Custom_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
             title: cubit.title,
             showArrowBack: false,
             showSearch: true,
-            onTapSearch: () => pushNamed(AppRoute.search, context),
+            onTapSearch: () => showSearch(context: context, delegate: CustomSearch()),
           ).build(),
           body: Padding(
             padding: AppPadding.screenPadding,

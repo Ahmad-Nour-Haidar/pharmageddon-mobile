@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pharmageddon_mobile/core/constant/app_keys_request.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../controllers/local_controller.dart';
 import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
 import '../constant/app_keys_storage.dart';
 import '../constant/app_local_data.dart';
 import '../services/dependency_injection.dart';
 
-bool isEnglish() => AppConstant.currentLocal == AppConstant.localEn;
+bool isEnglish() =>
+    AppInjection.getIt<LocaleController>().locale == AppConstant.localEn;
 
 String getCodeLang() =>
-    AppConstant.currentLocal == AppConstant.localEn ? 'en' : 'ar';
+    AppInjection.getIt<LocaleController>().locale.languageCode;
 
 String formatDateJiffy(DateTime date) {
   return Jiffy.parseFromDateTime(date)
