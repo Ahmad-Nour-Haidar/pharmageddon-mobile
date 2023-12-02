@@ -13,15 +13,15 @@ class SearchCubit extends Cubit<SearchState> {
 
   Future<void> search(String value) async {
     emit(SearchLoadingState());
-    await Future.delayed(const Duration(seconds: 3), () {
-      emit(SearchSuccessState(value));
-    });
+    // await Future.delayed(const Duration(seconds: 3), () {
+    //   emit(SearchSuccessState(value));
+    // });
     await Future.delayed(const Duration(seconds: 3), () {
       data.add(1);
       emit(SearchSuccessState(value));
     });
-    await Future.delayed(const Duration(seconds: 3), () {
-      emit(SearchFailureState(OfflineState()));
-    });
+    // await Future.delayed(const Duration(seconds: 3), () {
+    //   emit(SearchFailureState(OfflineState()));
+    // });
   }
 }

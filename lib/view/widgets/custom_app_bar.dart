@@ -28,31 +28,31 @@ class CustomAppBar {
 
   AppBar build() {
     return AppBar(
-      centerTitle: true,
+      automaticallyImplyLeading: false,
       backgroundColor: colorAppBar,
+      centerTitle: true,
+      leading: showArrowBack
+          ? IconButton(
+              onPressed: onTapBack,
+              icon: SvgPicture.asset(
+                  isEnglish() ? AppSvg.arrowLeft : AppSvg.arrowRight),
+            )
+          : null,
+      title: Text(
+        title,
+        style: AppTextTheme.f20w600black,
+      ),
       actions: [
-        if (showArrowBack)
-        IconButton(
-          onPressed: onTapBack,
-          icon: SvgPicture.asset(
-              isEnglish() ? AppSvg.arrowLeft : AppSvg.arrowRight),
-        ),
         if (showOptions)
           IconButton(
             onPressed: onTapOptions,
             icon: SvgPicture.asset(AppSvg.options),
           ),
-        const Spacer(),
-        Text(
-          title,
-          style: AppTextTheme.f20w600black,
-        ),
-        const Spacer(),
         if (showSearch)
-        IconButton(
-          onPressed: onTapSearch,
-          icon: SvgPicture.asset(AppSvg.search),
-        ),
+          IconButton(
+            onPressed: onTapSearch,
+            icon: SvgPicture.asset(AppSvg.search),
+          ),
       ],
     );
   }
