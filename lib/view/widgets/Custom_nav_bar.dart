@@ -36,7 +36,6 @@ class _CustomNavBarState extends State<CustomNavBar> {
     final s = AppSize.width * 0.15;
     return Container(
       height: 60,
-      margin: AppPadding.only(top: 45),
       decoration: const BoxDecoration(
         color: AppColor.green2,
         borderRadius: BorderRadius.only(
@@ -112,7 +111,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                           child: SvgImage(
                             path: widget.list[index],
                             color: AppColor.white,
-                            size: s/2,
+                            size: s / 2,
                           ),
                         ),
                       ),

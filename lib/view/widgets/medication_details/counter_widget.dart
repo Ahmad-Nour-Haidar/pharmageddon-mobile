@@ -1,5 +1,6 @@
+import 'dart:async';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_svg.dart';
@@ -22,23 +23,26 @@ class CounterWidget extends StatefulWidget {
 }
 
 class _CounterWidgetState extends State<CounterWidget> {
-  late int counter;
+  late int _counter;
+  static Timer? _timer;
+  static const _duration = Duration(milliseconds: 100);
 
   @override
   void initState() {
-    counter = widget.initialValue;
+    _counter = widget.initialValue;
     super.initState();
   }
 
   void change(int x) {
-    if (counter + x < 0) return;
-    if (counter + x > widget.maxValue) return;
-    setState(() => counter += x);
-    widget.onChange(counter);
+    if (_counter + x < 0) return;
+    if (_counter + x > widget.maxValue) return;
+    setState(() => _counter += x);
+    widget.onChange(_counter);
   }
 
   @override
   Widget build(BuildContext context) {
+    final width = AppSize.width * 0.35;
     return Positioned.fill(
       child: Align(
         alignment: Alignment.topCenter,
@@ -47,18 +51,25 @@ class _CounterWidgetState extends State<CounterWidget> {
           clipBehavior: Clip.hardEdge,
           borderRadius: BorderRadius.circular(10),
           child: SizedBox(
-            width: AppSize.width * 0.35,
+            width: width,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  flex: 2,
+                GestureDetector(
+                  onLongPress: () {
+                    change(-1);
+                    _timer = Timer.periodic(_duration, (timer) => change(-1));
+                  },
+                  onLongPressEnd: (LongPressEndDetails details) {
+                    _timer?.cancel();
+                    _timer = null;
+                  },
                   child: InkWell(
                     onTap: () => change(-1),
-                    child: const SizedBox(
+                    child: SizedBox(
                       height: 42,
-                      width: 42,
-                      child: Align(
+                      width: width * .3,
+                      child: const Align(
                         child: SvgImage(
                           path: AppSvg.minus,
                           color: AppColor.white,
@@ -69,24 +80,29 @@ class _CounterWidgetState extends State<CounterWidget> {
                   ),
                 ),
                 Expanded(
-                  flex: 3,
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      counter.toString(),
-                      style: AppTextTheme.f18w600white,
-                      textAlign: TextAlign.center,
-                    ),
+                  child: AutoSizeText(
+                    maxLines: 1,
+                    _counter.toString(),
+                    style: AppTextTheme.f18w600white,
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                Expanded(
-                  flex: 2,
+                GestureDetector(
+                  onTap: () => change(1),
+                  onLongPress: () {
+                    change(1);
+                    _timer = Timer.periodic(_duration, (timer) => change(1));
+                  },
+                  onLongPressEnd: (LongPressEndDetails details) {
+                    _timer?.cancel();
+                    _timer = null;
+                  },
                   child: InkWell(
                     onTap: () => change(1),
-                    child: const SizedBox(
+                    child: SizedBox(
                       height: 42,
-                      width: 42,
-                      child: Align(
+                      width: width * .3,
+                      child: const Align(
                         child: SvgImage(
                           path: AppSvg.plus,
                           color: AppColor.white,

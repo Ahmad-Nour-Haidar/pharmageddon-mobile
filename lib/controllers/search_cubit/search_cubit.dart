@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmageddon_mobile/print.dart';
-import '../../core/class/parent_state.dart';
 import 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {

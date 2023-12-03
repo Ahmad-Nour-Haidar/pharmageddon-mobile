@@ -13,6 +13,7 @@ class CustomAppBar {
     this.onTapSearch,
     this.showArrowBack = true,
     this.showOptions = true,
+    this.showOptionsLeading = false,
     this.showSearch = false,
     this.colorAppBar = AppColor.transparent,
   });
@@ -23,6 +24,7 @@ class CustomAppBar {
   final String title;
   final bool showArrowBack;
   final bool showOptions;
+  final bool showOptionsLeading;
   final bool showSearch;
   final Color colorAppBar;
 
@@ -37,21 +39,26 @@ class CustomAppBar {
               icon: SvgPicture.asset(
                   isEnglish() ? AppSvg.arrowLeft : AppSvg.arrowRight),
             )
-          : null,
+          : showOptionsLeading
+              ? IconButton(
+                  onPressed: onTapOptions,
+                  icon: SvgPicture.asset(AppSvg.options),
+                )
+              : null,
       title: Text(
         title,
         style: AppTextTheme.f20w600black,
       ),
       actions: [
-        if (showOptions)
-          IconButton(
-            onPressed: onTapOptions,
-            icon: SvgPicture.asset(AppSvg.options),
-          ),
         if (showSearch)
           IconButton(
             onPressed: onTapSearch,
             icon: SvgPicture.asset(AppSvg.search),
+          ),
+        if (showOptions && !showOptionsLeading)
+          IconButton(
+            onPressed: onTapOptions,
+            icon: SvgPicture.asset(AppSvg.options),
           ),
       ],
     );

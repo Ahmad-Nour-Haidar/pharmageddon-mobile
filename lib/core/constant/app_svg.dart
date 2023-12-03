@@ -8,6 +8,7 @@ class AppSvg {
   static const background = '$root/background.svg';
   static const boxCircleCheck = '$root/box_circle_check.svg';
   static const boxOpen = '$root/box_open.svg';
+  static const checkCircle = '$root/check_circle.svg';
   static const chemistry = '$root/chemistry.svg';
   static const close = '$root/close.svg';
   static const email = '$root/email.svg';
@@ -27,7 +28,9 @@ class AppSvg {
   static const plus = '$root/plus.svg';
   static const search = '$root/search.svg';
   static const sent = '$root/sent.svg';
+  static const shippingFast = '$root/shipping_fast.svg';
   static const text = '$root/text.svg';
+  static const timePast = '$root/time_past.svg';
   static const trash = '$root/trash.svg';
   static const user = '$root/user.svg';
 }

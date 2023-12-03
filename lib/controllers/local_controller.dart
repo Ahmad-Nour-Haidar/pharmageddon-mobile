@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:pharmageddon_mobile/core/functions/functions.dart';
-import 'package:pharmageddon_mobile/print.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../core/constant/app_constant.dart';
 import '../core/constant/app_keys_storage.dart';

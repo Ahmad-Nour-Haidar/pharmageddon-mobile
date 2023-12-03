@@ -110,6 +110,7 @@ class MedicationsListWidget extends StatelessWidget {
                 (index) => const MedicationWidget(),
               ),
             ),
+            const Gap(30),
           ],
         ),
       ),

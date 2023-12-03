@@ -7,6 +7,7 @@ import 'package:pharmageddon_mobile/controllers/medication_details_cubit/medicat
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
+import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/print.dart';
@@ -16,6 +17,7 @@ import '../../core/constant/app_padding.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/medication_details/counter_widget.dart';
 import '../widgets/medication_details/medication_image.dart';
+import '../widgets/row_text.dart';
 import '../widgets/row_text_span.dart';
 
 class MedicationDetailsScreen extends StatelessWidget {
@@ -23,6 +25,7 @@ class MedicationDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaffoldKey = GlobalKey<ScaffoldState>();
     printme.cyan(AppSize.width);
     return BlocProvider(
       create: (context) => AppInjection.getIt<MedicationDetailsCubit>(),
@@ -31,12 +34,22 @@ class MedicationDetailsScreen extends StatelessWidget {
         builder: (context, state) {
           final cubit = MedicationDetailsCubit.get(context);
           return Scaffold(
+            key: scaffoldKey,
             appBar: CustomAppBar(
               title: AppStrings.medicationDetails.tr,
               onTapBack: () => Navigator.pop(context),
+              onTapOptions: () {
+                if (isEnglish()) {
+                  scaffoldKey.currentState!.openDrawer();
+                } else {
+                  scaffoldKey.currentState!.openEndDrawer();
+                }
+              },
             ).build(),
+            drawer: isEnglish() ? const Drawer() : null,
+            endDrawer: isEnglish() ? null : const Drawer(),
             body: ListView(
-              padding: AppPadding.screenPadding,
+              padding: AppPadding.screenPaddingAll,
               children: [
                 const MedicationImage(),
                 const Gap(30),
@@ -74,9 +87,10 @@ class MedicationDetailsScreen extends StatelessWidget {
                             s2: '15',
                           ),
                           const Gap(5),
-                          RowTextSpan(
+                          RowText(
                             s1: '${AppStrings.expirationDate.tr} : ',
                             s2: '2001 - 8 - 16',
+                            textDirection: TextDirection.ltr,
                           ),
                           const Gap(5),
                           RowTextSpan(
@@ -87,7 +101,7 @@ class MedicationDetailsScreen extends StatelessWidget {
                           RowTextSpan(
                             s1: '${AppStrings.totalPrice.tr} : ',
                             ts1: AppTextTheme.f18w600red,
-                            s2: '250 S.P',
+                            s2: '${cubit.q * 250} S.P',
                             ts2: AppTextTheme.f18w400red,
                           ),
                           const Gap(30),
@@ -104,19 +118,18 @@ class MedicationDetailsScreen extends StatelessWidget {
                                 width: AppSize.width / 2,
                               ),
                             ),
-                          const Gap(25),
+                          const Gap(10),
                         ],
                       ),
                     ),
                     CounterWidget(
-                      initialValue: 0,
-                      maxValue: 5,
-                      onChange: (counter) {
-                        printme.yellow(counter);
-                      },
+                      initialValue: cubit.q,
+                      maxValue: 100,
+                      onChange: cubit.changeQuantity,
                     ),
                   ],
                 ),
+                const Gap(25),
               ],
             ),
           );

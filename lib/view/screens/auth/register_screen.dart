@@ -8,13 +8,12 @@ import 'package:pharmageddon_mobile/controllers/register_cubit/register_state.da
 import 'package:pharmageddon_mobile/core/class/validation.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_image.dart';
-import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/constant/app_svg.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_button.dart';
-import 'package:pharmageddon_mobile/view/widgets/custom_row_text.dart';
+import 'package:pharmageddon_mobile/view/widgets/custom_row_text_button.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_text_form_field.dart';
 import '../../../core/constant/app_padding.dart';
 import '../../../core/functions/navigator.dart';
@@ -143,7 +142,7 @@ class RegisterScreen extends StatelessWidget {
                         text: AppStrings.register.tr,
                       ),
                     const Gap(15),
-                    CustomRowText(
+                    CustomRowTextButton(
                       text: AppStrings.haveAnAccount.tr,
                       btnText: AppStrings.loginNow.tr,
                       onTap: () {

@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
@@ -98,6 +97,7 @@ class EffectCategoriesListWidget extends StatelessWidget {
                 ),
               ),
             ),
+            const Gap(30),
           ],
         ),
       ),

@@ -49,6 +49,5 @@ class AppInjection {
 
     // search
     getIt.registerFactory(() => SearchCubit());
-
   }
 }

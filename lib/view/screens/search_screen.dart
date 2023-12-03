@@ -6,19 +6,15 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../controllers/search_cubit/search_state.dart';
-import '../../core/constant/app_color.dart';
 import '../../core/constant/app_lottie.dart';
 import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_strings.dart';
-import '../../core/constant/app_svg.dart';
-import '../../core/functions/functions.dart';
 import '../../core/resources/app_text_theme.dart';
 import '../../core/services/dependency_injection.dart';
 import '../widgets/handle_state.dart';
 import '../widgets/home/medication_widget.dart';
 import '../widgets/loading/medications_loading.dart';
 import '../widgets/search_text_field_widget.dart';
-import '../widgets/svg_image.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -31,17 +27,15 @@ class SearchScreen extends StatelessWidget {
         body: Column(
           children: [
             SafeArea(
-              child: Builder(
-                builder: (context) {
-                  final cubit = SearchCubit.get(context);
-                  return SearchTextFieldWidget(
-                    onSubmitted: (value) {
-                      if (value.isEmpty) return;
-                      cubit.search(value);
-                    },
-                  );
-                }
-              ),
+              child: Builder(builder: (context) {
+                final cubit = SearchCubit.get(context);
+                return SearchTextFieldWidget(
+                  onSubmitted: (value) {
+                    if (value.isEmpty) return;
+                    cubit.search(value);
+                  },
+                );
+              }),
             ),
             Expanded(
               child: BlocConsumer<SearchCubit, SearchState>(

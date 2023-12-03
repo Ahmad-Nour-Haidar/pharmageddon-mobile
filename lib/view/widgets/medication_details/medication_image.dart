@@ -17,17 +17,19 @@ class MedicationImage extends StatelessWidget {
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
     final tag = args.args[AppKeys.tag];
     bool isFavorite = true;
+    final width = AppSize.width * .8;
+    final height = AppSize.width * .6;
     return Hero(
       tag: tag,
       child: Align(
         child: SizedBox(
-          height: 291,
+          height: height + 21,
           child: Stack(
             clipBehavior: Clip.none,
             children: [
               CustomCachedNetworkImage(
-                width: AppSize.width * 0.80,
-                height: 275,
+                width: width,
+                height: height,
                 imageUrl: '',
                 errorWidget: ErrorWidgetShow.picture,
               ),

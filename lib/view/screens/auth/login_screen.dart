@@ -8,12 +8,10 @@ import 'package:pharmageddon_mobile/controllers/login_cubit/login_state.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
-
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_image.dart';
 import '../../../core/constant/app_padding.dart';
-import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_strings.dart';
 import '../../../core/constant/app_svg.dart';
 import '../../../core/functions/functions.dart';
@@ -22,7 +20,7 @@ import '../../../routes.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_other_auth.dart';
-import '../../widgets/custom_row_text.dart';
+import '../../widgets/custom_row_text_button.dart';
 import '../../widgets/custom_text_form_field.dart';
 import '../../widgets/custom_toggle_button.dart';
 import '../../widgets/logo_app.dart';
@@ -142,7 +140,7 @@ class LoginScreen extends StatelessWidget {
                         text: AppStrings.login.tr,
                       ),
                     const Gap(15),
-                    CustomRowText(
+                    CustomRowTextButton(
                       text: AppStrings.doNotHaveAnAccount.tr,
                       btnText: AppStrings.createAccount.tr,
                       onTap: () {

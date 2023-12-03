@@ -14,11 +14,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaffoldKey = GlobalKey<ScaffoldState>();
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, state) {
         final cubit = HomeCubit.get(context);
         return Scaffold(
+          key: scaffoldKey,
           bottomNavigationBar: CustomNavBar(
             onChange: cubit.changeScreen,
             list: AppConstant.homeList,
@@ -28,9 +30,12 @@ class HomeScreen extends StatelessWidget {
             title: cubit.title,
             showArrowBack: false,
             showSearch: true,
+            showOptionsLeading: true,
             // onTapSearch: () => showSearch(context: context, delegate: CustomSearch()),
             onTapSearch: () => pushNamed(AppRoute.search, context),
+            onTapOptions: () => scaffoldKey.currentState!.openDrawer(),
           ).build(),
+          drawer: const Drawer(),
           body: Padding(
             padding: AppPadding.screenPadding,
             child: Column(

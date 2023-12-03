@@ -77,7 +77,8 @@ class MyTranslation extends Translations {
           AppStrings.pressBackAgainToExit: 'Press back again to exit',
           AppStrings.searchResultsFor: 'Search results for',
           AppStrings.search: 'Search',
-          AppStrings.typeSomethingToSearchOnIt: 'Type something\nto search on it ...',
+          AppStrings.typeSomethingToSearchOnIt:
+              'Type something\nto search on it ...',
           AppStrings.medicationDetails: 'Medication details',
           AppStrings.scientificName: 'Scientific name',
           AppStrings.commercialName: 'Commercial name',

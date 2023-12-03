@@ -5,9 +5,6 @@ import '../../core/constant/app_strings.dart';
 import '../../view/widgets/home/effect_category_widget.dart';
 import '../../view/widgets/home/manufacturers_widget.dart';
 import '../../view/widgets/home/medication_widget.dart';
-import '../../view/widgets/loading/effect_category_loading.dart';
-import '../../view/widgets/loading/manufacturers_loading.dart';
-import '../../view/widgets/loading/medications_loading.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {

@@ -21,7 +21,7 @@ class ManufacturersLoading extends StatelessWidget {
           children: [
             Center(
               child: Wrap(
-              spacing: 50,
+                spacing: 50,
                 runSpacing: 20,
                 children: List.generate(
                   getRandom(),

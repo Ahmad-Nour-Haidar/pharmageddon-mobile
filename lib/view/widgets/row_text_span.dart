@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../core/resources/app_text_theme.dart';
 
 class RowTextSpan extends StatelessWidget {
@@ -13,7 +12,6 @@ class RowTextSpan extends StatelessWidget {
 
   final String s1, s2;
   final TextStyle ts1, ts2;
-
   @override
   Widget build(BuildContext context) {
     return RichText(
