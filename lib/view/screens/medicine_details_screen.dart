@@ -9,7 +9,6 @@ import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
-import '../../controllers/effect_medicines_cubit/factory_medicines_state.dart';
 import '../../controllers/factory_medicines_cubit/effect_medicines_state.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../core/constant/app_keys.dart';
@@ -28,7 +27,6 @@ class MedicationDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
     final medicationId = args.args[AppKeys.medicationModel];
-    final scaffoldKey = GlobalKey<ScaffoldState>();
     return BlocProvider(
       create: (context) =>
           AppInjection.getIt<MedicationDetailsCubit>()..initial(medicationId),
@@ -37,11 +35,8 @@ class MedicationDetailsScreen extends StatelessWidget {
         builder: (context, state) {
           final cubit = MedicationDetailsCubit.get(context);
           return Scaffold(
-            key: scaffoldKey,
             appBar: CustomAppBar(
-              keyScaffold: scaffoldKey,
               title: AppStrings.medicationDetails.tr,
-              onTapBack: () => Navigator.pop(context),
             ).build(),
             drawer: const Drawer(),
             endDrawer: const Drawer(),

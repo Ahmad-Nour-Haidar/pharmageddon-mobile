@@ -6,9 +6,6 @@ import 'package:pharmageddon_mobile/controllers/home_cubit/home_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/core/constant/app_lottie.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
-import 'package:pharmageddon_mobile/core/functions/navigator.dart';
-import 'package:pharmageddon_mobile/print.dart';
-import 'package:pharmageddon_mobile/routes.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'package:pharmageddon_mobile/view/widgets/home/effect_category_widget.dart';
@@ -24,7 +21,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaffoldKey = GlobalKey<ScaffoldState>();
     return BlocConsumer<HomeCubit, HomeState>(
       buildWhen: (previous, current) {
         return current is! HomeGetFailureState;
@@ -87,19 +83,20 @@ class HomeScreen extends StatelessWidget {
             break;
         }
         return Scaffold(
-          key: scaffoldKey,
           bottomNavigationBar: CustomNavBar(
             onChange: cubit.changeScreen,
             list: AppConstant.homeList,
             initialIndex: cubit.indexScreen,
           ),
           appBar: CustomAppBar(
-            keyScaffold: scaffoldKey,
             title: cubit.title,
             showArrowBack: false,
             showSearch: true,
-            showOptionsLeading: true,
-            onTapSearch: () => pushNamed(AppRoute.search, context),
+            showOptions: true,
+            showCart: true,
+            showFavorites: true,
+            showOrders: true,
+            showReports: true,
           ).build(),
           drawer: const Drawer(),
           body: Padding(

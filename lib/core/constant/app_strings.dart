@@ -85,8 +85,10 @@ class AppStrings {
 
   // drawer
   static const profile = 'profile';
+  static const cart = 'cart';
+  static const orders = 'orders';
   static const favorite = 'favorite';
-  static const myOrders = 'orders';
+  static const reports = 'reports';
   static const logOut = 'logOut';
   static const doYouWantToLogOut = 'doYouWantToLogOut';
   static const yes = 'yes';

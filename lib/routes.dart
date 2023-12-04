@@ -17,6 +17,7 @@ abstract class AppRoute {
   static const verifyCode = '/verify-code';
   static const checkEmail = '/check-email';
   static const resetPassword = '/reset-password';
+  static const profile = '/profile';
 
   // home
   static const home = '/home';
@@ -27,6 +28,21 @@ abstract class AppRoute {
 
   // search
   static const search = '/search';
+
+  // cart
+  static const cart = '/cart';
+
+  // orders
+  static const orders = '/orders';
+
+  // favorites
+  static const favorites = '/favorites';
+
+  // reports
+  static const reports = '/reports';
+
+  // logout
+  static const logout = '/logout';
 }
 
 final Map<String, Widget Function(BuildContext)> routes = {

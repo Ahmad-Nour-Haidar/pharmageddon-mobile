@@ -53,7 +53,6 @@ class VerifyCodeScreen extends StatelessWidget {
             child: Scaffold(
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
-                onTapBack: () => Navigator.pop(context),
                 title: AppStrings.verifyCode.tr,
                 showOptions: false,
               ).build(),

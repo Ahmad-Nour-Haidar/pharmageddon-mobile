@@ -54,7 +54,6 @@ class CheckEmailScreen extends StatelessWidget {
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
                 title: AppStrings.checkEmail.tr,
-                onTapBack: () => Navigator.pop(context),
                 showOptions: false,
               ).build(),
               body: Form(

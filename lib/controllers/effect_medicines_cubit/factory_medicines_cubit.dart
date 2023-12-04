@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../medication_details_cubit/medication_details_state.dart';
 import 'factory_medicines_state.dart';
 
 class FactoryMedicinesCubit extends Cubit<FactoryMedicinesState> {
