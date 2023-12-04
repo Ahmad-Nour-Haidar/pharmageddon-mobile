@@ -27,13 +27,12 @@ class HomeScreen extends StatelessWidget {
             initialIndex: cubit.indexScreen,
           ),
           appBar: CustomAppBar(
+            keyScaffold: scaffoldKey,
             title: cubit.title,
             showArrowBack: false,
             showSearch: true,
             showOptionsLeading: true,
-            // onTapSearch: () => showSearch(context: context, delegate: CustomSearch()),
             onTapSearch: () => pushNamed(AppRoute.search, context),
-            onTapOptions: () => scaffoldKey.currentState!.openDrawer(),
           ).build(),
           drawer: const Drawer(),
           body: Padding(

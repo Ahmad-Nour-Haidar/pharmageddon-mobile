@@ -1,17 +1,15 @@
 import '../../core/class/parent_state.dart';
 
-abstract class MedicationDetailsState {}
+abstract class EffectMedicinesState {}
 
-class MedicationDetailsInitialState extends MedicationDetailsState {}
+class EffectMedicinesInitialState extends EffectMedicinesState {}
 
-class MedicationDetailsLoadingState extends MedicationDetailsState {}
+class EffectMedicinesLoadingState extends EffectMedicinesState {}
 
-class MedicationDetailsSuccessState extends MedicationDetailsState {}
+class EffectMedicinesSuccessState extends EffectMedicinesState {}
 
-class MedicationDetailsFailureState extends MedicationDetailsState {
+class EffectMedicinesFailureState extends EffectMedicinesState {
   final ParentState state;
 
-  MedicationDetailsFailureState(this.state);
+  EffectMedicinesFailureState(this.state);
 }
-
-class MedicationDetailsChangeState extends MedicationDetailsState {}

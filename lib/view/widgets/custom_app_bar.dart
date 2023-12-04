@@ -7,6 +7,7 @@ import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 
 class CustomAppBar {
   const CustomAppBar({
+    this.keyScaffold,
     this.title = '',
     this.onTapBack,
     this.onTapOptions,
@@ -27,6 +28,7 @@ class CustomAppBar {
   final bool showOptionsLeading;
   final bool showSearch;
   final Color colorAppBar;
+  final GlobalKey<ScaffoldState>? keyScaffold;
 
   AppBar build() {
     return AppBar(
@@ -41,7 +43,7 @@ class CustomAppBar {
             )
           : showOptionsLeading
               ? IconButton(
-                  onPressed: onTapOptions,
+                  onPressed: () => keyScaffold?.currentState?.openDrawer(),
                   icon: SvgPicture.asset(AppSvg.options),
                 )
               : null,
@@ -57,7 +59,7 @@ class CustomAppBar {
           ),
         if (showOptions && !showOptionsLeading)
           IconButton(
-            onPressed: onTapOptions,
+            onPressed: () => keyScaffold?.currentState?.openEndDrawer(),
             icon: SvgPicture.asset(AppSvg.options),
           ),
       ],

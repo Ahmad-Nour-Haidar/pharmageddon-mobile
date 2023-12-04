@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../controllers/check_email_cubit/check_email_cubit.dart';
+import '../../controllers/effect_medicines_cubit/effect_medicines_cubit.dart';
 import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
 import '../../controllers/login_cubit/login_cubit.dart';
@@ -49,5 +50,8 @@ class AppInjection {
 
     // search
     getIt.registerFactory(() => SearchCubit());
+
+    // effect medicines
+    getIt.registerFactory(() => EffectMedicinesCubit());
   }
 }

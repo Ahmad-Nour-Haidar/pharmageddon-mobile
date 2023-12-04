@@ -27,7 +27,8 @@ class MedicationWidget extends StatelessWidget {
       onTap: () {
         pushNamed(AppRoute.medicineDetails, context,
             arguments: ScreenArguments({
-              // AppKeys.itemModel: itemModel,
+              // todo:
+              // AppKeys.medicationModel: medicationModel,
               AppKeys.tag: tag,
             }));
       },

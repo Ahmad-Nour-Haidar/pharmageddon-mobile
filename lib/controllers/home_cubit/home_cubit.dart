@@ -17,9 +17,6 @@ class HomeCubit extends Cubit<HomeState> {
     ManufacturersListWidget(onRefresh: () async {}),
     MedicationsListWidget(onRefresh: () async {}),
     EffectCategoriesListWidget(onRefresh: () async {}),
-    // ManufacturersLoading(onRefresh: () async {}),
-    // MedicationsLoading(onRefresh: () async {}),
-    // EffectCategoryLoading(onRefresh: () async {}),
   ];
 
   final _titles = [

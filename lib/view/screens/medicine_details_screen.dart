@@ -3,17 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_mobile/controllers/medication_details_cubit/medication_details_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
-import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
-import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
+import '../../controllers/effect_medicines_cubit/effect_medicines_state.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
+import '../../core/constant/app_keys.dart';
 import '../../core/constant/app_padding.dart';
+import '../../model/screen_arguments.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/medication_details/counter_widget.dart';
 import '../widgets/medication_details/medication_image.dart';
@@ -25,10 +25,12 @@ class MedicationDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    final medicationId = args.args[AppKeys.medicationModel];
     final scaffoldKey = GlobalKey<ScaffoldState>();
-    printme.cyan(AppSize.width);
     return BlocProvider(
-      create: (context) => AppInjection.getIt<MedicationDetailsCubit>(),
+      create: (context) =>
+          AppInjection.getIt<MedicationDetailsCubit>()..initial(medicationId),
       child: BlocConsumer<MedicationDetailsCubit, MedicationDetailsState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -36,18 +38,12 @@ class MedicationDetailsScreen extends StatelessWidget {
           return Scaffold(
             key: scaffoldKey,
             appBar: CustomAppBar(
+              keyScaffold: scaffoldKey,
               title: AppStrings.medicationDetails.tr,
               onTapBack: () => Navigator.pop(context),
-              onTapOptions: () {
-                if (isEnglish()) {
-                  scaffoldKey.currentState!.openDrawer();
-                } else {
-                  scaffoldKey.currentState!.openEndDrawer();
-                }
-              },
             ).build(),
-            drawer: isEnglish() ? const Drawer() : null,
-            endDrawer: isEnglish() ? null : const Drawer(),
+            drawer: const Drawer(),
+            endDrawer: const Drawer(),
             body: ListView(
               padding: AppPadding.screenPaddingAll,
               children: [

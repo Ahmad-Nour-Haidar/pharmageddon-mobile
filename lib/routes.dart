@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_mobile/view/screens/auth/check_email_phone_screen.dart';
+import 'package:pharmageddon_mobile/view/screens/factory_medicines_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/home_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/auth/login_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/auth/register_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/auth/reset_password_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/auth/veryify_code_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/medicine_details_screen.dart';
+import 'package:pharmageddon_mobile/view/screens/effect_medicines_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/search_screen.dart';
 
 abstract class AppRoute {
@@ -19,6 +21,9 @@ abstract class AppRoute {
   // home
   static const home = '/home';
   static const medicineDetails = '/medicine-details';
+  static const factoryMedicinesScreen = '/factoryMedicinesScreen';
+  static const pharmacologicalEffectMedicinesScreen =
+      '/pharmacologicalEffectMedicinesScreen';
 
   // search
   static const search = '/search';
@@ -35,6 +40,9 @@ final Map<String, Widget Function(BuildContext)> routes = {
 // home
   AppRoute.home: (_) => const HomeScreen(),
   AppRoute.medicineDetails: (_) => const MedicationDetailsScreen(),
+  AppRoute.factoryMedicinesScreen: (_) => const FactoryMedicinesScreen(),
+  AppRoute.pharmacologicalEffectMedicinesScreen: (_) =>
+      const EffectMedicinesScreen(),
 
   // search
   AppRoute.search: (_) => const SearchScreen(),
