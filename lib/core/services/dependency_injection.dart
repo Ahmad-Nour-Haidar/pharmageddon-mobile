@@ -12,17 +12,15 @@ import '../../controllers/reset_password_cubit/reset_password_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../controllers/verify_code_cubit/verify_code_cubit.dart';
 import '../../data/remote/auth_data.dart';
+import '../../data/remote/home_data.dart';
+import '../../data/remote/search_data.dart';
 import '../../my_bloc_observer.dart';
-import '../class/crud.dart';
+import '../../data/crud_dio.dart';
 
 class AppInjection {
-  AppInjection._();
-
   static final getIt = GetIt.instance;
 
-  // static GetIt get getIt => _getIt;
-
-  static Future<void> initial() async {
+  Future<void> initial() async {
     // storage
     final sharedPreferences = await SharedPreferences.getInstance();
     getIt.registerLazySingleton(() => sharedPreferences);
@@ -34,6 +32,8 @@ class AppInjection {
     // data
     getIt.registerLazySingleton(() => Crud());
     getIt.registerLazySingleton(() => AuthRemoteData());
+    getIt.registerLazySingleton(() => HomeRemoteData());
+    getIt.registerLazySingleton(() => SearchRemoteData());
 
     /// controllers
     // auth
@@ -43,7 +43,7 @@ class AppInjection {
     getIt.registerFactory(() => ResetPasswordCubit());
     getIt.registerFactory(() => VerifyCodeCubit());
 
-    // home
+    // home => <singleton>
     getIt.registerLazySingleton(() => HomeCubit());
 
     // medication details

@@ -3,8 +3,8 @@ import 'package:pharmageddon_mobile/view/widgets/snack_bar.dart';
 import '../../core/class/parent_state.dart';
 
 void handleState({
-  required BuildContext context,
   required ParentState state,
+  required BuildContext context,
 }) {
   switch (state.runtimeType) {
     case OfflineState:

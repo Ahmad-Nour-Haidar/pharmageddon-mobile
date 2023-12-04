@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../controllers/effect_medicines_cubit/factory_medicines_cubit.dart';
 import '../../controllers/effect_medicines_cubit/factory_medicines_state.dart';
 import '../../core/services/dependency_injection.dart';

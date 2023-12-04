@@ -1,23 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/data/remote/home_data.dart';
 import '../../core/constant/app_strings.dart';
-import '../../view/widgets/home/effect_category_widget.dart';
-import '../../view/widgets/home/manufacturers_widget.dart';
-import '../../view/widgets/home/medication_widget.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitialState());
 
   static HomeCubit get(BuildContext context) => BlocProvider.of(context);
+  final homeRemoteData = AppInjection.getIt<HomeRemoteData>();
+  late int _initialIndexScreen;
+  final List medications = [];
+  final List factories = [];
+  final List effectCategories = [];
 
-  int _indexScreen = 1;
-  final _screens = [
-    ManufacturersListWidget(onRefresh: () async {}),
-    MedicationsListWidget(onRefresh: () async {}),
-    EffectCategoriesListWidget(onRefresh: () async {}),
-  ];
+  void initial() {
+    _initialIndexScreen = 1;
+    // getMedications();
+  }
+
+  Future<void> getMedications({bool forceGetData = false}) async {
+    if (!(medications.isEmpty || forceGetData)) {
+      emit(HomeGetMedicationsSuccessState());
+      return;
+    }
+    emit(HomeGetMedicationsLoadingState());
+    final response = await homeRemoteData.getMedications();
+    response.fold((l) {
+      emit(HomeGetFailureState(l));
+    }, (r) {
+      if (medications.isEmpty) {
+        emit(HomeNoDataState());
+      } else {
+        emit(HomeGetMedicationsSuccessState());
+      }
+    });
+  }
+
+  Future<void> getFactories({bool forceGetData = false}) async {
+    if (!(factories.isEmpty || forceGetData)) {
+      emit(HomeGetFactoriesSuccessState());
+      return;
+    }
+    emit(HomeGetFactoriesLoadingState());
+    final response = await homeRemoteData.getMedications();
+    response.fold((l) {
+      emit(HomeGetFailureState(l));
+    }, (r) {
+      if (medications.isEmpty) {
+        emit(HomeNoDataState());
+      } else {
+        emit(HomeGetFactoriesSuccessState());
+      }
+    });
+  }
+
+  Future<void> getEffectCategories({bool forceGetData = false}) async {
+    if (!(effectCategories.isEmpty || forceGetData)) {
+      emit(HomeGetEffectCategoriesSuccessState());
+      return;
+    }
+    emit(HomeGetEffectCategoriesLoadingState());
+    final response = await homeRemoteData.getMedications();
+    response.fold((l) {
+      emit(HomeGetFailureState(l));
+    }, (r) {
+      if (medications.isEmpty) {
+        emit(HomeNoDataState());
+      } else {
+        emit(HomeGetEffectCategoriesSuccessState());
+      }
+    });
+  }
 
   final _titles = [
     AppStrings.manufacturers.tr,
@@ -25,14 +81,18 @@ class HomeCubit extends Cubit<HomeState> {
     AppStrings.pharmacologicalEffect.tr,
   ];
 
-  int get indexScreen => _indexScreen;
+  int get indexScreen => _initialIndexScreen;
 
   void changeScreen(int index) {
-    _indexScreen = index;
-    emit(HomeChangeState());
+    _initialIndexScreen = index;
+    if (index == 0) {
+      getFactories();
+    } else if (index == 1) {
+      getMedications();
+    } else {
+      getEffectCategories();
+    }
   }
 
-  Widget get screen => _screens[_indexScreen];
-
-  String get title => _titles[_indexScreen];
+  String get title => _titles[_initialIndexScreen];
 }

@@ -14,7 +14,7 @@ import 'my_bloc_observer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await AppInjection.initial();
+  await AppInjection().initial();
   initialUser();
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
   runApp(const MyApp());
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     // initialRoute = AppRoute.home;
     // }
     return BlocProvider(
-      create: (context) => AppInjection.getIt<HomeCubit>(),
+      create: (context) => AppInjection.getIt<HomeCubit>()..initial(),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Pharmageddon',

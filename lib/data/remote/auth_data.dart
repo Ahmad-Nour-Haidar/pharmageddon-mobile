@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import '../../core/class/crud.dart';
+import '../crud_dio.dart';
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_link.dart';
