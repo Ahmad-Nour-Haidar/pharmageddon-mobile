@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_mobile/controllers/medication_details_cubit/medication_details_state.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
-import '../../controllers/effect_medicines_cubit/effect_medicines_cubit.dart';
+import '../../controllers/effect_medicines_cubit/factory_medicines_cubit.dart';
+import '../../controllers/factory_medicines_cubit/effect_medicines_cubit.dart';
 import '../../core/constant/app_keys.dart';
 import '../../model/screen_arguments.dart';
 
@@ -21,7 +22,7 @@ class EffectMedicinesScreen extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             return const Center(
-              child: Text('EffectMedicinesScreen'),
+              child: Text('Name of your screen'),
             );
           },
         ),
