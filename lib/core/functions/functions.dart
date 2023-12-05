@@ -5,9 +5,12 @@ import 'package:jiffy/jiffy.dart';
 import 'package:pharmageddon_mobile/core/constant/app_keys_request.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../controllers/local_controller.dart';
+import '../../model/manufacturer_model.dart';
+import '../../model/medication_model.dart';
 import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
 import '../constant/app_keys_storage.dart';
+import '../constant/app_link.dart';
 import '../constant/app_local_data.dart';
 import '../services/dependency_injection.dart';
 
@@ -20,6 +23,12 @@ String getCodeLang() =>
 String formatDateJiffy(DateTime date) {
   return Jiffy.parseFromDateTime(date)
       .format(pattern: 'EEEE, MMMM, d - MM - yyyy');
+}
+
+String formatExpirationDate(String? s) {
+  final date = DateTime.tryParse(s ?? '');
+  if (date == null) return '';
+  return Jiffy.parseFromDateTime(date).format(pattern: 'yyyy - MM - dd');
 }
 
 String formatTimeJiffy(DateTime date) {
@@ -65,3 +74,39 @@ void initialUser() {
 }
 
 int getRandom() => Random().nextInt(5) + 5;
+
+String getMedicationScientificName(MedicationModel model) {
+  var s = '';
+  if (isEnglish()) {
+    s = model.englishScientificName.toString().split(' ').take(2).join(' ');
+  } else {
+    s = model.arabicScientificName.toString().split(' ').take(2).join(' ');
+  }
+  return s;
+}
+
+String getMedicationCommercialName(MedicationModel model) {
+  var s = '';
+  if (isEnglish()) {
+    s = model.englishCommercialName.toString().split(' ').take(2).join(' ');
+  } else {
+    s = model.arabicCommercialName.toString().split(' ').take(2).join(' ');
+  }
+  return s;
+}
+
+String getUrlImageMedication(MedicationModel model) {
+  final s = '${AppLink.medicineImage}/${model.imageName}';
+  return s;
+}
+
+String getManufacturerName(ManufacturerModel? model) {
+  var s = '';
+  if (model == null) return s;
+  if (isEnglish()) {
+    s = model.englishName.toString().split(' ').take(2).join(' ');
+  } else {
+    s = model.arabicName.toString().split(' ').take(2).join(' ');
+  }
+  return s;
+}

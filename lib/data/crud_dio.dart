@@ -55,6 +55,7 @@ class Crud {
 
   Future<Either<ParentState, Map<String, dynamic>>> getData({
     required String linkUrl,
+    Map<String, dynamic>? queryParameters,
     String? token,
   }) async {
     // if (!await checkInternet()) {
@@ -68,7 +69,10 @@ class Crud {
     await randomLoading();
     try {
       final link = Uri.parse(linkUrl);
-      final response = await _dio.getUri(link);
+      final response = await _dio.get(
+        linkUrl,
+        queryParameters: queryParameters,
+      );
       printme.cyan(response.statusCode);
       // printme.printFullText(response.data);
       if (!(response.statusCode == 200 || response.statusCode == 201)) {

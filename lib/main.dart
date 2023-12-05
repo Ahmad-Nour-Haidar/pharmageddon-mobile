@@ -5,6 +5,7 @@ import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 import 'controllers/local_controller.dart';
+import 'core/constant/app_local_data.dart';
 import 'core/functions/functions.dart';
 import 'core/localization/translation.dart';
 import 'core/resources/theme_manager.dart';
@@ -27,10 +28,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AppSize.initial(context);
     final controller = AppInjection.getIt<LocaleController>();
-    var initialRoute = AppRoute.home;
-    // if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
-    // initialRoute = AppRoute.home;
-    // }
+    var initialRoute = AppRoute.register;
+    if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
+      initialRoute = AppRoute.home;
+    }
     return BlocProvider(
       create: (context) => AppInjection.getIt<HomeCubit>()..initial(),
       child: GetMaterialApp(

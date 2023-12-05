@@ -2,23 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
+import 'package:pharmageddon_mobile/core/constant/app_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
+import 'package:pharmageddon_mobile/core/functions/functions.dart';
+import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:pharmageddon_mobile/model/screen_arguments.dart';
+import 'package:pharmageddon_mobile/routes.dart';
+
+import '../../../model/manufacturer_model.dart';
 
 class ManufacturerWidget extends StatelessWidget {
   const ManufacturerWidget({
     super.key,
-    required this.text,
+    required this.model,
   });
 
-  final String text;
+  final ManufacturerModel model;
+
+  String get name {
+    var s = '';
+    if (isEnglish()) {
+      s = model.englishName.toString();
+    } else {
+      s = model.arabicName.toString();
+    }
+    return s;
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => pushNamed(AppRoute.factoryMedicinesScreen, context,
+          arguments: ScreenArguments({
+            AppKeys.factoryModel: model,
+          })),
       child: Container(
         padding: AppPadding.padding15,
         height: 100,
@@ -27,10 +47,13 @@ class ManufacturerWidget extends StatelessWidget {
           color: AppColor.cardColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: AutoSizeText(
-          text,
-          style: AppTextTheme.f18w500black,
-          maxLines: 3,
+        child: Center(
+          child: AutoSizeText(
+            name,
+            textAlign: TextAlign.center,
+            style: AppTextTheme.f18w500black,
+            maxLines: 3,
+          ),
         ),
       ),
     );
@@ -40,11 +63,11 @@ class ManufacturerWidget extends StatelessWidget {
 class ManufacturersListWidget extends StatelessWidget {
   const ManufacturersListWidget({
     super.key,
-    // required this.medicines,
+    required this.data,
     required this.onRefresh,
   });
 
-  // final List<ManufacturerModel> medicines;
+  final List<ManufacturerModel> data;
   final Future<void> Function() onRefresh;
 
   @override
@@ -54,14 +77,15 @@ class ManufacturersListWidget extends StatelessWidget {
         onRefresh: onRefresh,
         child: ListView(
           children: [
-            Wrap(
-              spacing: 50,
-              runSpacing: 20,
-              alignment: WrapAlignment.center,
-              children: List.generate(
-                AppConstant.pharmaceuticalCompanies.length,
-                (index) => ManufacturerWidget(
-                  text: AppConstant.pharmaceuticalCompanies[index],
+            Center(
+              child: Wrap(
+                spacing: 50,
+                runSpacing: 20,
+                children: List.generate(
+                  data.length,
+                  (index) => ManufacturerWidget(
+                    model: data[index],
+                  ),
                 ),
               ),
             ),

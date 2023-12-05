@@ -72,7 +72,10 @@ class CustomSearch extends SearchDelegate {
                   maxLines: 1,
                 ),
                 const Gap(10),
-                MedicationsListWidget(onRefresh: () async {}),
+                MedicationsListWidget(
+                  onRefresh: () async {},
+                  data: [],
+                ),
               ],
             );
           }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:pharmageddon_mobile/core/constant/app_link.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
+import 'package:pharmageddon_mobile/core/functions/functions.dart';
+import 'package:pharmageddon_mobile/model/effect_category_model.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_cached_network_image.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_keys.dart';
@@ -11,19 +14,36 @@ import '../../../model/screen_arguments.dart';
 import '../../../routes.dart';
 
 class EffectCategoryWidget extends StatelessWidget {
-  const EffectCategoryWidget({super.key});
+  const EffectCategoryWidget({
+    super.key,
+    required this.model,
+  });
 
-  String get textName =>
-      'medicament name medicament name'.split(' ').take(2).join(' ');
+  final EffectCategoryModel model;
+
+  String get name {
+    var s = '';
+    if (isEnglish()) {
+      s = model.englishName.toString();
+    } else {
+      s = model.arabicName.toString();
+    }
+    return s;
+  }
+
+  String get url {
+    final s = '${AppLink.categoriesImage}/${model.imageName}';
+    return s;
+  }
 
   @override
   Widget build(BuildContext context) {
     final tag = UniqueKey();
     return InkWell(
       onTap: () {
-        pushNamed(AppRoute.medicineDetails, context,
+        pushNamed(AppRoute.effectMedicinesScreen, context,
             arguments: ScreenArguments({
-              // AppKeys.itemModel: itemModel,
+              AppKeys.effectModel: model,
               AppKeys.tag: tag,
             }));
       },
@@ -49,8 +69,7 @@ class EffectCategoryWidget extends StatelessWidget {
                 child: CustomCachedNetworkImage(
                   width: AppSize.widthManufacturer,
                   height: AppSize.widthManufacturer - 30,
-                  imageUrl:
-                      'https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg',
+                  imageUrl: url,
                   errorWidget: ErrorWidgetShow.picture,
                 ),
               ),
@@ -58,7 +77,7 @@ class EffectCategoryWidget extends StatelessWidget {
             Padding(
               padding: AppPadding.padding10,
               child: Text(
-                textName,
+                name,
                 style: AppTextTheme.f20w600black,
                 maxLines: 2,
               ),
@@ -73,11 +92,11 @@ class EffectCategoryWidget extends StatelessWidget {
 class EffectCategoriesListWidget extends StatelessWidget {
   const EffectCategoriesListWidget({
     super.key,
-    // required this.medicines,
+    required this.data,
     required this.onRefresh,
   });
 
-  // final List<MedicineModel> medicines;
+  final List<EffectCategoryModel> data;
   final Future<void> Function() onRefresh;
 
   @override
@@ -92,8 +111,10 @@ class EffectCategoriesListWidget extends StatelessWidget {
                 spacing: 50,
                 runSpacing: 20,
                 children: List.generate(
-                  15,
-                  (index) => const EffectCategoryWidget(),
+                  data.length,
+                  (index) => EffectCategoryWidget(
+                    model: data[index],
+                  ),
                 ),
               ),
             ),

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_mobile/core/constant/app_keys_request.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/home_data.dart';
+import 'package:pharmageddon_mobile/model/effect_category_model.dart';
+import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
+import 'package:pharmageddon_mobile/print.dart';
 import '../../core/constant/app_strings.dart';
+import '../../model/medication_model.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -12,13 +17,13 @@ class HomeCubit extends Cubit<HomeState> {
   static HomeCubit get(BuildContext context) => BlocProvider.of(context);
   final homeRemoteData = AppInjection.getIt<HomeRemoteData>();
   late int _initialIndexScreen;
-  final List medications = [];
-  final List factories = [];
-  final List effectCategories = [];
+  final List<MedicationModel> medications = [];
+  final List<ManufacturerModel> manufacturers = [];
+  final List<EffectCategoryModel> effectCategories = [];
 
   void initial() {
     _initialIndexScreen = 1;
-    // getMedications();
+    getMedications();
   }
 
   Future<void> getMedications({bool forceGetData = false}) async {
@@ -31,6 +36,9 @@ class HomeCubit extends Cubit<HomeState> {
     response.fold((l) {
       emit(HomeGetFailureState(l));
     }, (r) {
+      final List temp = r[AppRKeys.data][AppRKeys.medicines];
+      medications.clear();
+      medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       if (medications.isEmpty) {
         emit(HomeNoDataState());
       } else {
@@ -39,17 +47,20 @@ class HomeCubit extends Cubit<HomeState> {
     });
   }
 
-  Future<void> getFactories({bool forceGetData = false}) async {
-    if (!(factories.isEmpty || forceGetData)) {
+  Future<void> getManufacturers({bool forceGetData = false}) async {
+    if (!(manufacturers.isEmpty || forceGetData)) {
       emit(HomeGetFactoriesSuccessState());
       return;
     }
     emit(HomeGetFactoriesLoadingState());
-    final response = await homeRemoteData.getMedications();
+    final response = await homeRemoteData.getManufacturers();
     response.fold((l) {
       emit(HomeGetFailureState(l));
     }, (r) {
-      if (medications.isEmpty) {
+      final List temp = r[AppRKeys.data][AppRKeys.manufacturers];
+      manufacturers.clear();
+      manufacturers.addAll(temp.map((e) => ManufacturerModel.fromJson(e)));
+      if (manufacturers.isEmpty) {
         emit(HomeNoDataState());
       } else {
         emit(HomeGetFactoriesSuccessState());
@@ -63,11 +74,14 @@ class HomeCubit extends Cubit<HomeState> {
       return;
     }
     emit(HomeGetEffectCategoriesLoadingState());
-    final response = await homeRemoteData.getMedications();
+    final response = await homeRemoteData.getEffectsCategories();
     response.fold((l) {
       emit(HomeGetFailureState(l));
     }, (r) {
-      if (medications.isEmpty) {
+      final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
+      effectCategories.clear();
+      effectCategories.addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
+      if (effectCategories.isEmpty) {
         emit(HomeNoDataState());
       } else {
         emit(HomeGetEffectCategoriesSuccessState());
@@ -86,7 +100,7 @@ class HomeCubit extends Cubit<HomeState> {
   void changeScreen(int index) {
     _initialIndexScreen = index;
     if (index == 0) {
-      getFactories();
+      getManufacturers();
     } else if (index == 1) {
       getMedications();
     } else {

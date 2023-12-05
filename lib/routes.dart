@@ -27,9 +27,8 @@ abstract class AppRoute {
   // home
   static const home = '/home';
   static const medicineDetails = '/medicine-details';
-  static const factoryMedicinesScreen = '/factoryMedicinesScreen';
-  static const pharmacologicalEffectMedicinesScreen =
-      '/pharmacologicalEffectMedicinesScreen';
+  static const factoryMedicinesScreen = '/factory-medicines-screen';
+  static const effectMedicinesScreen = '/effect-medicines-screen';
 
   // search
   static const search = '/search';
@@ -51,19 +50,18 @@ abstract class AppRoute {
 }
 
 final Map<String, Widget Function(BuildContext)> routes = {
-// auth
+  // auth
   AppRoute.register: (_) => const RegisterScreen(),
   AppRoute.login: (_) => const LoginScreen(),
   AppRoute.verifyCode: (_) => const VerifyCodeScreen(),
   AppRoute.checkEmail: (_) => const CheckEmailScreen(),
   AppRoute.resetPassword: (_) => const ResetPasswordScreen(),
 
-// home
+  // home
   AppRoute.home: (_) => const HomeScreen(),
   AppRoute.medicineDetails: (_) => const MedicationDetailsScreen(),
   AppRoute.factoryMedicinesScreen: (_) => const FactoryMedicinesScreen(),
-  AppRoute.pharmacologicalEffectMedicinesScreen: (_) =>
-      const EffectMedicinesScreen(),
+  AppRoute.effectMedicinesScreen: (_) => const EffectMedicinesScreen(),
 
   // search
   AppRoute.search: (_) => const SearchScreen(),

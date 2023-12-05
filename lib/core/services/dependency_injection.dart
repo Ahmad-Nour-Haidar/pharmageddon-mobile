@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../controllers/check_email_cubit/check_email_cubit.dart';
-import '../../controllers/effect_medicines_cubit/factory_medicines_cubit.dart';
-import '../../controllers/factory_medicines_cubit/effect_medicines_cubit.dart';
+import '../../controllers/effect_medicines_cubit/effect_medicines_cubit.dart';
+import '../../controllers/factory_medicines_cubit/factory_medicines_cubit.dart';
 import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
 import '../../controllers/login_cubit/login_cubit.dart';
@@ -12,6 +12,9 @@ import '../../controllers/reset_password_cubit/reset_password_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../controllers/verify_code_cubit/verify_code_cubit.dart';
 import '../../data/remote/auth_data.dart';
+import '../../data/remote/effect_medicines_data.dart';
+import '../../data/remote/factory_medicines_data.dart';
+import '../../data/remote/favorite_data.dart';
 import '../../data/remote/home_data.dart';
 import '../../data/remote/search_data.dart';
 import '../../my_bloc_observer.dart';
@@ -34,6 +37,9 @@ class AppInjection {
     getIt.registerLazySingleton(() => AuthRemoteData());
     getIt.registerLazySingleton(() => HomeRemoteData());
     getIt.registerLazySingleton(() => SearchRemoteData());
+    getIt.registerLazySingleton(() => FavoriteRemoteData());
+    getIt.registerLazySingleton(() => FactoryMedicinesRemoteData());
+    getIt.registerLazySingleton(() => EffectMedicinesRemoteData());
 
     /// controllers
     // auth

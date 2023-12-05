@@ -6,6 +6,7 @@ import 'package:pharmageddon_mobile/controllers/home_cubit/home_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/core/constant/app_lottie.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
+import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'package:pharmageddon_mobile/view/widgets/home/effect_category_widget.dart';
@@ -13,6 +14,7 @@ import 'package:pharmageddon_mobile/view/widgets/home/manufacturers_widget.dart'
 import 'package:pharmageddon_mobile/view/widgets/home/medication_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/manufacturers_loading.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/medications_loading.dart';
+import '../../core/constant/app_local_data.dart';
 import '../widgets/Custom_nav_bar.dart';
 import '../widgets/loading/effect_category_loading.dart';
 
@@ -21,6 +23,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    printme.cyan(AppLocalData.user?.authorization);
     return BlocConsumer<HomeCubit, HomeState>(
       buildWhen: (previous, current) {
         return current is! HomeGetFailureState;
@@ -45,20 +48,24 @@ class HomeScreen extends StatelessWidget {
             break;
           case HomeGetMedicationsSuccessState:
             widget = MedicationsListWidget(
-                onRefresh: () => cubit.getMedications(forceGetData: true));
+              data: cubit.medications,
+              onRefresh: () => cubit.getMedications(forceGetData: true),
+            );
             break;
           // 2
           case HomeGetFactoriesLoadingState:
             widget = ManufacturersLoading(
-                onRefresh: () => cubit.getFactories(forceGetData: true));
+                onRefresh: () => cubit.getManufacturers(forceGetData: true));
             break;
           case HomeGetFactoriesFailureState:
             widget = ManufacturersLoading(
-                onRefresh: () => cubit.getFactories(forceGetData: true));
+                onRefresh: () => cubit.getManufacturers(forceGetData: true));
             break;
           case HomeGetFactoriesSuccessState:
             widget = ManufacturersListWidget(
-                onRefresh: () => cubit.getFactories(forceGetData: true));
+              onRefresh: () => cubit.getManufacturers(forceGetData: true),
+              data: cubit.manufacturers,
+            );
             break;
           // 3
           case HomeGetEffectCategoriesLoadingState:
@@ -71,7 +78,9 @@ class HomeScreen extends StatelessWidget {
             break;
           case HomeGetEffectCategoriesSuccessState:
             widget = EffectCategoriesListWidget(
-                onRefresh: () => cubit.getEffectCategories(forceGetData: true));
+              onRefresh: () => cubit.getEffectCategories(forceGetData: true),
+              data: cubit.effectCategories,
+            );
             break;
           // other
           case HomeNoDataState:
@@ -82,6 +91,8 @@ class HomeScreen extends StatelessWidget {
                 onRefresh: () => cubit.getMedications(forceGetData: true));
             break;
         }
+        printme.magenta(widget);
+        printme.red(state);
         return Scaffold(
           bottomNavigationBar: CustomNavBar(
             onChange: cubit.changeScreen,

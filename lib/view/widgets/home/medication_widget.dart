@@ -1,7 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:pharmageddon_mobile/core/constant/app_link.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
+import 'package:pharmageddon_mobile/core/functions/functions.dart';
+import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
+import 'package:pharmageddon_mobile/model/medication_model.dart';
+import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_cached_network_image.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_keys.dart';
@@ -11,14 +16,15 @@ import '../../../core/resources/app_text_theme.dart';
 import '../../../model/screen_arguments.dart';
 import '../../../routes.dart';
 
+
+
 class MedicationWidget extends StatelessWidget {
-  const MedicationWidget({super.key});
+  const MedicationWidget({
+    super.key,
+    required this.model,
+  });
 
-  String get textName =>
-      'medicament name medicament name'.split(' ').take(2).join(' ');
-
-  String get textCompanyName =>
-      'Company Name Company Name'.split(' ').take(2).join(' ');
+  final MedicationModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,7 @@ class MedicationWidget extends StatelessWidget {
         pushNamed(AppRoute.medicineDetails, context,
             arguments: ScreenArguments({
               // todo:
-              // AppKeys.medicationModel: medicationModel,
+              AppKeys.medicationModel: model,
               AppKeys.tag: tag,
             }));
       },
@@ -54,8 +60,7 @@ class MedicationWidget extends StatelessWidget {
                 child: CustomCachedNetworkImage(
                   width: AppSize.widthCard,
                   height: AppSize.widthCard,
-                  imageUrl:
-                      'https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg',
+                  imageUrl: getUrlImageMedication(model),
                   errorWidget: ErrorWidgetShow.picture,
                 ),
               ),
@@ -64,7 +69,7 @@ class MedicationWidget extends StatelessWidget {
             Padding(
               padding: AppPadding.symmetric(horizontal: 10),
               child: AutoSizeText(
-                textName,
+                getMedicationCommercialName(model),
                 style: AppTextTheme.f15w400black,
                 maxLines: 1,
               ),
@@ -73,7 +78,7 @@ class MedicationWidget extends StatelessWidget {
             Padding(
               padding: AppPadding.symmetric(horizontal: 10),
               child: AutoSizeText(
-                textCompanyName,
+                getManufacturerName(model.manufacturer),
                 style: AppTextTheme.f15w400black,
                 maxLines: 1,
               ),
@@ -89,11 +94,11 @@ class MedicationWidget extends StatelessWidget {
 class MedicationsListWidget extends StatelessWidget {
   const MedicationsListWidget({
     super.key,
-    // required this.medicines,
+    required this.data,
     required this.onRefresh,
   });
 
-  // final List<MedicineModel> medicines;
+  final List<MedicationModel> data;
   final Future<void> Function() onRefresh;
 
   @override
@@ -107,8 +112,10 @@ class MedicationsListWidget extends StatelessWidget {
               spacing: 20,
               runSpacing: 10,
               children: List.generate(
-                15,
-                (index) => const MedicationWidget(),
+                data.length,
+                (index) => MedicationWidget(
+                  model: data[index],
+                ),
               ),
             ),
             const Gap(30),

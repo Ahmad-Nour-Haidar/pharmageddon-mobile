@@ -7,8 +7,9 @@ class AppLink {
 
   // static const _host = 'localhost:8000';
   //
-  // static const _host = '192.168.43.76:8000';
-  static const _host = 'pharmageddon-myproject.000webhostapp.com';
+  static const _host = '192.168.43.76:8000';
+
+  // static const _host = 'pharmageddon-myproject.000webhostapp.com';
 
   //
   // static const _host = '192.168.229.48:8000';
@@ -37,4 +38,18 @@ class AppLink {
   static const logout = '$_serverApi/auth/logout';
   static const edit = '$_serverApi/auth/update_user_profile';
   static const userImage = '$_serverImage/users';
+
+  // medicine
+  static const getAllMedicine = '$_serverApi/medicine/get_all';
+  static const medicineImage = '$_serverImage/medicines';
+
+  // manufacturer
+  static const getAllManufacturer = '$_serverApi/manufacturer/get_all_c';
+  static const getAllMedicinesOfManufacturer = '$_serverApi/class/manufacturer';
+
+  // effect categories
+  static const categoriesImage = '$_serverImage/effect_categories';
+  static const getAllEffectCategories = '$_serverApi/effect_category/get_all_c';
+  static const getAllMedicinesOfEffect = '$_serverApi/class/effect_category';
+
 }

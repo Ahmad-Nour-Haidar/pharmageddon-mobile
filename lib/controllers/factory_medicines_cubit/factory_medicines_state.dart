@@ -8,6 +8,8 @@ class FactoryMedicinesLoadingState extends FactoryMedicinesState {}
 
 class FactoryMedicinesSuccessState extends FactoryMedicinesState {}
 
+class FactoryMedicinesNoDataState extends FactoryMedicinesState {}
+
 class FactoryMedicinesFailureState extends FactoryMedicinesState {
   final ParentState state;
 
