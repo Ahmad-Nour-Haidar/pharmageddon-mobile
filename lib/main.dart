@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
     if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
       initialRoute = AppRoute.home;
     }
+    // initialRoute = AppRoute.medicineDetails;
     return BlocProvider(
       create: (context) => AppInjection.getIt<HomeCubit>()..initial(),
       child: GetMaterialApp(

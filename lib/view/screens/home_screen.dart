@@ -91,8 +91,6 @@ class HomeScreen extends StatelessWidget {
                 onRefresh: () => cubit.getMedications(forceGetData: true));
             break;
         }
-        printme.magenta(widget);
-        printme.red(state);
         return Scaffold(
           bottomNavigationBar: CustomNavBar(
             onChange: cubit.changeScreen,
