@@ -32,6 +32,7 @@ class _SearchTextFieldWidgetState extends State<SearchTextFieldWidget> {
         ),
         Expanded(
           child: TextField(
+            autofocus: true,
             controller: _controller,
             textDirection: getTextDirection(_controller.text),
             textInputAction: TextInputAction.search,

@@ -39,6 +39,9 @@ class SearchScreen extends StatelessWidget {
             ),
             Expanded(
               child: BlocConsumer<SearchCubit, SearchState>(
+                buildWhen: (previous, current) {
+                  return current is! SearchFailureState;
+                },
                 listener: (context, state) {
                   if (state is SearchFailureState) {
                     handleState(context: context, state: state.state);
@@ -46,50 +49,44 @@ class SearchScreen extends StatelessWidget {
                 },
                 builder: (context, state) {
                   final cubit = SearchCubit.get(context);
-                  Widget body = Column(children: [
-                    MedicationsLoading(onRefresh: () async {}),
-                  ]);
-                  if (state is SearchFailureState) {
-                    body = Center(
-                        child: Lottie.asset(AppLottie.somethingWentWrong));
-                  }
-                  if (state is SearchSuccessState && cubit.data.isEmpty) {
-                    final s =
-                        '${AppStrings.searchResultsFor.tr} : ${state.value}';
-                    body = Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AutoSizeText(
-                          s,
-                          style: AppTextTheme.f18w500black,
-                          maxLines: 1,
-                        ),
-                        Lottie.asset(AppLottie.noDataAfterSearch),
-                      ],
-                    );
-                  }
-                  if (state is SearchSuccessState && cubit.data.isNotEmpty) {
-                    final s =
-                        '${AppStrings.searchResultsFor.tr} : ${state.value}';
-                    body = Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AutoSizeText(
-                          s,
-                          style: AppTextTheme.f18w500black,
-                          maxLines: 1,
-                        ),
-                        const Gap(10),
-                        MedicationsListWidget(
-                          onRefresh: () async {},
-                          data: [],
-                        ),
-                      ],
-                    );
+                  var s = '${AppStrings.searchResultsFor.tr} : ';
+                  if (state is SearchSuccessState) s += state.value;
+                  if (state is SearchNoDataState) s += state.value;
+                  Widget widget = const SizedBox();
+                  switch (state.runtimeType) {
+                    case SearchLoadingState:
+                      widget = MedicationsLoading(onRefresh: () async {});
+                      break;
+                    case SearchFailureState:
+                      widget = MedicationsLoading(onRefresh: () async {});
+                      break;
+                    case SearchSuccessState:
+                      widget = MedicationsListWidget(
+                          data: cubit.medications, onRefresh: () async {});
+                      break;
+                    case SearchNoDataState:
+                      widget = Center(
+                          child: Lottie.asset(AppLottie.noDataAfterSearch));
+                      break;
                   }
                   return Padding(
                     padding: AppPadding.screenPaddingAll,
-                    child: body,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Gap(10),
+                        if (state is SearchSuccessState ||
+                            state is SearchNoDataState)
+                          AutoSizeText(
+                            s,
+                            style: AppTextTheme.f18w500black,
+                            maxLines: 1,
+                          ),
+                        const Gap(10),
+                        widget,
+                      ],
+                    ),
                   );
                 },
               ),

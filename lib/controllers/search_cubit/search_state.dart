@@ -12,6 +12,12 @@ class SearchSuccessState extends SearchState {
   SearchSuccessState(this.value);
 }
 
+class SearchNoDataState extends SearchState {
+  final String value;
+
+  SearchNoDataState(this.value);
+}
+
 class SearchFailureState extends SearchState {
   final ParentState state;
 

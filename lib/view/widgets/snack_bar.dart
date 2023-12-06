@@ -32,6 +32,7 @@ class CustomSnackBar {
     if (_previousEntry != null && _previousEntry!.mounted) {
       _previousEntry?.remove();
     }
+    _previousEntry = null;
   }
 
   void show() {
