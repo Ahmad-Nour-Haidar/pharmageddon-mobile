@@ -10,6 +10,7 @@ import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
+import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_state.dart';
 import '../../core/constant/app_keys.dart';
@@ -27,25 +28,35 @@ class MedicationDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
-    final MedicationModel model = args.args[AppKeys.medicationModel];
+    // todo
+    // final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    // final MedicationModel model = args.args[AppKeys.medicationModel];
+    final MedicationModel model = MedicationModel();
     return BlocProvider(
       create: (context) =>
           AppInjection.getIt<MedicationDetailsCubit>()..initial(model),
       child: BlocConsumer<MedicationDetailsCubit, MedicationDetailsState>(
-        listener: (context, state) {},
+        buildWhen: (previous, current) {
+          return current is! MedicationDetailsFailureState;
+        },
+        listener: (context, state) {
+          if (state is MedicationDetailsFailureState) {
+            handleState(state: state.state, context: context);
+          }
+        },
         builder: (context, state) {
           final cubit = MedicationDetailsCubit.get(context);
           return Scaffold(
             appBar: CustomAppBar(
               title: AppStrings.medicationDetails.tr,
             ).build(),
-            drawer: const Drawer(),
-            endDrawer: const Drawer(),
             body: ListView(
               padding: AppPadding.screenPaddingAll,
               children: [
-                const MedicationImage(),
+                MedicationImage(
+                  isFav: cubit.model.isFavourite!,
+                  onTapFav: () => cubit.onTapFav(),
+                ),
                 const Gap(30),
                 Stack(
                   clipBehavior: Clip.none,
@@ -76,11 +87,6 @@ class MedicationDetailsScreen extends StatelessWidget {
                             s2: model.description.toString(),
                           ),
                           const Gap(5),
-                          RowTextSpan(
-                            s1: '${AppStrings.availableQuantity.tr} : ',
-                            s2: model.availableQuantity.toString(),
-                          ),
-                          const Gap(5),
                           RowText(
                             s1: '${AppStrings.expirationDate.tr} : ',
                             s2: formatExpirationDate(model.expirationDate),
@@ -88,9 +94,24 @@ class MedicationDetailsScreen extends StatelessWidget {
                           ),
                           const Gap(5),
                           RowTextSpan(
+                            s1: '${AppStrings.availableQuantity.tr} : ',
+                            s2: model.availableQuantity.toString(),
+                          ),
+                          const Gap(5),
+                          RowTextSpan(
                             s1: '${AppStrings.price.tr} : ',
                             s2: '${model.price} S.P',
                           ),
+                          if (cubit.model.discount! > 0)
+                            RowTextSpan(
+                              s1: '${AppStrings.discount.tr} : ',
+                              s2: '${cubit.model.discount} %',
+                            ),
+                          if (cubit.model.discount! > 0)
+                            RowTextSpan(
+                              s1: '${AppStrings.priceAfterDiscount.tr} : ',
+                              s2: '${cubit.model.priceAfterDiscount} S.P',
+                            ),
                           const Gap(15),
                           RowTextSpan(
                             s1: '${AppStrings.totalPrice.tr} : ',

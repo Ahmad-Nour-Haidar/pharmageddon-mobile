@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_mobile/print.dart';
 
@@ -10,13 +11,21 @@ import '../custom_cached_network_image.dart';
 import '../svg_image.dart';
 
 class MedicationImage extends StatelessWidget {
-  const MedicationImage({super.key});
+  const MedicationImage({
+    super.key,
+    required this.isFav,
+    required this.onTapFav,
+  });
+
+  final bool isFav;
+  final void Function() onTapFav;
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
-    final tag = args.args[AppKeys.tag];
-    bool isFavorite = true;
+    // todo
+    // final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    // final tag = args.args[AppKeys.tag];
+    final tag = UniqueKey();
     final width = AppSize.width * .8;
     final height = AppSize.width * .6;
     return Hero(
@@ -36,28 +45,26 @@ class MedicationImage extends StatelessWidget {
               Positioned.fill(
                 bottom: 0,
                 child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Material(
-                      shape: const OvalBorder(),
-                      clipBehavior: Clip.hardEdge,
-                      child: InkWell(
-                        onTap: () {
-                          printme.cyan(isFavorite);
-                        },
-                        child: SizedBox(
-                          height: 42,
-                          width: 42,
-                          child: Align(
-                            child: SvgImage(
-                              path:
-                                  isFavorite ? AppSvg.heartFill : AppSvg.heart,
-                              color: AppColor.red,
-                              size: 20,
-                            ),
+                  alignment: Alignment.bottomCenter,
+                  child: Material(
+                    shape: const OvalBorder(),
+                    clipBehavior: Clip.hardEdge,
+                    child: InkWell(
+                      onTap: onTapFav,
+                      child: SizedBox(
+                        height: 42,
+                        width: 42,
+                        child: Align(
+                          child: SvgImage(
+                            path: isFav ? AppSvg.heartFill : AppSvg.heart,
+                            color: AppColor.red,
+                            size: 20,
                           ),
                         ),
                       ),
-                    )),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

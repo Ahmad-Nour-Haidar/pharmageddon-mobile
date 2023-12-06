@@ -74,6 +74,8 @@ class AppStrings {
   static const name = 'name';
   static const price = 'price';
   static const totalPrice = 'totalPrice';
+  static const priceAfterDiscount = 'priceAfterDiscount';
+  static const discount = 'discount';
   static const addToCart = 'addToCart';
   static const done = 'done';
   static const medicationDetails = 'medicationDetails';

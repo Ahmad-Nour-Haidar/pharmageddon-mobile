@@ -158,3 +158,9 @@ String getEffectCategoryModelName(EffectCategoryModel? model, {bool split = true
   }
   return s;
 }
+
+double getDiscount(MedicationModel model){
+  var d = 0.0;
+
+  return d;
+}
