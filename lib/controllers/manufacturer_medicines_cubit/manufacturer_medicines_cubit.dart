@@ -7,12 +7,12 @@ import 'package:pharmageddon_mobile/model/medication_model.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../data/remote/effect_medicines_data.dart';
 import '../../data/remote/factory_medicines_data.dart';
-import 'factory_medicines_state.dart';
+import 'manufacturer_medicines_state.dart';
 
-class FactoryMedicinesCubit extends Cubit<FactoryMedicinesState> {
-  FactoryMedicinesCubit() : super(FactoryMedicinesInitialState());
+class ManufacturerMedicinesCubit extends Cubit<ManufacturerMedicinesState> {
+  ManufacturerMedicinesCubit() : super(FactoryMedicinesInitialState());
 
-  static FactoryMedicinesCubit get(BuildContext context) =>
+  static ManufacturerMedicinesCubit get(BuildContext context) =>
       BlocProvider.of(context);
   late final ManufacturerModel model;
 

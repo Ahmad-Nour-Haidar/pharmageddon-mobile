@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_mobile/controllers/verify_code_cubit/verify_code_state.dart';
+import 'package:pharmageddon_mobile/controllers/auth/verify_code_cubit/verify_code_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
-import '../../core/class/parent_state.dart';
-import '../../core/constant/app_keys_request.dart';
-import '../../core/constant/app_local_data.dart';
-import '../../core/constant/app_strings.dart';
-import '../../core/functions/functions.dart';
-import '../../core/services/dependency_injection.dart';
-import '../../data/remote/auth_data.dart';
+
+import '../../../core/class/parent_state.dart';
+import '../../../core/constant/app_keys_request.dart';
+import '../../../core/constant/app_local_data.dart';
+import '../../../core/constant/app_strings.dart';
+import '../../../core/functions/functions.dart';
+import '../../../core/services/dependency_injection.dart';
+import '../../../data/remote/auth_data.dart';
 
 class VerifyCodeCubit extends Cubit<VerifyCodeState> {
   VerifyCodeCubit() : super(VerifyCodeInitialState());

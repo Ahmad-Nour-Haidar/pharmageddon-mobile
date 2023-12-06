@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_mobile/view/screens/auth/check_email_phone_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/cart_screen.dart';
-import 'package:pharmageddon_mobile/view/screens/factory_medicines_screen.dart';
+import 'package:pharmageddon_mobile/view/screens/manufacturer_medicines_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/favorite_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/home_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/auth/login_screen.dart';
@@ -60,7 +60,7 @@ final Map<String, Widget Function(BuildContext)> routes = {
   // home
   AppRoute.home: (_) => const HomeScreen(),
   AppRoute.medicineDetails: (_) => const MedicationDetailsScreen(),
-  AppRoute.factoryMedicinesScreen: (_) => const FactoryMedicinesScreen(),
+  AppRoute.factoryMedicinesScreen: (_) => const ManufacturerMedicinesScreen(),
   AppRoute.effectMedicinesScreen: (_) => const EffectMedicinesScreen(),
 
   // search

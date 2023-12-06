@@ -18,7 +18,7 @@ class FavoriteRemoteData {
     return response;
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>> favorites({
+  Future<Either<ParentState, Map<String, dynamic>>> favorite({
     required Map<String, dynamic> data,
   }) async {
     final token = AppLocalData.user!.authorization!;
@@ -31,7 +31,7 @@ class FavoriteRemoteData {
     return response;
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>> unFavorites({
+  Future<Either<ParentState, Map<String, dynamic>>> unFavorite({
     required Map<String, dynamic> data,
   }) async {
     final token = AppLocalData.user!.authorization!;

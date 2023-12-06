@@ -1,4 +1,5 @@
-import '../../core/class/parent_state.dart';
+
+import '../../../core/class/parent_state.dart';
 
 abstract class VerifyCodeState {}
 

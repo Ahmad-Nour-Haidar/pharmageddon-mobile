@@ -109,7 +109,6 @@ class HomeScreen extends StatelessWidget {
             showOrders: true,
             showReports: true,
           ).build(),
-          drawer: const Drawer(),
           body: Padding(
             padding: AppPadding.screenPadding,
             child: Column(children: [widget]),

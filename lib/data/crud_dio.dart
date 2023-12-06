@@ -36,8 +36,7 @@ class Crud {
     }
     await randomLoading();
     try {
-      final link = Uri.parse(linkUrl);
-      final response = await _dio.postUri(link, data: data);
+      final response = await _dio.post(linkUrl, data: data);
       printme.cyan(response.statusCode);
       // printme.printFullText(response.data);
       if (!(response.statusCode == 200 || response.statusCode == 201)) {
@@ -68,11 +67,8 @@ class Crud {
     }
     await randomLoading();
     try {
-      final link = Uri.parse(linkUrl);
-      final response = await _dio.get(
-        linkUrl,
-        queryParameters: queryParameters,
-      );
+      final response =
+          await _dio.get(linkUrl, queryParameters: queryParameters);
       printme.cyan(response.statusCode);
       // printme.printFullText(response.data);
       if (!(response.statusCode == 200 || response.statusCode == 201)) {
@@ -103,8 +99,7 @@ class Crud {
     }
     await randomLoading();
     try {
-      final link = Uri.parse(linkUrl);
-      final response = await _dio.deleteUri(link, data: data);
+      final response = await _dio.delete(linkUrl, data: data);
       printme.cyan(response.statusCode);
       // printme.printFullText(response.data);
       if (!(response.statusCode == 200 || response.statusCode == 201)) {
@@ -144,8 +139,7 @@ class Crud {
     }
     await randomLoading();
     try {
-      final link = Uri.parse(linkUrl);
-      final response = await _dio.postUri(link, data: formData);
+      final response = await _dio.post(linkUrl, data: formData);
       printme.cyan(response.statusCode);
       // printme.printFullText(response.data);
       if (!(response.statusCode == 200 || response.statusCode == 201)) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import '../../controllers/effect_medicines_cubit/effect_medicines_cubit.dart';
 import '../../controllers/effect_medicines_cubit/effect_medicines_state.dart';
 import '../../core/constant/app_keys.dart';
@@ -26,7 +27,14 @@ class EffectMedicinesScreen extends StatelessWidget {
         create: (context) =>
             AppInjection.getIt<EffectMedicinesCubit>()..initial(model),
         child: BlocConsumer<EffectMedicinesCubit, EffectMedicinesState>(
-          listener: (context, state) {},
+          buildWhen: (previous, current) {
+            return current is! EffectMedicinesFailureState;
+          },
+          listener: (context, state) {
+            if (state is EffectMedicinesFailureState) {
+              handleState(state: state.state, context: context);
+            }
+          },
           builder: (context, state) {
             final cubit = EffectMedicinesCubit.get(context);
             Widget widget = const SizedBox();
@@ -59,6 +67,7 @@ class EffectMedicinesScreen extends StatelessWidget {
               body: Padding(
                 padding: AppPadding.screenPadding,
                 child: Column(
+                  // todo: add text name Effect
                   children: [widget],
                 ),
               ),
