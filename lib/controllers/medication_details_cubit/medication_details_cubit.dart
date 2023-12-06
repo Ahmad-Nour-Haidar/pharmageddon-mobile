@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_keys_request.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/favorite_data.dart';
-import 'package:pharmageddon_mobile/print.dart';
 
 import '../../model/medication_model.dart';
 import 'medication_details_state.dart';

@@ -1,12 +1,8 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:pharmageddon_mobile/print.dart';
 
 import '../../../core/constant/app_color.dart';
-import '../../../core/constant/app_keys.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_svg.dart';
-import '../../../model/screen_arguments.dart';
 import '../custom_cached_network_image.dart';
 import '../svg_image.dart';
 

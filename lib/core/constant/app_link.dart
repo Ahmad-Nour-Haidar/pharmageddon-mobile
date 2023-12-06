@@ -51,5 +51,4 @@ class AppLink {
   static const categoriesImage = '$_serverImage/effect_categories';
   static const getAllEffectCategories = '$_serverApi/effect_category/get_all_c';
   static const getAllMedicinesOfEffect = '$_serverApi/class/effect_category';
-
 }

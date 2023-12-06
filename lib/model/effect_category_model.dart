@@ -1,12 +1,11 @@
-
-
 class EffectCategoryModel {
   int? id;
   String? arabicName;
   String? englishName;
   String? imageName;
 
-  EffectCategoryModel({this.id, this.arabicName, this.englishName, this.imageName});
+  EffectCategoryModel(
+      {this.id, this.arabicName, this.englishName, this.imageName});
 
   EffectCategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

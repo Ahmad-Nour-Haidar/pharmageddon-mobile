@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
-import 'package:pharmageddon_mobile/model/effect_category_model.dart';
 import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
 import 'package:pharmageddon_mobile/model/medication_model.dart';
 import '../../core/constant/app_keys_request.dart';
-import '../../data/remote/effect_medicines_data.dart';
 import '../../data/remote/factory_medicines_data.dart';
 import 'manufacturer_medicines_state.dart';
 

@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/model/effect_category_model.dart';
-import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
 import 'package:pharmageddon_mobile/model/medication_model.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../data/remote/effect_medicines_data.dart';
-import '../../data/remote/factory_medicines_data.dart';
 import 'effect_medicines_state.dart';
 
 class EffectMedicinesCubit extends Cubit<EffectMedicinesState> {
@@ -17,7 +15,7 @@ class EffectMedicinesCubit extends Cubit<EffectMedicinesState> {
       BlocProvider.of(context);
   late final EffectCategoryModel model;
 
-  String get title=>getEffectCategoryModelName(model);
+  String get title => getEffectCategoryModelName(model);
 
   final List<MedicationModel> medications = [];
 

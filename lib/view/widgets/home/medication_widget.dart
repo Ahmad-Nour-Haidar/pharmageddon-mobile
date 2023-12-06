@@ -1,12 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:pharmageddon_mobile/core/constant/app_link.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
-import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
 import 'package:pharmageddon_mobile/model/medication_model.dart';
-import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_cached_network_image.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_keys.dart';
@@ -15,8 +12,6 @@ import '../../../core/functions/navigator.dart';
 import '../../../core/resources/app_text_theme.dart';
 import '../../../model/screen_arguments.dart';
 import '../../../routes.dart';
-
-
 
 class MedicationWidget extends StatelessWidget {
   const MedicationWidget({

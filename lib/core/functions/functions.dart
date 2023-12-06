@@ -140,7 +140,8 @@ String getManufacturerName(ManufacturerModel? model, {bool split = true}) {
   return s;
 }
 
-String getEffectCategoryModelName(EffectCategoryModel? model, {bool split = true}) {
+String getEffectCategoryModelName(EffectCategoryModel? model,
+    {bool split = true}) {
   var s = '';
   if (model == null) return s;
   if (split) {
@@ -159,7 +160,7 @@ String getEffectCategoryModelName(EffectCategoryModel? model, {bool split = true
   return s;
 }
 
-double getDiscount(MedicationModel model){
+double getDiscount(MedicationModel model) {
   var d = 0.0;
 
   return d;

@@ -1,4 +1,3 @@
-
 class ManufacturerModel {
   int? id;
   String? arabicName;

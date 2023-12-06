@@ -109,10 +109,7 @@ class HomeScreen extends StatelessWidget {
           ).build(),
           body: Padding(
             padding: AppPadding.screenPadding,
-            child: Column(children: [
-              widget,
-
-            ]),
+            child: Column(children: [widget]),
           ),
         );
       },
