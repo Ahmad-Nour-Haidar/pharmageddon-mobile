@@ -21,16 +21,6 @@ class EffectCategoryWidget extends StatelessWidget {
 
   final EffectCategoryModel model;
 
-  String get name {
-    var s = '';
-    if (isEnglish()) {
-      s = model.englishName.toString();
-    } else {
-      s = model.arabicName.toString();
-    }
-    return s;
-  }
-
   String get url {
     final s = '${AppLink.categoriesImage}/${model.imageName}';
     return s;
@@ -47,42 +37,52 @@ class EffectCategoryWidget extends StatelessWidget {
               AppKeys.tag: tag,
             }));
       },
-      child: Container(
-        width: AppSize.widthManufacturer,
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-            color: AppColor.white,
-            borderRadius: BorderRadius.circular(AppSize.radius10)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Hero(
-              tag: tag,
-              child: ClipRRect(
-                clipBehavior: Clip.hardEdge,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                  bottomLeft: Radius.circular(2),
-                  bottomRight: Radius.circular(2),
-                ),
-                child: CustomCachedNetworkImage(
-                  width: AppSize.widthManufacturer,
-                  height: AppSize.widthManufacturer - 30,
-                  imageUrl: url,
-                  errorWidget: ErrorWidgetShow.picture,
+      child: Material(
+        borderRadius: BorderRadius.circular(AppSize.radius10),
+        elevation: 4,
+        child: Container(
+          padding: AppPadding.padding10,
+          width: AppSize.widthManufacturer,
+          height: AppSize.widthManufacturer + 70,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+              color: AppColor.white,
+              borderRadius: BorderRadius.circular(AppSize.radius10)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Hero(
+                tag: tag,
+                child: ClipRRect(
+                  clipBehavior: Clip.hardEdge,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                    bottomLeft: Radius.circular(2),
+                    bottomRight: Radius.circular(2),
+                  ),
+                  child: CustomCachedNetworkImage(
+                    width: AppSize.widthManufacturer,
+                    height: AppSize.widthManufacturer - 30,
+                    imageUrl: url,
+                    errorWidget: ErrorWidgetShow.picture,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: AppPadding.padding10,
-              child: Text(
-                name,
-                style: AppTextTheme.f20w600black,
-                maxLines: 2,
+              const Gap(5),
+              const Divider(
+                thickness: 2,
+                color: AppColor.gray1,
               ),
-            ),
-          ],
+              Expanded(
+                child: Text(
+                  getEffectCategoryModelName(model),
+                  style: AppTextTheme.f20w600black,
+                  maxLines: 2,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -108,7 +108,7 @@ class EffectCategoriesListWidget extends StatelessWidget {
           children: [
             Center(
               child: Wrap(
-                spacing: 50,
+                spacing: 30,
                 runSpacing: 20,
                 children: List.generate(
                   data.length,

@@ -2,6 +2,7 @@ class AppRKeys {
   AppRKeys._();
 
   static const id = 'id';
+  static const q = 'q';
   static const email = 'email';
   static const em_ph = 'em_ph';
   static const role = 'role';
@@ -20,4 +21,6 @@ class AppRKeys {
   static const medicines = 'medicines';
   static const manufacturers = 'manufacturers';
   static const effect_categories = 'effect_categories';
+  static const favourite_medicines = 'favourite_medicines';
+  static const favourite_medicine = 'favourite_medicine';
 }

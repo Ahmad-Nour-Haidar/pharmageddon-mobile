@@ -13,8 +13,10 @@ import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_state.dart';
+import '../../core/constant/app_keys.dart';
 import '../../core/constant/app_padding.dart';
 import '../../model/medication_model.dart';
+import '../../model/screen_arguments.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/medication_details/counter_widget.dart';
 import '../widgets/medication_details/medication_image.dart';
@@ -26,10 +28,8 @@ class MedicationDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // todo
-    // final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
-    // final MedicationModel model = args.args[AppKeys.medicationModel];
-    final MedicationModel model = MedicationModel();
+    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    final MedicationModel model = args.args[AppKeys.medicationModel];
     return BlocProvider(
       create: (context) =>
           AppInjection.getIt<MedicationDetailsCubit>()..initial(model),
@@ -53,7 +53,7 @@ class MedicationDetailsScreen extends StatelessWidget {
               children: [
                 MedicationImage(
                   isFav: cubit.model.isFavourite!,
-                  onTapFav: () => cubit.onTapFav(),
+                  onTapFav: cubit.onTapFav,
                 ),
                 const Gap(30),
                 Stack(
@@ -72,33 +72,34 @@ class MedicationDetailsScreen extends StatelessWidget {
                           const Gap(30),
                           RowTextSpan(
                             s1: '${AppStrings.scientificName.tr} : ',
-                            s2: getMedicationScientificName(model),
+                            s2: getMedicationScientificName(cubit.model),
                           ),
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppStrings.commercialName.tr} : ',
-                            s2: getMedicationCommercialName(model),
+                            s2: getMedicationCommercialName(cubit.model),
                           ),
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppStrings.description.tr} : ',
-                            s2: model.description.toString(),
+                            s2: getMedicationModelDescription(cubit.model),
                           ),
                           const Gap(5),
                           RowText(
                             s1: '${AppStrings.expirationDate.tr} : ',
-                            s2: formatExpirationDate(model.expirationDate),
+                            s2: formatExpirationDate(
+                                cubit.model.expirationDate),
                             textDirection: TextDirection.ltr,
                           ),
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppStrings.availableQuantity.tr} : ',
-                            s2: model.availableQuantity.toString(),
+                            s2: cubit.model.availableQuantity.toString(),
                           ),
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppStrings.price.tr} : ',
-                            s2: '${model.price} S.P',
+                            s2: '${cubit.model.price} S.P',
                           ),
                           if (cubit.model.discount! > 0)
                             RowTextSpan(
@@ -136,8 +137,8 @@ class MedicationDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     CounterWidget(
-                      initialValue: cubit.q,
-                      maxValue: model.availableQuantity ?? 0,
+                      initialValue: cubit.quantity,
+                      maxValue: cubit.model.availableQuantity ?? 0,
                       onChange: cubit.changeQuantity,
                     ),
                   ],

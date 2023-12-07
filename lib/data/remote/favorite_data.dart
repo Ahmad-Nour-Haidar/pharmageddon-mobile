@@ -11,8 +11,7 @@ class FavoriteRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getFavorites() async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
-      // todo change url
-      linkUrl: AppLink.login,
+      linkUrl: AppLink.favoriteGetAll,
       token: token,
     );
     return response;
@@ -23,8 +22,7 @@ class FavoriteRemoteData {
   }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.postData(
-      // todo change url
-      linkUrl: AppLink.login,
+      linkUrl: AppLink.favorite,
       data: data,
       token: token,
     );
@@ -35,9 +33,8 @@ class FavoriteRemoteData {
     required Map<String, dynamic> data,
   }) async {
     final token = AppLocalData.user!.authorization!;
-    final response = await _crud.postData(
-      // todo change url
-      linkUrl: AppLink.login,
+    final response = await _crud.deleteData(
+      linkUrl: AppLink.unFavorite,
       data: data,
       token: token,
     );

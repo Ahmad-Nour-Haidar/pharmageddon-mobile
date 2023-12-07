@@ -19,47 +19,45 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppInjection.getIt<FavoriteCubit>().initial();
     return Scaffold(
       appBar: CustomAppBar(title: AppStrings.favorite.tr).build(),
-      body: BlocProvider(
-        create: (context) => AppInjection.getIt<FavoriteCubit>()..initial(),
-        child: BlocConsumer<FavoriteCubit, FavoriteState>(
-          buildWhen: (previous, current) {
-            return current is! FavoriteFailureState;
-          },
-          listener: (context, state) {
-            if (state is FavoriteFailureState) {
-              handleState(state: state.state, context: context);
-            }
-          },
-          builder: (context, state) {
-            final cubit = FavoriteCubit.get(context);
-            Widget widget = const SizedBox();
-            switch (state.runtimeType) {
-              case FavoriteLoadingState:
-                widget = MedicationsLoading(
-                    onRefresh: () => cubit.getMedications(forceGetData: true));
-                break;
-              case FavoriteFailureState:
-                widget = MedicationsLoading(
-                    onRefresh: () => cubit.getMedications(forceGetData: true));
-                break;
-              case FavoriteSuccessState:
-                widget = MedicationsListWidget(
-                  data: cubit.medications,
-                  onRefresh: () => cubit.getMedications(forceGetData: true),
-                );
-                break;
-              case FavoriteNoDataState:
-                widget = Center(child: Lottie.asset(AppLottie.addFav));
-                break;
-            }
-            return Padding(
-              padding: AppPadding.screenPadding,
-              child: Column(children: [widget]),
-            );
-          },
-        ),
+      body: BlocConsumer<FavoriteCubit, FavoriteState>(
+        buildWhen: (previous, current) {
+          return current is! FavoriteFailureState;
+        },
+        listener: (context, state) {
+          if (state is FavoriteFailureState) {
+            handleState(state: state.state, context: context);
+          }
+        },
+        builder: (context, state) {
+          final cubit = FavoriteCubit.get(context);
+          Widget widget = const SizedBox();
+          switch (state.runtimeType) {
+            case FavoriteLoadingState:
+              widget = MedicationsLoading(
+                  onRefresh: () => cubit.getMedications(forceGetData: true));
+              break;
+            case FavoriteFailureState:
+              widget = MedicationsLoading(
+                  onRefresh: () => cubit.getMedications(forceGetData: true));
+              break;
+            case FavoriteSuccessState:
+              widget = MedicationsListWidget(
+                data: cubit.medications,
+                onRefresh: () => cubit.getMedications(forceGetData: true),
+              );
+              break;
+            case FavoriteNoDataState:
+              widget = Center(child: Lottie.asset(AppLottie.addFav));
+              break;
+          }
+          return Padding(
+            padding: AppPadding.screenPadding,
+            child: Column(children: [widget]),
+          );
+        },
       ),
     );
   }

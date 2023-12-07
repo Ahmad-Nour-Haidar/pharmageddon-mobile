@@ -1,6 +1,5 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:pharmageddon_mobile/core/functions/functions.dart';
+import 'package:pharmageddon_mobile/print.dart';
 
 import '../../core/resources/app_text_theme.dart';
 
@@ -22,24 +21,32 @@ class RowText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    printme.cyan(textDirection);
     return Row(
       children: [
         Text(s1, style: ts1),
-        Expanded(
-          child: Align(
-            alignment: alignment ??
-                (isEnglish() ? Alignment.centerLeft : Alignment.centerRight),
-            child: Directionality(
-              textDirection: textDirection ?? getTextDirectionOnLang(),
-              child: AutoSizeText(
-                s2,
-                style: ts2,
-                textAlign: TextAlign.start,
-                maxLines: 10,
-              ),
-            ),
+        Directionality(
+          textDirection: TextDirection.rtl,
+          child: Text(
+            s2,
+            style: ts2,
+            maxLines: 10,
           ),
         ),
+        // Expanded(
+        //   child: Align(
+        //     alignment: alignment ??
+        //         (isEnglish() ? Alignment.centerLeft : Alignment.centerRight),
+        //     child: Directionality(
+        //       textDirection: TextDirection.rtl,
+        //       child: AutoSizeText(
+        //         s2,
+        //         style: ts2,
+        //         maxLines: 10,
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -33,53 +35,76 @@ class MedicationWidget extends StatelessWidget {
               AppKeys.tag: tag,
             }));
       },
-      child: Container(
-        width: AppSize.widthCard,
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-            color: AppColor.white,
-            borderRadius: BorderRadius.circular(AppSize.radius10)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Hero(
-              tag: tag,
-              child: ClipRRect(
-                clipBehavior: Clip.hardEdge,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                  bottomLeft: Radius.circular(2),
-                  bottomRight: Radius.circular(2),
-                ),
-                child: CustomCachedNetworkImage(
-                  width: AppSize.widthCard,
-                  height: AppSize.widthCard,
-                  imageUrl: getUrlImageMedication(model),
-                  errorWidget: ErrorWidgetShow.picture,
-                ),
+      child: Material(
+        elevation: 4,
+        borderRadius: BorderRadius.circular(AppSize.radius10),
+        child: Container(
+          padding: AppPadding.padding10,
+          width: AppSize.widthCard,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+              color: AppColor.white,
+              borderRadius: BorderRadius.circular(AppSize.radius10)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Hero(
+                    tag: tag,
+                    child: ClipRRect(
+                      clipBehavior: Clip.hardEdge,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(2),
+                        bottomRight: Radius.circular(2),
+                      ),
+                      child: CustomCachedNetworkImage(
+                        width: AppSize.widthCard,
+                        height: AppSize.widthCard,
+                        imageUrl: getUrlImageMedication(model),
+                        errorWidget: ErrorWidgetShow.picture,
+                      ),
+                    ),
+                  ),
+                  if (model.discount! > 0)
+                    Positioned(
+                      top: 12,
+                      left: -5,
+                      child: Transform.rotate(
+                        angle: -pi / 4,
+                        child: Container(
+                          padding: AppPadding.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                            color: AppColor.background.withOpacity(.9),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            '${model.discount} %',
+                            style: AppTextTheme.f18w500red,
+                          ),
+                        ),
+                      ),
+                    )
+                ],
               ),
-            ),
-            const Gap(10),
-            Padding(
-              padding: AppPadding.symmetric(horizontal: 10),
-              child: AutoSizeText(
+              const Gap(10),
+              AutoSizeText(
                 getMedicationCommercialName(model),
                 style: AppTextTheme.f15w400black,
                 maxLines: 1,
               ),
-            ),
-            const Gap(3),
-            Padding(
-              padding: AppPadding.symmetric(horizontal: 10),
-              child: AutoSizeText(
+              const Gap(3),
+              AutoSizeText(
                 getManufacturerName(model.manufacturer),
                 style: AppTextTheme.f15w400black,
                 maxLines: 1,
               ),
-            ),
-            const Gap(10),
-          ],
+              const Gap(10),
+            ],
+          ),
         ),
       ),
     );
@@ -105,7 +130,7 @@ class MedicationsListWidget extends StatelessWidget {
           children: [
             Wrap(
               spacing: 20,
-              runSpacing: 10,
+              runSpacing: 20,
               children: List.generate(
                 data.length,
                 (index) => MedicationWidget(

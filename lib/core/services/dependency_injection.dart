@@ -49,7 +49,7 @@ class AppInjection {
     getIt.registerFactory(() => CheckEmailCubit());
     getIt.registerFactory(() => ResetPasswordCubit());
     getIt.registerFactory(() => VerifyCodeCubit());
-    getIt.registerFactory(() => FavoriteCubit());
+    getIt.registerLazySingleton(() => FavoriteCubit());
 
     // home => <singleton>
     getIt.registerLazySingleton(() => HomeCubit());

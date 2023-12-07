@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:pharmageddon_mobile/controllers/favorite_cubit/favorite_cubit.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/routes.dart';
@@ -33,8 +34,15 @@ class MyApp extends StatelessWidget {
       initialRoute = AppRoute.home;
     }
     // initialRoute = AppRoute.medicineDetails;
-    return BlocProvider(
-      create: (context) => AppInjection.getIt<HomeCubit>()..initial(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AppInjection.getIt<HomeCubit>()..initial(),
+        ),
+        BlocProvider(
+          create: (context) => AppInjection.getIt<FavoriteCubit>(),
+        ),
+      ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Pharmageddon',

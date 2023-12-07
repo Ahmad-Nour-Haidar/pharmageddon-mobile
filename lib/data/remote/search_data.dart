@@ -8,12 +8,14 @@ import '../../core/services/dependency_injection.dart';
 class SearchRemoteData {
   final _crud = AppInjection.getIt<Crud>();
 
-  Future<Either<ParentState, Map<String, dynamic>>> search() async {
+  Future<Either<ParentState, Map<String, dynamic>>> search({
+    required Map<String, dynamic> queryParameters,
+  }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
-      // todo change url
-      linkUrl: AppLink.login,
+      linkUrl: AppLink.search,
       token: token,
+      queryParameters: queryParameters,
     );
     return response;
   }

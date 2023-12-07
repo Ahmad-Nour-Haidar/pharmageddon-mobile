@@ -12,7 +12,8 @@ class MedicationModel {
   double? discount;
   double? priceAfterDiscount;
   bool? isFavourite;
-  String? description;
+  String? arabicDescription;
+  String? englishDescription;
   String? imageName;
   String? expirationDate;
   String? createdAt;
@@ -30,7 +31,8 @@ class MedicationModel {
       this.discount,
       this.priceAfterDiscount,
       this.isFavourite,
-      this.description,
+      this.arabicDescription,
+      this.englishDescription,
       this.imageName,
       this.expirationDate,
       this.createdAt,
@@ -44,11 +46,13 @@ class MedicationModel {
     englishCommercialName = json['english_commercial_name'];
     arabicCommercialName = json['arabic_commercial_name'];
     availableQuantity = json['available_quantity'];
-    price = double.parse(json['price'].toString());
-    discount = double.parse(json['discount'].toString());
-    priceAfterDiscount = double.parse(json['price_after_discount'].toString());
+    price = double.tryParse(json['price'].toString()) ?? 0.0;
+    discount = double.tryParse(json['discount'].toString()) ?? 0.0;
+    priceAfterDiscount =
+        double.tryParse(json['price_after_discount'].toString()) ?? 0.0;
     isFavourite = json['is_favourite'];
-    description = json['description'];
+    arabicDescription = json['arabic_description'];
+    englishDescription = json['english_description'];
     imageName = json['image_name'];
     expirationDate = json['expiration_date'];
     createdAt = json['created_at'];
@@ -58,6 +62,10 @@ class MedicationModel {
     effectCategory = json['effect_category'] != null
         ? EffectCategoryModel.fromJson(json['effect_category'])
         : null;
+    discount = discount ?? 0.0;
+    price = double.parse(price!.toStringAsFixed(2));
+    priceAfterDiscount = double.parse(priceAfterDiscount!.toStringAsFixed(2));
+    isFavourite = isFavourite ?? false;
   }
 
   Map<String, dynamic> toJson() {
@@ -72,7 +80,8 @@ class MedicationModel {
     data['discount'] = discount;
     data['price_after_discount'] = priceAfterDiscount;
     data['is_favourite'] = isFavourite;
-    data['description'] = description;
+    data['arabic_description'] = arabicDescription;
+    data['english_description'] = englishDescription;
     data['image_name'] = imageName;
     data['expiration_date'] = expirationDate;
     data['created_at'] = createdAt;

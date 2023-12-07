@@ -15,10 +15,19 @@ class SearchCubit extends Cubit<SearchState> {
 
   Future<void> search(String value) async {
     emit(SearchLoadingState());
-    final response = await _searchRemoteData.search();
+    final queryParameters = {
+      AppRKeys.q: value,
+    };
+    final response = await _searchRemoteData.search(
+      queryParameters: queryParameters,
+    );
     response.fold((l) {
       emit(SearchFailureState(l));
     }, (r) {
+      if (r[AppRKeys.status] == 403) {
+        emit(SearchNoDataState(value));
+        return;
+      }
       final List temp = r[AppRKeys.data][AppRKeys.medicines];
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));

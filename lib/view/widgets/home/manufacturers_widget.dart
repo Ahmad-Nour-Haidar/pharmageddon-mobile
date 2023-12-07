@@ -21,16 +21,6 @@ class ManufacturerWidget extends StatelessWidget {
 
   final ManufacturerModel model;
 
-  String get name {
-    var s = '';
-    if (isEnglish()) {
-      s = model.englishName.toString();
-    } else {
-      s = model.arabicName.toString();
-    }
-    return s;
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -48,7 +38,7 @@ class ManufacturerWidget extends StatelessWidget {
         ),
         child: Center(
           child: AutoSizeText(
-            name,
+            getManufacturerName(model),
             textAlign: TextAlign.center,
             style: AppTextTheme.f18w500black,
             maxLines: 3,
@@ -78,7 +68,7 @@ class ManufacturersListWidget extends StatelessWidget {
           children: [
             Center(
               child: Wrap(
-                spacing: 50,
+                spacing: 30,
                 runSpacing: 20,
                 children: List.generate(
                   data.length,

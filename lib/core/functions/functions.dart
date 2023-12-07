@@ -160,8 +160,13 @@ String getEffectCategoryModelName(EffectCategoryModel? model,
   return s;
 }
 
-double getDiscount(MedicationModel model) {
-  var d = 0.0;
-
-  return d;
+String getMedicationModelDescription(MedicationModel? model) {
+  var s = '';
+  if (model == null) return s;
+  if (isEnglish()) {
+    s = model.englishDescription.toString();
+  } else {
+    s = model.arabicDescription.toString();
+  }
+  return s;
 }

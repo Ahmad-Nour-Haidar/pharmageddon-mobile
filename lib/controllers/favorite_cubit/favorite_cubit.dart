@@ -27,7 +27,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     response.fold((l) {
       emit(FavoriteFailureState(l));
     }, (r) {
-      final List temp = r[AppRKeys.data][AppRKeys.medicines];
+      final List temp = r[AppRKeys.data][AppRKeys.favourite_medicines];
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       if (medications.isEmpty) {
@@ -36,5 +36,15 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         emit(FavoriteSuccessState());
       }
     });
+  }
+
+  Future<void> deleteFromList(MedicationModel model) async {
+    medications.removeWhere((element) => element.id == model.id);
+    if (isClosed) return;
+    if (medications.isEmpty) {
+      emit(FavoriteNoDataState());
+    } else {
+      emit(FavoriteSuccessState());
+    }
   }
 }
