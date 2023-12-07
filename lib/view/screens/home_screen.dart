@@ -6,6 +6,7 @@ import 'package:pharmageddon_mobile/controllers/home_cubit/home_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/core/constant/app_lottie.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
+import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
@@ -15,6 +16,7 @@ import 'package:pharmageddon_mobile/view/widgets/home/medication_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/manufacturers_loading.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/medications_loading.dart';
 import '../../core/constant/app_local_data.dart';
+import '../../data/local/app_hive.dart';
 import '../widgets/Custom_nav_bar.dart';
 import '../widgets/loading/effect_category_loading.dart';
 
@@ -96,6 +98,16 @@ class HomeScreen extends StatelessWidget {
             onChange: cubit.changeScreen,
             list: AppConstant.homeList,
             initialIndex: cubit.indexScreen,
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              final a = AppInjection.getIt<AppHive>();
+              final data = {
+                '1': 33,
+                '4': 1414,
+              };
+              a.store(key: 'user', value: AppLocalData.user);
+            },
           ),
           appBar: CustomAppBar(
             title: cubit.title,

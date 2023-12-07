@@ -12,6 +12,7 @@ import '../../controllers/local_controller.dart';
 import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
+import '../../data/local/app_hive.dart';
 import '../../data/remote/auth_data.dart';
 import '../../data/remote/effect_medicines_data.dart';
 import '../../data/remote/factory_medicines_data.dart';
@@ -29,6 +30,9 @@ class AppInjection {
     // storage
     final sharedPreferences = await SharedPreferences.getInstance();
     getIt.registerLazySingleton(() => sharedPreferences);
+    final appHive = AppHive();
+    await appHive.initial();
+    getIt.registerLazySingleton(() => appHive);
 
     // start
     getIt.registerLazySingleton(() => LocaleController());

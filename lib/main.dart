@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pharmageddon_mobile/controllers/favorite_cubit/favorite_cubit.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
+import 'package:pharmageddon_mobile/data/local/app_hive.dart';
+import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 import 'controllers/local_controller.dart';
 import 'core/constant/app_local_data.dart';
@@ -16,8 +19,10 @@ import 'my_bloc_observer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await Hive.initFlutter();
   await AppInjection().initial();
   initialUser();
+
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
   runApp(const MyApp());
 }
