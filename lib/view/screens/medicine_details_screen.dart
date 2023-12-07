@@ -20,7 +20,6 @@ import '../../model/screen_arguments.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/medication_details/counter_widget.dart';
 import '../widgets/medication_details/medication_image.dart';
-import '../widgets/row_text.dart';
 import '../widgets/row_text_span.dart';
 
 class MedicationDetailsScreen extends StatelessWidget {
@@ -81,15 +80,19 @@ class MedicationDetailsScreen extends StatelessWidget {
                           ),
                           const Gap(5),
                           RowTextSpan(
-                            s1: '${AppStrings.description.tr} : ',
-                            s2: getMedicationModelDescription(cubit.model),
+                            s1: '${AppStrings.manufacturer.tr} : ',
+                            s2: getManufacturerName(cubit.model.manufacturer),
                           ),
                           const Gap(5),
-                          RowText(
-                            s1: '${AppStrings.expirationDate.tr} : ',
-                            s2: formatExpirationDate(
-                                cubit.model.expirationDate),
-                            textDirection: TextDirection.ltr,
+                          RowTextSpan(
+                            s1: '${AppStrings.effect.tr} : ',
+                            s2: getEffectCategoryModelName(
+                                cubit.model.effectCategory),
+                          ),
+                          const Gap(5),
+                          RowTextSpan(
+                            s1: '${AppStrings.description.tr} : ',
+                            s2: getMedicationModelDescription(cubit.model),
                           ),
                           const Gap(5),
                           RowTextSpan(
@@ -99,7 +102,7 @@ class MedicationDetailsScreen extends StatelessWidget {
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppStrings.price.tr} : ',
-                            s2: '${cubit.model.price} S.P',
+                            s2: '${cubit.model.price} ${AppStrings.sp.tr}',
                           ),
                           if (cubit.model.discount! > 0)
                             RowTextSpan(
@@ -109,13 +112,19 @@ class MedicationDetailsScreen extends StatelessWidget {
                           if (cubit.model.discount! > 0)
                             RowTextSpan(
                               s1: '${AppStrings.priceAfterDiscount.tr} : ',
-                              s2: '${cubit.model.priceAfterDiscount} S.P',
+                              s2: '${cubit.model.priceAfterDiscount} ${AppStrings.sp.tr}',
                             ),
+                          RowTextSpan(
+                            s1: '${AppStrings.expirationDate.tr} : ',
+                            s2: formatExpirationDate(
+                                cubit.model.expirationDate),
+                          ),
+                          const Gap(5),
                           const Gap(15),
                           RowTextSpan(
                             s1: '${AppStrings.totalPrice.tr} : ',
                             ts1: AppTextTheme.f18w600red,
-                            s2: '${cubit.totalPrice} S.P',
+                            s2: '${cubit.totalPrice} ${AppStrings.sp.tr}',
                             ts2: AppTextTheme.f18w400red,
                           ),
                           const Gap(30),

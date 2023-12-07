@@ -103,4 +103,8 @@ class AppStrings {
 
   // other
   static const pressBackAgainToExit = 'pressBackAgainToExit';
+  static const manufacturer = 'manufacturer';
+  static const effect = 'effect';
+  static const sp = 'sp';
+  static const all = 'all';
 }

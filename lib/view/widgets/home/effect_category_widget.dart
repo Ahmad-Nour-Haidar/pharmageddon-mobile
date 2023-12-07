@@ -49,7 +49,6 @@ class EffectCategoryWidget extends StatelessWidget {
               color: AppColor.white,
               borderRadius: BorderRadius.circular(AppSize.radius10)),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
                 tag: tag,

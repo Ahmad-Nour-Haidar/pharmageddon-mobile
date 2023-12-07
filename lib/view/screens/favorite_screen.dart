@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pharmageddon_mobile/controllers/favorite_cubit/favorite_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_lottie.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
-
 import '../../controllers/favorite_cubit/favorite_cubit.dart';
+import '../../controllers/favorite_cubit/favorite_state.dart';
 import '../../core/constant/app_padding.dart';
 import '../widgets/home/medication_widget.dart';
 import '../widgets/loading/medications_loading.dart';

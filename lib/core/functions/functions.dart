@@ -29,7 +29,12 @@ String formatDateJiffy(DateTime date) {
 String formatExpirationDate(String? s) {
   final date = DateTime.tryParse(s ?? '');
   if (date == null) return '';
-  return Jiffy.parseFromDateTime(date).format(pattern: 'yyyy - MM - dd');
+  var formatDate =
+      Jiffy.parseFromDateTime(date).format(pattern: 'yyyy - M - d');
+  if (!isEnglish()) {
+    formatDate = formatDate.split(' - ').reversed.join(' - ');
+  }
+  return formatDate;
 }
 
 String formatTimeJiffy(DateTime date) {

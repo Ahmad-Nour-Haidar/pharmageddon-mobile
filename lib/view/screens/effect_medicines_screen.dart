@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import '../../controllers/effect_medicines_cubit/effect_medicines_cubit.dart';
@@ -20,7 +21,6 @@ class EffectMedicinesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
-    final tag = args.args[AppKeys.tag];
     final EffectCategoryModel model = args.args[AppKeys.effectModel];
     return Scaffold(
       body: BlocProvider(
@@ -63,11 +63,11 @@ class EffectMedicinesScreen extends StatelessWidget {
                 break;
             }
             return Scaffold(
-              appBar: const CustomAppBar().build(),
+              appBar: CustomAppBar(title: getEffectCategoryModelName(model))
+                  .build(),
               body: Padding(
-                padding: AppPadding.screenPadding,
+                padding: AppPadding.screenPaddingAll,
                 child: Column(
-                  // todo: add text name Effect
                   children: [widget],
                 ),
               ),

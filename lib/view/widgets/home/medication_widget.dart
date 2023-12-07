@@ -1,9 +1,10 @@
 import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
+import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/model/medication_model.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_cached_network_image.dart';
@@ -30,7 +31,6 @@ class MedicationWidget extends StatelessWidget {
       onTap: () {
         pushNamed(AppRoute.medicineDetails, context,
             arguments: ScreenArguments({
-              // todo:
               AppKeys.medicationModel: model,
               AppKeys.tag: tag,
             }));
@@ -78,12 +78,12 @@ class MedicationWidget extends StatelessWidget {
                         child: Container(
                           padding: AppPadding.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
-                            color: AppColor.background.withOpacity(.9),
+                            color: AppColor.red.withOpacity(.9),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text(
                             '${model.discount} %',
-                            style: AppTextTheme.f18w500red,
+                            style: AppTextTheme.f18w500white,
                           ),
                         ),
                       ),
@@ -93,7 +93,7 @@ class MedicationWidget extends StatelessWidget {
               const Gap(10),
               AutoSizeText(
                 getMedicationCommercialName(model),
-                style: AppTextTheme.f15w400black,
+                style: AppTextTheme.f16w600black,
                 maxLines: 1,
               ),
               const Gap(3),
@@ -102,7 +102,6 @@ class MedicationWidget extends StatelessWidget {
                 style: AppTextTheme.f15w400black,
                 maxLines: 1,
               ),
-              const Gap(10),
             ],
           ),
         ),
@@ -128,6 +127,13 @@ class MedicationsListWidget extends StatelessWidget {
         onRefresh: onRefresh,
         child: ListView(
           children: [
+            Padding(
+              padding: AppPadding.symmetric(horizontal: 20, vertical: 5),
+              child: Text(
+                '${AppStrings.all.tr} : ( ${data.length} )',
+                style: AppTextTheme.f18w500black,
+              ),
+            ),
             Wrap(
               spacing: 20,
               runSpacing: 20,

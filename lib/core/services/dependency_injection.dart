@@ -17,6 +17,7 @@ import '../../data/remote/effect_medicines_data.dart';
 import '../../data/remote/factory_medicines_data.dart';
 import '../../data/remote/favorite_data.dart';
 import '../../data/remote/home_data.dart';
+import '../../data/remote/order_data.dart';
 import '../../data/remote/search_data.dart';
 import '../../my_bloc_observer.dart';
 import '../../data/crud_dio.dart';
@@ -41,6 +42,7 @@ class AppInjection {
     getIt.registerLazySingleton(() => FavoriteRemoteData());
     getIt.registerLazySingleton(() => FactoryMedicinesRemoteData());
     getIt.registerLazySingleton(() => EffectMedicinesRemoteData());
+    getIt.registerLazySingleton(() => OrderRemoteData());
 
     /// controllers
     // auth

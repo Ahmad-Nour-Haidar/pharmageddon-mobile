@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
@@ -45,9 +46,10 @@ class CustomAppBar {
               );
             })
           : null,
-      title: Text(
+      title: AutoSizeText(
         title,
         style: AppTextTheme.f20w600black,
+        maxLines: 1,
       ),
       actions: [
         if (showSearch)

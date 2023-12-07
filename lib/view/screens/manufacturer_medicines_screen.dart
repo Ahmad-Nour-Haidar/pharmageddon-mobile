@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pharmageddon_mobile/core/constant/app_keys.dart';
+import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
 import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
@@ -63,12 +64,16 @@ class ManufacturerMedicinesScreen extends StatelessWidget {
                 break;
             }
             return Scaffold(
-              appBar: const CustomAppBar().build(),
+              appBar: CustomAppBar(
+                title: getManufacturerName(cubit.model),
+              ).build(),
               body: Padding(
-                padding: AppPadding.screenPadding,
+                padding: AppPadding.screenPaddingAll,
                 child: Column(
-                  // todo: add text name Manufacturer
-                  children: [widget],
+                  children: [
+                    // Text(),
+                    widget,
+                  ],
                 ),
               ),
             );

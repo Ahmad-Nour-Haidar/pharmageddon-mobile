@@ -89,6 +89,10 @@ class MyTranslation extends Translations {
           AppStrings.description: 'Description',
           AppStrings.availableQuantity: 'Available quantity',
           AppStrings.expirationDate: 'Expiration Date',
+          AppStrings.manufacturer: 'Manufacturer',
+          AppStrings.effect: 'Effect',
+          AppStrings.sp: 'S.P',
+          AppStrings.all: 'All',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -174,6 +178,10 @@ class MyTranslation extends Translations {
           AppStrings.description: 'الوصف',
           AppStrings.availableQuantity: 'الكمية المتوفرة',
           AppStrings.expirationDate: 'تاريخ انتهاء الصلاحية',
+          AppStrings.manufacturer: 'الصانع',
+          AppStrings.effect: 'التأثير',
+          AppStrings.sp: 'ل.س',
+          AppStrings.all: 'الكل',
         },
       };
 }

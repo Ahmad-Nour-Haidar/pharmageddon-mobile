@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:pharmageddon_mobile/core/constant/app_local_data.dart';
+import 'package:pharmageddon_mobile/data/static_data/medicines.dart';
 import '../crud_dio.dart';
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_link.dart';
@@ -11,9 +12,10 @@ class EffectMedicinesRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getMedicines({
     Map<String, dynamic>? queryParameters,
   }) async {
+    return Right(medicines);
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
-      linkUrl: AppLink.getAllMedicinesOfManufacturer,
+      linkUrl: AppLink.getAllMedicinesOfEffect,
       queryParameters: queryParameters,
       token: token,
     );
