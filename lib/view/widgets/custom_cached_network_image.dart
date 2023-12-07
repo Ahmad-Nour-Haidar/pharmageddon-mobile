@@ -27,6 +27,8 @@ class CustomCachedNetworkImage extends StatelessWidget {
       path = AppSvg.user;
     }
     final widget = Container(
+      width: width,
+      height: width,
       decoration: BoxDecoration(
         color: AppColor.gray4,
         borderRadius: BorderRadius.circular(10),
@@ -44,20 +46,25 @@ class CustomCachedNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      httpHeaders: const {
-        "Connection": "Keep-Alive",
-        "Keep-Alive": "timeout=5",
-      },
-      width: width,
+    return Container(
       height: height,
-      placeholder: (context, url) =>
-          const Center(child: CircularProgressIndicator()),
-      fit: BoxFit.fitHeight,
-      imageUrl: imageUrl,
-      errorWidget: (context, url, error) {
-        return errorWidgetImp;
-      },
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: CachedNetworkImage(
+        httpHeaders: const {
+          "Connection": "Keep-Alive",
+          "Keep-Alive": "timeout=5",
+        },
+        placeholder: (context, url) =>
+            const Center(child: CircularProgressIndicator()),
+        fit: BoxFit.fitHeight,
+        imageUrl: imageUrl,
+        errorWidget: (context, url, error) {
+          return errorWidgetImp;
+        },
+      ),
     );
   }
 }

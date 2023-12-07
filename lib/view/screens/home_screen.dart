@@ -4,8 +4,11 @@ import 'package:lottie/lottie.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
+import 'package:pharmageddon_mobile/core/constant/app_link.dart';
 import 'package:pharmageddon_mobile/core/constant/app_lottie.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
+import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/data/crud_dio.dart';
 import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
@@ -96,6 +99,26 @@ class HomeScreen extends StatelessWidget {
             onChange: cubit.changeScreen,
             list: AppConstant.homeList,
             initialIndex: cubit.indexScreen,
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              final data = {
+                'medicines': [
+                  {
+                    'medicine_id': 5,
+                    'quantity': 10,
+                  },
+                  {
+                    'medicine_id': 6,
+                    'quantity': 10,
+                  },
+                ],
+              };
+              final c = AppInjection.getIt<Crud>();
+              final response =
+                  await c.postData(linkUrl: AppLink.order, data: data);
+              printme.printFullText(response);
+            },
           ),
           appBar: CustomAppBar(
             title: cubit.title,

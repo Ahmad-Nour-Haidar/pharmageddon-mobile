@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_mobile/core/functions/functions.dart';
+import 'package:pharmageddon_mobile/model/medication_model.dart';
 
 import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_keys.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_svg.dart';
+import '../../../model/screen_arguments.dart';
 import '../custom_cached_network_image.dart';
 import '../svg_image.dart';
 
@@ -18,10 +22,9 @@ class MedicationImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // todo
-    // final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
-    // final tag = args.args[AppKeys.tag];
-    final tag = UniqueKey();
+    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    final tag = args.args[AppKeys.tag];
+    final MedicationModel model = args.args[AppKeys.medicationModel];
     final width = AppSize.width * .8;
     final height = AppSize.width * .6;
     return Hero(
@@ -35,7 +38,7 @@ class MedicationImage extends StatelessWidget {
               CustomCachedNetworkImage(
                 width: width,
                 height: height,
-                imageUrl: '',
+                imageUrl: getUrlImageMedication(model),
                 errorWidget: ErrorWidgetShow.picture,
               ),
               Positioned.fill(

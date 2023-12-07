@@ -34,7 +34,6 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   }
 
   void onTapFav() async {
-    printme.cyan(model.isFavourite);
     !model.isFavourite! ? favorite() : unFavorite();
   }
 

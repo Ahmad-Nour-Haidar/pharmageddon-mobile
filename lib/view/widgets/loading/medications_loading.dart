@@ -17,24 +17,26 @@ class MedicationsLoading extends StatelessWidget {
     return Expanded(
       child: RefreshIndicator(
         onRefresh: onRefresh,
-        child: SingleChildScrollView(
-          child: Wrap(
-            spacing: 20,
-            runSpacing: 10,
-            children: List.generate(
-              getRandom(),
-              (index) => CustomShimmer(
-                child: Container(
-                  height: AppSize.widthCard + 40,
-                  width: AppSize.widthCard,
-                  decoration: BoxDecoration(
-                    color: AppColor.white,
-                    borderRadius: BorderRadius.circular(AppSize.radius10),
+        child: ListView(
+          children: [
+            Wrap(
+              spacing: 20,
+              runSpacing: 10,
+              children: List.generate(
+                getRandom(),
+                (index) => CustomShimmer(
+                  child: Container(
+                    height: AppSize.widthCard + 40,
+                    width: AppSize.widthCard,
+                    decoration: BoxDecoration(
+                      color: AppColor.white,
+                      borderRadius: BorderRadius.circular(AppSize.radius10),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -59,4 +59,9 @@ class AppLink {
 
   // search
   static const search = '$_serverApi/search';
+
+  // order
+  static const order = '$_serverApi/order/create';
+
+
 }

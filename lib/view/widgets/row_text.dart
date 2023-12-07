@@ -21,7 +21,6 @@ class RowText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    printme.cyan(textDirection);
     return Row(
       children: [
         Text(s1, style: ts1),
