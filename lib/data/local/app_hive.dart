@@ -1,6 +1,4 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:pharmageddon_mobile/core/constant/app_storage_keys.dart';
-import 'package:pharmageddon_mobile/print.dart';
 
 class AppHive {
   AppHive._();
@@ -25,8 +23,8 @@ class AppHive {
     await _box?.put(key, value);
     // printme.magenta(_box?.length);
     // printme.magenta(_box?.toMap());
-    printme.magenta(_box?.get(AppSKeys.cartKey));
-    printme.magenta('store');
+    // printme.magenta(_box?.get(AppSKeys.cartKey));
+    // printme.magenta('store');
   }
 
   dynamic get(String key) {

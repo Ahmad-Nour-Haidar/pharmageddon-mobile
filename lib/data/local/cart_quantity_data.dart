@@ -2,7 +2,6 @@ import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_storage_keys.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/local/app_hive.dart';
-import 'package:pharmageddon_mobile/print.dart';
 
 class CartQuantityData {
   CartQuantityData._();
@@ -18,7 +17,6 @@ class CartQuantityData {
 
   Future<void> _initial() async {
     final Map? map = _appHive.get(AppSKeys.cartKey) ?? {};
-    printme.red(map);
     map?.forEach((key, value) {
       _cart[key] = value;
     });

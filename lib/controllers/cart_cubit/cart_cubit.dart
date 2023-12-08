@@ -26,7 +26,6 @@ class CartCubit extends Cubit<CartState> {
   }
 
   Future<void> order() async {
-    printme.cyan(this.data.isEmpty);
     if (this.data.isEmpty) {
       _update(CartFailureState(
           WarningState(message: AppStrings.yourBillIsEmpty.tr)));

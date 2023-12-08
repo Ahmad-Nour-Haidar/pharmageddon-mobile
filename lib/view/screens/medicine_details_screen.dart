@@ -121,7 +121,6 @@ class MedicationDetailsScreen extends StatelessWidget {
                             s2: formatExpirationDate(
                                 cubit.model.expirationDate),
                           ),
-                          const Gap(5),
                           const Gap(15),
                           RowTextSpan(
                             s1: '${AppStrings.totalPrice.tr} : ',

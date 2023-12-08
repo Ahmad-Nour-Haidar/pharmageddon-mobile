@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_svg.dart';
-import '../../../core/resources/app_text_theme.dart';
 import '../svg_image.dart';
 
 class CounterWidget extends StatefulWidget {
@@ -26,17 +26,38 @@ class _CounterWidgetState extends State<CounterWidget> {
   late int _counter;
   static Timer? _timer;
   static const _duration = Duration(milliseconds: 100);
+  final _controller = TextEditingController();
 
   @override
   void initState() {
     _counter = widget.initialValue;
+    _controller.text = widget.initialValue.toString();
     super.initState();
   }
 
   void change(int x) {
     if (_counter + x < 0) return;
     if (_counter + x > widget.maxValue) return;
-    setState(() => _counter += x);
+    setState(() {
+      _counter += x;
+      _controller.text = _counter.toString();
+    });
+    widget.onChange(_counter);
+  }
+
+  static const _border = OutlineInputBorder(
+    gapPadding: 0,
+    borderSide: BorderSide(color: AppColor.transparent),
+  );
+
+  void changeFromValue() {
+    var x = int.tryParse(_controller.text) ?? 0;
+    if (x < 0) x = 0;
+    if (x > widget.maxValue) x = widget.maxValue;
+    setState(() {
+      _counter = x;
+      _controller.text = _counter.toString();
+    });
     widget.onChange(_counter);
   }
 
@@ -79,12 +100,40 @@ class _CounterWidgetState extends State<CounterWidget> {
                     ),
                   ),
                 ),
+                // Expanded(
+                //   child: AutoSizeText(
+                //     maxLines: 1,
+                //     _counter.toString(),
+                //     style: AppTextTheme.f18w600white,
+                //     textAlign: TextAlign.center,
+                //   ),
+                // ),
                 Expanded(
-                  child: AutoSizeText(
-                    maxLines: 1,
-                    _counter.toString(),
-                    style: AppTextTheme.f18w600white,
+                  child: TextFormField(
+                    controller: _controller,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      // FilteringTextInputFormatter.deny(
+                      //     RegExp(r'^([0-9]|[1-9][0-9]{0,2}|1000)$')),
+                    ],
+                    onFieldSubmitted: (_) => changeFromValue(),
+                    onChanged: (_) => changeFromValue(),
+                    keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
+                    scrollPadding: AppPadding.zero,
+                    textAlignVertical: TextAlignVertical.top,
+                    textInputAction: TextInputAction.done,
+                    style: const TextStyle(
+                      color: AppColor.white,
+                      fontSize: 18,
+                    ),
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.all(0),
+                      border: _border,
+                      focusedBorder: _border,
+                      enabledBorder: _border,
+                      constraints: BoxConstraints(maxHeight: 42),
+                    ),
                   ),
                 ),
                 GestureDetector(
