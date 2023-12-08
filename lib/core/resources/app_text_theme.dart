@@ -56,6 +56,18 @@ abstract class AppTextTheme {
     fontWeight: FontWeight.w600,
   );
 
+  static const f16w600white = TextStyle(
+    fontSize: 16,
+    color: AppColor.white,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const f16w600primaryColor = TextStyle(
+    fontSize: 16,
+    color: AppColor.primaryColor,
+    fontWeight: FontWeight.w600,
+  );
+
   static const f16w600black = TextStyle(
     fontSize: 16,
     color: AppColor.black,
@@ -125,6 +137,11 @@ abstract class AppTextTheme {
     fontSize: 15,
     color: AppColor.black,
     fontWeight: FontWeight.w400,
+  );
+  static const f15w600black = TextStyle(
+    fontSize: 15,
+    color: AppColor.black,
+    fontWeight: FontWeight.w600,
   );
 
   static const f24w600SecondColor = TextStyle(

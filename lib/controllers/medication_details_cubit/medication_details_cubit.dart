@@ -6,11 +6,9 @@ import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/local/cart_quantity_data.dart';
 import 'package:pharmageddon_mobile/data/remote/favorite_data.dart';
-import 'package:pharmageddon_mobile/print.dart';
 
 import '../../core/class/parent_state.dart';
 import '../../model/medication_model.dart';
-import '../../view/widgets/snack_bar.dart';
 import '../favorite_cubit/favorite_cubit.dart';
 import 'medication_details_state.dart';
 
@@ -96,7 +94,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   Future<void> addToCart() async {
     _update(MedicationDetailsLoadingState());
     try {
-      await cartQuantityData.store(model.id, quantity);
+      await cartQuantityData.storeInCart(model.id, quantity);
       _update(MedicationDetailsSuccessState(
           state: SuccessState(message: AppStrings.savedSuccessfully.tr)));
     } catch (e) {

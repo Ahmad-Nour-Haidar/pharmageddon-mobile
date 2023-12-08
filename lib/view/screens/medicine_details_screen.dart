@@ -138,7 +138,7 @@ class MedicationDetailsScreen extends StatelessWidget {
                             Center(
                               child: CustomButton(
                                 onTap: cubit.addToCart,
-                                text: AppStrings.addToCart.tr,
+                                text: AppStrings.saveInCart.tr,
                                 height: 40,
                                 width: AppSize.width / 2,
                               ),

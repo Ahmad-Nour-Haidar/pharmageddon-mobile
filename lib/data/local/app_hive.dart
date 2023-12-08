@@ -26,7 +26,7 @@ class AppHive {
     // printme.magenta(_box?.length);
     // printme.magenta(_box?.toMap());
     printme.magenta(_box?.get(AppSKeys.cartKey));
-    // printme.magenta('store');
+    printme.magenta('store');
   }
 
   dynamic get(String key) {

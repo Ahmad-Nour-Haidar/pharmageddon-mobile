@@ -75,9 +75,11 @@ class AppStrings {
   static const name = 'name';
   static const price = 'price';
   static const totalPrice = 'totalPrice';
+  static const totalQuantity = 'totalQuantity';
+  static const numberOfMedications = 'numberOfMedications';
   static const priceAfterDiscount = 'priceAfterDiscount';
   static const discount = 'discount';
-  static const addToCart = 'addToCart';
+  static const saveInCart = 'saveInCart';
   static const done = 'done';
   static const medicationDetails = 'medicationDetails';
   static const scientificName = 'scientificName';
@@ -85,6 +87,7 @@ class AppStrings {
   static const description = 'description';
   static const availableQuantity = 'availableQuantity';
   static const expirationDate = 'expirationDate';
+  static const quantity = 'quantity';
 
   // drawer
   static const profile = 'profile';
@@ -108,4 +111,7 @@ class AppStrings {
   static const effect = 'effect';
   static const sp = 'sp';
   static const all = 'all';
+  static const order = 'order';
+  static const yourBillIsEmpty = 'yourBillIsEmpty';
+
 }

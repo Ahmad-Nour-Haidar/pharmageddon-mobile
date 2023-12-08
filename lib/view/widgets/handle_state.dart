@@ -43,5 +43,14 @@ void handleState({
         ).show();
         return;
       }
+    case WarningState:
+      {
+        CustomSnackBar(
+          context: context,
+          typeSnackBar: TypeSnackBar.warning,
+          message: state.message,
+        ).show();
+        return;
+      }
   }
 }

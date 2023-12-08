@@ -32,3 +32,8 @@ class SuccessState extends ParentState {
   SuccessState({String? message})
       : super(message: message ?? AppStrings.done.tr);
 }
+
+class WarningState extends ParentState {
+  WarningState({String? message})
+      : super(message: message ?? AppStrings.done.tr);
+}

@@ -2,11 +2,12 @@ import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_storage_keys.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/local/app_hive.dart';
+import 'package:pharmageddon_mobile/print.dart';
 
 class CartQuantityData {
   CartQuantityData._();
 
-  final Map<String, int> _cart = {};
+  final Map<int, int> _cart = {};
   final _appHive = AppInjection.getIt<AppHive>();
 
   static Future<CartQuantityData> getInstance() async {
@@ -17,17 +18,18 @@ class CartQuantityData {
 
   Future<void> _initial() async {
     final Map? map = _appHive.get(AppSKeys.cartKey) ?? {};
+    printme.red(map);
     map?.forEach((key, value) {
-      _cart[key.toString()] = value;
+      _cart[key] = value;
     });
   }
 
-  Future<void> store(int? key, int value) async {
+  Future<void> storeInCart(int? key, int value) async {
     if (key == null) return;
     if (value == 0) {
-      _cart.removeWhere((k, v) => k == key.toString());
+      _cart.removeWhere((k, v) => k == key);
     } else {
-      _cart[key.toString()] = value;
+      _cart[key] = value;
     }
     _appHive.store(AppSKeys.cartKey, _cart);
   }
@@ -39,31 +41,21 @@ class CartQuantityData {
 
   int getQuantityOfModel(int? id) {
     if (id == null) return 0;
-    final q = _cart[id.toString()] ?? 0;
-    return q;
+    return _cart[id] ?? 0;
   }
-
-  // final Map<String, List<Map<String, int>>> _data = {
-  //   'medicines': [
-  //     {
-  //       'medicine_id': 5,
-  //       'quantity': 10,
-  //     },
-  //     {
-  //       'medicine_id': 6,
-  //       'quantity': 10,
-  //     },
-  //   ],
-  // };
 
   Future<Map<String, List<Map<String, int>>>> dataToRequest() async {
     final List<Map<String, int>> list = _cart.entries.map((entry) {
       return {
-        AppRKeys.medicine_id: int.parse(entry.key),
+        AppRKeys.medicine_id: entry.key,
         AppRKeys.quantity: entry.value,
       };
     }).toList();
     final data = {AppRKeys.medicines: list};
     return data;
+  }
+
+  List<int> getIds() {
+    return _cart.keys.toList();
   }
 }

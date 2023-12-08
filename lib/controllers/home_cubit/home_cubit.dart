@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/home_data.dart';
@@ -18,12 +17,15 @@ class HomeCubit extends Cubit<HomeState> {
   final homeRemoteData = AppInjection.getIt<HomeRemoteData>();
   late int _initialIndexScreen;
   final List<MedicationModel> medications = [];
+  final Map<int, MedicationModel> medicationsMap = {};
   final List<ManufacturerModel> manufacturers = [];
   final List<EffectCategoryModel> effectCategories = [];
+
   void _update(HomeState state) {
     if (isClosed) return;
     emit(state);
   }
+
   void initial() {
     _initialIndexScreen = 1;
     getMedications();
@@ -47,6 +49,10 @@ class HomeCubit extends Cubit<HomeState> {
         _update(HomeNoDataState());
       } else {
         _update(HomeGetMedicationsSuccessState());
+      }
+      medicationsMap.clear();
+      for (final m in medications) {
+        medicationsMap[m.id ?? 0] = m;
       }
     });
   }

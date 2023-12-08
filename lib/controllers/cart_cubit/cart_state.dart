@@ -15,3 +15,11 @@ class CartFailureState extends CartState {
 
   CartFailureState(this.state);
 }
+
+class CartInitialDataSuccessState extends CartState {}
+
+class CartInitialDataFailureState extends CartState {
+  final ParentState state;
+
+  CartInitialDataFailureState(this.state);
+}

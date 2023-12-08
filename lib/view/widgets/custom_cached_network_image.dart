@@ -48,6 +48,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
+      width: width,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -60,6 +61,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
         placeholder: (context, url) =>
             const Center(child: CircularProgressIndicator()),
         fit: BoxFit.fitHeight,
+        width: width,
         imageUrl: imageUrl,
         errorWidget: (context, url, error) {
           return errorWidgetImp;
