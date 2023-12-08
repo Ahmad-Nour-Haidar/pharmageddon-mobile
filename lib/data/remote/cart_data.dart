@@ -13,8 +13,7 @@ class CartRemoteData {
   }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.postData(
-      // todo: url
-      linkUrl: AppLink.search,
+      linkUrl: AppLink.order,
       token: token,
       data: data,
     );

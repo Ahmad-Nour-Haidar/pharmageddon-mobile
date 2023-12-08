@@ -12,21 +12,9 @@ class OrderCubit extends Cubit<OrderState> {
 
   static OrderCubit get(BuildContext context) => BlocProvider.of(context);
   final orderRemoteData = AppInjection.getIt<OrderRemoteData>();
-  final cartQuantityData = AppInjection.getIt<CartQuantityData>();
 
   void _update(OrderState state) {
     if (isClosed) return;
     emit(state);
-  }
-
-  Future<void> order() async {
-    final data = await cartQuantityData.dataToRequest();
-    final response = await orderRemoteData.order(data: data);
-    printme.printFullText(response);
-    response.fold((l) {
-      _update(OrderFailureState(l));
-    }, (r) {
-      final status = r[AppRKeys.status];
-    });
   }
 }
