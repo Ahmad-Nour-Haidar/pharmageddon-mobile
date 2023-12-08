@@ -17,6 +17,7 @@ class EffectMedicinesCubit extends Cubit<EffectMedicinesState> {
     if (isClosed) return;
     emit(state);
   }
+
   late final EffectCategoryModel model;
 
   String get title => getEffectCategoryModelName(model);

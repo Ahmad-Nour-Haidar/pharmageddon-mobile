@@ -19,6 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
     if (isClosed) return;
     emit(state);
   }
+
   final emPhController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();

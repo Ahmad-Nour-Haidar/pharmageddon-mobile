@@ -62,6 +62,4 @@ class AppLink {
 
   // order
   static const order = '$_serverApi/order/create';
-
-
 }

@@ -27,6 +27,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     if (isClosed) return;
     emit(state);
   }
+
   void initial(MedicationModel model) {
     this.model = model;
     quantity = cartQuantityData.getQuantityOfModel(model.id);

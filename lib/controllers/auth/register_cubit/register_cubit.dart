@@ -21,6 +21,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (isClosed) return;
     emit(state);
   }
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final phoneController = TextEditingController();

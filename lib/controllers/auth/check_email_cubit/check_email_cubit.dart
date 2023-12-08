@@ -18,6 +18,7 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
     if (isClosed) return;
     emit(state);
   }
+
   final emPHController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final authRemoteData = AppInjection.getIt<AuthRemoteData>();

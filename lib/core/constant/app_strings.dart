@@ -113,5 +113,4 @@ class AppStrings {
   static const all = 'all';
   static const order = 'order';
   static const yourBillIsEmpty = 'yourBillIsEmpty';
-
 }
