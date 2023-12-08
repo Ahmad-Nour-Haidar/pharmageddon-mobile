@@ -13,6 +13,7 @@ import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_cu
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/local/app_hive.dart';
+import '../../data/local/cart_quantity_data.dart';
 import '../../data/remote/auth_data.dart';
 import '../../data/remote/effect_medicines_data.dart';
 import '../../data/remote/factory_medicines_data.dart';
@@ -27,18 +28,18 @@ class AppInjection {
   static final getIt = GetIt.instance;
 
   Future<void> initial() async {
-    // storage
+    /// storage
     final sharedPreferences = await SharedPreferences.getInstance();
     getIt.registerLazySingleton(() => sharedPreferences);
-    final appHive = AppHive();
-    await appHive.initial();
+    final appHive = await AppHive.getInstance();
     getIt.registerLazySingleton(() => appHive);
 
-    // start
-    getIt.registerLazySingleton(() => LocaleController());
+    /// start
+    final localeController = await LocaleController.getInstance();
+    getIt.registerLazySingleton(() => localeController);
     getIt.registerLazySingleton(() => MyBlocObserver());
 
-    // data
+    /// data
     getIt.registerLazySingleton(() => Crud());
     getIt.registerLazySingleton(() => AuthRemoteData());
     getIt.registerLazySingleton(() => HomeRemoteData());
@@ -47,6 +48,8 @@ class AppInjection {
     getIt.registerLazySingleton(() => FactoryMedicinesRemoteData());
     getIt.registerLazySingleton(() => EffectMedicinesRemoteData());
     getIt.registerLazySingleton(() => OrderRemoteData());
+    final cartQuantityData = await CartQuantityData.getInstance();
+    getIt.registerLazySingleton(() => cartQuantityData);
 
     /// controllers
     // auth
@@ -55,6 +58,8 @@ class AppInjection {
     getIt.registerFactory(() => CheckEmailCubit());
     getIt.registerFactory(() => ResetPasswordCubit());
     getIt.registerFactory(() => VerifyCodeCubit());
+
+    // favorite => <singleton>
     getIt.registerLazySingleton(() => FavoriteCubit());
 
     // home => <singleton>

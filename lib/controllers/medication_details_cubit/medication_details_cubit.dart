@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmageddon_mobile/core/constant/app_keys_request.dart';
+import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/data/local/cart_quantity_data.dart';
 import 'package:pharmageddon_mobile/data/remote/favorite_data.dart';
 import 'package:pharmageddon_mobile/print.dart';
 
 import '../../core/class/parent_state.dart';
 import '../../model/medication_model.dart';
+import '../../view/widgets/snack_bar.dart';
 import '../favorite_cubit/favorite_cubit.dart';
 import 'medication_details_state.dart';
 
@@ -17,14 +19,15 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
       BlocProvider.of(context);
 
   final favoriteRemoteData = AppInjection.getIt<FavoriteRemoteData>();
+  final cartQuantityData = AppInjection.getIt<CartQuantityData>();
 
   late MedicationModel model;
+  int quantity = 0;
 
   void initial(MedicationModel model) {
     this.model = model;
+    quantity = cartQuantityData.getQuantityOfModel(model.id);
   }
-
-  int quantity = 0;
 
   double get totalPrice => quantity * (model.priceAfterDiscount ?? 0.0);
 
@@ -83,5 +86,25 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
         }
       }
     });
+  }
+
+  Future<void> addToCart() async {
+    emit(MedicationDetailsLoadingState());
+    try {
+      await cartQuantityData.store(model.id, quantity);
+      Builder(
+        builder: (BuildContext context) {
+          CustomSnackBar(
+            context: context,
+            typeSnackBar: TypeSnackBar.error,
+            message: 'message',
+          ).show();
+          return const SizedBox();
+        },
+      );
+      emit(MedicationDetailsSuccessState());
+    } catch (e) {
+      emit(MedicationDetailsFailureState(FailureState()));
+    }
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import '../../../core/class/parent_state.dart';
-import '../../../core/constant/app_keys_request.dart';
+import '../../../core/constant/app_request_keys.dart';
 import '../../../core/constant/app_strings.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/services/dependency_injection.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/search_data.dart';
 import 'package:pharmageddon_mobile/model/medication_model.dart';
-import '../../core/constant/app_keys_request.dart';
+import '../../core/constant/app_request_keys.dart';
 import 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {

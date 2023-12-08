@@ -1,16 +1,15 @@
-import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:pharmageddon_mobile/core/constant/app_keys_request.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
+import 'package:pharmageddon_mobile/data/local/app_hive.dart';
 import '../../controllers/local_controller.dart';
 import '../../model/effect_category_model.dart';
 import '../../model/manufacturer_model.dart';
 import '../../model/medication_model.dart';
 import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
-import '../constant/app_keys_storage.dart';
+import '../constant/app_storage_keys.dart';
 import '../constant/app_link.dart';
 import '../constant/app_local_data.dart';
 import '../services/dependency_injection.dart';
@@ -20,6 +19,30 @@ bool isEnglish() =>
 
 String getCodeLang() =>
     AppInjection.getIt<LocaleController>().locale.languageCode;
+
+Future<void> storeUser(Map<String, dynamic> response) async {
+  final user = User.fromJson(response[AppRKeys.data][AppRKeys.user]);
+  final appHive = AppInjection.getIt<AppHive>();
+  appHive.store(AppSKeys.userKey, user.toJson());
+  AppLocalData.user = user;
+  // printme.yellowAccent(AppLocalData.user);
+}
+
+void initialUser() {
+  final appHive = AppInjection.getIt<AppHive>();
+  final Map? jsonString = appHive.get(AppSKeys.userKey);
+  if (jsonString == null) {
+    return;
+  }
+  final Map<String, dynamic> jsonUser = {};
+  jsonString.forEach((key, value) {
+    jsonUser[key.toString()] = value;
+  });
+  var user = User.fromJson(jsonUser);
+  AppLocalData.user = user;
+  // printme.green(user.authorization);
+  return;
+}
 
 String formatDateJiffy(DateTime date) {
   return Jiffy.parseFromDateTime(date)
@@ -55,28 +78,6 @@ TextDirection getTextDirectionOnLang() {
   } else {
     return TextDirection.rtl;
   }
-}
-
-Future<void> storeUser(Map<String, dynamic> response) async {
-  final user = User.fromJson(response[AppRKeys.data][AppRKeys.user]);
-  final sh = AppInjection.getIt<SharedPreferences>();
-  final jsonString = jsonEncode(user.toJson());
-  await sh.setString(AppKeysStorage.user, jsonString);
-  AppLocalData.user = user;
-  // printme.yellowAccent(AppLocalData.user);
-}
-
-void initialUser() {
-  final sh = AppInjection.getIt<SharedPreferences>();
-  var jsonString = sh.getString(AppKeysStorage.user);
-  if (jsonString == null) {
-    return;
-  }
-  final Map<String, dynamic> m = jsonDecode(jsonString);
-  var user = User.fromJson(m);
-  AppLocalData.user = user;
-  // printme.green(user.authorization);
-  return;
 }
 
 int getRandom() => Random().nextInt(5) + 5;

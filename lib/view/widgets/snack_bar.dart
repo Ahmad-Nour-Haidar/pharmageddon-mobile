@@ -60,13 +60,6 @@ class CustomSnackBar {
             ),
           ),
         );
-        // return Positioned(
-        //   top: 0.0,
-        //   left: AppSize.width * 0.2,
-        //   child: Center(
-        //     child: ,
-        //   ),
-        // );
       },
     );
     if (_previousEntry != null && _previousEntry!.mounted) {

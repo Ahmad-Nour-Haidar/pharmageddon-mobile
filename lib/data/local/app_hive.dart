@@ -1,24 +1,48 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pharmageddon_mobile/core/constant/app_storage_keys.dart';
 import 'package:pharmageddon_mobile/print.dart';
 
 class AppHive {
-  static const _cartBox = 'cartBox';
+  AppHive._();
+
+  static const _storageBox = '_storageBox';
   late final Box? _box;
 
-  Future<void> initial() async {
-    _box = await Hive.openBox(_cartBox);
-    printme.magenta(_box?.length);
-    printme.magenta(_box?.toMap());
-    printme.magenta('initial AppHive');
+  static Future<AppHive> getInstance() async {
+    final appHive = AppHive._();
+    await appHive._initial();
+    return appHive;
   }
 
-  Future<void> store({
-    required String key,
-    required dynamic value,
-  }) async {
+  Future<void> _initial() async {
+    _box = await Hive.openBox(_storageBox);
+    // printme.magenta(_box?.length);
+    // printme.magenta(_box?.toMap());
+    // printme.magenta('initial AppHive');
+  }
+
+  Future<void> store(String key, dynamic value) async {
     await _box?.put(key, value);
-    printme.magenta(_box?.length);
-    printme.magenta('AppHive');
-    printme.cyan(_box?.toMap());
+    // printme.magenta(_box?.length);
+    // printme.magenta(_box?.toMap());
+    printme.magenta(_box?.get(AppSKeys.cartKey));
+    // printme.magenta('store');
+  }
+
+  dynamic get(String key) {
+    final value = _box?.get(key);
+    // printme.magenta(_box?.length);
+    // printme.cyan(_box?.toMap());
+    // printme.magenta('get');
+    return value;
+  }
+
+  Future<void> delete({
+    required String key,
+  }) async {
+    await _box?.delete(key);
+    // printme.magenta(_box?.length);
+    // printme.cyan(_box?.toMap());
+    // printme.magenta('delete');
   }
 }

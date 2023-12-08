@@ -6,7 +6,7 @@ import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/core/constant/app_local_data.dart';
 
 import '../../../core/class/parent_state.dart';
-import '../../../core/constant/app_keys_request.dart';
+import '../../../core/constant/app_request_keys.dart';
 import '../../../core/constant/app_strings.dart';
 import '../../../core/functions/check_errors.dart';
 import '../../../core/functions/functions.dart';

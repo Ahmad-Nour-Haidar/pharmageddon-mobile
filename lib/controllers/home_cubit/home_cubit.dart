@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_mobile/core/constant/app_keys_request.dart';
+import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/home_data.dart';
 import 'package:pharmageddon_mobile/model/effect_category_model.dart';
@@ -39,6 +39,7 @@ class HomeCubit extends Cubit<HomeState> {
       final List temp = r[AppRKeys.data][AppRKeys.medicines];
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
+      // medications.shuffle();
       if (medications.isEmpty) {
         emit(HomeNoDataState());
       } else {
@@ -90,9 +91,9 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   final _titles = [
-    AppStrings.manufacturers.tr,
-    AppStrings.home.tr,
-    AppStrings.pharmacologicalEffect.tr,
+    AppStrings.manufacturers,
+    AppStrings.home,
+    AppStrings.pharmacologicalEffect,
   ];
 
   int get indexScreen => _initialIndexScreen;
