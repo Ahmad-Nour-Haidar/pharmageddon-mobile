@@ -69,6 +69,7 @@ class AppStrings {
   static const enterTheCompleteVerificationCode =
       'enterTheCompleteVerificationCode';
   static const somethingWentWrong = 'somethingWentWrong';
+  static const savedSuccessfully = 'savedSuccessfully';
 
   // medicine details
   static const name = 'name';

@@ -19,6 +19,11 @@ class ManufacturerMedicinesCubit extends Cubit<ManufacturerMedicinesState> {
   final effectMedicinesRemoteData =
       AppInjection.getIt<FactoryMedicinesRemoteData>();
 
+  void _update(ManufacturerMedicinesState state) {
+    if (isClosed) return;
+    emit(state);
+  }
+
   void initial(ManufacturerModel model) {
     this.model = model;
     getMedications();
@@ -26,27 +31,27 @@ class ManufacturerMedicinesCubit extends Cubit<ManufacturerMedicinesState> {
 
   Future<void> getMedications({bool forceGetData = false}) async {
     if (!(medications.isEmpty || forceGetData)) {
-      emit(FactoryMedicinesSuccessState());
+      _update(FactoryMedicinesSuccessState());
       return;
     }
     final queryParameters = {
       AppRKeys.id: model.id,
     };
-    emit(FactoryMedicinesLoadingState());
+    _update(FactoryMedicinesLoadingState());
     final response = await effectMedicinesRemoteData.getMedicines(
       queryParameters: queryParameters,
     );
     response.fold((l) {
-      emit(FactoryMedicinesFailureState(l));
+      _update(FactoryMedicinesFailureState(l));
     }, (r) {
       final List temp = r[AppRKeys.data][AppRKeys.medicines];
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       medications.shuffle();
       if (medications.isEmpty) {
-        emit(FactoryMedicinesNoDataState());
+        _update(FactoryMedicinesNoDataState());
       } else {
-        emit(FactoryMedicinesSuccessState());
+        _update(FactoryMedicinesSuccessState());
       }
     });
   }

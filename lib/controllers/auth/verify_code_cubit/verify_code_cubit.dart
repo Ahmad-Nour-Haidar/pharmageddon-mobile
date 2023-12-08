@@ -15,6 +15,11 @@ import '../../../data/remote/auth_data.dart';
 class VerifyCodeCubit extends Cubit<VerifyCodeState> {
   VerifyCodeCubit() : super(VerifyCodeInitialState());
 
+  void _update(VerifyCodeState state) {
+    if (isClosed) return;
+    emit(state);
+  }
+
   static VerifyCodeCubit get(BuildContext context) => BlocProvider.of(context);
   late String code = '';
   String? email;
@@ -34,7 +39,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
 
   void getVerifyCode() async {
     email = null;
-    emit(VerifyCodeLoadingGetState());
+    _update(VerifyCodeLoadingGetState());
     final data = {
       AppRKeys.em_ph: AppLocalData.user!.email,
       AppRKeys.role: AppConstant.pharmacist,
@@ -42,28 +47,28 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
     final response = await authRemoteData.getVerificationCode(data: data);
     if (isClosed) return;
     response.fold((l) {
-      emit(VerifyCodeFailureState(l));
+      _update(VerifyCodeFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
         final message = AppStrings.verifyCodeNotSentTryAgain.tr;
-        emit(VerifyCodeFailureState(FailureState(message: message)));
+        _update(VerifyCodeFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 405) {
         final message = AppStrings.verifyCodeNotSentTryAgain.tr;
-        emit(VerifyCodeFailureGetState(FailureState(message: message)));
+        _update(VerifyCodeFailureGetState(FailureState(message: message)));
       } else {
         email = AppLocalData.user!.email;
-        emit(VerifyCodeSuccessGetState());
+        _update(VerifyCodeSuccessGetState());
       }
     });
   }
 
   void verifyCode() async {
     if (code.length < 6) {
-      emit(VerifyCodeFailureState(FailureState(
+      _update(VerifyCodeFailureState(FailureState(
           message: AppStrings.enterTheCompleteVerificationCode.tr)));
       return;
     }
-    emit(VerifyCodeLoadingState());
+    _update(VerifyCodeLoadingState());
     final data = {
       AppRKeys.em_ph: AppLocalData.user!.email,
       AppRKeys.role: AppConstant.pharmacist,
@@ -72,15 +77,15 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
     final response = await authRemoteData.verify(data: data);
     if (isClosed) return;
     response.fold((l) {
-      emit(VerifyCodeFailureState(l));
+      _update(VerifyCodeFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 403 ||
           response[AppRKeys.status] == 402) {
         final message = AppStrings.verifyCodeNotCorrect.tr;
-        emit(VerifyCodeFailureState(FailureState(message: message)));
+        _update(VerifyCodeFailureState(FailureState(message: message)));
       } else {
         await storeUser(response);
-        emit(VerifyCodeSuccessState());
+        _update(VerifyCodeSuccessState());
       }
     });
   }

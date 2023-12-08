@@ -20,7 +20,10 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     AppInjection.getIt<FavoriteCubit>().initial();
     return Scaffold(
-      appBar: CustomAppBar(title: AppStrings.favorite.tr).build(),
+      appBar: CustomAppBar(
+        title: AppStrings.favorite.tr,
+        showSearch: true,
+      ).build(),
       body: BlocConsumer<FavoriteCubit, FavoriteState>(
         buildWhen: (previous, current) {
           return current is! FavoriteFailureState;

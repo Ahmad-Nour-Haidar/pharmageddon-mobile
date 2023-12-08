@@ -17,6 +17,11 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   static ResetPasswordCubit get(BuildContext context) =>
       BlocProvider.of(context);
 
+  void _update(ResetPasswordState state) {
+    if (isClosed) return;
+    emit(state);
+  }
+
   final passwordController = TextEditingController();
   final confirmController = TextEditingController();
   final authRemoteData = AppInjection.getIt<AuthRemoteData>();
@@ -38,7 +43,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
 
   void showPassword() {
     obscureText = !obscureText;
-    emit(ResetPasswordChangeShowPasswordState());
+    _update(ResetPasswordChangeShowPasswordState());
   }
 
   String get message =>
@@ -50,7 +55,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
 
   void getVerifyCode() async {
     email = null;
-    emit(ResetPasswordLoadingGetState());
+    _update(ResetPasswordLoadingGetState());
     final data = {
       AppRKeys.em_ph: AppLocalData.user!.email,
       AppRKeys.role: AppConstant.pharmacist,
@@ -58,17 +63,17 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     final response = await authRemoteData.getVerificationCode(data: data);
     if (isClosed) return;
     response.fold((l) {
-      emit(ResetPasswordFailureGetState(l));
+      _update(ResetPasswordFailureGetState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
         final message = AppStrings.verifyCodeNotSentTryAgain.tr;
-        emit(ResetPasswordFailureGetState(FailureState(message: message)));
+        _update(ResetPasswordFailureGetState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 405) {
         final message = AppStrings.verifyCodeNotSentTryAgain.tr;
-        emit(ResetPasswordFailureGetState(FailureState(message: message)));
+        _update(ResetPasswordFailureGetState(FailureState(message: message)));
       } else {
         email = AppLocalData.user!.email;
-        emit(ResetPasswordSuccessGetState());
+        _update(ResetPasswordSuccessGetState());
       }
     });
   }
@@ -78,16 +83,16 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       return;
     }
     if (code.length < 6) {
-      emit(ResetPasswordFailureState(FailureState(
+      _update(ResetPasswordFailureState(FailureState(
           message: AppStrings.enterTheCompleteVerificationCode.tr)));
       return;
     }
     if (passwordController.text != confirmController.text) {
-      emit(ResetPasswordFailureState(
+      _update(ResetPasswordFailureState(
           FailureState(message: AppStrings.passwordsNoMatch.tr)));
       return;
     }
-    emit(ResetPasswordLoadingState());
+    _update(ResetPasswordLoadingState());
     final data = {
       AppRKeys.em_ph: AppLocalData.user!.email,
       AppRKeys.password: passwordController.text,
@@ -97,20 +102,20 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     final response = await authRemoteData.resetPassword(data: data);
     if (isClosed) return;
     response.fold((l) {
-      emit(ResetPasswordFailureState(l));
+      _update(ResetPasswordFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
         final message = AppStrings.somethingWentWrong.tr;
-        emit(ResetPasswordFailureState(FailureState(message: message)));
+        _update(ResetPasswordFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 403) {
         final message = AppStrings.verifyCodeNotCorrect.tr;
-        emit(ResetPasswordFailureState(FailureState(message: message)));
+        _update(ResetPasswordFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 405) {
         final message = AppStrings.goToTheOtherPlatform.tr;
-        emit(ResetPasswordFailureState(FailureState(message: message)));
+        _update(ResetPasswordFailureState(FailureState(message: message)));
       } else {
         await storeUser(response);
-        emit(ResetPasswordSuccessState());
+        _update(ResetPasswordSuccessState());
       }
     });
   }

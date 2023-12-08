@@ -14,7 +14,10 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
   CheckEmailCubit() : super(CheckEmailInitialState());
 
   static CheckEmailCubit get(BuildContext context) => BlocProvider.of(context);
-
+  void _update(CheckEmailState state) {
+    if (isClosed) return;
+    emit(state);
+  }
   final emPHController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final authRemoteData = AppInjection.getIt<AuthRemoteData>();
@@ -29,14 +32,14 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
   void changeIsEmail(bool isEmail) {
     if (this.isEmail == isEmail) return;
     this.isEmail = isEmail;
-    emit(CheckEmailChangeState());
+    _update(CheckEmailChangeState());
   }
 
   void check() async {
     if (!formKey.currentState!.validate()) {
       return;
     }
-    emit(CheckEmailLoadingState());
+    _update(CheckEmailLoadingState());
     final data = {
       AppRKeys.em_ph: emPHController.text,
       AppRKeys.role: AppConstant.pharmacist,
@@ -44,17 +47,17 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
     final response = await authRemoteData.checkEmail(data: data);
     if (isClosed) return;
     response.fold((l) {
-      emit(CheckEmailFailureState(l));
+      _update(CheckEmailFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 405) {
         final message = AppStrings.goToTheOtherPlatform.tr;
-        emit(CheckEmailFailureState(FailureState(message: message)));
+        _update(CheckEmailFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 403) {
         final message = AppStrings.userNotFound.tr;
-        emit(CheckEmailFailureState(FailureState(message: message)));
+        _update(CheckEmailFailureState(FailureState(message: message)));
       } else {
         await storeUser(response);
-        emit(CheckEmailSuccessState());
+        _update(CheckEmailSuccessState());
       }
     });
   }

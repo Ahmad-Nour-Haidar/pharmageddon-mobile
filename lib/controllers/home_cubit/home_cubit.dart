@@ -20,7 +20,10 @@ class HomeCubit extends Cubit<HomeState> {
   final List<MedicationModel> medications = [];
   final List<ManufacturerModel> manufacturers = [];
   final List<EffectCategoryModel> effectCategories = [];
-
+  void _update(HomeState state) {
+    if (isClosed) return;
+    emit(state);
+  }
   void initial() {
     _initialIndexScreen = 1;
     getMedications();
@@ -28,64 +31,64 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> getMedications({bool forceGetData = false}) async {
     if (!(medications.isEmpty || forceGetData)) {
-      emit(HomeGetMedicationsSuccessState());
+      _update(HomeGetMedicationsSuccessState());
       return;
     }
-    emit(HomeGetMedicationsLoadingState());
+    _update(HomeGetMedicationsLoadingState());
     final response = await homeRemoteData.getMedications();
     response.fold((l) {
-      emit(HomeGetFailureState(l));
+      _update(HomeGetFailureState(l));
     }, (r) {
       final List temp = r[AppRKeys.data][AppRKeys.medicines];
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       // medications.shuffle();
       if (medications.isEmpty) {
-        emit(HomeNoDataState());
+        _update(HomeNoDataState());
       } else {
-        emit(HomeGetMedicationsSuccessState());
+        _update(HomeGetMedicationsSuccessState());
       }
     });
   }
 
   Future<void> getManufacturers({bool forceGetData = false}) async {
     if (!(manufacturers.isEmpty || forceGetData)) {
-      emit(HomeGetFactoriesSuccessState());
+      _update(HomeGetFactoriesSuccessState());
       return;
     }
-    emit(HomeGetFactoriesLoadingState());
+    _update(HomeGetFactoriesLoadingState());
     final response = await homeRemoteData.getManufacturers();
     response.fold((l) {
-      emit(HomeGetFailureState(l));
+      _update(HomeGetFailureState(l));
     }, (r) {
       final List temp = r[AppRKeys.data][AppRKeys.manufacturers];
       manufacturers.clear();
       manufacturers.addAll(temp.map((e) => ManufacturerModel.fromJson(e)));
       if (manufacturers.isEmpty) {
-        emit(HomeNoDataState());
+        _update(HomeNoDataState());
       } else {
-        emit(HomeGetFactoriesSuccessState());
+        _update(HomeGetFactoriesSuccessState());
       }
     });
   }
 
   Future<void> getEffectCategories({bool forceGetData = false}) async {
     if (!(effectCategories.isEmpty || forceGetData)) {
-      emit(HomeGetEffectCategoriesSuccessState());
+      _update(HomeGetEffectCategoriesSuccessState());
       return;
     }
-    emit(HomeGetEffectCategoriesLoadingState());
+    _update(HomeGetEffectCategoriesLoadingState());
     final response = await homeRemoteData.getEffectsCategories();
     response.fold((l) {
-      emit(HomeGetFailureState(l));
+      _update(HomeGetFailureState(l));
     }, (r) {
       final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
       effectCategories.clear();
       effectCategories.addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
       if (effectCategories.isEmpty) {
-        emit(HomeNoDataState());
+        _update(HomeNoDataState());
       } else {
-        emit(HomeGetEffectCategoriesSuccessState());
+        _update(HomeGetEffectCategoriesSuccessState());
       }
     });
   }

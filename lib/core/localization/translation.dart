@@ -93,6 +93,7 @@ class MyTranslation extends Translations {
           AppStrings.effect: 'Effect',
           AppStrings.sp: 'S.P',
           AppStrings.all: 'All',
+          AppStrings.savedSuccessfully: 'Saved successfully',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -182,6 +183,7 @@ class MyTranslation extends Translations {
           AppStrings.effect: 'التأثير',
           AppStrings.sp: 'ل.س',
           AppStrings.all: 'الكل',
+          AppStrings.savedSuccessfully: 'تم الحفظ بنجاح',
         },
       };
 }

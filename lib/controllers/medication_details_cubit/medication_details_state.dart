@@ -8,7 +8,12 @@ class MedicationDetailsLoadingState extends MedicationDetailsState {}
 
 class MedicationDetailsChangeState extends MedicationDetailsState {}
 
-class MedicationDetailsSuccessState extends MedicationDetailsState {}
+class MedicationDetailsSuccessState extends MedicationDetailsState {
+  final ParentState state;
+
+  MedicationDetailsSuccessState({ParentState? state})
+      : state = state ?? NoneState();
+}
 
 class MedicationDetailsFailureState extends MedicationDetailsState {
   final ParentState state;

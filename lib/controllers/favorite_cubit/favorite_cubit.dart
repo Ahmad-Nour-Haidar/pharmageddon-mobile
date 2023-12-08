@@ -13,27 +13,32 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   final favoriteRemoteData = AppInjection.getIt<FavoriteRemoteData>();
   final List<MedicationModel> medications = [];
 
+  void _update(FavoriteState state) {
+    if (isClosed) return;
+    emit(state);
+  }
+
   void initial() {
     getMedications();
   }
 
   Future<void> getMedications({bool forceGetData = false}) async {
     if (!(medications.isEmpty || forceGetData)) {
-      emit(FavoriteSuccessState());
+      _update(FavoriteSuccessState());
       return;
     }
-    emit(FavoriteLoadingState());
+    _update(FavoriteLoadingState());
     final response = await favoriteRemoteData.getFavorites();
     response.fold((l) {
-      emit(FavoriteFailureState(l));
+      _update(FavoriteFailureState(l));
     }, (r) {
       final List temp = r[AppRKeys.data][AppRKeys.favourite_medicines];
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       if (medications.isEmpty) {
-        emit(FavoriteNoDataState());
+        _update(FavoriteNoDataState());
       } else {
-        emit(FavoriteSuccessState());
+        _update(FavoriteSuccessState());
       }
     });
   }
@@ -42,9 +47,9 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     medications.removeWhere((element) => element.id == model.id);
     if (isClosed) return;
     if (medications.isEmpty) {
-      emit(FavoriteNoDataState());
+      _update(FavoriteNoDataState());
     } else {
-      emit(FavoriteSuccessState());
+      _update(FavoriteSuccessState());
     }
   }
 }

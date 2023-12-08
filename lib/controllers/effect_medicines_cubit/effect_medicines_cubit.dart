@@ -14,6 +14,10 @@ class EffectMedicinesCubit extends Cubit<EffectMedicinesState> {
 
   static EffectMedicinesCubit get(BuildContext context) =>
       BlocProvider.of(context);
+  void _update(EffectMedicinesState state) {
+    if (isClosed) return;
+    emit(state);
+  }
   late final EffectCategoryModel model;
 
   String get title => getEffectCategoryModelName(model);
@@ -30,27 +34,27 @@ class EffectMedicinesCubit extends Cubit<EffectMedicinesState> {
 
   Future<void> getMedications({bool forceGetData = false}) async {
     if (!(medications.isEmpty || forceGetData)) {
-      emit(EffectMedicinesSuccessState());
+      _update(EffectMedicinesSuccessState());
       return;
     }
     final queryParameters = {
       AppRKeys.id: model.id,
     };
-    emit(EffectMedicinesLoadingState());
+    _update(EffectMedicinesLoadingState());
     final response = await effectMedicinesRemoteData.getMedicines(
       queryParameters: queryParameters,
     );
     response.fold((l) {
-      emit(EffectMedicinesFailureState(l));
+      _update(EffectMedicinesFailureState(l));
     }, (r) {
       final List temp = r[AppRKeys.data][AppRKeys.medicines];
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       medications.shuffle();
       if (medications.isEmpty) {
-        emit(EffectMedicinesNoDataState());
+        _update(EffectMedicinesNoDataState());
       } else {
-        emit(EffectMedicinesSuccessState());
+        _update(EffectMedicinesSuccessState());
       }
     });
   }

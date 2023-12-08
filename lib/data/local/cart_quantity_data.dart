@@ -1,3 +1,4 @@
+import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_storage_keys.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/local/app_hive.dart';
@@ -40,5 +41,29 @@ class CartQuantityData {
     if (id == null) return 0;
     final q = _cart[id.toString()] ?? 0;
     return q;
+  }
+
+  // final Map<String, List<Map<String, int>>> _data = {
+  //   'medicines': [
+  //     {
+  //       'medicine_id': 5,
+  //       'quantity': 10,
+  //     },
+  //     {
+  //       'medicine_id': 6,
+  //       'quantity': 10,
+  //     },
+  //   ],
+  // };
+
+  Future<Map<String, List<Map<String, int>>>> dataToRequest() async {
+    final List<Map<String, int>> list = _cart.entries.map((entry) {
+      return {
+        AppRKeys.medicine_id: int.parse(entry.key),
+        AppRKeys.quantity: entry.value,
+      };
+    }).toList();
+    final data = {AppRKeys.medicines: list};
+    return data;
   }
 }

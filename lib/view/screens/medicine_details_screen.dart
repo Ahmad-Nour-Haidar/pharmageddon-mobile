@@ -39,6 +39,8 @@ class MedicationDetailsScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is MedicationDetailsFailureState) {
             handleState(state: state.state, context: context);
+          } else if (state is MedicationDetailsSuccessState) {
+            handleState(state: state.state, context: context);
           }
         },
         builder: (context, state) {

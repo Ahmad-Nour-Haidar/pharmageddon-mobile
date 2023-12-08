@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
+import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/local/cart_quantity_data.dart';
 import 'package:pharmageddon_mobile/data/remote/favorite_data.dart';
@@ -23,7 +25,10 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
 
   late MedicationModel model;
   int quantity = 0;
-
+  void _update(MedicationDetailsState state) {
+    if (isClosed) return;
+    emit(state);
+  }
   void initial(MedicationModel model) {
     this.model = model;
     quantity = cartQuantityData.getQuantityOfModel(model.id);
@@ -33,7 +38,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
 
   void changeQuantity(int x) {
     quantity = x;
-    emit(MedicationDetailsChangeState());
+    _update(MedicationDetailsChangeState());
   }
 
   void onTapFav() async {
@@ -42,42 +47,42 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
 
   Future<void> favorite() async {
     model.isFavourite = true;
-    emit(MedicationDetailsChangeState());
+    _update(MedicationDetailsChangeState());
     final data = {
       AppRKeys.id: model.id,
     };
     final response = await favoriteRemoteData.favorite(data: data);
     response.fold((l) {
       model.isFavourite = false;
-      emit(MedicationDetailsFailureState(l));
+      _update(MedicationDetailsFailureState(l));
     }, (r) {
       if (r[AppRKeys.status] == 404) {
-        emit(MedicationDetailsFailureState(FailureState()));
+        _update(MedicationDetailsFailureState(FailureState()));
       } else {
         final json = r[AppRKeys.data][AppRKeys.favourite_medicine];
         model = MedicationModel.fromJson(json);
-        emit(MedicationDetailsSuccessState());
+        _update(MedicationDetailsSuccessState());
       }
     });
   }
 
   Future<void> unFavorite() async {
     model.isFavourite = false;
-    emit(MedicationDetailsChangeState());
+    _update(MedicationDetailsChangeState());
     final data = {
       AppRKeys.id: model.id,
     };
     final response = await favoriteRemoteData.unFavorite(data: data);
     response.fold((l) {
       model.isFavourite = true;
-      emit(MedicationDetailsFailureState(l));
+      _update(MedicationDetailsFailureState(l));
     }, (r) {
       if (r[AppRKeys.status] == 404) {
-        emit(MedicationDetailsFailureState(FailureState()));
+        _update(MedicationDetailsFailureState(FailureState()));
       } else {
         final json = r[AppRKeys.data][AppRKeys.favourite_medicine];
         model = MedicationModel.fromJson(json);
-        emit(MedicationDetailsSuccessState());
+        _update(MedicationDetailsSuccessState());
 
         /// this to update favorite screen if it active
         final cubit = AppInjection.getIt<FavoriteCubit>();
@@ -89,22 +94,13 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   }
 
   Future<void> addToCart() async {
-    emit(MedicationDetailsLoadingState());
+    _update(MedicationDetailsLoadingState());
     try {
       await cartQuantityData.store(model.id, quantity);
-      Builder(
-        builder: (BuildContext context) {
-          CustomSnackBar(
-            context: context,
-            typeSnackBar: TypeSnackBar.error,
-            message: 'message',
-          ).show();
-          return const SizedBox();
-        },
-      );
-      emit(MedicationDetailsSuccessState());
+      _update(MedicationDetailsSuccessState(
+          state: SuccessState(message: AppStrings.savedSuccessfully.tr)));
     } catch (e) {
-      emit(MedicationDetailsFailureState(FailureState()));
+      _update(MedicationDetailsFailureState(FailureState()));
     }
   }
 }

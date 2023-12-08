@@ -15,7 +15,10 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitialState());
 
   static LoginCubit get(BuildContext context) => BlocProvider.of(context);
-
+  void _update(LoginState state) {
+    if (isClosed) return;
+    emit(state);
+  }
   final emPhController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -32,13 +35,13 @@ class LoginCubit extends Cubit<LoginState> {
 
   void showPassword() {
     obscureText = !obscureText;
-    emit(LoginChangeShowPasswordState());
+    _update(LoginChangeShowPasswordState());
   }
 
   void changeIsEmail(bool isEmail) {
     if (this.isEmail == isEmail) return;
     this.isEmail = isEmail;
-    emit(LoginChangeState());
+    _update(LoginChangeState());
   }
 
   void login() async {
@@ -50,31 +53,31 @@ class LoginCubit extends Cubit<LoginState> {
     if (!formKey.currentState!.validate()) {
       return;
     }
-    emit(LoginLoadingState());
+    _update(LoginLoadingState());
     final response = await authRemoteData.login(data: data);
     if (isClosed) return;
     response.fold((l) {
-      emit(LoginFailureState(l));
+      _update(LoginFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
         final s = AppStrings.somethingWentWrong.tr;
-        emit(LoginFailureState(FailureState(message: s)));
+        _update(LoginFailureState(FailureState(message: s)));
       } else if (response[AppRKeys.status] == 403) {
         final s = isEmail
             ? AppStrings.emailOrPasswordIsWrong.tr
             : AppStrings.phoneOrPasswordIsWrong.tr;
-        emit(LoginFailureState(FailureState(message: s)));
+        _update(LoginFailureState(FailureState(message: s)));
       } else if (response[AppRKeys.status] == 404) {
-        emit(LoginNotVerifyState());
+        _update(LoginNotVerifyState());
       } else if (response[AppRKeys.status] == 405) {
         final state = FailureState(message: AppStrings.goToTheOtherPlatform.tr);
-        emit(LoginFailureState(state));
+        _update(LoginFailureState(state));
       } else {
         await storeUser(response);
         if (AppLocalData.user!.emailVerifiedAt == null) {
-          emit(LoginNotVerifyState());
+          _update(LoginNotVerifyState());
         } else {
-          emit(LoginSuccessState());
+          _update(LoginSuccessState());
         }
       }
     });

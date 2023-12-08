@@ -17,7 +17,10 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitialState());
 
   static RegisterCubit get(BuildContext context) => BlocProvider.of(context);
-
+  void _update(RegisterState state) {
+    if (isClosed) return;
+    emit(state);
+  }
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final phoneController = TextEditingController();
@@ -39,14 +42,14 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   void showPassword() {
     obscureText = !obscureText;
-    emit(RegisterChangeShowPasswordState());
+    _update(RegisterChangeShowPasswordState());
   }
 
   void register() async {
     if (!formKey.currentState!.validate()) {
       return;
     }
-    emit(RegisterLoadingState());
+    _update(RegisterLoadingState());
     final data = {
       AppRKeys.email: emailController.text,
       AppRKeys.username: userNameController.text,
@@ -58,27 +61,27 @@ class RegisterCubit extends Cubit<RegisterState> {
     final response = await authRemoteData.register(data: data);
     if (isClosed) return;
     response.fold((l) {
-      emit(RegisterFailureState(l));
+      _update(RegisterFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 400) {
         var s = checkErrorMessages(
             response[AppRKeys.message][AppRKeys.validation_errors]);
         s = '${AppStrings.field.tr} $s ${AppStrings.alreadyBeenTaken.tr}';
-        emit(RegisterFailureState(FailureState(message: s)));
+        _update(RegisterFailureState(FailureState(message: s)));
       } else {
         await storeUser(response);
-        emit(RegisterSuccessState());
+        _update(RegisterSuccessState());
       }
     });
   }
 
   void logout() async {
-    emit(RegisterLoadingState());
+    _update(RegisterLoadingState());
     final token = AppLocalData.user!.authorization ?? '';
     final response = await authRemoteData.logout(token: token);
     if (isClosed) return;
     response.fold((l) {
-      emit(RegisterFailureState(l));
+      _update(RegisterFailureState(l));
     }, (response) async {
       // handle
     });
