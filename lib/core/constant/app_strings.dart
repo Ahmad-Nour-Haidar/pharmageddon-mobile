@@ -118,4 +118,7 @@ class AppStrings {
   static const received = 'received';
   static const hasBeenSent = 'hasBeenSent';
   static const preparing = 'preparing';
+  static const paymentState = 'paymentState';
+  static const date = 'date';
+  static const id = 'id';
 }

@@ -12,6 +12,7 @@ class AppColor {
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xFF000000);
   static const background = Color(0xFFA2DBFA);
+  static const blue = Color(0xFF0000FF);
   static const primaryColor = Color(0xFF528AC8);
   static const secondColor = Color(0xFF00538B);
   static const green2 = Color(0xFF00C5A2);
@@ -19,7 +20,7 @@ class AppColor {
   static const cardColor = Color(0xFFCDE5FF);
   static const snackbarColor = Color(0xFFffab00);
   static const Color red = Color(0xFFFF0000);
-  static const Color red2 = Colors.red;
+  static const Color red2 = Color(0xFFF44336);
   static const Color green = Color(0xFF4EF037);
   static const Color textColor = Color(0xff7A0F88);
   static const Color shadowColor = Color(0xFFA2DBFA);

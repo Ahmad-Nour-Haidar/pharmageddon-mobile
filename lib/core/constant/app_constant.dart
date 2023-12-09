@@ -23,8 +23,8 @@ class AppConstant {
   ];
 
   static const ordersList = [
-    AppSvg.boxCircleCheck,
-    AppSvg.sent,
     AppSvg.boxOpen,
+    AppSvg.sent,
+    AppSvg.boxCircleCheck,
   ];
 }

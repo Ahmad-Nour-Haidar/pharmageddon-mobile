@@ -53,6 +53,13 @@ String formatYYYYMd(String? s) {
   return Jiffy.parseFromDateTime(date).format(pattern: pattern);
 }
 
+String formatYYYYMdEEEE(String? s) {
+  final date = DateTime.tryParse(s ?? '');
+  if (date == null) return ' --- ';
+  final pattern = isEnglish() ? 'EEEE , yyyy - M - d' : 'EEEE , d - M - yyyy';
+  return Jiffy.parseFromDateTime(date).format(pattern: pattern);
+}
+
 String formatTimeJiffy(DateTime date) {
   return Jiffy.parseFromDateTime(date).format(pattern: 'h:mm a');
 }

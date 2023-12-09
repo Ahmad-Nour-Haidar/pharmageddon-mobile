@@ -9,6 +9,7 @@ class OrderRemoteData {
   final _crud = AppInjection.getIt<Crud>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getOrders() async {
+    return const Right({});
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
       // todo: url

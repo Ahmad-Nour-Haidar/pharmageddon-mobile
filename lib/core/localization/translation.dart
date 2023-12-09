@@ -105,6 +105,9 @@ class MyTranslation extends Translations {
           AppStrings.preparing: 'Preparing',
           AppStrings.hasBeenSent: 'Has been sent',
           AppStrings.received: 'Received',
+          AppStrings.paymentState: 'Payment state',
+          AppStrings.date: 'Date',
+          AppStrings.id: 'ID',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -176,7 +179,7 @@ class MyTranslation extends Translations {
           AppStrings.profile: 'الملف الشخصي',
           AppStrings.cart: 'السلة',
           AppStrings.favorite: 'المفضلة',
-          AppStrings.orders: 'طلبات',
+          AppStrings.orders: 'الطلبات',
           AppStrings.reports: 'التقارير',
           AppStrings.logOut: 'تسجيل الخروج',
           AppStrings.doYouWantToLogOut: 'هل تريد تسجيل خروج ؟',
@@ -205,7 +208,9 @@ class MyTranslation extends Translations {
           AppStrings.preparing: 'قيد التحضير',
           AppStrings.hasBeenSent: 'تم الإرسال',
           AppStrings.received: 'تم الإستلام',
-
+          AppStrings.paymentState: 'حالة الدفع',
+          AppStrings.date: 'التاريخ',
+          AppStrings.id: 'الرقم',
         },
       };
 }

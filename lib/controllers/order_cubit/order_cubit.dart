@@ -26,7 +26,7 @@ class OrderCubit extends Cubit<OrderState> {
   }
 
   void initial() {
-    // _initialData();
+    _initialData();
   }
 
   int get indexScreen => _indexScreen;
@@ -44,8 +44,9 @@ class OrderCubit extends Cubit<OrderState> {
     return _receivedOrders;
   }
 
-  set initialIndexScreen(int value) {
+  set indexScreen(int value) {
     _indexScreen = value;
+    _update(OrderChangeState());
   }
 
   Future<void> _initialData({bool forceGetData = false}) async {
@@ -53,7 +54,7 @@ class OrderCubit extends Cubit<OrderState> {
       _update(OrderSuccessState());
       return;
     }
-
+printme.cyan('_initialData');
     List<OrderModel> temp = [
       OrderModel(OrderStatus.preparing),
       OrderModel(OrderStatus.preparing),
@@ -76,6 +77,7 @@ class OrderCubit extends Cubit<OrderState> {
           _hasBeenSentOrders.add(e);
         }
       }
+      _update(OrderSuccessState());
       printme.cyan(temp.length);
       printme.cyan(_preparingOrders.length);
       printme.cyan(_hasBeenSentOrders.length);
