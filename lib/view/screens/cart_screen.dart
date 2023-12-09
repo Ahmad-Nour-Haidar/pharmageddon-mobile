@@ -43,8 +43,8 @@ class CartScreen extends StatelessWidget {
                   Expanded(
                     child: CartWidgetList(
                       data: cubit.data,
-                      onTapRemove: cubit.initial,
-                      onChange: cubit.change,
+                      onTapRemove: cubit.onTapRemove,
+                      onChange: cubit.changeQuantityOfModel,
                     ),
                   ),
                   const Gap(10),

@@ -8,17 +8,39 @@ import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_svg.dart';
 import '../../core/resources/app_text_theme.dart';
 
-class CounterCartWidget extends StatelessWidget {
+class CounterCartWidget extends StatefulWidget {
   const CounterCartWidget({
     super.key,
     required this.onChange,
-    required this.value,
+    required this.initialValue,
+    required this.maxValue,
   });
 
-  final void Function(int change) onChange;
-  final int value;
+  final void Function(int newQuantity) onChange;
+  final int initialValue;
+  final int maxValue;
+
+  @override
+  State<CounterCartWidget> createState() => _CounterCartWidgetState();
+}
+
+class _CounterCartWidgetState extends State<CounterCartWidget> {
   static Timer? _timer;
   static const _duration = Duration(milliseconds: 100);
+  late int quantity = 0;
+
+  @override
+  void initState() {
+    quantity = widget.initialValue;
+    super.initState();
+  }
+
+  void change(int x) {
+    if (quantity + x < 0) return;
+    if (quantity + x > widget.maxValue) return;
+    quantity += x;
+    widget.onChange(quantity);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +49,15 @@ class CounterCartWidget extends StatelessWidget {
       children: [
         GestureDetector(
           onLongPress: () {
-            onChange(-1);
-            _timer = Timer.periodic(_duration, (timer) => onChange(-1));
+            change(-1);
+            _timer = Timer.periodic(_duration, (timer) => change(-1));
           },
           onLongPressEnd: (LongPressEndDetails details) {
             _timer?.cancel();
             _timer = null;
           },
           child: InkWell(
-            onTap: () => onChange(-1),
+            onTap: () => change(-1),
             child: const Align(
               child: SvgImage(
                 path: AppSvg.minus,
@@ -53,23 +75,23 @@ class CounterCartWidget extends StatelessWidget {
           ),
           child: Text(
             maxLines: 1,
-            value.toString(),
+            quantity.toString(),
             style: AppTextTheme.f16w600primaryColor,
             textAlign: TextAlign.center,
           ),
         ),
         GestureDetector(
-          onTap: () => onChange(1),
+          onTap: () => change(1),
           onLongPress: () {
-            onChange(1);
-            _timer = Timer.periodic(_duration, (timer) => onChange(1));
+            change(1);
+            _timer = Timer.periodic(_duration, (timer) => change(1));
           },
           onLongPressEnd: (LongPressEndDetails details) {
             _timer?.cancel();
             _timer = null;
           },
           child: InkWell(
-            onTap: () => onChange(1),
+            onTap: () => change(1),
             child: const Align(
               child: SvgImage(
                 path: AppSvg.plus,

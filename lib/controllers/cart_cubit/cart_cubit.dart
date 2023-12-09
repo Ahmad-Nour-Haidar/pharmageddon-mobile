@@ -15,41 +15,28 @@ class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitialState());
 
   static CartCubit get(BuildContext context) => BlocProvider.of(context);
-  final cartQuantityData = AppInjection.getIt<CartQuantityData>();
-  final homeCubit = AppInjection.getIt<HomeCubit>();
-  final cartRemoteData = AppInjection.getIt<CartRemoteData>();
+  final _cartQuantityData = AppInjection.getIt<CartQuantityData>();
+  final _homeCubit = AppInjection.getIt<HomeCubit>();
+  final _cartRemoteData = AppInjection.getIt<CartRemoteData>();
   final List<CartModel> data = [];
+  bool _isSendingRequest = false;
 
   void _update(CartState state) {
     if (isClosed) return;
     emit(state);
   }
 
-  Future<void> order() async {
-    if (this.data.isEmpty) {
-      _update(CartFailureState(
-          WarningState(message: AppStrings.yourBillIsEmpty.tr)));
-      return;
-    }
-    _update(CartLoadingState());
-    final data = await cartQuantityData.dataToRequest();
-    final response = await cartRemoteData.order(data: data);
-    response.fold((l) {
-      _update(CartFailureState(l));
-    }, (r) {});
-  }
-
   void initial() {
-    initialData();
+    _initialData();
   }
 
-  Future<void> initialData() async {
+  Future<void> _initialData() async {
     try {
-      final ids = cartQuantityData.getIds();
+      final ids = _cartQuantityData.getIds();
       data.clear();
       data.addAll(ids.map((id) => CartModel(
-            quantity: cartQuantityData.getQuantityOfModel(id),
-            medicationModel: homeCubit.medicationsMap[id]!,
+            quantity: _cartQuantityData.getQuantityOfModel(id),
+            medicationModel: _homeCubit.medicationsMap[id]!,
           )));
       _update(CartInitialDataSuccessState());
     } catch (e) {
@@ -74,7 +61,44 @@ class CartCubit extends Cubit<CartState> {
     return p;
   }
 
-  void change() {
-    _update(CartChangeState());
+  void onTapRemove(int? id) {
+    if (_isSendingRequest) return;
+    try {
+      _cartQuantityData.storeInCart(id, 0);
+      data.removeWhere((element) => element.medicationModel.id == id);
+      _update(CartSuccessState());
+    } catch (e) {
+      _update(CartFailureState(null));
+    }
+  }
+
+  void changeQuantityOfModel(int? id, int newQuantity) {
+    if (_isSendingRequest) return;
+    try {
+      _cartQuantityData.storeInCart(id, newQuantity);
+      final index =
+          data.indexWhere((element) => element.medicationModel.id == id);
+      data[index].quantity = newQuantity;
+      _update(CartSuccessState());
+    } catch (e) {
+      _update(CartFailureState(null));
+    }
+  }
+
+  Future<void> order() async {
+    if (this.data.isEmpty) {
+      _update(CartFailureState(
+        WarningState(message: AppStrings.yourBillIsEmpty.tr),
+      ));
+      return;
+    }
+    _isSendingRequest = true;
+    _update(CartLoadingState());
+    final data = await _cartQuantityData.dataToRequest();
+    final response = await _cartRemoteData.order(data: data);
+    _isSendingRequest = false;
+    response.fold((l) {
+      _update(CartFailureState(l));
+    }, (r) {});
   }
 }

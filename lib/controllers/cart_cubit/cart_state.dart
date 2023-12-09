@@ -13,7 +13,7 @@ class CartChangeState extends CartState {}
 class CartFailureState extends CartState {
   final ParentState state;
 
-  CartFailureState(this.state);
+  CartFailureState(ParentState? state) : state = state ?? FailureState();
 }
 
 class CartInitialDataSuccessState extends CartState {}

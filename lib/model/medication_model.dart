@@ -50,7 +50,7 @@ class MedicationModel {
     discount = double.tryParse(json['discount'].toString()) ?? 0.0;
     priceAfterDiscount =
         double.tryParse(json['price_after_discount'].toString()) ?? 0.0;
-    isFavourite = json['is_favourite'];
+    isFavourite = json['is_favourite'] ?? false;
     arabicDescription = json['arabic_description'];
     englishDescription = json['english_description'];
     imageName = json['image_name'];
@@ -64,7 +64,6 @@ class MedicationModel {
         : null;
     price = double.parse(price!.toStringAsFixed(2));
     priceAfterDiscount = double.parse(priceAfterDiscount!.toStringAsFixed(2));
-    isFavourite = isFavourite ?? false;
   }
 
   Map<String, dynamic> toJson() {
