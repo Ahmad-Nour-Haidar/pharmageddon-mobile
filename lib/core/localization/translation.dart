@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import '../constant/app_strings.dart';
 
 class MyTranslation extends Translations {
@@ -99,6 +100,11 @@ class MyTranslation extends Translations {
           AppStrings.quantity: 'Quantity',
           AppStrings.order: 'Order',
           AppStrings.yourBillIsEmpty: 'Your bill is empty ..!',
+          AppStrings.start: 'Start',
+          AppStrings.end: 'End',
+          AppStrings.preparing: 'Preparing',
+          AppStrings.hasBeenSent: 'Has been sent',
+          AppStrings.received: 'Received',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -194,6 +200,12 @@ class MyTranslation extends Translations {
           AppStrings.quantity: 'الكمية',
           AppStrings.order: 'طلب',
           AppStrings.yourBillIsEmpty: 'فاتورتك فارغة ..!',
+          AppStrings.start: 'بداية',
+          AppStrings.end: 'نهاية',
+          AppStrings.preparing: 'قيد التحضير',
+          AppStrings.hasBeenSent: 'تم الإرسال',
+          AppStrings.received: 'تم الإستلام',
+
         },
       };
 }

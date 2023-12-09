@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../controllers/auth/check_email_cubit/check_email_cubit.dart';
 import '../../controllers/auth/login_cubit/login_cubit.dart';
 import '../../controllers/auth/register_cubit/register_cubit.dart';
@@ -12,7 +13,10 @@ import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
 import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
+import '../../controllers/order_cubit/order_cubit.dart';
+import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
+import '../../data/crud_dio.dart';
 import '../../data/local/app_hive.dart';
 import '../../data/local/cart_quantity_data.dart';
 import '../../data/remote/auth_data.dart';
@@ -22,9 +26,9 @@ import '../../data/remote/factory_medicines_data.dart';
 import '../../data/remote/favorite_data.dart';
 import '../../data/remote/home_data.dart';
 import '../../data/remote/order_data.dart';
+import '../../data/remote/reports_data.dart';
 import '../../data/remote/search_data.dart';
 import '../../my_bloc_observer.dart';
-import '../../data/crud_dio.dart';
 
 class AppInjection {
   static final getIt = GetIt.instance;
@@ -53,6 +57,7 @@ class AppInjection {
     final cartQuantityData = await CartQuantityData.getInstance();
     getIt.registerLazySingleton(() => cartQuantityData);
     getIt.registerLazySingleton(() => CartRemoteData());
+    getIt.registerLazySingleton(() => ReportsRemoteData());
 
     /// controllers
     // auth
@@ -82,5 +87,11 @@ class AppInjection {
 
     // cart
     getIt.registerFactory(() => CartCubit());
+
+    // reports
+    getIt.registerFactory(() => ReportsCubit());
+
+    // order
+    getIt.registerFactory(() => OrderCubit());
   }
 }

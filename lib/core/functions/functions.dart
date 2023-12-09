@@ -1,17 +1,19 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/data/local/app_hive.dart';
+
 import '../../controllers/local_controller.dart';
 import '../../model/effect_category_model.dart';
 import '../../model/manufacturer_model.dart';
 import '../../model/medication_model.dart';
 import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
-import '../constant/app_storage_keys.dart';
 import '../constant/app_link.dart';
 import '../constant/app_local_data.dart';
+import '../constant/app_storage_keys.dart';
 import '../services/dependency_injection.dart';
 
 bool isEnglish() =>
@@ -44,20 +46,11 @@ void initialUser() {
   return;
 }
 
-String formatDateJiffy(DateTime date) {
-  return Jiffy.parseFromDateTime(date)
-      .format(pattern: 'EEEE, MMMM, d - MM - yyyy');
-}
-
-String formatExpirationDate(String? s) {
+String formatYYYYMd(String? s) {
   final date = DateTime.tryParse(s ?? '');
-  if (date == null) return '';
-  var formatDate =
-      Jiffy.parseFromDateTime(date).format(pattern: 'yyyy - M - d');
-  if (!isEnglish()) {
-    formatDate = formatDate.split(' - ').reversed.join(' - ');
-  }
-  return formatDate;
+  if (date == null) return ' --- ';
+  final pattern = isEnglish() ? 'yyyy - M - d' : 'd - M - yyyy';
+  return Jiffy.parseFromDateTime(date).format(pattern: pattern);
 }
 
 String formatTimeJiffy(DateTime date) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_mobile/view/widgets/snack_bar.dart';
+
 import '../../core/class/parent_state.dart';
 
 void handleState({

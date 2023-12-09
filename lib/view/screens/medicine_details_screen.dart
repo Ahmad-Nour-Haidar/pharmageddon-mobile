@@ -11,6 +11,7 @@ import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
+
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_state.dart';
 import '../../core/constant/app_keys.dart';
@@ -33,9 +34,6 @@ class MedicationDetailsScreen extends StatelessWidget {
       create: (context) =>
           AppInjection.getIt<MedicationDetailsCubit>()..initial(model),
       child: BlocConsumer<MedicationDetailsCubit, MedicationDetailsState>(
-        buildWhen: (previous, current) {
-          return current is! MedicationDetailsFailureState;
-        },
         listener: (context, state) {
           if (state is MedicationDetailsFailureState) {
             handleState(state: state.state, context: context);
@@ -118,8 +116,7 @@ class MedicationDetailsScreen extends StatelessWidget {
                             ),
                           RowTextSpan(
                             s1: '${AppStrings.expirationDate.tr} : ',
-                            s2: formatExpirationDate(
-                                cubit.model.expirationDate),
+                            s2: formatYYYYMd(cubit.model.expirationDate),
                           ),
                           const Gap(15),
                           RowTextSpan(

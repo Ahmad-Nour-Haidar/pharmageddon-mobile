@@ -8,8 +8,12 @@ class AppConstant {
   static const ar = 'ar';
   static const en = 'en';
   static const pharmacist = 'pharmacist';
+  static const received = 'received';
+  static const hasBeenSent = 'has_been_sent';
+  static const preparing = 'preparing';
 
   static const localEn = Locale(en);
+
   // static const localAr = Locale(ar);
 
   static const homeList = [
@@ -18,16 +22,9 @@ class AppConstant {
     AppSvg.chemistry,
   ];
 
-  static const pharmaceuticalCompanies = [
-    'Pfizer',
-    'Johnson & Johnson',
-    'Roche',
-    'Novartis',
-    'Merck & Co.',
-    'Sanofi',
-    'GlaxoSmithKline',
-    'AstraZeneca',
-    'Eli Lilly and Company',
-    'AbbVie',
+  static const ordersList = [
+    AppSvg.boxCircleCheck,
+    AppSvg.sent,
+    AppSvg.boxOpen,
   ];
 }

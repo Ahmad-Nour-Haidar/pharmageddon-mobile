@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../controllers/search_cubit/search_state.dart';
 import '../../core/constant/app_lottie.dart';

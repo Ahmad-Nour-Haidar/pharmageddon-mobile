@@ -15,6 +15,7 @@ import 'package:pharmageddon_mobile/view/widgets/home/manufacturers_widget.dart'
 import 'package:pharmageddon_mobile/view/widgets/home/medication_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/manufacturers_loading.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/medications_loading.dart';
+
 import '../../core/constant/app_local_data.dart';
 import '../widgets/Custom_nav_bar.dart';
 import '../widgets/loading/effect_category_loading.dart';

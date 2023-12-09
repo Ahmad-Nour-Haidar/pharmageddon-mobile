@@ -23,6 +23,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
 
   late MedicationModel model;
   int quantity = 0;
+
   void _update(MedicationDetailsState state) {
     if (isClosed) return;
     emit(state);

@@ -17,6 +17,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitialState());
 
   static RegisterCubit get(BuildContext context) => BlocProvider.of(context);
+
   void _update(RegisterState state) {
     if (isClosed) return;
     emit(state);

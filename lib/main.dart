@@ -6,6 +6,7 @@ import 'package:pharmageddon_mobile/controllers/favorite_cubit/favorite_cubit.da
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/routes.dart';
+
 import 'controllers/local_controller.dart';
 import 'core/constant/app_local_data.dart';
 import 'core/functions/functions.dart';

@@ -7,6 +7,7 @@ import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/routes.dart';
+
 import 'custom_popup_menu_button.dart';
 
 class CustomAppBar {

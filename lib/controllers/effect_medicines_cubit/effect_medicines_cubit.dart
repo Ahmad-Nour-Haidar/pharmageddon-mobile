@@ -4,6 +4,7 @@ import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/model/effect_category_model.dart';
 import 'package:pharmageddon_mobile/model/medication_model.dart';
+
 import '../../core/constant/app_request_keys.dart';
 import '../../data/remote/effect_medicines_data.dart';
 import 'effect_medicines_state.dart';
@@ -13,6 +14,7 @@ class EffectMedicinesCubit extends Cubit<EffectMedicinesState> {
 
   static EffectMedicinesCubit get(BuildContext context) =>
       BlocProvider.of(context);
+
   void _update(EffectMedicinesState state) {
     if (isClosed) return;
     emit(state);

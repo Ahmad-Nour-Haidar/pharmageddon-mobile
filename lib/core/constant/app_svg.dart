@@ -3,6 +3,8 @@ class AppSvg {
 
   static const root = 'assets/svgs';
   static const all = '$root/all.svg';
+  static const arrowFillRight = '$root/arrow-fill-right.svg';
+  static const arrowFillLeft = '$root/arrow-fill-left.svg';
   static const arrowLeft = '$root/arrow_left.svg';
   static const arrowRight = '$root/arrow_right.svg';
   static const background = '$root/background.svg';

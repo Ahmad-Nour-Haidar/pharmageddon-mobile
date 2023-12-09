@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -8,6 +9,7 @@ import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/model/medication_model.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_cached_network_image.dart';
+
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_keys.dart';
 import '../../../core/constant/app_size.dart';

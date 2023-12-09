@@ -7,6 +7,7 @@ import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
 import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
+
 import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_cubit.dart';
 import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_state.dart';
 import '../../core/constant/app_lottie.dart';

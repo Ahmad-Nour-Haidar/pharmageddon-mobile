@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
+
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
 

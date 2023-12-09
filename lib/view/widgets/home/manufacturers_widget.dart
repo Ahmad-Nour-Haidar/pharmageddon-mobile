@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
@@ -7,7 +8,6 @@ import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 

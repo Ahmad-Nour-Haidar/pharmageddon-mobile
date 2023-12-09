@@ -7,6 +7,7 @@ import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
+
 import '../../controllers/favorite_cubit/favorite_cubit.dart';
 import '../../controllers/favorite_cubit/favorite_state.dart';
 import '../../core/constant/app_padding.dart';

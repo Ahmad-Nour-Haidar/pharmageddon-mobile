@@ -5,6 +5,7 @@ import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/model/effect_category_model.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_cached_network_image.dart';
+
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_keys.dart';
 import '../../../core/constant/app_size.dart';

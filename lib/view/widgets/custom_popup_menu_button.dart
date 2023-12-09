@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
+
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_strings.dart';

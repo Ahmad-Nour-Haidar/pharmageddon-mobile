@@ -1,10 +1,12 @@
 import 'dart:io';
+
 import 'package:dartz/dartz.dart';
-import '../crud_dio.dart';
+
 import '../../core/class/parent_state.dart';
-import '../../core/constant/app_request_keys.dart';
 import '../../core/constant/app_link.dart';
+import '../../core/constant/app_request_keys.dart';
 import '../../core/services/dependency_injection.dart';
+import '../crud_dio.dart';
 
 class AuthRemoteData {
   final _crud = AppInjection.getIt<Crud>();

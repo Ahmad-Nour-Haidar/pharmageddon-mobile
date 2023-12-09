@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
+
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
 import '../../core/functions/functions.dart';

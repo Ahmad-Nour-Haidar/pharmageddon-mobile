@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../generate_material_color.dart';
+
 import '../constant/app_color.dart';
 
 ThemeData themeData() => ThemeData(
@@ -16,8 +16,8 @@ ThemeData themeData() => ThemeData(
         ),
       ),
       primaryColor: AppColor.primaryColor,
-      colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: generateMaterialColor(color: AppColor.primaryColor),
-        backgroundColor: AppColor.white,
-      ),
+      // colorScheme: ColorScheme.fromSwatch(
+      //   primarySwatch: generateMaterialColor(color: AppColor.primaryColor),
+      //   backgroundColor: AppColor.white,
+      // ),
     );

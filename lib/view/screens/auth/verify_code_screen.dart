@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
+
 import '../../../controllers/auth/verify_code_cubit/verify_code_cubit.dart';
 import '../../../controllers/auth/verify_code_cubit/verify_code_state.dart';
 import '../../../core/constant/app_color.dart';

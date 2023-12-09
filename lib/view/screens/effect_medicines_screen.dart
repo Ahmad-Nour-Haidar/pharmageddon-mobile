@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
+
 import '../../controllers/effect_medicines_cubit/effect_medicines_cubit.dart';
 import '../../controllers/effect_medicines_cubit/effect_medicines_state.dart';
 import '../../core/constant/app_keys.dart';

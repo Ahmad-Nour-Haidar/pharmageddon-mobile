@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_svg.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
+
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_size.dart';

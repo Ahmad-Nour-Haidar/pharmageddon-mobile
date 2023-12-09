@@ -113,4 +113,9 @@ class AppStrings {
   static const all = 'all';
   static const order = 'order';
   static const yourBillIsEmpty = 'yourBillIsEmpty';
+  static const start = 'start';
+  static const end = 'end';
+  static const received = 'received';
+  static const hasBeenSent = 'hasBeenSent';
+  static const preparing = 'preparing';
 }

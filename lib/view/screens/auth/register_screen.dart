@@ -13,6 +13,7 @@ import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_button.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_row_text_button.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_text_form_field.dart';
+
 import '../../../controllers/auth/register_cubit/register_cubit.dart';
 import '../../../controllers/auth/register_cubit/register_state.dart';
 import '../../../core/constant/app_padding.dart';

@@ -1,8 +1,10 @@
 import 'dart:math' as math;
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
+
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
 

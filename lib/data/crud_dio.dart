@@ -1,9 +1,11 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
+
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:pharmageddon_mobile/core/class/parent_state.dart';
-import '../core/functions/random_loading.dart';
 import 'package:pharmageddon_mobile/print.dart';
+
+import '../core/functions/random_loading.dart';
 
 class Crud {
   final Map<String, String> _headers = {

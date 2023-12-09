@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
+
 import '../../../core/class/parent_state.dart';
-import '../../../core/constant/app_request_keys.dart';
 import '../../../core/constant/app_local_data.dart';
+import '../../../core/constant/app_request_keys.dart';
 import '../../../core/constant/app_strings.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/services/dependency_injection.dart';
@@ -15,6 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitialState());
 
   static LoginCubit get(BuildContext context) => BlocProvider.of(context);
+
   void _update(LoginState state) {
     if (isClosed) return;
     emit(state);

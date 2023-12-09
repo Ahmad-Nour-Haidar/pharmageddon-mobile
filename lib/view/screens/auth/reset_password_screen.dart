@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+
 import '../../../controllers/auth/reset_password_cubit/reset_password_cubit.dart';
 import '../../../controllers/auth/reset_password_cubit/reset_password_state.dart';
 import '../../../core/class/validation.dart';
