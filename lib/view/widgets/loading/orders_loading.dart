@@ -39,7 +39,7 @@ class OrdersLoading extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: List.generate(
-                5,
+                3,
                 (index) => CustomShimmer(
                   baseColor: AppColor.shadowColor,
                   child: Container(

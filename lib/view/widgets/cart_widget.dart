@@ -14,32 +14,6 @@ import '../../model/cart_model.dart';
 import 'counter_Cart_widget.dart';
 import 'custom_cached_network_image.dart';
 
-class CartWidgetList extends StatelessWidget {
-  const CartWidgetList({
-    super.key,
-    required this.data,
-    required this.onTapRemove,
-    required this.onChange,
-  });
-
-  final List<CartModel> data;
-  final void Function(int? id) onTapRemove;
-  final void Function(int? id, int newQuantity) onChange;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: data.length,
-      separatorBuilder: (context, index) => const Gap(15),
-      itemBuilder: (context, index) => CartWidget(
-        model: data[index],
-        onTapRemove: onTapRemove,
-        onChange: onChange,
-      ),
-    );
-  }
-}
-
 class CartWidget extends StatelessWidget {
   const CartWidget({
     super.key,
@@ -56,16 +30,18 @@ class CartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomCachedNetworkImage(
-          width: (AppSize.width * .3).toInt() - 25,
-          height: 150,
-          imageUrl: getUrlImageMedication(model.medicationModel),
-          errorWidget: ErrorWidgetShow.picture,
+        Expanded(
+          child: CustomCachedNetworkImage(
+            width: 200,
+            height: 85,
+            imageUrl: getUrlImageMedication(model.medicationModel),
+            errorWidget: ErrorWidgetShow.picture,
+          ),
         ),
         const Gap(10),
         Container(
           padding: AppPadding.padding7,
-          width: AppSize.width * .7 - 15,
+          width: AppSize.width * .7,
           decoration: BoxDecoration(
             color: AppColor.white,
             borderRadius: BorderRadius.circular(10),
@@ -126,6 +102,32 @@ class CartWidget extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class CartWidgetList extends StatelessWidget {
+  const CartWidgetList({
+    super.key,
+    required this.data,
+    required this.onTapRemove,
+    required this.onChange,
+  });
+
+  final List<CartModel> data;
+  final void Function(int? id) onTapRemove;
+  final void Function(int? id, int newQuantity) onChange;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      itemCount: data.length,
+      separatorBuilder: (context, index) => const Gap(15),
+      itemBuilder: (context, index) => CartWidget(
+        model: data[index],
+        onTapRemove: onTapRemove,
+        onChange: onChange,
+      ),
     );
   }
 }

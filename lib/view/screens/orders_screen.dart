@@ -25,9 +25,10 @@ class OrdersScreen extends StatelessWidget {
           final body = state is OrderSuccessState
               ? OrderListWidget(
                   data: cubit.data,
-                  onRefresh: () async {},
+                  onRefresh: () => cubit.getData(forceGetData: true),
                 )
-              : OrdersLoading(onRefresh: () async {});
+              : OrdersLoading(
+                  onRefresh: () => cubit.getData(forceGetData: true));
           return Scaffold(
             appBar: CustomAppBar(title: cubit.title.tr).build(),
             bottomNavigationBar: CustomNavBar(

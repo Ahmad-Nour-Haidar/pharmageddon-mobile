@@ -77,6 +77,7 @@ class AppStrings {
   static const totalPrice = 'totalPrice';
   static const totalQuantity = 'totalQuantity';
   static const numberOfMedications = 'numberOfMedications';
+  static const totalOrders = 'totalOrders';
   static const priceAfterDiscount = 'priceAfterDiscount';
   static const discount = 'discount';
   static const saveInCart = 'saveInCart';
@@ -112,6 +113,7 @@ class AppStrings {
   static const sp = 'sp';
   static const all = 'all';
   static const order = 'order';
+  static const send = 'send';
   static const yourBillIsEmpty = 'yourBillIsEmpty';
   static const start = 'start';
   static const end = 'end';
@@ -121,4 +123,5 @@ class AppStrings {
   static const paymentState = 'paymentState';
   static const date = 'date';
   static const id = 'id';
+  static const pleaseSelectStartAndEndOfDate = 'pleaseSelectStartAndEndOfDate';
 }

@@ -26,30 +26,10 @@ class OrderCubit extends Cubit<OrderState> {
   }
 
   void initial() {
-    _initialData();
+    getData();
   }
 
-  int get indexScreen => _indexScreen;
-  final _titles = [
-    AppStrings.preparing,
-    AppStrings.hasBeenSent,
-    AppStrings.received,
-  ];
-
-  String get title => _titles[indexScreen];
-
-  List<OrderModel> get data {
-    if (_indexScreen == 0) return _preparingOrders;
-    if (_indexScreen == 1) return _hasBeenSentOrders;
-    return _receivedOrders;
-  }
-
-  set indexScreen(int value) {
-    _indexScreen = value;
-    _update(OrderSuccessState());
-  }
-
-  Future<void> _initialData({bool forceGetData = false}) async {
+  Future<void> getData({bool forceGetData = false}) async {
     if (!(data.isEmpty || forceGetData)) {
       _update(OrderSuccessState());
       return;
@@ -63,12 +43,15 @@ class OrderCubit extends Cubit<OrderState> {
       OrderModel(OrderStatus.hasBeenSent),
       OrderModel(OrderStatus.hasBeenSent),
     ];
-
+    _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders();
     await Future.delayed(const Duration(seconds: 4));
     response.fold((l) {
       _update(OrderFailureState(l));
     }, (r) {
+      _preparingOrders.clear();
+      _hasBeenSentOrders.clear();
+      _receivedOrders.clear();
       for (final e in temp) {
         if (e.status == OrderStatus.received) {
           _receivedOrders.add(e);
@@ -84,5 +67,26 @@ class OrderCubit extends Cubit<OrderState> {
       printme.cyan(_hasBeenSentOrders.length);
       printme.cyan(_receivedOrders.length);
     });
+  }
+
+  int get indexScreen => _indexScreen;
+
+  set indexScreen(int value) {
+    _indexScreen = value;
+    _update(OrderSuccessState());
+  }
+
+  final _titles = [
+    AppStrings.preparing,
+    AppStrings.hasBeenSent,
+    AppStrings.received,
+  ];
+
+  String get title => _titles[indexScreen];
+
+  List<OrderModel> get data {
+    if (_indexScreen == 0) return _preparingOrders;
+    if (_indexScreen == 1) return _hasBeenSentOrders;
+    return _receivedOrders;
   }
 }

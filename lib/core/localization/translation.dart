@@ -65,6 +65,7 @@ class MyTranslation extends Translations {
           AppStrings.totalPrice: 'Total price',
           AppStrings.totalQuantity: 'Total quantity',
           AppStrings.numberOfMedications: 'Number of medications',
+          AppStrings.totalOrders: 'Total orders',
           AppStrings.priceAfterDiscount: 'Price after discount',
           AppStrings.discount: 'Discount',
           AppStrings.saveInCart: 'Save in cart',
@@ -99,6 +100,7 @@ class MyTranslation extends Translations {
           AppStrings.savedSuccessfully: 'Saved successfully',
           AppStrings.quantity: 'Quantity',
           AppStrings.order: 'Order',
+          AppStrings.send: 'Send',
           AppStrings.yourBillIsEmpty: 'Your bill is empty ..!',
           AppStrings.start: 'Start',
           AppStrings.end: 'End',
@@ -108,6 +110,8 @@ class MyTranslation extends Translations {
           AppStrings.paymentState: 'Payment state',
           AppStrings.date: 'Date',
           AppStrings.id: 'ID',
+          AppStrings.pleaseSelectStartAndEndOfDate:
+              'Please select start and end of date',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -169,6 +173,7 @@ class MyTranslation extends Translations {
           AppStrings.totalPrice: 'السعر الاجمالي',
           AppStrings.totalQuantity: 'الكمية الإجمالية',
           AppStrings.numberOfMedications: 'عدد الأدوية',
+          AppStrings.totalOrders: 'إجمالي الطلبات',
           AppStrings.priceAfterDiscount: 'السعر بعد الخصم',
           AppStrings.discount: 'خصم',
           AppStrings.saveInCart: 'حفظ في السلة',
@@ -211,6 +216,9 @@ class MyTranslation extends Translations {
           AppStrings.paymentState: 'حالة الدفع',
           AppStrings.date: 'التاريخ',
           AppStrings.id: 'الرقم',
+          AppStrings.send: 'إرسال',
+          AppStrings.pleaseSelectStartAndEndOfDate:
+              'الرجاء تحديد بداية ونهاية التاريخ',
         },
       };
 }

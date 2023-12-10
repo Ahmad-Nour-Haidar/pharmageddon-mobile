@@ -6,4 +6,5 @@ class AppLottie {
   static const somethingWentWrong = '$_root/something_went_wrong.json';
   static const addFav = '$_root/add_fav.json';
   static const noData = '$_root/no_data.json';
+  static const reports = '$_root/reports.json';
 }

@@ -48,9 +48,7 @@ class CustomSnackBar {
             duration: const Duration(milliseconds: 200),
             child: Dismissible(
               key: UniqueKey(),
-              onDismissed: (_) {
-                _remove();
-              },
+              onDismissed: (_) => _remove(),
               child: GestureDetector(
                 onTap: _remove,
                 child: SnackBarBody(
