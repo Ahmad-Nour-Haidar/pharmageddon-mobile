@@ -4,7 +4,7 @@ abstract class HomeState {}
 
 class HomeInitialState extends HomeState {}
 
-class HomeNoDataState extends HomeState {}
+// class HomeNoDataState extends HomeState {}
 
 class HomeGetFailureState extends HomeState {
   final ParentState state;

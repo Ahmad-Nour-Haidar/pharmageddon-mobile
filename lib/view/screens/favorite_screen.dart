@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:pharmageddon_mobile/core/constant/app_lottie.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/view/widgets/app_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 
@@ -42,10 +41,6 @@ class FavoriteScreen extends StatelessWidget {
               widget = MedicationsLoading(
                   onRefresh: () => cubit.getMedications(forceGetData: true));
               break;
-            case FavoriteFailureState:
-              widget = MedicationsLoading(
-                  onRefresh: () => cubit.getMedications(forceGetData: true));
-              break;
             case FavoriteSuccessState:
               widget = MedicationsListWidget(
                 data: cubit.medications,
@@ -53,7 +48,7 @@ class FavoriteScreen extends StatelessWidget {
               );
               break;
             case FavoriteNoDataState:
-              widget = Center(child: Lottie.asset(AppLottie.addFav));
+              widget = AppInjection.getIt<AppWidget>().addFav;
               break;
           }
           return Padding(

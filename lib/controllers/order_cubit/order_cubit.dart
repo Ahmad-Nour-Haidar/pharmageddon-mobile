@@ -46,7 +46,7 @@ class OrderCubit extends Cubit<OrderState> {
 
   set indexScreen(int value) {
     _indexScreen = value;
-    _update(OrderChangeState());
+    _update(OrderSuccessState());
   }
 
   Future<void> _initialData({bool forceGetData = false}) async {
@@ -54,17 +54,18 @@ class OrderCubit extends Cubit<OrderState> {
       _update(OrderSuccessState());
       return;
     }
-printme.cyan('_initialData');
+    printme.cyan('_initialData');
     List<OrderModel> temp = [
       OrderModel(OrderStatus.preparing),
       OrderModel(OrderStatus.preparing),
       OrderModel(OrderStatus.hasBeenSent),
       OrderModel(OrderStatus.hasBeenSent),
       OrderModel(OrderStatus.hasBeenSent),
-      OrderModel(OrderStatus.received),
+      OrderModel(OrderStatus.hasBeenSent),
     ];
 
     final response = await _orderRemoteData.getOrders();
+    await Future.delayed(const Duration(seconds: 4));
     response.fold((l) {
       _update(OrderFailureState(l));
     }, (r) {

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
-import 'package:pharmageddon_mobile/core/constant/app_lottie.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
@@ -44,10 +42,6 @@ class HomeScreen extends StatelessWidget {
             widget = MedicationsLoading(
                 onRefresh: () => cubit.getMedications(forceGetData: true));
             break;
-          case HomeGetMedicationsFailureState:
-            widget = MedicationsLoading(
-                onRefresh: () => cubit.getMedications(forceGetData: true));
-            break;
           case HomeGetMedicationsSuccessState:
             widget = MedicationsListWidget(
               data: cubit.medications,
@@ -56,10 +50,6 @@ class HomeScreen extends StatelessWidget {
             break;
           // 2
           case HomeGetFactoriesLoadingState:
-            widget = ManufacturersLoading(
-                onRefresh: () => cubit.getManufacturers(forceGetData: true));
-            break;
-          case HomeGetFactoriesFailureState:
             widget = ManufacturersLoading(
                 onRefresh: () => cubit.getManufacturers(forceGetData: true));
             break;
@@ -74,10 +64,6 @@ class HomeScreen extends StatelessWidget {
             widget = EffectCategoryLoading(
                 onRefresh: () => cubit.getEffectCategories(forceGetData: true));
             break;
-          case HomeGetEffectCategoriesFailureState:
-            widget = EffectCategoryLoading(
-                onRefresh: () => cubit.getEffectCategories(forceGetData: true));
-            break;
           case HomeGetEffectCategoriesSuccessState:
             widget = EffectCategoriesListWidget(
               onRefresh: () => cubit.getEffectCategories(forceGetData: true),
@@ -85,9 +71,6 @@ class HomeScreen extends StatelessWidget {
             );
             break;
           // other
-          case HomeNoDataState:
-            widget = Center(child: Lottie.asset(AppLottie.noData));
-            break;
           default:
             widget = MedicationsLoading(
                 onRefresh: () => cubit.getMedications(forceGetData: true));

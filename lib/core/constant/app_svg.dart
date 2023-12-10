@@ -32,6 +32,7 @@ class AppSvg {
   static const search = '$root/search.svg';
   static const sent = '$root/sent.svg';
   static const shippingFast = '$root/shipping_fast.svg';
+  static const shippingFastLeft = '$root/shipping-fast-left.svg';
   static const text = '$root/text.svg';
   static const timePast = '$root/time_past.svg';
   static const trash = '$root/trash.svg';

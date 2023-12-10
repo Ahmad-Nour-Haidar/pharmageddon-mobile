@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
@@ -8,7 +7,6 @@ import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import '../../controllers/effect_medicines_cubit/effect_medicines_cubit.dart';
 import '../../controllers/effect_medicines_cubit/effect_medicines_state.dart';
 import '../../core/constant/app_keys.dart';
-import '../../core/constant/app_lottie.dart';
 import '../../core/constant/app_padding.dart';
 import '../../model/effect_category_model.dart';
 import '../../model/screen_arguments.dart';
@@ -55,9 +53,6 @@ class EffectMedicinesScreen extends StatelessWidget {
                 );
                 break;
               // other
-              case EffectMedicinesNoDataState:
-                widget = Center(child: Lottie.asset(AppLottie.noData));
-                break;
               default:
                 widget = MedicationsLoading(
                     onRefresh: () => cubit.getMedications(forceGetData: true));

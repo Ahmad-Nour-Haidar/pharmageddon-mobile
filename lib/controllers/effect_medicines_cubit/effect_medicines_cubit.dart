@@ -53,11 +53,7 @@ class EffectMedicinesCubit extends Cubit<EffectMedicinesState> {
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       medications.shuffle();
-      if (medications.isEmpty) {
-        _update(EffectMedicinesNoDataState());
-      } else {
-        _update(EffectMedicinesSuccessState());
-      }
+      _update(EffectMedicinesSuccessState());
     });
   }
 }

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/enums/order_status.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
+import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/model/order_model.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
 import '../../core/constant/app_svg.dart';
+import 'app_widget.dart';
 
 class OrderWidget extends StatelessWidget {
   const OrderWidget({
@@ -32,8 +33,8 @@ class OrderWidget extends StatelessWidget {
         size: _s,
       );
     } else if (model.status == OrderStatus.hasBeenSent) {
-      widget = const SvgImage(
-        path: AppSvg.shippingFast,
+      widget = SvgImage(
+        path: isEnglish() ? AppSvg.shippingFast : AppSvg.shippingFastLeft,
         color: AppColor.blue,
         size: _s,
       );
@@ -106,12 +107,14 @@ class OrderListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: onRefresh,
-      child: ListView.separated(
-        padding: AppPadding.screenPaddingAll,
-        itemBuilder: (context, index) => OrderWidget(model: data[index]),
-        separatorBuilder: (context, index) => const Gap(10),
-        itemCount: data.length,
-      ),
+      child: data.isEmpty
+          ? AppInjection.getIt<AppWidget>().noData
+          : ListView.separated(
+              padding: AppPadding.screenPaddingAll,
+              itemBuilder: (context, index) => OrderWidget(model: data[index]),
+              separatorBuilder: (context, index) => const Gap(10),
+              itemCount: data.length,
+            ),
     );
   }
 }

@@ -80,7 +80,7 @@ TextDirection getTextDirectionOnLang() {
   }
 }
 
-int getRandom() => Random().nextInt(5) + 5;
+int getRandom() => Random().nextInt(5) + 3;
 
 String getMedicationScientificName(MedicationModel? model,
     {bool split = true}) {

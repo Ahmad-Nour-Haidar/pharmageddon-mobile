@@ -29,6 +29,7 @@ import '../../data/remote/order_data.dart';
 import '../../data/remote/reports_data.dart';
 import '../../data/remote/search_data.dart';
 import '../../my_bloc_observer.dart';
+import '../../view/widgets/app_widget.dart';
 
 class AppInjection {
   static final getIt = GetIt.instance;
@@ -93,5 +94,8 @@ class AppInjection {
 
     // order
     getIt.registerFactory(() => OrderCubit());
+
+    // widgets
+    getIt.registerLazySingleton(() => AppWidget());
   }
 }

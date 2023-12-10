@@ -58,13 +58,13 @@ class CartWidget extends StatelessWidget {
       children: [
         CustomCachedNetworkImage(
           width: (AppSize.width * .3).toInt() - 25,
-          height: 100,
+          height: 150,
           imageUrl: getUrlImageMedication(model.medicationModel),
           errorWidget: ErrorWidgetShow.picture,
         ),
         const Gap(10),
         Container(
-          padding: AppPadding.padding10,
+          padding: AppPadding.padding7,
           width: AppSize.width * .7 - 15,
           decoration: BoxDecoration(
             color: AppColor.white,
@@ -79,10 +79,10 @@ class CartWidget extends StatelessWidget {
                   model.medicationModel,
                 ),
               ),
-              RowTextSpan(
-                s1: '${AppStrings.availableQuantity.tr} : ',
-                s2: '${model.medicationModel.availableQuantity}',
-              ),
+              // RowTextSpan(
+              //   s1: '${AppStrings.availableQuantity.tr} : ',
+              //   s2: '${model.medicationModel.availableQuantity}',
+              // ),
               RowTextSpan(
                 s1: '${AppStrings.price.tr} : ',
                 s2: '${model.medicationModel.priceAfterDiscount}',
@@ -95,7 +95,7 @@ class CartWidget extends StatelessWidget {
                 s1: '${AppStrings.totalPrice.tr} : ',
                 s2: '${model.totalPrice}',
               ),
-              const Gap(5),
+              // const Gap(5),
               Row(
                 children: [
                   CounterCartWidget(

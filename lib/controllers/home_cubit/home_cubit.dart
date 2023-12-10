@@ -45,11 +45,7 @@ class HomeCubit extends Cubit<HomeState> {
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       // medications.shuffle();
-      if (medications.isEmpty) {
-        _update(HomeNoDataState());
-      } else {
-        _update(HomeGetMedicationsSuccessState());
-      }
+      _update(HomeGetMedicationsSuccessState());
       medicationsMap.clear();
       for (final m in medications) {
         medicationsMap[m.id ?? 0] = m;
@@ -70,11 +66,7 @@ class HomeCubit extends Cubit<HomeState> {
       final List temp = r[AppRKeys.data][AppRKeys.manufacturers];
       manufacturers.clear();
       manufacturers.addAll(temp.map((e) => ManufacturerModel.fromJson(e)));
-      if (manufacturers.isEmpty) {
-        _update(HomeNoDataState());
-      } else {
-        _update(HomeGetFactoriesSuccessState());
-      }
+      _update(HomeGetFactoriesSuccessState());
     });
   }
 
@@ -91,11 +83,7 @@ class HomeCubit extends Cubit<HomeState> {
       final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
       effectCategories.clear();
       effectCategories.addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
-      if (effectCategories.isEmpty) {
-        _update(HomeNoDataState());
-      } else {
-        _update(HomeGetEffectCategoriesSuccessState());
-      }
+      _update(HomeGetEffectCategoriesSuccessState());
     });
   }
 

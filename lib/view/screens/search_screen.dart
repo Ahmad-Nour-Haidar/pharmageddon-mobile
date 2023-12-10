@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../controllers/search_cubit/search_state.dart';
-import '../../core/constant/app_lottie.dart';
 import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_strings.dart';
 import '../../core/resources/app_text_theme.dart';
 import '../../core/services/dependency_injection.dart';
+import '../widgets/app_widget.dart';
 import '../widgets/handle_state.dart';
 import '../widgets/home/medication_widget.dart';
 import '../widgets/loading/medications_loading.dart';
@@ -58,16 +57,13 @@ class SearchScreen extends StatelessWidget {
                     case SearchLoadingState:
                       widget = MedicationsLoading(onRefresh: () async {});
                       break;
-                    case SearchFailureState:
-                      widget = MedicationsLoading(onRefresh: () async {});
-                      break;
                     case SearchSuccessState:
                       widget = MedicationsListWidget(
                           data: cubit.medications, onRefresh: () async {});
                       break;
                     case SearchNoDataState:
-                      widget = Center(
-                          child: Lottie.asset(AppLottie.noDataAfterSearch));
+                      widget =
+                          AppInjection.getIt<AppWidget>().noDataAfterSearch;
                       break;
                   }
                   return Padding(

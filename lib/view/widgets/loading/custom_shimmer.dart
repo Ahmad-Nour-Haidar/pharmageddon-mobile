@@ -9,15 +9,17 @@ class CustomShimmer extends StatelessWidget {
   const CustomShimmer({
     super.key,
     required this.child,
+    this.baseColor,
   });
 
   final Widget child;
+  final Color? baseColor;
 
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       direction: isEnglish() ? ShimmerDirection.ltr : ShimmerDirection.rtl,
-      baseColor: AppColor.white,
+      baseColor: baseColor ?? AppColor.white,
       highlightColor: generateMaterialColor(color: AppColor.cardColor),
       child: child,
     );

@@ -11,7 +11,9 @@ import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 
+import '../../../core/services/dependency_injection.dart';
 import '../../../model/manufacturer_model.dart';
+import '../app_widget.dart';
 
 class ManufacturerWidget extends StatelessWidget {
   const ManufacturerWidget({
@@ -62,26 +64,28 @@ class ManufacturersListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: RefreshIndicator(
-        onRefresh: onRefresh,
-        child: ListView(
-          children: [
-            Center(
-              child: Wrap(
-                spacing: 30,
-                runSpacing: 20,
-                children: List.generate(
-                  data.length,
-                  (index) => ManufacturerWidget(
-                    model: data[index],
+      child: data.isEmpty
+          ? AppInjection.getIt<AppWidget>().noData
+          : RefreshIndicator(
+              onRefresh: onRefresh,
+              child: ListView(
+                children: [
+                  Center(
+                    child: Wrap(
+                      spacing: 30,
+                      runSpacing: 20,
+                      children: List.generate(
+                        data.length,
+                        (index) => ManufacturerWidget(
+                          model: data[index],
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const Gap(30),
+                ],
               ),
             ),
-            const Gap(30),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:pharmageddon_mobile/controllers/order_cubit/order_cubit.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_nav_bar.dart';
+import 'package:pharmageddon_mobile/view/widgets/loading/orders_loading.dart';
 import 'package:pharmageddon_mobile/view/widgets/order_widget.dart';
 
 import '../../controllers/order_cubit/order_state.dart';
@@ -21,6 +22,12 @@ class OrdersScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           final cubit = OrderCubit.get(context);
+          final body = state is OrderSuccessState
+              ? OrderListWidget(
+                  data: cubit.data,
+                  onRefresh: () async {},
+                )
+              : OrdersLoading(onRefresh: () async {});
           return Scaffold(
             appBar: CustomAppBar(title: cubit.title.tr).build(),
             bottomNavigationBar: CustomNavBar(
@@ -28,10 +35,7 @@ class OrdersScreen extends StatelessWidget {
               list: AppConstant.ordersList,
               initialIndex: cubit.indexScreen,
             ),
-            body: OrderListWidget(
-              data: cubit.data,
-              onRefresh: () async {},
-            ),
+            body: body,
           );
         },
       ),

@@ -8,7 +8,7 @@ class EffectMedicinesLoadingState extends EffectMedicinesState {}
 
 class EffectMedicinesSuccessState extends EffectMedicinesState {}
 
-class EffectMedicinesNoDataState extends EffectMedicinesState {}
+// class EffectMedicinesNoDataState extends EffectMedicinesState {}
 
 class EffectMedicinesFailureState extends EffectMedicinesState {
   final ParentState state;

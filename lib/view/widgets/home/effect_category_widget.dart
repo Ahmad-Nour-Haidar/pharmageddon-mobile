@@ -11,8 +11,10 @@ import '../../../core/constant/app_keys.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/functions/navigator.dart';
 import '../../../core/resources/app_text_theme.dart';
+import '../../../core/services/dependency_injection.dart';
 import '../../../model/screen_arguments.dart';
 import '../../../routes.dart';
+import '../app_widget.dart';
 
 class EffectCategoryWidget extends StatelessWidget {
   const EffectCategoryWidget({
@@ -102,26 +104,28 @@ class EffectCategoriesListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: RefreshIndicator(
-        onRefresh: onRefresh,
-        child: ListView(
-          children: [
-            Center(
-              child: Wrap(
-                spacing: 30,
-                runSpacing: 20,
-                children: List.generate(
-                  data.length,
-                  (index) => EffectCategoryWidget(
-                    model: data[index],
+      child: data.isEmpty
+          ? AppInjection.getIt<AppWidget>().noData
+          : RefreshIndicator(
+              onRefresh: onRefresh,
+              child: ListView(
+                children: [
+                  Center(
+                    child: Wrap(
+                      spacing: 30,
+                      runSpacing: 20,
+                      children: List.generate(
+                        data.length,
+                        (index) => EffectCategoryWidget(
+                          model: data[index],
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const Gap(30),
+                ],
               ),
             ),
-            const Gap(30),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -20,6 +20,7 @@ class CartQuantityData {
     map?.forEach((key, value) {
       _cart[key] = value;
     });
+    // printme.magenta(_cart);
   }
 
   Future<void> storeInCart(int? key, int value) async {

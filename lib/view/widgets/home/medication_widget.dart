@@ -15,8 +15,10 @@ import '../../../core/constant/app_keys.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/functions/navigator.dart';
 import '../../../core/resources/app_text_theme.dart';
+import '../../../core/services/dependency_injection.dart';
 import '../../../model/screen_arguments.dart';
 import '../../../routes.dart';
+import '../app_widget.dart';
 
 class MedicationWidget extends StatelessWidget {
   const MedicationWidget({
@@ -125,31 +127,33 @@ class MedicationsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: RefreshIndicator(
-        onRefresh: onRefresh,
-        child: ListView(
-          children: [
-            Padding(
-              padding: AppPadding.symmetric(horizontal: 20, vertical: 5),
-              child: Text(
-                '${AppStrings.all.tr} : ( ${data.length} )',
-                style: AppTextTheme.f18w500black,
+      child: data.isEmpty
+          ? AppInjection.getIt<AppWidget>().noData
+          : RefreshIndicator(
+              onRefresh: onRefresh,
+              child: ListView(
+                children: [
+                  Padding(
+                    padding: AppPadding.symmetric(horizontal: 20, vertical: 5),
+                    child: Text(
+                      '${AppStrings.all.tr} : ( ${data.length} )',
+                      style: AppTextTheme.f18w500black,
+                    ),
+                  ),
+                  Wrap(
+                    spacing: 20,
+                    runSpacing: 20,
+                    children: List.generate(
+                      data.length,
+                      (index) => MedicationWidget(
+                        model: data[index],
+                      ),
+                    ),
+                  ),
+                  const Gap(30),
+                ],
               ),
             ),
-            Wrap(
-              spacing: 20,
-              runSpacing: 20,
-              children: List.generate(
-                data.length,
-                (index) => MedicationWidget(
-                  model: data[index],
-                ),
-              ),
-            ),
-            const Gap(30),
-          ],
-        ),
-      ),
     );
   }
 }
