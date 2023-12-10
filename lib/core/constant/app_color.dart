@@ -24,4 +24,26 @@ class AppColor {
   static const Color green = Color(0xFF4EF037);
   static const Color textColor = Color(0xff7A0F88);
   static const Color shadowColor = Color(0xFFA2DBFA);
+
+  static const primary = contentColorCyan;
+  static const menuBackground = Color(0xFF090912);
+  static const itemsBackground = Color(0xFF1B2339);
+  static const pageBackground = Color(0xFF282E45);
+  static const mainTextColor1 = Colors.white;
+  static const mainTextColor2 = Colors.white70;
+  static const mainTextColor3 = Colors.white38;
+  static const mainGridLineColor = Colors.white10;
+  static const borderColor = Colors.white54;
+  static const gridLinesColor = Color(0x11FFFFFF);
+
+  static const contentColorBlack = Colors.black;
+  static const contentColorWhite = Colors.white;
+  static const contentColorBlue = Color(0xFF2196F3);
+  static const contentColorYellow = Color(0xFFFFC300);
+  static const contentColorOrange = Color(0xFFFF683B);
+  static const contentColorGreen = Color(0xFF3BFF49);
+  static const contentColorPurple = Color(0xFF6E1BFF);
+  static const contentColorPink = Color(0xFFFF3AF2);
+  static const contentColorRed = Color(0xFFE80054);
+  static const contentColorCyan = Color(0xFF50E4FF);
 }

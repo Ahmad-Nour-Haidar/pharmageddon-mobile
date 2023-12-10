@@ -7,6 +7,7 @@ import 'package:pharmageddon_mobile/controllers/reports_cubit/reports_state.dart
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/line_chart_sample2.dart';
 import 'package:pharmageddon_mobile/view/widgets/app_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/orders_loading.dart';
@@ -53,7 +54,8 @@ class ReportsScreen extends StatelessWidget {
                   dateTimeRange: cubit.dateTimeRange,
                 ),
                 const Gap(10),
-                Expanded(child: body),
+                // Expanded(child: body),
+                const LineChartSample2(),
                 const Gap(10),
                 Row(
                   children: [

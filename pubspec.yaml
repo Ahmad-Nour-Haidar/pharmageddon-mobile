@@ -57,6 +57,7 @@ dependencies:
   awesome_dialog: ^3.1.0
   hive_flutter: ^1.1.0
   dev: ^1.0.0
+  fl_chart: ^0.65.0
 
 dev_dependencies:
   flutter_test:
