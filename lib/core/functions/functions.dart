@@ -9,6 +9,7 @@ import '../../controllers/local_controller.dart';
 import '../../model/effect_category_model.dart';
 import '../../model/manufacturer_model.dart';
 import '../../model/medication_model.dart';
+import '../../model/order_details_model.dart';
 import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
 import '../constant/app_link.dart';
@@ -118,6 +119,26 @@ String getMedicationCommercialName(MedicationModel? model,
     s = model.englishCommercialName.toString();
   } else {
     s = model.arabicCommercialName.toString();
+  }
+  return s;
+}
+
+String getOrderDetailsModelName(OrderDetailsModel? model,
+    {bool split = true}) {
+  var s = '';
+  if (model == null) return s;
+  if (split) {
+    if (isEnglish()) {
+      s = model.medicineEnglishCommercialName.toString().split(' ').take(2).join(' ');
+    } else {
+      s = model.medicineArabicCommercialName.toString().split(' ').take(2).join(' ');
+    }
+    return s;
+  }
+  if (isEnglish()) {
+    s = model.medicineEnglishCommercialName.toString();
+  } else {
+    s = model.medicineArabicCommercialName.toString();
   }
   return s;
 }

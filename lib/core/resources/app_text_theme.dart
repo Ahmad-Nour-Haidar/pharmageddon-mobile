@@ -15,6 +15,12 @@ abstract class AppTextTheme {
     fontWeight: FontWeight.w500,
   );
 
+  static const f18w500green3 = TextStyle(
+    fontSize: 18,
+    color: AppColor.green3,
+    fontWeight: FontWeight.w500,
+  );
+
   static const f18w500white = TextStyle(
     fontSize: 18,
     color: AppColor.white,
@@ -37,6 +43,12 @@ abstract class AppTextTheme {
     fontSize: 20,
     color: AppColor.gray,
     fontWeight: FontWeight.w400,
+  );
+
+  static const f20w600green2 = TextStyle(
+    fontSize: 20,
+    color: AppColor.green2,
+    fontWeight: FontWeight.w600,
   );
 
   static const f18w400gray = TextStyle(

@@ -63,8 +63,9 @@ class MyTranslation extends Translations {
           AppStrings.verifyCode: 'Verify Code',
           AppStrings.price: 'Price',
           AppStrings.totalPrice: 'Total price',
+          AppStrings.priceWhenOrdered: 'Price when ordered',
           AppStrings.totalQuantity: 'Total quantity',
-          AppStrings.numberOfMedications: 'Number of medications',
+          AppStrings.totalMedications: 'Total medications',
           AppStrings.totalOrders: 'Total orders',
           AppStrings.priceAfterDiscount: 'Price after discount',
           AppStrings.discount: 'Discount',
@@ -113,7 +114,7 @@ class MyTranslation extends Translations {
           AppStrings.pleaseSelectStartAndEndOfDate:
               'Please select start and end of date',
           AppStrings.orderDetails: 'Order Details',
-          AppStrings.cancelOrder: 'Cancel order',
+          AppStrings.cancel: 'Cancel',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -173,8 +174,9 @@ class MyTranslation extends Translations {
           AppStrings.enterTheCompleteVerificationCode: 'ادخل كامل رمز التحقق.',
           AppStrings.price: 'السعر',
           AppStrings.totalPrice: 'السعر الاجمالي',
+          AppStrings.priceWhenOrdered: 'السعر وقت الطلب',
           AppStrings.totalQuantity: 'الكمية الإجمالية',
-          AppStrings.numberOfMedications: 'عدد الأدوية',
+          AppStrings.totalMedications: 'إجمالي الأدوية',
           AppStrings.totalOrders: 'إجمالي الطلبات',
           AppStrings.priceAfterDiscount: 'السعر بعد الخصم',
           AppStrings.discount: 'خصم',
@@ -222,7 +224,7 @@ class MyTranslation extends Translations {
           AppStrings.pleaseSelectStartAndEndOfDate:
               'الرجاء تحديد بداية ونهاية التاريخ',
           AppStrings.orderDetails: 'تفاصيل الطلب',
-          AppStrings.cancelOrder: 'الغاء الطلب',
+          AppStrings.cancel: 'الغاء',
         },
       };
 }

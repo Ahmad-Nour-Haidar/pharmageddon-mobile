@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -35,10 +37,15 @@ class CartCubit extends Cubit<CartState> {
     try {
       final ids = _cartQuantityData.getIds();
       data.clear();
-      data.addAll(ids.map((id) => CartModel(
-            quantity: _cartQuantityData.getQuantityOfModel(id),
-            medicationModel: _homeCubit.medicationsMap[id]!,
-          )));
+      data.addAll(ids.map((id) {
+        final model = _homeCubit.medicationsMap[id]!;
+        final cartQ = _cartQuantityData.getQuantityOfModel(id);
+        var q = min(cartQ, model.availableQuantity!);
+        if (q != cartQ) {
+          _cartQuantityData.storeInCart(id, q);
+        }
+        return CartModel(quantity: q, medicationModel: model);
+      }));
       _update(CartInitialDataSuccessState());
     } catch (e) {
       printme.red(e);

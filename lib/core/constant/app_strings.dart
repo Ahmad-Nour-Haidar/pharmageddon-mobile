@@ -75,8 +75,9 @@ class AppStrings {
   static const name = 'name';
   static const price = 'price';
   static const totalPrice = 'totalPrice';
+  static const priceWhenOrdered = 'priceWhenOrdered';
   static const totalQuantity = 'totalQuantity';
-  static const numberOfMedications = 'numberOfMedications';
+  static const totalMedications = 'totalMedications';
   static const totalOrders = 'totalOrders';
   static const priceAfterDiscount = 'priceAfterDiscount';
   static const discount = 'discount';
@@ -125,5 +126,5 @@ class AppStrings {
   static const id = 'id';
   static const pleaseSelectStartAndEndOfDate = 'pleaseSelectStartAndEndOfDate';
   static const orderDetails = 'orderDetails';
-  static const cancelOrder = 'cancelOrder';
+  static const cancel = 'cancel';
 }

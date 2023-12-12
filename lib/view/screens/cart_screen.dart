@@ -57,7 +57,7 @@ class CartScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             RowTextSpan(
-                              s1: '${AppStrings.numberOfMedications.tr} : ',
+                              s1: '${AppStrings.totalMedications.tr} : ',
                               ts1: AppTextTheme.f15w600black,
                               s2: cubit.data.length.toString(),
                             ),
@@ -69,7 +69,7 @@ class CartScreen extends StatelessWidget {
                             RowTextSpan(
                               s1: '${AppStrings.totalPrice.tr} : ',
                               ts1: AppTextTheme.f15w600black,
-                              s2: cubit.totalPrice.toString(),
+                              s2: '${cubit.totalPrice} ${AppStrings.sp.tr}',
                             ),
                           ],
                         ),

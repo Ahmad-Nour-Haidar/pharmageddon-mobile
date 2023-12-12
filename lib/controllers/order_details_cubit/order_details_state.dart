@@ -8,6 +8,8 @@ class OrderDetailsLoadingState extends OrderDetailsState {}
 
 class OrderDetailsSuccessState extends OrderDetailsState {}
 
+class OrderDetailsChangeState extends OrderDetailsState {}
+
 class OrderDetailsFailureState extends OrderDetailsState {
   final ParentState state;
 

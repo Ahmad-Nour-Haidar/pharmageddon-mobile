@@ -6,31 +6,37 @@ import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_strings.dart';
 import '../../core/resources/app_text_theme.dart';
 
-class CancelButton extends StatelessWidget {
-  const CancelButton({
+class CustomTextButton extends StatelessWidget {
+  const CustomTextButton({
     super.key,
     required this.isShow,
     required this.isLoading,
     required this.onTap,
+    required this.color,
+    required this.text,
+    required this.style,
   });
 
   final bool isShow;
   final bool isLoading;
   final void Function() onTap;
+  final Color color;
+  final TextStyle style;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     if (!isShow) return const SizedBox();
     if (isLoading) {
-      return const SizedBox(
-        height: 45,
+      return SizedBox(
+        height: 40,
         width: 70,
         child: Center(
           child: SizedBox(
             height: 22,
             width: 22,
             child: CircularProgressIndicator(
-              color: AppColor.red,
+              color: color,
               strokeWidth: 3,
             ),
           ),
@@ -41,13 +47,12 @@ class CancelButton extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(5),
       child: SizedBox(
-        height: 45,
-        width: 90,
+        height: 40,
+        width: 70,
         child: Center(
           child: FittedBox(
             fit: BoxFit.scaleDown,
-            child:
-                Text(AppStrings.cancelOrder.tr, style: AppTextTheme.f18w500red),
+            child: Text(text, style:style),
           ),
         ),
       ),
