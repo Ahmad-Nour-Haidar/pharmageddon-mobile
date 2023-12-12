@@ -32,10 +32,10 @@ import '../../data/remote/search_data.dart';
 import '../../my_bloc_observer.dart';
 import '../../view/widgets/app_widget.dart';
 
-class AppInjection {
+abstract class AppInjection {
   static final getIt = GetIt.instance;
 
-  Future<void> initial() async {
+  static Future<void> initial() async {
     /// storage
     final sharedPreferences = await SharedPreferences.getInstance();
     getIt.registerLazySingleton(() => sharedPreferences);

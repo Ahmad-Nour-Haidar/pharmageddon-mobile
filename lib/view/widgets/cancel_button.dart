@@ -20,28 +20,37 @@ class CancelButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      child: !isShow
-          ? null
-          : isLoading
-              ? const Align(
-                  child: SizedBox(
-                    height: 22,
-                    width: 22,
-                    child: CircularProgressIndicator(
-                      color: AppColor.red,
-                      strokeWidth: 3,
-                    ),
-                  ),
-                )
-              : TextButton(
-                  style: TextButton.styleFrom(
-                      foregroundColor: AppColor.red, padding: AppPadding.zero),
-                  onPressed: onTap,
-                  child: Text(AppStrings.cancel.tr,
-                      style: AppTextTheme.f18w500red),
-                ),
+    if (!isShow) return const SizedBox();
+    if (isLoading) {
+      return const SizedBox(
+        height: 45,
+        width: 70,
+        child: Center(
+          child: SizedBox(
+            height: 22,
+            width: 22,
+            child: CircularProgressIndicator(
+              color: AppColor.red,
+              strokeWidth: 3,
+            ),
+          ),
+        ),
+      );
+    }
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(5),
+      child: SizedBox(
+        height: 45,
+        width: 90,
+        child: Center(
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child:
+                Text(AppStrings.cancelOrder.tr, style: AppTextTheme.f18w500red),
+          ),
+        ),
+      ),
     );
   }
 }

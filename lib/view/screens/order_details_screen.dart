@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/order_details_cubit/order_details_cubit.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
@@ -42,7 +41,6 @@ class OrderDetailsScreen extends StatelessWidget {
             return Padding(
               padding: AppPadding.screenPaddingAll,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     padding: AppPadding.padding7,
@@ -50,12 +48,11 @@ class OrderDetailsScreen extends StatelessWidget {
                       color: Colors.white60,
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             RowTextSpan(
                               s1: '${AppStrings.id.tr} : ',
@@ -63,37 +60,36 @@ class OrderDetailsScreen extends StatelessWidget {
                               ts1: AppTextTheme.f18w600black,
                               ts2: AppTextTheme.f18w400black,
                             ),
-                            RowTextSpan(
-                              s1: '${AppStrings.totalQuantity.tr} : ',
-                              s2: model.totalQ.toString(),
-                              ts1: AppTextTheme.f18w600black,
-                              ts2: AppTextTheme.f18w400black,
-                            ),
-                            RowTextSpan(
-                              s1: '${AppStrings.totalPrice.tr} : ',
-                              s2: model.totalP.toString(),
-                              ts1: AppTextTheme.f18w600black,
-                              ts2: AppTextTheme.f18w400black,
-                            ),
-                            RowTextSpan(
-                              s1: '${AppStrings.paymentState.tr} : ',
-                              s2: model.payment.toString(),
-                              ts1: AppTextTheme.f18w600black,
-                              ts2: AppTextTheme.f18w400black,
-                            ),
+                            AppInjection.getIt<AppWidget>().getOrderIcon(model),
+                          ],
+                        ),
+                        RowTextSpan(
+                          s1: '${AppStrings.totalQuantity.tr} : ',
+                          s2: model.totalQ.toString(),
+                          ts1: AppTextTheme.f18w600black,
+                          ts2: AppTextTheme.f18w400black,
+                        ),
+                        RowTextSpan(
+                          s1: '${AppStrings.totalPrice.tr} : ',
+                          s2: model.totalP.toString(),
+                          ts1: AppTextTheme.f18w600black,
+                          ts2: AppTextTheme.f18w400black,
+                        ),
+                        RowTextSpan(
+                          s1: '${AppStrings.paymentState.tr} : ',
+                          s2: model.payment.toString(),
+                          ts1: AppTextTheme.f18w600black,
+                          ts2: AppTextTheme.f18w400black,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             RowTextSpan(
                               s1: '${AppStrings.date.tr} : ',
                               s2: formatYYYYMdEEEE(model.date),
                               ts1: AppTextTheme.f18w600black,
                               ts2: AppTextTheme.f18w400black,
                             ),
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            AppInjection.getIt<AppWidget>().getOrderIcon(model),
-                            const Gap(40),
                             CancelButton(
                               isShow: model.status == OrderStatus.preparing,
                               isLoading:

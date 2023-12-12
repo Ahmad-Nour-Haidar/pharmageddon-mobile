@@ -38,7 +38,7 @@ class LocaleController extends GetxController {
     } else {
       _locale = Locale(Get.deviceLocale!.languageCode);
     }
-    // _locale = const Locale(AppConstant.ar);
+    _locale = const Locale(AppConstant.ar);
     await Jiffy.setLocale(locale.languageCode);
     super.onInit();
   }

@@ -113,7 +113,7 @@ class MyTranslation extends Translations {
           AppStrings.pleaseSelectStartAndEndOfDate:
               'Please select start and end of date',
           AppStrings.orderDetails: 'Order Details',
-          AppStrings.cancel: 'cancel',
+          AppStrings.cancelOrder: 'Cancel order',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -222,7 +222,7 @@ class MyTranslation extends Translations {
           AppStrings.pleaseSelectStartAndEndOfDate:
               'الرجاء تحديد بداية ونهاية التاريخ',
           AppStrings.orderDetails: 'تفاصيل الطلب',
-          AppStrings.cancel: 'إلغاء',
+          AppStrings.cancelOrder: 'الغاء الطلب',
         },
       };
 }

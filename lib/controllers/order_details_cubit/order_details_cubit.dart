@@ -47,6 +47,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
 
   Future<void> cancel() async {
     _update(OrderDetailsLoadingCancelState());
+    return;
     final data = {
       AppRKeys.id: model.id,
     };

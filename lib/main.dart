@@ -20,7 +20,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
-  await AppInjection().initial();
+  await AppInjection.initial();
   initialUser();
 
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
