@@ -112,6 +112,8 @@ class MyTranslation extends Translations {
           AppStrings.id: 'ID',
           AppStrings.pleaseSelectStartAndEndOfDate:
               'Please select start and end of date',
+          AppStrings.orderDetails: 'Order Details',
+          AppStrings.cancel: 'cancel',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -219,6 +221,8 @@ class MyTranslation extends Translations {
           AppStrings.send: 'إرسال',
           AppStrings.pleaseSelectStartAndEndOfDate:
               'الرجاء تحديد بداية ونهاية التاريخ',
+          AppStrings.orderDetails: 'تفاصيل الطلب',
+          AppStrings.cancel: 'إلغاء',
         },
       };
 }

@@ -12,6 +12,7 @@ class ReportsRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getReports({
     required Map<String, dynamic> queryParameters,
   }) async {
+    // todo
     return const Right({});
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(

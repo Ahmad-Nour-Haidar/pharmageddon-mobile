@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_mobile/print.dart';
 import 'core/constant/app_color.dart';
 
 class LineChartSample2 extends StatefulWidget {
@@ -17,13 +20,55 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   bool showAvg = false;
 
+  final _s = ScrollController(initialScrollOffset: 500);
+
+  @override
+  void initState() {
+    // _s.addListener(() { });
+    // _s.jumpTo(100);
+    super.initState();
+  }
+
+  final List<FlSpot> spots = List.generate(
+      10,
+      (index) =>
+          FlSpot((index + 2).toDouble(), (index * (Random().nextInt(5) + 1))));
+
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: LineChart(
-          showAvg ? avgData() : mainData(),
+    // return TwoDimensionalChildBuilderDelegate(builder: builder);
+    // return TwoDimensionalScrollable(
+    //   viewportBuilder: (context, verticalPosition, horizontalPosition) {
+    //     printme.cyan('12');
+    //     return Container(
+    //       color: AppColor.primaryColor,
+    //       child: const SizedBox(
+    //           width: 1000,
+    //           height: 1000,
+    //           child: Text(
+    //               'nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()7878787878787878')),
+    //     );
+    //   },
+    //   horizontalDetails: ScrollableDetails.horizontal(
+    //     physics: const BouncingScrollPhysics(),
+    //   ),
+    //   verticalDetails: ScrollableDetails.vertical(
+    //     physics: BouncingScrollPhysics(),
+    //   ),
+    // );
+
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: 1000,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            width: spots.length * 100,
+            child: LineChart(
+              showAvg ? avgData() : mainData(),
+            ),
+          ),
         ),
       ),
     );
@@ -31,9 +76,12 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
+      // fontWeight: FontWeight.r,
+      fontSize: 15,
+      letterSpacing: 1,
     );
+    return Text((value.toInt()).toString(),
+        style: style, textAlign: TextAlign.left);
     Widget text;
     switch (value.toInt()) {
       case 2:
@@ -58,9 +106,12 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      fontWeight: FontWeight.bold,
+      // fontWeight: FontWeight.r,
       fontSize: 15,
+      letterSpacing: 1,
     );
+    return Text((value.toInt() % 5).toString(),
+        style: style, textAlign: TextAlign.left);
     String text;
     switch (value.toInt()) {
       case 1:
@@ -80,6 +131,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
   }
 
   LineChartData mainData() {
+    printme.magenta(spots);
     return LineChartData(
       gridData: FlGridData(
         show: true,
@@ -129,33 +181,14 @@ class _LineChartSample2State extends State<LineChartSample2> {
         border: Border.all(color: AppColor.red),
       ),
       minX: 0,
-      maxX: 20,
+      maxX: (spots.length + 10) * 1.0,
       minY: 0,
-      maxY: 30,
+      maxY: 50,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 3),
-            // FlSpot(0, 3),
-            // FlSpot(0, 3),
-            // FlSpot(0, 3),
-            // FlSpot(0, 3),
-            // FlSpot(2.6, 2),
-            // FlSpot(4.9, 5),
-            // FlSpot(4.9, 5),
-            // FlSpot(6.8, 3.1),
-            // FlSpot(6.8, 3.1),
-            // FlSpot(8, 4),
-            // FlSpot(8, 4),
-            // FlSpot(9.5, 3),
-            // FlSpot(9.5, 3),
-            // FlSpot(11, 4),
-            // FlSpot(11, 4),
-            FlSpot(11, 4),
-            FlSpot(12, 5),
-          ],
-          // isCurved: true,
-          isCurved: false,
+          spots: spots,
+          isCurved: true,
+          // isCurved: false,
           gradient: LinearGradient(
             colors: gradientColors,
           ),

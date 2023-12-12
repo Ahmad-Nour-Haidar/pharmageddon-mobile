@@ -8,6 +8,7 @@ import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 
 import 'controllers/local_controller.dart';
+import 'controllers/order_cubit/order_cubit.dart';
 import 'core/constant/app_local_data.dart';
 import 'core/functions/functions.dart';
 import 'core/localization/translation.dart';
@@ -45,6 +46,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AppInjection.getIt<FavoriteCubit>(),
         ),
+        BlocProvider(
+          create: (context) => AppInjection.getIt<OrderCubit>(),
+        ),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -58,3 +62,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// assets/images/background_mobile.jpg

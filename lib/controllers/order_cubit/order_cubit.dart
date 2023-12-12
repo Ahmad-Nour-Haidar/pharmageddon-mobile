@@ -39,13 +39,12 @@ class OrderCubit extends Cubit<OrderState> {
       OrderModel(OrderStatus.preparing),
       OrderModel(OrderStatus.preparing),
       OrderModel(OrderStatus.hasBeenSent),
-      OrderModel(OrderStatus.hasBeenSent),
-      OrderModel(OrderStatus.hasBeenSent),
+      OrderModel(OrderStatus.received),
+      OrderModel(OrderStatus.preparing),
       OrderModel(OrderStatus.hasBeenSent),
     ];
     _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders();
-    await Future.delayed(const Duration(seconds: 4));
     response.fold((l) {
       _update(OrderFailureState(l));
     }, (r) {
@@ -88,5 +87,11 @@ class OrderCubit extends Cubit<OrderState> {
     if (_indexScreen == 0) return _preparingOrders;
     if (_indexScreen == 1) return _hasBeenSentOrders;
     return _receivedOrders;
+  }
+
+  Future<void> removeFromList(OrderModel model) async {
+    if (_preparingOrders.isEmpty) return;
+    _preparingOrders.removeWhere((element) => element.id == model.id);
+    _update(OrderSuccessState());
   }
 }

@@ -16,30 +16,27 @@ class OrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppInjection.getIt<OrderCubit>()..initial(),
-      child: BlocConsumer<OrderCubit, OrderState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          final cubit = OrderCubit.get(context);
-          final body = state is OrderSuccessState
-              ? OrderListWidget(
-                  data: cubit.data,
-                  onRefresh: () => cubit.getData(forceGetData: true),
-                )
-              : OrdersLoading(
-                  onRefresh: () => cubit.getData(forceGetData: true));
-          return Scaffold(
-            appBar: CustomAppBar(title: cubit.title.tr).build(),
-            bottomNavigationBar: CustomNavBar(
-              onChange: (index) => cubit.indexScreen = index,
-              list: AppConstant.ordersList,
-              initialIndex: cubit.indexScreen,
-            ),
-            body: body,
-          );
-        },
-      ),
+    AppInjection.getIt<OrderCubit>().initial();
+    return BlocConsumer<OrderCubit, OrderState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        final cubit = OrderCubit.get(context);
+        final body = state is OrderSuccessState
+            ? OrderListWidget(
+                data: cubit.data,
+                onRefresh: () => cubit.getData(forceGetData: true),
+              )
+            : OrdersLoading(onRefresh: () => cubit.getData(forceGetData: true));
+        return Scaffold(
+          appBar: CustomAppBar(title: cubit.title.tr).build(),
+          bottomNavigationBar: CustomNavBar(
+            onChange: (index) => cubit.indexScreen = index,
+            list: AppConstant.ordersList,
+            initialIndex: cubit.indexScreen,
+          ),
+          body: body,
+        );
+      },
     );
   }
 }

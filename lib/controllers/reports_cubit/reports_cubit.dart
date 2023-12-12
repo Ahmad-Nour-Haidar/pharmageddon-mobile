@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_mobile/controllers/order_cubit/order_state.dart';
 import 'package:pharmageddon_mobile/controllers/reports_cubit/reports_state.dart';
 import 'package:pharmageddon_mobile/core/class/parent_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';

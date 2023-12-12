@@ -91,6 +91,17 @@ abstract class AppTextTheme {
     fontWeight: FontWeight.w400,
   );
 
+  static const f18w400black = TextStyle(
+    fontSize: 18,
+    color: AppColor.black,
+    fontWeight: FontWeight.w400,
+  );
+  static const f18w600black = TextStyle(
+    fontSize: 18,
+    color: AppColor.black,
+    fontWeight: FontWeight.w600,
+  );
+
   static const f14w600black = TextStyle(
     fontSize: 14,
     color: AppColor.black,

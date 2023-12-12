@@ -16,7 +16,6 @@ import '../../../core/constant/app_size.dart';
 import '../../../core/functions/navigator.dart';
 import '../../../core/resources/app_text_theme.dart';
 import '../../../core/services/dependency_injection.dart';
-import '../../../model/screen_arguments.dart';
 import '../../../routes.dart';
 import '../app_widget.dart';
 
@@ -33,11 +32,10 @@ class MedicationWidget extends StatelessWidget {
     final tag = UniqueKey();
     return InkWell(
       onTap: () {
-        pushNamed(AppRoute.medicineDetails, context,
-            arguments: ScreenArguments({
-              AppKeys.medicationModel: model,
-              AppKeys.tag: tag,
-            }));
+        pushNamed(AppRoute.medicineDetails, context, arguments: {
+          AppKeys.medicationModel: model,
+          AppKeys.tag: tag,
+        });
       },
       child: Material(
         elevation: 4,

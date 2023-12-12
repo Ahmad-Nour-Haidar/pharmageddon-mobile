@@ -12,7 +12,6 @@ import '../../../core/constant/app_size.dart';
 import '../../../core/functions/navigator.dart';
 import '../../../core/resources/app_text_theme.dart';
 import '../../../core/services/dependency_injection.dart';
-import '../../../model/screen_arguments.dart';
 import '../../../routes.dart';
 import '../app_widget.dart';
 
@@ -34,11 +33,10 @@ class EffectCategoryWidget extends StatelessWidget {
     final tag = UniqueKey();
     return InkWell(
       onTap: () {
-        pushNamed(AppRoute.effectMedicinesScreen, context,
-            arguments: ScreenArguments({
-              AppKeys.effectModel: model,
-              AppKeys.tag: tag,
-            }));
+        pushNamed(AppRoute.effectMedicinesScreen, context, arguments: {
+          AppKeys.effectModel: model,
+          AppKeys.tag: tag,
+        });
       },
       child: Material(
         borderRadius: BorderRadius.circular(AppSize.radius10),

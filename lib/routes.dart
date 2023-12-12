@@ -10,6 +10,7 @@ import 'package:pharmageddon_mobile/view/screens/favorite_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/home_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/manufacturer_medicines_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/medicine_details_screen.dart';
+import 'package:pharmageddon_mobile/view/screens/order_details_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/orders_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/profile_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/reports_screen.dart';
@@ -38,6 +39,7 @@ abstract class AppRoute {
 
   // orders
   static const orders = '/orders';
+  static const ordersDetails = '/ordersDetails';
 
   // favorites
   static const favorites = '/favorites';
@@ -70,4 +72,5 @@ final Map<String, Widget Function(BuildContext)> routes = {
   AppRoute.orders: (_) => const OrdersScreen(),
   AppRoute.favorites: (_) => const FavoriteScreen(),
   AppRoute.reports: (_) => const ReportsScreen(),
+  AppRoute.ordersDetails: (_) => const OrderDetailsScreen(),
 };

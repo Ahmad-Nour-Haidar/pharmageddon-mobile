@@ -14,6 +14,7 @@ import '../../controllers/local_controller.dart';
 import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../controllers/order_cubit/order_cubit.dart';
+import '../../controllers/order_details_cubit/order_details_cubit.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
@@ -93,7 +94,10 @@ class AppInjection {
     getIt.registerFactory(() => ReportsCubit());
 
     // order
-    getIt.registerFactory(() => OrderCubit());
+    getIt.registerLazySingleton(() => OrderCubit());
+
+    // order details
+    getIt.registerFactory(() => OrderDetailsCubit());
 
     // widgets
     getIt.registerLazySingleton(() => AppWidget());

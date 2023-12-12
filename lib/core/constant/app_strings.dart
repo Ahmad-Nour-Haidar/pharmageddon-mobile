@@ -124,4 +124,6 @@ class AppStrings {
   static const date = 'date';
   static const id = 'id';
   static const pleaseSelectStartAndEndOfDate = 'pleaseSelectStartAndEndOfDate';
+  static const orderDetails = 'orderDetails';
+  static const cancel = 'cancel';
 }

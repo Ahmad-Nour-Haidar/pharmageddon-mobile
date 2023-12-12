@@ -4,7 +4,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/reports_cubit/reports_state.dart';
-import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/line_chart_sample2.dart';
@@ -33,7 +32,7 @@ class ReportsScreen extends StatelessWidget {
         child: BlocConsumer<ReportsCubit, ReportsState>(
           buildWhen: (previous, current) => current is! ReportsFailureState,
           listener: (context, state) {
-            if(state is ReportsFailureState){
+            if (state is ReportsFailureState) {
               handleState(state: state.state, context: context);
             }
           },
@@ -47,6 +46,7 @@ class ReportsScreen extends StatelessWidget {
             if (state is ReportsLoadingState) {
               body = OrdersLoading(onRefresh: () => cubit.getData());
             }
+            return const LineChartSample2();
             return Column(
               children: [
                 CustomPickDataWidget(
@@ -55,7 +55,6 @@ class ReportsScreen extends StatelessWidget {
                 ),
                 const Gap(10),
                 // Expanded(child: body),
-                const LineChartSample2(),
                 const Gap(10),
                 Row(
                   children: [

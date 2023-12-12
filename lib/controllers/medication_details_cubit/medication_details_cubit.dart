@@ -84,11 +84,8 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
         model = MedicationModel.fromJson(json);
         _update(MedicationDetailsSuccessState());
 
-        /// this to update favorite screen if it active
-        final cubit = AppInjection.getIt<FavoriteCubit>();
-        if (cubit.medications.isNotEmpty) {
-          cubit.deleteFromList(model);
-        }
+        // this to update favorite screen if it active
+        AppInjection.getIt<FavoriteCubit>().removeFromList(model);
       }
     });
   }

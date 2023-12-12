@@ -4,5 +4,6 @@ class AppKeys {
   static const tag = 'tag';
   static const medicationModel = 'medicationModel';
   static const effectModel = 'effectModel';
-  static const factoryModel = 'factoryModel';
+  static const manufacturerModel = 'manufacturerModel';
+  static const orderModel = 'orderModel';
 }

@@ -8,7 +8,6 @@ import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
-import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 
 import '../../../core/services/dependency_injection.dart';
@@ -27,9 +26,7 @@ class ManufacturerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => pushNamed(AppRoute.factoryMedicinesScreen, context,
-          arguments: ScreenArguments({
-            AppKeys.factoryModel: model,
-          })),
+          arguments: {AppKeys.manufacturerModel: model}),
       child: Container(
         padding: AppPadding.padding15,
         height: 100,

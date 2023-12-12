@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 
 void pushNamedAndRemoveUntil(String route, BuildContext context,
     {Object? arguments}) {
@@ -11,8 +12,9 @@ void pushNamedAndRemoveUntil(String route, BuildContext context,
 }
 
 Future<T?> pushNamed<T extends Object?>(String route, BuildContext context,
-    {Object? arguments}) {
-  return Navigator.pushNamed(context, route, arguments: arguments);
+    {Map<String, dynamic>? arguments}) {
+  return Navigator.pushNamed(context, route,
+      arguments: ScreenArguments(arguments ?? {}));
 }
 //
 // void navigatorAndFinish(BuildContext context, Widget widget) =>

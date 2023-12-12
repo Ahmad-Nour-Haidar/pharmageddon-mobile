@@ -22,7 +22,7 @@ class ManufacturerMedicinesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
-    final ManufacturerModel model = args.args[AppKeys.factoryModel];
+    final ManufacturerModel model = args.args[AppKeys.manufacturerModel];
     return Scaffold(
       body: BlocProvider(
         create: (context) =>

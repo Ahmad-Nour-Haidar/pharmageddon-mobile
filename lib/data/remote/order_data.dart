@@ -9,6 +9,7 @@ class OrderRemoteData {
   final _crud = AppInjection.getIt<Crud>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getOrders() async {
+    // todo
     return const Right({});
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
@@ -22,12 +23,29 @@ class OrderRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getOrderDetails({
     required Map<String, dynamic> queryParameters,
   }) async {
+    // todo
+    return const Right({});
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
       // todo: url
       linkUrl: AppLink.order,
       token: token,
       queryParameters: queryParameters,
+    );
+    return response;
+  }
+
+  Future<Either<ParentState, Map<String, dynamic>>> cancel({
+    required Map<String, dynamic> data,
+  }) async {
+    // todo
+    return const Right({});
+    final token = AppLocalData.user!.authorization!;
+    final response = await _crud.postData(
+      // todo: url
+      linkUrl: AppLink.order,
+      token: token,
+      data: data,
     );
     return response;
   }
