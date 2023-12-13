@@ -18,10 +18,14 @@ class TopWidgetOrderDetailsScreen extends StatefulWidget {
     super.key,
     required this.model,
     required this.onTapEdit,
+    required this.totalPrice,
+    required this.totalQuantity,
   });
 
   final OrderModel model;
   final void Function(bool isEdit) onTapEdit;
+  final double totalPrice;
+  final int totalQuantity;
 
   @override
   State<TopWidgetOrderDetailsScreen> createState() =>
@@ -35,9 +39,9 @@ class _TopWidgetOrderDetailsScreenState
   bool _isLoadingDone = false;
   bool _isEdit = false;
 
-  void onTapEdit() {
+  void onTapEdit(bool value) {
     setState(() {
-      _isEdit = true;
+      _isEdit = value;
     });
     widget.onTapEdit(_isEdit);
   }
@@ -52,7 +56,7 @@ class _TopWidgetOrderDetailsScreenState
   Future<void> onTapDone() async {
     if (_isLoadingCancel) return;
     setState(() => _isLoadingDone = true);
-    _isLoadingDone = await cubit.edit();
+    _isLoadingDone = await cubit.update();
     if (!_isLoadingDone) _isEdit = false;
     setState(() {});
     widget.onTapEdit(_isEdit);
@@ -89,25 +93,25 @@ class _TopWidgetOrderDetailsScreenState
           ),
           RowTextSpan(
             s1: '${AppStrings.totalQuantity.tr} : ',
-            s2: widget.model.totalQ.toString(),
+            s2: widget.totalQuantity.toString(),
             ts1: AppTextTheme.f18w600black,
             ts2: AppTextTheme.f18w400black,
           ),
           RowTextSpan(
             s1: '${AppStrings.totalPrice.tr} : ',
-            s2: '${widget.model.totalP} ${AppStrings.sp.tr}',
+            s2: '${widget.totalPrice} ${AppStrings.sp.tr}',
             ts1: AppTextTheme.f18w600black,
             ts2: AppTextTheme.f18w400black,
           ),
           RowTextSpan(
             s1: '${AppStrings.paymentState.tr} : ',
-            s2: widget.model.payment.toString(),
+            s2: widget.model.paymentStatus.toString(),
             ts1: AppTextTheme.f18w600black,
             ts2: AppTextTheme.f18w400black,
           ),
           RowTextSpan(
             s1: '${AppStrings.date.tr} : ',
-            s2: formatYYYYMdEEEE(widget.model.date),
+            s2: formatYYYYMdEEEE(widget.model.createdAt),
             ts1: AppTextTheme.f18w600black,
             ts2: AppTextTheme.f18w400black,
           ),
@@ -115,15 +119,24 @@ class _TopWidgetOrderDetailsScreenState
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CustomTextButton(
-                isShow: widget.model.status == OrderStatus.preparing,
+                isShow: widget.model.orderStatus == OrderStatus.preparing,
                 isLoading: _isLoadingDone,
-                onTap: _isEdit ? onTapDone : onTapEdit,
+                onTap: () => _isEdit ? onTapDone : onTapEdit(true),
                 color: AppColor.green3,
                 text: _isEdit ? AppStrings.done.tr : AppStrings.edit.tr,
                 style: AppTextTheme.f18w500green3,
               ),
+              if (_isEdit)
+                CustomTextButton(
+                  isShow: widget.model.orderStatus == OrderStatus.preparing,
+                  isLoading: false,
+                  onTap: () => onTapEdit(false),
+                  color: AppColor.green3,
+                  text: AppStrings.back.tr,
+                  style: AppTextTheme.f18w500green3,
+                ),
               CustomTextButton(
-                isShow: widget.model.status == OrderStatus.preparing,
+                isShow: widget.model.orderStatus == OrderStatus.preparing,
                 isLoading: _isLoadingCancel,
                 onTap: onTapCancel,
                 color: AppColor.red,

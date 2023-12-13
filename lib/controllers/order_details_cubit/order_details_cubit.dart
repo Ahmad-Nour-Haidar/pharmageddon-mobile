@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/model/order_model.dart';
+import 'package:pharmageddon_mobile/print.dart';
 import '../../core/constant/app_request_keys.dart';
 import '../../data/remote/order_data.dart';
 import '../../model/order_details_model.dart';
@@ -16,15 +17,8 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
   final _orderRemoteData = AppInjection.getIt<OrderRemoteData>();
   final List<OrderDetailsModel> data = [];
   late final OrderModel model;
+  final Map<int, int> tempQuantity = {};
   bool _isEdit = false;
-
-
-  bool get isEdit => _isEdit;
-
-  set isEdit(bool value) {
-    _isEdit = value;
-    _update(OrderDetailsChangeState());
-  }
 
   void _update(OrderDetailsState state) {
     if (isClosed) return;
@@ -34,6 +28,33 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
   void initial(OrderModel model) {
     this.model = model;
     getDetails();
+  }
+
+  int getQuantityOfMedicine(OrderDetailsModel model) {
+    return tempQuantity[model.medicineId!] ?? model.totalQuantity!;
+  }
+
+  int get totalQuantity {
+    int x = 0;
+    for (final e in data) {
+      x += getQuantityOfMedicine(e);
+    }
+    return x;
+  }
+
+  double get totalPrice {
+    double x = 0.0;
+    for (final e in data) {
+      double p = e.priceWhenOrdered! * getQuantityOfMedicine(e);
+      x += p;
+    }
+    return x;
+  }
+
+  void print() {
+    for (final element in data) {
+      printme.cyan('${element.medicineId} : ${element.totalQuantity}');
+    }
   }
 
   Future<void> getDetails() async {
@@ -47,28 +68,17 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     response.fold((l) {
       _update(OrderDetailsFailureState(l));
     }, (r) {
-      // final List temp = r[AppRKeys.data][AppRKeys.medicines];
+      final List temp =
+          r[AppRKeys.data][AppRKeys.order][AppRKeys.order_details];
       data.clear();
-      data.addAll(List.generate(10, (index) => OrderDetailsModel.fromJson({
-        "medicine_id": 15,
-        "medicine_english_commercial_name": "Unadol red",
-        "medicine_arabic_commercial_name": "بندول أحمر",
-        "total_quantity": 67,
-        "price_when_ordered": 5000,
-        "total_price": 301500,
-        "has_discount": 10
-      })));
+      data.addAll(temp.map((e) => OrderDetailsModel.fromJson(e)));
       _update(OrderDetailsSuccessState());
     });
   }
 
   Future<void> cancel() async {
     _update(OrderDetailsLoadingCancelState());
-    await Future.delayed(const Duration(seconds: 4));
-    return;
-    final data = {
-      AppRKeys.id: model.id,
-    };
+    final data = {AppRKeys.id: model.id};
     final response = await _orderRemoteData.cancel(data: data);
     response.fold((l) {
       _update(OrderDetailsFailureState(l));
@@ -78,21 +88,37 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     });
   }
 
-  Future<bool> edit() async {
+  Future<bool> update() async {
     bool isEdit = false;
     _update(OrderDetailsLoadingCancelState());
     await Future.delayed(const Duration(seconds: 4));
-    return isEdit;
-    final data = {
-      AppRKeys.id: model.id,
-    };
-    final response = await _orderRemoteData.cancel(data: data);
+    final List<Map<String, int>> list = [];
+    for (final e in data) {
+      list.add({
+        AppRKeys.medicine_id: e.medicineId!,
+        AppRKeys.quantity: getQuantityOfMedicine(e),
+      });
+    }
+    final requestData = {AppRKeys.medicines: list};
+    final response = await _orderRemoteData.cancel(data: requestData);
     response.fold((l) {
       _update(OrderDetailsFailureState(l));
-    }, (r) {
-      AppInjection.getIt<OrderCubit>().removeFromList(model);
-      _update(OrderDetailsSuccessCancelState());
-    });
+    }, (r) {});
     return isEdit;
+  }
+
+  void onEditMedicine(int id, int newQuantity) {
+    tempQuantity[id] = newQuantity;
+    _update(OrderDetailsChangeState());
+  }
+
+  bool get isEdit => _isEdit;
+
+  set isEdit(bool value) {
+    _isEdit = value;
+    if (!_isEdit) {
+      tempQuantity.clear();
+    }
+    _update(OrderDetailsChangeState());
   }
 }

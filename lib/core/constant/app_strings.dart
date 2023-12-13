@@ -127,4 +127,9 @@ class AppStrings {
   static const pleaseSelectStartAndEndOfDate = 'pleaseSelectStartAndEndOfDate';
   static const orderDetails = 'orderDetails';
   static const cancel = 'cancel';
+  static const back = 'back';
+  static const quantitiesOfSomeMedicinesAreNotAvailable =
+      'quantitiesOfSomeMedicinesAreNotAvailable';
+  static const someOfMedicinesAreExpired ='someOfMedicinesAreExpired';
+  static const theOrderHasBeenAddedSuccessfully ='theOrderHasBeenAddedSuccessfully';
 }

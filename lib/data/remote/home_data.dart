@@ -13,8 +13,6 @@ class HomeRemoteData {
   final _crud = AppInjection.getIt<Crud>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getMedications() async {
-    // todo
-    return Right(medicines);
     final token = AppLocalData.user?.authorization;
     final response = await _crud.getData(
       linkUrl: AppLink.getAllMedicine,
@@ -25,8 +23,6 @@ class HomeRemoteData {
 
   Future<Either<ParentState, Map<String, dynamic>>>
       getEffectsCategories() async {
-    // todo
-    return Right(effectCategory);
     final token = AppLocalData.user?.authorization;
     final response = await _crud.getData(
       linkUrl: AppLink.getAllEffectCategories,
@@ -36,8 +32,6 @@ class HomeRemoteData {
   }
 
   Future<Either<ParentState, Map<String, dynamic>>> getManufacturers() async {
-    // todo
-    return Right(manufacturer);
     final token = AppLocalData.user?.authorization;
     final response = await _crud.getData(
       linkUrl: AppLink.getAllManufacturer,

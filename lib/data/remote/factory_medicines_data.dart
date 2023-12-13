@@ -13,8 +13,6 @@ class FactoryMedicinesRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getMedicines({
     Map<String, dynamic>? queryParameters,
   }) async {
-    // todo
-    return Right(medicines);
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
       linkUrl: AppLink.getAllMedicinesOfManufacturer,

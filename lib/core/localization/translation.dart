@@ -115,6 +115,10 @@ class MyTranslation extends Translations {
               'Please select start and end of date',
           AppStrings.orderDetails: 'Order Details',
           AppStrings.cancel: 'Cancel',
+          AppStrings.back: 'Back',
+          AppStrings.quantitiesOfSomeMedicinesAreNotAvailable: 'Quantities of some medicines are not available.',
+          AppStrings.someOfMedicinesAreExpired: 'Some of medicines are expired.',
+          AppStrings.theOrderHasBeenAddedSuccessfully: 'The order has been added successfully.',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -225,6 +229,10 @@ class MyTranslation extends Translations {
               'الرجاء تحديد بداية ونهاية التاريخ',
           AppStrings.orderDetails: 'تفاصيل الطلب',
           AppStrings.cancel: 'الغاء',
+          AppStrings.back: 'تراجع',
+          AppStrings.quantitiesOfSomeMedicinesAreNotAvailable: 'كميات بعض الأدوية غير متوفرة.',
+          AppStrings.someOfMedicinesAreExpired: 'بعض الأدوية منتهية الصلاحية.',
+          AppStrings.theOrderHasBeenAddedSuccessfully: 'تمت إضافة الطلب بنجاح.',
         },
       };
 }

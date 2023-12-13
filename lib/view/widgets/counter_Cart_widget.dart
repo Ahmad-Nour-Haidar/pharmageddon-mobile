@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
 import '../../core/constant/app_color.dart';
@@ -36,7 +37,7 @@ class _CounterCartWidgetState extends State<CounterCartWidget> {
   }
 
   void change(int x) {
-    if (quantity + x < 0) return;
+    if (quantity + x < 1) return;
     if (quantity + x > widget.maxValue) return;
     quantity += x;
     widget.onChange(quantity);
@@ -100,7 +101,7 @@ class _CounterCartWidgetState extends State<CounterCartWidget> {
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

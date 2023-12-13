@@ -7,9 +7,9 @@ class AppLink {
 
   // static const _host = 'localhost:8000';
   //
-  static const _host = '192.168.43.76:8000';
-
-  // static const _host = 'pharmageddon-myproject.000webhostapp.com';
+  // static const _host = '192.168.43.76:8000';
+  //
+  static const _host = 'pharmageddon-myproject.000webhostapp.com';
 
   //
   // static const _host = '192.168.229.48:8000';
@@ -62,4 +62,10 @@ class AppLink {
 
   // order
   static const order = '$_serverApi/order/create';
+  static const getAll = '$_serverApi/order/get_all';
+  static const getAllPreparing = '$_serverApi/order/get_all_preparing';
+  static const getAllSent = '$_serverApi/order/get_all_sent';
+  static const getAllReceived = '$_serverApi/order/get_all_received';
+  static const getOrderDetails = '$_serverApi/order/get';
+  static const delete = '$_serverApi/order/delete';
 }

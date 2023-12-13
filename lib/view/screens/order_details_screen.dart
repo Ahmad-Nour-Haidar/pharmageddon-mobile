@@ -43,11 +43,14 @@ class OrderDetailsScreen extends StatelessWidget {
                     onTapEdit: (bool isEdit) {
                       cubit.isEdit = isEdit;
                     },
+                    totalPrice: cubit.totalPrice,
+                    totalQuantity: cubit.totalQuantity,
                   ),
                   const Gap(10),
                   OrderDetailsList(
                     data: cubit.data,
                     enableEdit: cubit.isEdit,
+                    onEditMedicine: cubit.onEditMedicine,
                   ),
                 ],
               ),

@@ -25,4 +25,7 @@ class AppRKeys {
   static const favourite_medicine = 'favourite_medicine';
   static const medicine_id = 'medicine_id';
   static const quantity = 'quantity';
+  static const order = 'order';
+  static const orders = 'orders';
+  static const order_details = 'order_details';
 }

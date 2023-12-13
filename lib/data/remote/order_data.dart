@@ -8,13 +8,24 @@ import '../crud_dio.dart';
 class OrderRemoteData {
   final _crud = AppInjection.getIt<Crud>();
 
-  Future<Either<ParentState, Map<String, dynamic>>> getOrders() async {
-    // todo
-    return const Right({});
+  Future<Either<ParentState, Map<String, dynamic>>> createOrder({
+    required Map<String, dynamic> data,
+  }) async {
+    final token = AppLocalData.user!.authorization!;
+    final response = await _crud.postData(
+      linkUrl: AppLink.order,
+      token: token,
+      data: data,
+    );
+    return response;
+  }
+
+  Future<Either<ParentState, Map<String, dynamic>>> getOrders({
+    required String url,
+  }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
-      // todo: url
-      linkUrl: AppLink.order,
+      linkUrl: url,
       token: token,
     );
     return response;
@@ -23,12 +34,9 @@ class OrderRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getOrderDetails({
     required Map<String, dynamic> queryParameters,
   }) async {
-    // todo
-    return const Right({});
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
-      // todo: url
-      linkUrl: AppLink.order,
+      linkUrl: AppLink.getOrderDetails,
       token: token,
       queryParameters: queryParameters,
     );
@@ -38,12 +46,9 @@ class OrderRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> cancel({
     required Map<String, dynamic> data,
   }) async {
-    // todo
-    return const Right({});
     final token = AppLocalData.user!.authorization!;
-    final response = await _crud.postData(
-      // todo: url
-      linkUrl: AppLink.order,
+    final response = await _crud.deleteData(
+      linkUrl: AppLink.delete,
       token: token,
       data: data,
     );

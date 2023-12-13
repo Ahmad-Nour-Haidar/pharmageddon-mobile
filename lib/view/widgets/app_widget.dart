@@ -38,9 +38,9 @@ class AppWidget {
 
   Widget getOrderIcon(OrderModel model) {
     const s = 20.0;
-    if (model.status == OrderStatus.preparing) {
+    if (model.orderStatus == OrderStatus.preparing) {
       return Tooltip(
-        message: model.status.name.tr,
+        message: model.orderStatus!.name.tr,
         child: const SvgImage(
           path: AppSvg.timePast,
           color: AppColor.red,
@@ -48,9 +48,9 @@ class AppWidget {
         ),
       );
     }
-    if (model.status == OrderStatus.hasBeenSent) {
+    if (model.orderStatus == OrderStatus.hasBeenSent) {
       return Tooltip(
-        message: model.status.name.tr,
+        message: model.orderStatus!.name.tr,
         child: SvgImage(
           path: isEnglish() ? AppSvg.shippingFast : AppSvg.shippingFastLeft,
           color: AppColor.blue,
@@ -59,7 +59,7 @@ class AppWidget {
       );
     }
     return Tooltip(
-      message: model.status.name.tr,
+      message: model.orderStatus!.name.tr,
       child: const SvgImage(
         path: AppSvg.checkCircle,
         color: AppColor.green,

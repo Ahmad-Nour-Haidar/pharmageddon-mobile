@@ -3,8 +3,8 @@ class OrderDetailsModel {
   String? medicineEnglishCommercialName;
   String? medicineArabicCommercialName;
   int? totalQuantity;
-  int? priceWhenOrdered;
-  int? totalPrice;
+  double? priceWhenOrdered;
+  double? totalPrice;
   int? hasDiscount;
 
   OrderDetailsModel(
@@ -21,8 +21,8 @@ class OrderDetailsModel {
     medicineEnglishCommercialName = json['medicine_english_commercial_name'];
     medicineArabicCommercialName = json['medicine_arabic_commercial_name'];
     totalQuantity = json['total_quantity'];
-    priceWhenOrdered = json['price_when_ordered'];
-    totalPrice = json['total_price'];
+    priceWhenOrdered = double.parse(json['price_when_ordered'].toString());
+    totalPrice = double.parse(json['total_price'].toString());
     hasDiscount = json['has_discount'];
   }
 

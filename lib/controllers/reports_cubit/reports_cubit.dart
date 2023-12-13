@@ -28,28 +28,28 @@ class ReportsCubit extends Cubit<ReportsState> {
   }
 
   Future<void> getData() async {
-    if (dateTimeRange.duration.inDays == 0) {
-      _update(ReportsFailureState(
-          FailureState(message: AppStrings.pleaseSelectStartAndEndOfDate.tr)));
-      return;
-    }
-    List<OrderModel> temp = [
-      OrderModel(OrderStatus.preparing),
-      OrderModel(OrderStatus.preparing),
-      OrderModel(OrderStatus.hasBeenSent),
-      OrderModel(OrderStatus.hasBeenSent),
-      OrderModel(OrderStatus.hasBeenSent),
-      OrderModel(OrderStatus.hasBeenSent),
-    ];
-    _update(ReportsLoadingState());
-    final response = await _reportsRemoteData.getReports(queryParameters: {});
-    response.fold((l) {
-      _update(ReportsFailureState(l));
-    }, (r) {
-      data.clear();
-      data.addAll(temp);
-      _update(ReportsSuccessState());
-    });
+    // if (dateTimeRange.duration.inDays == 0) {
+    //   _update(ReportsFailureState(
+    //       FailureState(message: AppStrings.pleaseSelectStartAndEndOfDate.tr)));
+    //   return;
+    // }
+    // List<OrderModel> temp = [
+    //   OrderModel(OrderStatus.preparing),
+    //   OrderModel(OrderStatus.preparing),
+    //   OrderModel(OrderStatus.hasBeenSent),
+    //   OrderModel(OrderStatus.hasBeenSent),
+    //   OrderModel(OrderStatus.hasBeenSent),
+    //   OrderModel(OrderStatus.hasBeenSent),
+    // ];
+    // _update(ReportsLoadingState());
+    // final response = await _reportsRemoteData.getReports(queryParameters: {});
+    // response.fold((l) {
+    //   _update(ReportsFailureState(l));
+    // }, (r) {
+    //   data.clear();
+    //   data.addAll(temp);
+    //   _update(ReportsSuccessState());
+    // });
   }
 
   void setDateTimeRange(DateTimeRange dateTimeRange) {
@@ -61,7 +61,7 @@ class ReportsCubit extends Cubit<ReportsState> {
   int get totalQuantity {
     int q = 0;
     for (final element in data) {
-      q += element.totalQ;
+      q += element.totalQuantity!;
     }
     return q;
   }
@@ -69,7 +69,7 @@ class ReportsCubit extends Cubit<ReportsState> {
   double get totalPrice {
     double p = 0.0;
     for (final element in data) {
-      p += element.totalP;
+      p += element.totalPrice!;
     }
     return p;
   }

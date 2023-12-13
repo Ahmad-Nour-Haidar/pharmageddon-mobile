@@ -49,19 +49,19 @@ class OrderWidget extends StatelessWidget {
               ),
               RowTextSpan(
                 s1: '${AppStrings.totalQuantity.tr} : ',
-                s2: model.totalQ.toString(),
+                s2: model.totalQuantity.toString(),
               ),
               RowTextSpan(
                 s1: '${AppStrings.totalPrice.tr} : ',
-                s2: model.totalP.toString(),
+                s2: model.totalPrice.toString(),
               ),
               RowTextSpan(
                 s1: '${AppStrings.paymentState.tr} : ',
-                s2: model.payment.toString(),
+                s2: model.paymentStatus.toString(),
               ),
               RowTextSpan(
                 s1: '${AppStrings.date.tr} : ',
-                s2: formatYYYYMd(model.date),
+                s2: formatYYYYMd(model.createdAt),
               ),
             ],
           ),
