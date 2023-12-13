@@ -72,5 +72,4 @@ class AppLink {
 
   // report
   static const report = '$_serverApi/report';
-
 }
