@@ -17,7 +17,7 @@ class HomeCubit extends Cubit<HomeState> {
   static HomeCubit get(BuildContext context) => BlocProvider.of(context);
   final homeRemoteData = AppInjection.getIt<HomeRemoteData>();
   late int _initialIndexScreen;
-  final List<MedicationModel> medications = [];
+  final List<MedicationModel> medications = [], discountsData = [];
   final Map<int, MedicationModel> medicationsMap = {};
   final List<ManufacturerModel> manufacturers = [];
   final List<EffectCategoryModel> effectCategories = [];
@@ -49,12 +49,34 @@ class HomeCubit extends Cubit<HomeState> {
         final List temp = r[AppRKeys.data][AppRKeys.medicines];
         medications.clear();
         medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
-        // medications.shuffle();
+        medications.shuffle();
         _update(HomeGetMedicationsSuccessState());
         medicationsMap.clear();
         for (final m in medications) {
           medicationsMap[m.id ?? 0] = m;
         }
+      }
+    });
+  }
+
+  Future<void> getDiscounts({bool forceGetData = false}) async {
+    if (!(discountsData.isEmpty || forceGetData)) {
+      _update(HomeGetDiscountsSuccessState());
+      return;
+    }
+    _update(HomeGetDiscountsLoadingState());
+    final response = await homeRemoteData.getDiscount();
+    response.fold((l) {
+      _update(HomeGetFailureState(l));
+    }, (r) {
+      final status = r[AppRKeys.status];
+      if (status == 401) {
+        _update(HomeGetFailureState(FailureState()));
+      } else {
+        final List temp = r[AppRKeys.data][AppRKeys.medicines];
+        discountsData.clear();
+        discountsData.addAll(temp.map((e) => MedicationModel.fromJson(e)));
+        _update(HomeGetDiscountsSuccessState());
       }
     });
   }
@@ -97,6 +119,7 @@ class HomeCubit extends Cubit<HomeState> {
     AppStrings.manufacturers,
     AppStrings.home,
     AppStrings.pharmacologicalEffect,
+    AppStrings.discounts,
   ];
 
   int get indexScreen => _initialIndexScreen;
@@ -107,8 +130,10 @@ class HomeCubit extends Cubit<HomeState> {
       getManufacturers();
     } else if (index == 1) {
       getMedications();
-    } else {
+    } else if (index == 2) {
       getEffectCategories();
+    } else {
+      getDiscounts();
     }
   }
 

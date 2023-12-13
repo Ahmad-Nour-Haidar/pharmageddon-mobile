@@ -41,6 +41,7 @@ class AppLink {
 
   // medicine
   static const getAllMedicine = '$_serverApi/medicine/get_all';
+  static const getAllMedicineDiscount = '$_serverApi/medicine/get_all_discount';
   static const medicineImage = '$_serverImage/medicines';
 
   // manufacturer

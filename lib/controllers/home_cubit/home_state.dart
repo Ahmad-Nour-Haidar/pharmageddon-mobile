@@ -41,3 +41,9 @@ class HomeGetEffectCategoriesFailureState extends HomeState {
 
   HomeGetEffectCategoriesFailureState(this.state);
 }
+
+// discounts
+
+class HomeGetDiscountsLoadingState extends HomeState {}
+
+class HomeGetDiscountsSuccessState extends HomeState {}

@@ -13,6 +13,7 @@ class AppSvg {
   static const checkCircle = '$root/check_circle.svg';
   static const chemistry = '$root/chemistry.svg';
   static const close = '$root/close.svg';
+  static const percentage = '$root/percentage.svg';
   static const email = '$root/email.svg';
   static const exit = '$root/exit.svg';
   static const eye = '$root/eye.svg';

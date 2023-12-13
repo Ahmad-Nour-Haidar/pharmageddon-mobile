@@ -20,6 +20,7 @@ class AppConstant {
     AppSvg.text,
     AppSvg.all,
     AppSvg.chemistry,
+    AppSvg.percentage,
   ];
 
   static const ordersList = [

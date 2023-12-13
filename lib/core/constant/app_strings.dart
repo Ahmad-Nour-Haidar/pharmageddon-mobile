@@ -59,6 +59,7 @@ class AppStrings {
   static const home = 'home';
   static const manufacturers = 'manufacturers';
   static const pharmacologicalEffect = 'pharmacologicalEffect';
+  static const discounts = 'discounts';
 
   // other
   static const youAreOffline = 'youAreOffline';

@@ -70,6 +70,17 @@ class HomeScreen extends StatelessWidget {
               data: cubit.effectCategories,
             );
             break;
+          // 4
+          case HomeGetDiscountsLoadingState:
+            widget = MedicationsLoading(
+                onRefresh: () => cubit.getDiscounts(forceGetData: true));
+            break;
+          case HomeGetDiscountsSuccessState:
+            widget = MedicationsListWidget(
+              onRefresh: () => cubit.getDiscounts(forceGetData: true),
+              data: cubit.discountsData,
+            );
+            break;
           // other
           default:
             widget = MedicationsLoading(

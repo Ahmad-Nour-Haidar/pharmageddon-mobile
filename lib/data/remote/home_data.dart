@@ -18,6 +18,15 @@ class HomeRemoteData {
     return response;
   }
 
+  Future<Either<ParentState, Map<String, dynamic>>> getDiscount() async {
+    final token = AppLocalData.user?.authorization;
+    final response = await _crud.getData(
+      linkUrl: AppLink.getAllMedicineDiscount,
+      token: token,
+    );
+    return response;
+  }
+
   Future<Either<ParentState, Map<String, dynamic>>>
       getEffectsCategories() async {
     final token = AppLocalData.user?.authorization;
