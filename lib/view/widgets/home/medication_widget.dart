@@ -125,11 +125,11 @@ class MedicationsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: data.isEmpty
-          ? AppInjection.getIt<AppWidget>().noData
-          : RefreshIndicator(
-              onRefresh: onRefresh,
-              child: ListView(
+      child: RefreshIndicator(
+        onRefresh: onRefresh,
+        child: data.isEmpty
+            ? ListView(children: [AppInjection.getIt<AppWidget>().noData])
+            : ListView(
                 children: [
                   Padding(
                     padding: AppPadding.symmetric(horizontal: 20, vertical: 5),
@@ -151,7 +151,7 @@ class MedicationsListWidget extends StatelessWidget {
                   const Gap(30),
                 ],
               ),
-            ),
+      ),
     );
   }
 }

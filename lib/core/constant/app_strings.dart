@@ -132,4 +132,6 @@ class AppStrings {
       'quantitiesOfSomeMedicinesAreNotAvailable';
   static const someOfMedicinesAreExpired ='someOfMedicinesAreExpired';
   static const theOrderHasBeenAddedSuccessfully ='theOrderHasBeenAddedSuccessfully';
+  static const paid ='paid';
+  static const unpaid ='unpaid';
 }

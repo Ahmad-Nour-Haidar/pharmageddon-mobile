@@ -22,6 +22,10 @@ class OrderWidget extends StatelessWidget {
 
   final OrderModel model;
 
+  String get paymentStatus {
+    return model.paymentStatus == 0 ? AppStrings.unpaid.tr : AppStrings.paid.tr;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -57,7 +61,7 @@ class OrderWidget extends StatelessWidget {
               ),
               RowTextSpan(
                 s1: '${AppStrings.paymentState.tr} : ',
-                s2: model.paymentStatus.toString(),
+                s2: paymentStatus,
               ),
               RowTextSpan(
                 s1: '${AppStrings.date.tr} : ',
@@ -86,7 +90,7 @@ class OrderListWidget extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: onRefresh,
       child: data.isEmpty
-          ? AppInjection.getIt<AppWidget>().noData
+          ? ListView(children: [AppInjection.getIt<AppWidget>().noData])
           : ListView.separated(
               padding: AppPadding.screenPaddingAll,
               itemBuilder: (context, index) => OrderWidget(model: data[index]),

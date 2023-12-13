@@ -61,28 +61,28 @@ class ManufacturersListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: data.isEmpty
-          ? AppInjection.getIt<AppWidget>().noData
-          : RefreshIndicator(
-              onRefresh: onRefresh,
-              child: ListView(
-                children: [
-                  Center(
-                    child: Wrap(
-                      spacing: 30,
-                      runSpacing: 20,
-                      children: List.generate(
-                        data.length,
-                        (index) => ManufacturerWidget(
-                          model: data[index],
-                        ),
+      child: RefreshIndicator(
+        onRefresh: onRefresh,
+        child: data.isEmpty
+            ? ListView(children: [AppInjection.getIt<AppWidget>().noData])
+            : ListView(
+              children: [
+                Center(
+                  child: Wrap(
+                    spacing: 30,
+                    runSpacing: 20,
+                    children: List.generate(
+                      data.length,
+                      (index) => ManufacturerWidget(
+                        model: data[index],
                       ),
                     ),
                   ),
-                  const Gap(30),
-                ],
-              ),
+                ),
+                const Gap(30),
+              ],
             ),
+      ),
     );
   }
 }
