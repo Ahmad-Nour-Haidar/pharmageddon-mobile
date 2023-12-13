@@ -18,9 +18,11 @@ class OrderWidget extends StatelessWidget {
   const OrderWidget({
     super.key,
     required this.model,
+    required this.canPushNamed,
   });
 
   final OrderModel model;
+  final bool canPushNamed;
 
   String get paymentStatus {
     return model.paymentStatus == 0 ? AppStrings.unpaid.tr : AppStrings.paid.tr;
@@ -33,8 +35,10 @@ class OrderWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       elevation: 4,
       child: InkWell(
-        onTap: () => pushNamed(AppRoute.ordersDetails, context,
-            arguments: {AppKeys.orderModel: model}),
+        onTap: !canPushNamed
+            ? null
+            : () => pushNamed(AppRoute.ordersDetails, context,
+                arguments: {AppKeys.orderModel: model}),
         child: Padding(
           padding: AppPadding.padding10,
           child: Column(
@@ -80,20 +84,25 @@ class OrderListWidget extends StatelessWidget {
     super.key,
     required this.data,
     required this.onRefresh,
+    required this.canPushNamed,
   });
 
   final List<OrderModel> data;
   final Future<void> Function() onRefresh;
+  final bool canPushNamed;
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: onRefresh,
       child: data.isEmpty
-          ? ListView(children: [AppInjection.getIt<AppWidget>().noData])
+          ? Center(child: AppInjection.getIt<AppWidget>().noData)
           : ListView.separated(
               padding: AppPadding.screenPaddingAll,
-              itemBuilder: (context, index) => OrderWidget(model: data[index]),
+              itemBuilder: (context, index) => OrderWidget(
+                model: data[index],
+                canPushNamed: canPushNamed,
+              ),
               separatorBuilder: (context, index) => const Gap(10),
               itemCount: data.length,
             ),

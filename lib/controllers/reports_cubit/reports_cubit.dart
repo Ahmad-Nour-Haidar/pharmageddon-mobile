@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/reports_cubit/reports_state.dart';
+import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/print.dart';
 
+import '../../core/class/parent_state.dart';
+import '../../core/constant/app_strings.dart';
 import '../../data/remote/reports_data.dart';
 import '../../model/order_model.dart';
 
@@ -24,28 +28,31 @@ class ReportsCubit extends Cubit<ReportsState> {
   }
 
   Future<void> getData() async {
-    // if (dateTimeRange.duration.inDays == 0) {
-    //   _update(ReportsFailureState(
-    //       FailureState(message: AppStrings.pleaseSelectStartAndEndOfDate.tr)));
-    //   return;
-    // }
-    // List<OrderModel> temp = [
-    //   OrderModel(OrderStatus.preparing),
-    //   OrderModel(OrderStatus.preparing),
-    //   OrderModel(OrderStatus.hasBeenSent),
-    //   OrderModel(OrderStatus.hasBeenSent),
-    //   OrderModel(OrderStatus.hasBeenSent),
-    //   OrderModel(OrderStatus.hasBeenSent),
-    // ];
-    // _update(ReportsLoadingState());
-    // final response = await _reportsRemoteData.getReports(queryParameters: {});
-    // response.fold((l) {
-    //   _update(ReportsFailureState(l));
-    // }, (r) {
-    //   data.clear();
-    //   data.addAll(temp);
-    //   _update(ReportsSuccessState());
-    // });
+    if (dateTimeRange.duration.inDays == 0) {
+      _update(ReportsFailureState(
+          FailureState(message: AppStrings.pleaseSelectStartAndEndOfDate.tr)));
+      return;
+    }
+    _update(ReportsLoadingState());
+    final queryParameters = {
+      AppRKeys.start_date: dateTimeRange.start,
+      // AppRKeys.end_date: dateTimeRange.end,
+      AppRKeys.end_date: '2023-12-14 00:00:00.000',
+    };
+    final response =
+        await _reportsRemoteData.getReports(queryParameters: queryParameters);
+    response.fold((l) {
+      _update(ReportsFailureState(l));
+    }, (r) {
+      final status = r[AppRKeys.status];
+      if (status == 403) {
+      } else {
+        final List temp = r[AppRKeys.data][AppRKeys.orders];
+        data.clear();
+        data.addAll(temp.map((e) => OrderModel.fromJson(e)));
+      }
+      _update(ReportsSuccessState());
+    });
   }
 
   void setDateTimeRange(DateTimeRange dateTimeRange) {

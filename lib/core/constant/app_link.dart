@@ -68,4 +68,8 @@ class AppLink {
   static const getAllReceived = '$_serverApi/order/get_all_received';
   static const getOrderDetails = '$_serverApi/order/get';
   static const delete = '$_serverApi/order/delete';
+
+  // report
+  static const report = '$_serverApi/report';
+
 }

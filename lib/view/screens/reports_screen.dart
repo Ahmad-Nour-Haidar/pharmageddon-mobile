@@ -6,12 +6,10 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/reports_cubit/reports_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
-import 'package:pharmageddon_mobile/line_chart_sample2.dart';
 import 'package:pharmageddon_mobile/view/widgets/app_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/orders_loading.dart';
 import 'package:pharmageddon_mobile/view/widgets/order_widget.dart';
-
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/resources/app_text_theme.dart';
@@ -30,7 +28,6 @@ class ReportsScreen extends StatelessWidget {
       body: BlocProvider(
         create: (context) => AppInjection.getIt<ReportsCubit>(),
         child: BlocConsumer<ReportsCubit, ReportsState>(
-          buildWhen: (previous, current) => current is! ReportsFailureState,
           listener: (context, state) {
             if (state is ReportsFailureState) {
               handleState(state: state.state, context: context);
@@ -39,14 +36,16 @@ class ReportsScreen extends StatelessWidget {
           builder: (context, state) {
             final cubit = ReportsCubit.get(context);
             Widget body = AppInjection.getIt<AppWidget>().reports;
-            if (cubit.data.isNotEmpty) {
+            if (state is ReportsSuccessState || cubit.data.isNotEmpty) {
               body = OrderListWidget(
-                  data: cubit.data, onRefresh: () => cubit.getData());
+                data: cubit.data,
+                onRefresh: () => cubit.getData(),
+                canPushNamed: false,
+              );
             }
             if (state is ReportsLoadingState) {
               body = OrdersLoading(onRefresh: () => cubit.getData());
             }
-            return const LineChartSample2();
             return Column(
               children: [
                 CustomPickDataWidget(
@@ -54,7 +53,7 @@ class ReportsScreen extends StatelessWidget {
                   dateTimeRange: cubit.dateTimeRange,
                 ),
                 const Gap(10),
-                // Expanded(child: body),
+                Expanded(child: body),
                 const Gap(10),
                 Row(
                   children: [
@@ -77,7 +76,7 @@ class ReportsScreen extends StatelessWidget {
                           RowTextSpan(
                             s1: '${AppStrings.totalPrice.tr} : ',
                             ts1: AppTextTheme.f15w600black,
-                            s2: cubit.totalPrice.toString(),
+                            s2: '${cubit.totalPrice} ${AppStrings.sp.tr}',
                           ),
                         ],
                       ),

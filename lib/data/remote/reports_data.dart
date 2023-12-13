@@ -14,8 +14,7 @@ class ReportsRemoteData {
   }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
-      // todo: url
-      linkUrl: AppLink.search,
+      linkUrl: AppLink.report,
       token: token,
       queryParameters: queryParameters,
     );

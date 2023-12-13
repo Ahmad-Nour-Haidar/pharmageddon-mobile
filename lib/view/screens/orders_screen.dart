@@ -25,6 +25,7 @@ class OrdersScreen extends StatelessWidget {
             ? OrderListWidget(
                 data: cubit.data,
                 onRefresh: () async => cubit.getData(),
+          canPushNamed: true,
               )
             : OrdersLoading(onRefresh: () async => cubit.getData());
         return Scaffold(
