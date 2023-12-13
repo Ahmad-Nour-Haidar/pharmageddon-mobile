@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_svg.dart';
+import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/view/widgets/app_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
@@ -119,14 +121,18 @@ class CartWidgetList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: data.length,
-      separatorBuilder: (context, index) => const Gap(15),
-      itemBuilder: (context, index) => CartWidget(
-        model: data[index],
-        onTapRemove: onTapRemove,
-        onChange: onChange,
-      ),
+    return Expanded(
+      child: data.isEmpty
+          ? AppInjection.getIt<AppWidget>().noData
+          : ListView.separated(
+              itemCount: data.length,
+              separatorBuilder: (context, index) => const Gap(15),
+              itemBuilder: (context, index) => CartWidget(
+                model: data[index],
+                onTapRemove: onTapRemove,
+                onChange: onChange,
+              ),
+            ),
     );
   }
 }

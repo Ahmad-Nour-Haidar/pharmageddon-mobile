@@ -44,12 +44,10 @@ class CartScreen extends StatelessWidget {
               padding: AppPadding.screenPaddingAll,
               child: Column(
                 children: [
-                  Expanded(
-                    child: CartWidgetList(
-                      data: cubit.data,
-                      onTapRemove: cubit.onTapRemove,
-                      onChange: cubit.changeQuantityOfModel,
-                    ),
+                  CartWidgetList(
+                    data: cubit.data,
+                    onTapRemove: cubit.onTapRemove,
+                    onChange: cubit.changeQuantityOfModel,
                   ),
                   const Gap(10),
                   Row(
