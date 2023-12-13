@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,
@@ -47,7 +46,7 @@ class CustomTextButton extends StatelessWidget {
         child: Center(
           child: FittedBox(
             fit: BoxFit.scaleDown,
-            child: Text(text, style:style),
+            child: Text(text, style: style),
           ),
         ),
       ),

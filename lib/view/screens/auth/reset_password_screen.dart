@@ -166,9 +166,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     ),
                     const Gap(25),
                     if (state is ResetPasswordLoadingState)
-                      const SpinKitThreeBounce(
-                        color: AppColor.buttonColor,
-                      ),
+                      const SpinKitThreeBounce(color: AppColor.buttonColor),
                     if (state is! ResetPasswordLoadingState)
                       CustomButton(
                         onTap: cubit.reset,

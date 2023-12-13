@@ -123,15 +123,22 @@ String getMedicationCommercialName(MedicationModel? model,
   return s;
 }
 
-String getOrderDetailsModelName(OrderDetailsModel? model,
-    {bool split = true}) {
+String getOrderDetailsModelName(OrderDetailsModel? model, {bool split = true}) {
   var s = '';
   if (model == null) return s;
   if (split) {
     if (isEnglish()) {
-      s = model.medicineEnglishCommercialName.toString().split(' ').take(2).join(' ');
+      s = model.medicineEnglishCommercialName
+          .toString()
+          .split(' ')
+          .take(2)
+          .join(' ');
     } else {
-      s = model.medicineArabicCommercialName.toString().split(' ').take(2).join(' ');
+      s = model.medicineArabicCommercialName
+          .toString()
+          .split(' ')
+          .take(2)
+          .join(' ');
     }
     return s;
   }

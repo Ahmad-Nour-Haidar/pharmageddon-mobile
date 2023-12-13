@@ -86,9 +86,7 @@ class CheckEmailScreen extends StatelessWidget {
                     ),
                     const Gap(25),
                     if (state is CheckEmailLoadingState)
-                      const SpinKitThreeBounce(
-                        color: AppColor.buttonColor,
-                      ),
+                      const SpinKitThreeBounce(color: AppColor.buttonColor),
                     if (state is! CheckEmailLoadingState)
                       CustomButton(
                         onTap: cubit.check,

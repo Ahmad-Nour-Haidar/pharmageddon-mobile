@@ -130,8 +130,9 @@ class AppStrings {
   static const back = 'back';
   static const quantitiesOfSomeMedicinesAreNotAvailable =
       'quantitiesOfSomeMedicinesAreNotAvailable';
-  static const someOfMedicinesAreExpired ='someOfMedicinesAreExpired';
-  static const theOrderHasBeenAddedSuccessfully ='theOrderHasBeenAddedSuccessfully';
-  static const paid ='paid';
-  static const unpaid ='unpaid';
+  static const someOfMedicinesAreExpired = 'someOfMedicinesAreExpired';
+  static const theOrderHasBeenAddedSuccessfully =
+      'theOrderHasBeenAddedSuccessfully';
+  static const paid = 'paid';
+  static const unpaid = 'unpaid';
 }

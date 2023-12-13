@@ -82,8 +82,7 @@ class CartScreen extends StatelessWidget {
                         flex: 3,
                         child: state is CartLoadingState
                             ? const SpinKitThreeBounce(
-                                color: AppColor.buttonColor,
-                              )
+                                color: AppColor.buttonColor)
                             : CustomButton(
                                 onTap: cubit.order,
                                 text: AppStrings.order.tr,

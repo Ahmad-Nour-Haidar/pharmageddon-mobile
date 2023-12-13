@@ -105,9 +105,7 @@ class VerifyCodeScreen extends StatelessWidget {
                   ),
                   const Gap(25),
                   if (state is VerifyCodeLoadingState)
-                    const SpinKitThreeBounce(
-                      color: AppColor.buttonColor,
-                    ),
+                    const SpinKitThreeBounce(color: AppColor.buttonColor),
                   if (state is! VerifyCodeLoadingState)
                     CustomButton(
                       onTap: cubit.verifyCode,

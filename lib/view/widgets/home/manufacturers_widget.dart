@@ -66,22 +66,22 @@ class ManufacturersListWidget extends StatelessWidget {
         child: data.isEmpty
             ? ListView(children: [AppInjection.getIt<AppWidget>().noData])
             : ListView(
-              children: [
-                Center(
-                  child: Wrap(
-                    spacing: 30,
-                    runSpacing: 20,
-                    children: List.generate(
-                      data.length,
-                      (index) => ManufacturerWidget(
-                        model: data[index],
+                children: [
+                  Center(
+                    child: Wrap(
+                      spacing: 30,
+                      runSpacing: 20,
+                      children: List.generate(
+                        data.length,
+                        (index) => ManufacturerWidget(
+                          model: data[index],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const Gap(30),
-              ],
-            ),
+                  const Gap(30),
+                ],
+              ),
       ),
     );
   }

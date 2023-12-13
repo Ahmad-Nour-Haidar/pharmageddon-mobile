@@ -27,6 +27,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
 
   void initial(OrderModel model) {
     this.model = model;
+    _update(OrderDetailsSuccessState());
     getDetails();
   }
 
@@ -39,6 +40,9 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     for (final e in data) {
       x += getQuantityOfMedicine(e);
     }
+    if (x == 0) {
+      x = model.totalQuantity!;
+    }
     return x;
   }
 
@@ -47,6 +51,9 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     for (final e in data) {
       double p = e.priceWhenOrdered! * getQuantityOfMedicine(e);
       x += p;
+    }
+    if (x == 0) {
+      x = model.totalPrice!;
     }
     return x;
   }
@@ -58,7 +65,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
   }
 
   Future<void> getDetails() async {
-    _update(OrderDetailsLoadingState());
+    _update(OrderDetailsGetLoadingState());
     final queryParameters = {
       AppRKeys.id: model.id,
     };

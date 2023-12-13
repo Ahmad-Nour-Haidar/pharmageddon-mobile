@@ -20,3 +20,6 @@ class OrderDetailsFailureState extends OrderDetailsState {
 class OrderDetailsLoadingCancelState extends OrderDetailsState {}
 
 class OrderDetailsSuccessCancelState extends OrderDetailsState {}
+
+// get details
+class OrderDetailsGetLoadingState extends OrderDetailsState {}

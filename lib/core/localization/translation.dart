@@ -116,9 +116,12 @@ class MyTranslation extends Translations {
           AppStrings.orderDetails: 'Order Details',
           AppStrings.cancel: 'Cancel',
           AppStrings.back: 'Back',
-          AppStrings.quantitiesOfSomeMedicinesAreNotAvailable: 'Quantities of some medicines are not available.',
-          AppStrings.someOfMedicinesAreExpired: 'Some of medicines are expired.',
-          AppStrings.theOrderHasBeenAddedSuccessfully: 'The order has been added successfully.',
+          AppStrings.quantitiesOfSomeMedicinesAreNotAvailable:
+              'Quantities of some medicines are not available.',
+          AppStrings.someOfMedicinesAreExpired:
+              'Some of medicines are expired.',
+          AppStrings.theOrderHasBeenAddedSuccessfully:
+              'The order has been added successfully.',
           AppStrings.paid: 'Paid',
           AppStrings.unpaid: 'Un paid',
         },
@@ -232,7 +235,8 @@ class MyTranslation extends Translations {
           AppStrings.orderDetails: 'تفاصيل الطلب',
           AppStrings.cancel: 'الغاء',
           AppStrings.back: 'تراجع',
-          AppStrings.quantitiesOfSomeMedicinesAreNotAvailable: 'كميات بعض الأدوية غير متوفرة.',
+          AppStrings.quantitiesOfSomeMedicinesAreNotAvailable:
+              'كميات بعض الأدوية غير متوفرة.',
           AppStrings.someOfMedicinesAreExpired: 'بعض الأدوية منتهية الصلاحية.',
           AppStrings.theOrderHasBeenAddedSuccessfully: 'تمت إضافة الطلب بنجاح.',
           AppStrings.paid: 'مدفوع',

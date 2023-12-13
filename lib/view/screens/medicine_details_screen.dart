@@ -128,8 +128,7 @@ class MedicationDetailsScreen extends StatelessWidget {
                           const Gap(30),
                           if (state is MedicationDetailsLoadingState)
                             const SpinKitThreeBounce(
-                              color: AppColor.buttonColor,
-                            ),
+                                color: AppColor.buttonColor),
                           if (state is! MedicationDetailsLoadingState)
                             Center(
                               child: CustomButton(

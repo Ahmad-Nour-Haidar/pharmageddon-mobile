@@ -13,14 +13,14 @@ class OrderModel {
 
   OrderModel(
       {this.id,
-        this.pharmacistUsername,
-        this.orderStatus,
-        this.paymentStatus,
-        this.totalQuantity,
-        this.totalPrice,
-        this.receivedAt,
-        this.hasCanceled,
-        this.createdAt});
+      this.pharmacistUsername,
+      this.orderStatus,
+      this.paymentStatus,
+      this.totalQuantity,
+      this.totalPrice,
+      this.receivedAt,
+      this.hasCanceled,
+      this.createdAt});
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

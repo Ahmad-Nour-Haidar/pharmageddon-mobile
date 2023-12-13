@@ -1,8 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:pharmageddon_mobile/core/constant/app_local_data.dart';
-import 'package:pharmageddon_mobile/data/static_data/effect_category.dart';
-import 'package:pharmageddon_mobile/data/static_data/manufacturer.dart';
-import 'package:pharmageddon_mobile/data/static_data/medicines.dart';
 
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_link.dart';

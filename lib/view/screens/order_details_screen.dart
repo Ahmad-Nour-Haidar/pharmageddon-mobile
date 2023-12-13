@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/order_details_cubit/order_details_cubit.dart';
@@ -11,6 +12,7 @@ import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/order_details_widget.dart';
 import '../../controllers/order_details_cubit/order_details_state.dart';
+import '../../core/constant/app_color.dart';
 import '../../core/services/dependency_injection.dart';
 import '../widgets/top_widget_order_details_screen.dart';
 
@@ -47,6 +49,9 @@ class OrderDetailsScreen extends StatelessWidget {
                     totalQuantity: cubit.totalQuantity,
                   ),
                   const Gap(10),
+                  if (state is OrderDetailsGetLoadingState) const Gap(50),
+                  if (state is OrderDetailsGetLoadingState)
+                    const SpinKitFoldingCube(color: AppColor.buttonColor),
                   OrderDetailsList(
                     data: cubit.data,
                     enableEdit: cubit.isEdit,

@@ -134,9 +134,7 @@ class RegisterScreen extends StatelessWidget {
                     }),
                     const Gap(25),
                     if (state is RegisterLoadingState)
-                      const SpinKitThreeBounce(
-                        color: AppColor.buttonColor,
-                      ),
+                      const SpinKitThreeBounce(color: AppColor.buttonColor),
                     if (state is! RegisterLoadingState)
                       CustomButton(
                         onTap: cubit.register,
