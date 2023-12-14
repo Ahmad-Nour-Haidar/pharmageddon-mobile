@@ -23,6 +23,10 @@ class ImageHelper {
       sourcePath: file.path,
       compressQuality: 100,
       cropStyle: style,
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
+      ],
+      compressFormat: ImageCompressFormat.png,
       uiSettings: [
         AndroidUiSettings(),
       ],

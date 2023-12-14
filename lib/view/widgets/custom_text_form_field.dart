@@ -83,12 +83,13 @@ class CustomTextFormField extends StatelessWidget {
         obscureText: obscureText ?? false,
         textInputAction: textInputAction,
         keyboardType: keyboardType,
+        style: const TextStyle(color: AppColor.black),
         decoration: InputDecoration(
           labelText: hintText,
           // helperText: " ",
           errorMaxLines: 3,
           fillColor: fillColor,
-          filled: true,
+          filled: enabled,
           // contentPadding: contentPadding,
           // hintTextDirection:
           //     isEnglish() ? TextDirection.ltr : TextDirection.rtl,
@@ -117,9 +118,13 @@ class CustomTextFormField extends StatelessWidget {
                   ),
                 )
               : null,
-          border: OutlineInputBorder(
+          // border: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(borderRadius),
+          //   borderSide: const BorderSide(color: AppColor.gray2, width: 1),
+          // ),
+          disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: const BorderSide(color: AppColor.gray2, width: 1),
+            borderSide: const BorderSide(color: AppColor.transparent, width: 1),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),

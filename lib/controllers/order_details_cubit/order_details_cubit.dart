@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/model/order_model.dart';
-import 'package:pharmageddon_mobile/print.dart';
 import '../../core/constant/app_request_keys.dart';
 import '../../data/remote/order_data.dart';
 import '../../model/order_details_model.dart';
@@ -56,12 +55,6 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
       x = model.totalPrice!;
     }
     return x;
-  }
-
-  void print() {
-    for (final element in data) {
-      printme.cyan('${element.medicineId} : ${element.totalQuantity}');
-    }
   }
 
   Future<void> getDetails() async {

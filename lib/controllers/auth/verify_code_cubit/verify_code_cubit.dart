@@ -84,7 +84,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
         final message = AppStrings.verifyCodeNotCorrect.tr;
         _update(VerifyCodeFailureState(FailureState(message: message)));
       } else {
-        await storeUser(response);
+        await storeUser(response[AppRKeys.data][AppRKeys.user]);
         _update(VerifyCodeSuccessState());
       }
     });

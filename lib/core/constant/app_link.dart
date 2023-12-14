@@ -36,7 +36,7 @@ class AppLink {
   static const resetPassword = '$_serverApi/auth/reset_password';
   static const profile = '$_serverApi/auth/get_user_profile';
   static const logout = '$_serverApi/auth/logout';
-  static const edit = '$_serverApi/auth/update_user_profile';
+  static const update = '$_serverApi/user/update_user_profile';
   static const userImage = '$_serverImage/users';
 
   // medicine

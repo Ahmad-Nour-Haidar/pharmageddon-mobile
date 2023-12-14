@@ -24,7 +24,6 @@ class AppColor {
   static const Color green = Color(0xFF4EF037);
   static const Color green3 = Colors.green;
   static const Color textColor = Color(0xff7A0F88);
-  static const Color shadowColor = Color(0xFFA2DBFA);
 
   static const primary = contentColorCyan;
   static const menuBackground = Color(0xFF090912);

@@ -41,7 +41,7 @@ class OrdersLoading extends StatelessWidget {
               children: List.generate(
                 3,
                 (index) => CustomShimmer(
-                  baseColor: AppColor.shadowColor,
+                  baseColor: AppColor.background,
                   child: Container(
                     margin: AppPadding.padding5,
                     decoration: BoxDecoration(

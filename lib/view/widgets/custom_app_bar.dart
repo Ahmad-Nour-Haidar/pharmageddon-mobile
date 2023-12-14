@@ -21,8 +21,11 @@ class CustomAppBar {
     this.showOrders = false,
     this.showFavorites = false,
     this.showReports = false,
+    this.showUserEdit = false,
+    this.onTapEditUser,
   });
 
+  final void Function()? onTapEditUser;
   final String title;
   final bool showArrowBack;
   final bool showOptions;
@@ -32,6 +35,7 @@ class CustomAppBar {
   final bool showFavorites;
   final bool showReports;
   final bool showLogout;
+  final bool showUserEdit;
 
   AppBar build() {
     return AppBar(
@@ -60,6 +64,11 @@ class CustomAppBar {
               icon: SvgPicture.asset(AppSvg.search),
             );
           }),
+        if (showUserEdit)
+          IconButton(
+            onPressed: onTapEditUser,
+            icon: SvgPicture.asset(AppSvg.userPen),
+          ),
         if (showOptions)
           CustomPopupMenuButton(
             showCart: showCart,

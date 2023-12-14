@@ -8,6 +8,7 @@ import '../../core/constant/app_color.dart';
 import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_strings.dart';
 import '../../core/constant/app_svg.dart';
+import '../../core/functions/functions.dart';
 import '../../core/functions/navigator.dart';
 import '../../core/resources/app_text_theme.dart';
 import '../../routes.dart';
@@ -58,10 +59,10 @@ class CustomPopupMenuButton extends StatelessWidget {
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                   ),
-                  child: const CustomCachedNetworkImage(
+                  child: CustomCachedNetworkImage(
                     width: 60,
                     height: 60,
-                    imageUrl: '',
+                    imageUrl: getImageUserUrl(),
                     errorWidget: ErrorWidgetShow.user,
                   ),
                 ),

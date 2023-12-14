@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/data/local/app_hive.dart';
 
 import '../../controllers/local_controller.dart';
@@ -23,8 +22,10 @@ bool isEnglish() =>
 String getCodeLang() =>
     AppInjection.getIt<LocaleController>().locale.languageCode;
 
-Future<void> storeUser(Map<String, dynamic> response) async {
-  final user = User.fromJson(response[AppRKeys.data][AppRKeys.user]);
+Future<void> storeUser(Map<String, dynamic> json) async {
+  json['Authorization'] =
+      AppLocalData.user!.authorization ?? json['Authorization'];
+  final user = User.fromJson(json);
   final appHive = AppInjection.getIt<AppHive>();
   appHive.store(AppSKeys.userKey, user.toJson());
   AppLocalData.user = user;
@@ -204,3 +205,6 @@ String getMedicationModelDescription(MedicationModel? model) {
   }
   return s;
 }
+
+String getImageUserUrl() =>
+    '${AppLink.userImage}/${AppLocalData.user!.imageName}';

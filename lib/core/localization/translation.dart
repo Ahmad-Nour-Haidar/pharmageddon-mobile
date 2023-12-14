@@ -124,6 +124,7 @@ class MyTranslation extends Translations {
               'The order has been added successfully.',
           AppStrings.paid: 'Paid',
           AppStrings.unpaid: 'Un paid',
+          AppStrings.updatedSuccessfully: 'Updated successfully',
         },
         'ar': {
           AppStrings.language: 'اللغة',
@@ -242,6 +243,7 @@ class MyTranslation extends Translations {
           AppStrings.theOrderHasBeenAddedSuccessfully: 'تمت إضافة الطلب بنجاح.',
           AppStrings.paid: 'مدفوع',
           AppStrings.unpaid: 'غير مدفوع',
+          AppStrings.updatedSuccessfully: 'تم التعديل بنجاح',
         },
       };
 }

@@ -27,6 +27,7 @@ class AppStrings {
   static const phone = 'phone';
   static const thePhoneNumberMustStartWith = 'thePhoneNumberMustStartWith';
   static const passwordMustBeAtLeast8 = 'passwordMustBeAtLeast8';
+  static const updatedSuccessfully = 'updatedSuccessfully';
 
   // login screen
   static const welcomeBack = 'welcomeBack';
