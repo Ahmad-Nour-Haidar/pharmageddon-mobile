@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../constant/app_strings.dart';
 
 class MyTranslation extends Translations {

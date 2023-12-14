@@ -15,6 +15,7 @@ import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_cu
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../controllers/order_cubit/order_cubit.dart';
 import '../../controllers/order_details_cubit/order_details_cubit.dart';
+import '../../controllers/profile_cubit/profile_cubit.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
@@ -31,6 +32,7 @@ import '../../data/remote/reports_data.dart';
 import '../../data/remote/search_data.dart';
 import '../../my_bloc_observer.dart';
 import '../../view/widgets/app_widget.dart';
+import '../class/image_helper.dart';
 
 abstract class AppInjection {
   static final getIt = GetIt.instance;
@@ -60,6 +62,7 @@ abstract class AppInjection {
     getIt.registerLazySingleton(() => cartQuantityData);
     getIt.registerLazySingleton(() => CartRemoteData());
     getIt.registerLazySingleton(() => ReportsRemoteData());
+    getIt.registerLazySingleton(() => ImageHelper());
 
     /// controllers
     // auth
@@ -68,6 +71,7 @@ abstract class AppInjection {
     getIt.registerFactory(() => CheckEmailCubit());
     getIt.registerFactory(() => ResetPasswordCubit());
     getIt.registerFactory(() => VerifyCodeCubit());
+    getIt.registerFactory(() => ProfileCubit());
 
     // favorite => <singleton>
     getIt.registerLazySingleton(() => FavoriteCubit());
