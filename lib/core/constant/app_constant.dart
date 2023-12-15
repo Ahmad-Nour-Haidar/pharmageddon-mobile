@@ -25,8 +25,8 @@ class AppConstant {
   ];
 
   static const ordersList = [
-    AppSvg.boxOpen,
-    AppSvg.sent,
-    AppSvg.boxCircleCheck,
+    ScreenShow.preparing,
+    ScreenShow.hasBeenSent,
+    ScreenShow.received,
   ];
 }

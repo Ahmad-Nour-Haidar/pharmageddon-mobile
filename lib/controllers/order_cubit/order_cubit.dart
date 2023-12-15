@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_mobile/core/constant/app_link.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
-import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
+import 'package:pharmageddon_mobile/core/enums/order_status.dart';
+import 'package:pharmageddon_mobile/core/enums/screens.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import '../../data/remote/order_data.dart';
 import '../../model/order_model.dart';
@@ -18,7 +19,7 @@ class OrderCubit extends Cubit<OrderState> {
   final List<OrderModel> _preparingOrders = [];
   final List<OrderModel> _hasBeenSentOrders = [];
   final List<OrderModel> _receivedOrders = [];
-  int _indexScreen = 0;
+  var currentScreen = ScreenShow.preparing;
 
   void _update(OrderState state) {
     if (isClosed) return;
@@ -26,14 +27,38 @@ class OrderCubit extends Cubit<OrderState> {
   }
 
   void initial() {
-    getPreparing();
+    getAll();
+  }
+
+  Future<void> getAll({bool forceGetData = false}) async {
+    if (!(_preparingOrders.isEmpty || forceGetData)) return;
+    _update(OrderLoadingState());
+    final response = await _orderRemoteData.getOrders(
+      url: AppLink.getAll,
+    );
+    response.fold((l) {
+      _update(OrderFailureState(l));
+    }, (r) {
+      final List temp = r[AppRKeys.data][AppRKeys.orders];
+      _preparingOrders.clear();
+      _hasBeenSentOrders.clear();
+      _receivedOrders.clear();
+      for (final e in temp) {
+        final order = OrderModel.fromJson(e);
+        if (order.orderStatus == OrderStatus.preparing) {
+          _preparingOrders.add(order);
+        } else if (order.orderStatus == OrderStatus.hasBeenSent) {
+          _hasBeenSentOrders.add(order);
+        } else {
+          _receivedOrders.add(order);
+        }
+      }
+      _update(OrderSuccessState());
+    });
   }
 
   Future<void> getPreparing({bool forceGetData = false}) async {
-    if (!(_preparingOrders.isEmpty || forceGetData)) {
-      _update(OrderSuccessState());
-      return;
-    }
+    if (!(_preparingOrders.isEmpty || forceGetData)) return;
     _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders(
       url: AppLink.getAllPreparing,
@@ -49,10 +74,7 @@ class OrderCubit extends Cubit<OrderState> {
   }
 
   Future<void> getHasBeenSent({bool forceGetData = false}) async {
-    if (!(_hasBeenSentOrders.isEmpty || forceGetData)) {
-      _update(OrderSuccessState());
-      return;
-    }
+    if (!(_hasBeenSentOrders.isEmpty || forceGetData)) return;
     _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders(
       url: AppLink.getAllSent,
@@ -68,10 +90,7 @@ class OrderCubit extends Cubit<OrderState> {
   }
 
   Future<void> getReceived({bool forceGetData = false}) async {
-    if (!(_receivedOrders.isEmpty || forceGetData)) {
-      _update(OrderSuccessState());
-      return;
-    }
+    if (!(_receivedOrders.isEmpty || forceGetData)) return;
     _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders(
       url: AppLink.getAllReceived,
@@ -86,36 +105,15 @@ class OrderCubit extends Cubit<OrderState> {
     });
   }
 
-  int get indexScreen => _indexScreen;
-
-  set indexScreen(int value) {
-    _indexScreen = value;
-    _update(OrderChangeState());
-    getData();
-  }
-
-  final _titles = [
-    AppStrings.preparing,
-    AppStrings.hasBeenSent,
-    AppStrings.received,
-  ];
-
-  String get title => _titles[indexScreen];
-
   List<OrderModel> get data {
-    if (_indexScreen == 0) return _preparingOrders;
-    if (_indexScreen == 1) return _hasBeenSentOrders;
+    if (currentScreen == ScreenShow.preparing) return _preparingOrders;
+    if (currentScreen == ScreenShow.hasBeenSent) return _hasBeenSentOrders;
     return _receivedOrders;
   }
 
-  void getData() {
-    if (_indexScreen == 0) {
-      getPreparing(forceGetData: true);
-    } else if (_indexScreen == 1) {
-      getHasBeenSent(forceGetData: true);
-    } else {
-      getReceived(forceGetData: true);
-    }
+  void changeScreen(ScreenShow s) {
+    currentScreen = s;
+    _update(OrderChangeState());
   }
 
   Future<void> removeFromList(OrderModel model) async {

@@ -96,7 +96,7 @@ class OrderListWidget extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: onRefresh,
       child: data.isEmpty
-          ? Center(child: AppInjection.getIt<AppWidget>().noData)
+          ? ListView(children: [AppInjection.getIt<AppWidget>().noData],)
           : ListView.separated(
               padding: AppPadding.screenPaddingAll,
               itemBuilder: (context, index) => OrderWidget(

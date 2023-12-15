@@ -17,6 +17,18 @@ enum ScreenShow {
   effect(
     titleScreen: AppStrings.pharmacologicalEffect,
     pathIcon: AppSvg.chemistry,
+  ),
+  hasBeenSent(
+    titleScreen: AppStrings.hasBeenSent,
+    pathIcon: AppSvg.sent,
+  ),
+  received(
+    titleScreen: AppStrings.received,
+    pathIcon: AppSvg.boxCircleCheck,
+  ),
+  preparing(
+    titleScreen: AppStrings.preparing,
+    pathIcon: AppSvg.boxOpen,
   );
 
   final String titleScreen;

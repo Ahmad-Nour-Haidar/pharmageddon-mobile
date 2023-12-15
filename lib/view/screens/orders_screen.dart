@@ -21,20 +21,23 @@ class OrdersScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         final cubit = OrderCubit.get(context);
-        final body = state is OrderSuccessState
-            ? OrderListWidget(
+        final body = state is OrderLoadingState
+            ? OrdersLoading(
+                onRefresh: () async => cubit.getAll(forceGetData: true))
+            : OrderListWidget(
                 data: cubit.data,
-                onRefresh: () async => cubit.getData(),
+                onRefresh: () async => cubit.getAll(forceGetData: true),
                 canPushNamed: true,
-              )
-            : OrdersLoading(onRefresh: () async => cubit.getData());
+              );
         return Scaffold(
-          appBar: CustomAppBar(title: cubit.title.tr).build(),
-          // bottomNavigationBar: CustomNavBar(
-          //   onChange: (index) => cubit.indexScreen = index,
-          //   list: AppConstant.ordersList,
-          //   initialScreen: cubit.indexScreen,
-          // ),
+          appBar: CustomAppBar(
+            title: cubit.currentScreen.titleScreen.tr,
+          ).build(),
+          bottomNavigationBar: CustomNavBar(
+            onChange: cubit.changeScreen,
+            list: AppConstant.ordersList,
+            initialScreen: cubit.currentScreen,
+          ),
           body: body,
         );
       },
