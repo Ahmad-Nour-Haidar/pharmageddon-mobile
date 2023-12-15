@@ -47,8 +47,7 @@ class CartQuantityData {
     final List<Map<String, int>> list = _cart.entries.map((entry) {
       return {
         AppRKeys.medicine_id: entry.key,
-        // todo
-        AppRKeys.quantity: 121212,
+        AppRKeys.quantity: entry.value,
       };
     }).toList();
     final data = {AppRKeys.medicines: list};

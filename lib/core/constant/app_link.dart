@@ -40,18 +40,19 @@ class AppLink {
   static const userImage = '$_serverImage/users';
 
   // medicine
-  static const getAllMedicine = '$_serverApi/medicine/get_all';
-  static const getAllMedicineDiscount = '$_serverApi/medicine/get_all_discount';
+  static const medicineGetAll = '$_serverApi/medicine/get_all';
+  static const medicineGetAllDiscount = '$_serverApi/medicine/get_all_discount';
   static const medicineImage = '$_serverImage/medicines';
 
   // manufacturer
-  static const getAllManufacturer = '$_serverApi/manufacturer/get_all_c';
-  static const getAllMedicinesOfManufacturer = '$_serverApi/class/manufacturer';
+  static const manufacturerGetAll = '$_serverApi/manufacturer/get_all_c';
+  static const manufacturerGetAllMedicines = '$_serverApi/class/manufacturer';
 
   // effect categories
-  static const categoriesImage = '$_serverImage/effect_categories';
-  static const getAllEffectCategories = '$_serverApi/effect_category/get_all_c';
-  static const getAllMedicinesOfEffect = '$_serverApi/class/effect_category';
+  static const effectCategoriesImage = '$_serverImage/effect_categories';
+  static const effectCategoriesGetAll = '$_serverApi/effect_category/get_all_c';
+  static const effectCategoriesGetAllMedicines =
+      '$_serverApi/class/effect_category';
 
   // favorite
   static const favoriteGetAll = '$_serverApi/favourite_medicine/get_all';
@@ -63,12 +64,12 @@ class AppLink {
 
   // order
   static const order = '$_serverApi/order/create';
-  static const getAll = '$_serverApi/order/get_all';
-  static const getAllPreparing = '$_serverApi/order/get_all_preparing';
-  static const getAllSent = '$_serverApi/order/get_all_sent';
-  static const getAllReceived = '$_serverApi/order/get_all_received';
-  static const getOrderDetails = '$_serverApi/order/get';
-  static const delete = '$_serverApi/order/delete';
+  static const orderGetAll = '$_serverApi/order/get_all';
+  static const orderGetAllPreparing = '$_serverApi/order/get_all_preparing';
+  static const orderGetAllSent = '$_serverApi/order/get_all_sent';
+  static const orderGetAllReceived = '$_serverApi/order/get_all_received';
+  static const orderGetOrderDetails = '$_serverApi/order/get';
+  static const orderDelete = '$_serverApi/order/delete';
 
   // report
   static const report = '$_serverApi/report';

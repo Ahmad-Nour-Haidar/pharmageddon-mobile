@@ -14,7 +14,7 @@ class EffectMedicinesRemoteData {
   }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
-      linkUrl: AppLink.getAllMedicinesOfEffect,
+      linkUrl: AppLink.effectCategoriesGetAllMedicines,
       queryParameters: queryParameters,
       token: token,
     );

@@ -12,7 +12,7 @@ class HomeRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getMedications() async {
     final token = AppLocalData.user?.authorization;
     final response = await _crud.getData(
-      linkUrl: AppLink.getAllMedicine,
+      linkUrl: AppLink.medicineGetAll,
       token: token,
     );
     return response;
@@ -21,7 +21,7 @@ class HomeRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getDiscount() async {
     final token = AppLocalData.user?.authorization;
     final response = await _crud.getData(
-      linkUrl: AppLink.getAllMedicineDiscount,
+      linkUrl: AppLink.medicineGetAllDiscount,
       token: token,
     );
     return response;
@@ -31,7 +31,7 @@ class HomeRemoteData {
       getEffectsCategories() async {
     final token = AppLocalData.user?.authorization;
     final response = await _crud.getData(
-      linkUrl: AppLink.getAllEffectCategories,
+      linkUrl: AppLink.effectCategoriesGetAll,
       token: token,
     );
     return response;
@@ -40,7 +40,7 @@ class HomeRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getManufacturers() async {
     final token = AppLocalData.user?.authorization;
     final response = await _crud.getData(
-      linkUrl: AppLink.getAllManufacturer,
+      linkUrl: AppLink.manufacturerGetAll,
       token: token,
     );
     return response;

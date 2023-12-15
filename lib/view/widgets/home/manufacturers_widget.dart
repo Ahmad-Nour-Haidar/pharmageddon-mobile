@@ -64,7 +64,10 @@ class ManufacturersListWidget extends StatelessWidget {
       child: RefreshIndicator(
         onRefresh: onRefresh,
         child: data.isEmpty
-            ? ListView(children: [AppInjection.getIt<AppWidget>().noData])
+            ? ListView(children: [
+                const Gap(100),
+                AppInjection.getIt<AppWidget>().noData
+              ])
             : ListView(
                 children: [
                   Center(

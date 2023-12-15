@@ -24,7 +24,7 @@ class EffectCategoryWidget extends StatelessWidget {
   final EffectCategoryModel model;
 
   String get url {
-    final s = '${AppLink.categoriesImage}/${model.imageName}';
+    final s = '${AppLink.effectCategoriesImage}/${model.imageName}';
     return s;
   }
 
@@ -105,7 +105,10 @@ class EffectCategoriesListWidget extends StatelessWidget {
       child: RefreshIndicator(
         onRefresh: onRefresh,
         child: data.isEmpty
-            ? ListView(children: [AppInjection.getIt<AppWidget>().noData])
+            ? ListView(children: [
+                const Gap(100),
+                AppInjection.getIt<AppWidget>().noData
+              ])
             : ListView(
                 children: [
                   Center(

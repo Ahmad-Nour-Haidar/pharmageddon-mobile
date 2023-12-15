@@ -34,7 +34,7 @@ class OrderCubit extends Cubit<OrderState> {
     if (!(_preparingOrders.isEmpty || forceGetData)) return;
     _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders(
-      url: AppLink.getAll,
+      url: AppLink.orderGetAll,
     );
     response.fold((l) {
       _update(OrderFailureState(l));
@@ -61,7 +61,7 @@ class OrderCubit extends Cubit<OrderState> {
     if (!(_preparingOrders.isEmpty || forceGetData)) return;
     _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders(
-      url: AppLink.getAllPreparing,
+      url: AppLink.orderGetAllPreparing,
     );
     response.fold((l) {
       _update(OrderFailureState(l));
@@ -77,7 +77,7 @@ class OrderCubit extends Cubit<OrderState> {
     if (!(_hasBeenSentOrders.isEmpty || forceGetData)) return;
     _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders(
-      url: AppLink.getAllSent,
+      url: AppLink.orderGetAllSent,
     );
     response.fold((l) {
       _update(OrderFailureState(l));
@@ -93,7 +93,7 @@ class OrderCubit extends Cubit<OrderState> {
     if (!(_receivedOrders.isEmpty || forceGetData)) return;
     _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders(
-      url: AppLink.getAllReceived,
+      url: AppLink.orderGetAllReceived,
     );
     response.fold((l) {
       _update(OrderFailureState(l));

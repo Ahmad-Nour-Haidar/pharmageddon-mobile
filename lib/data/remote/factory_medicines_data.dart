@@ -14,7 +14,7 @@ class FactoryMedicinesRemoteData {
   }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
-      linkUrl: AppLink.getAllMedicinesOfManufacturer,
+      linkUrl: AppLink.manufacturerGetAllMedicines,
       queryParameters: queryParameters,
       token: token,
     );

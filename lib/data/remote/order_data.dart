@@ -36,7 +36,7 @@ class OrderRemoteData {
   }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
-      linkUrl: AppLink.getOrderDetails,
+      linkUrl: AppLink.orderGetOrderDetails,
       token: token,
       queryParameters: queryParameters,
     );
@@ -48,7 +48,7 @@ class OrderRemoteData {
   }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.deleteData(
-      linkUrl: AppLink.delete,
+      linkUrl: AppLink.orderDelete,
       token: token,
       data: data,
     );

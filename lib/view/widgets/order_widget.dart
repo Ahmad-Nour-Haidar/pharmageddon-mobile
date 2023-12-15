@@ -97,7 +97,10 @@ class OrderListWidget extends StatelessWidget {
       onRefresh: onRefresh,
       child: data.isEmpty
           ? ListView(
-              children: [AppInjection.getIt<AppWidget>().noData],
+              children: [
+                const Gap(100),
+                AppInjection.getIt<AppWidget>().noData
+              ],
             )
           : ListView.separated(
               padding: AppPadding.screenPaddingAll,
