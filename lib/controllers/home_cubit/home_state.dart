@@ -3,8 +3,7 @@ import '../../core/class/parent_state.dart';
 abstract class HomeState {}
 
 class HomeInitialState extends HomeState {}
-
-// class HomeNoDataState extends HomeState {}
+class HomeChangeState extends HomeState {}
 
 class HomeGetFailureState extends HomeState {
   final ParentState state;
@@ -22,14 +21,14 @@ class HomeGetMedicationsFailureState extends HomeState {
   HomeGetMedicationsFailureState(this.state);
 }
 
-class HomeGetFactoriesLoadingState extends HomeState {}
+class HomeGetManufacturersLoadingState extends HomeState {}
 
-class HomeGetFactoriesSuccessState extends HomeState {}
+class HomeGetManufacturersSuccessState extends HomeState {}
 
-class HomeGetFactoriesFailureState extends HomeState {
+class HomeGetManufacturersFailureState extends HomeState {
   final ParentState state;
 
-  HomeGetFactoriesFailureState(this.state);
+  HomeGetManufacturersFailureState(this.state);
 }
 
 class HomeGetEffectCategoriesLoadingState extends HomeState {}

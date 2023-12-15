@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:pharmageddon_mobile/core/enums/screens.dart';
 
 import 'app_svg.dart';
 
@@ -17,10 +18,10 @@ class AppConstant {
   // static const localAr = Locale(ar);
 
   static const homeList = [
-    AppSvg.text,
-    AppSvg.all,
-    AppSvg.chemistry,
-    AppSvg.percentage,
+    ScreenShow.medications,
+    ScreenShow.manufacturer,
+    ScreenShow.effect,
+    ScreenShow.discount,
   ];
 
   static const ordersList = [

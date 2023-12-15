@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_mobile/core/class/parent_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
+import 'package:pharmageddon_mobile/core/enums/screens.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/home_data.dart';
 import 'package:pharmageddon_mobile/model/effect_category_model.dart';
 import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
-import '../../core/constant/app_strings.dart';
 import '../../model/medication_model.dart';
 import 'home_state.dart';
 
@@ -15,12 +15,13 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitialState());
 
   static HomeCubit get(BuildContext context) => BlocProvider.of(context);
-  final homeRemoteData = AppInjection.getIt<HomeRemoteData>();
-  late int _initialIndexScreen;
+  final _homeRemoteData = AppInjection.getIt<HomeRemoteData>();
+
   final List<MedicationModel> medications = [], discountsData = [];
   final Map<int, MedicationModel> medicationsMap = {};
   final List<ManufacturerModel> manufacturers = [];
   final List<EffectCategoryModel> effectCategories = [];
+  var currentScreen = ScreenShow.medications;
 
   void _update(HomeState state) {
     if (isClosed) return;
@@ -28,17 +29,13 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void initial() {
-    _initialIndexScreen = 1;
     getMedications();
   }
 
   Future<void> getMedications({bool forceGetData = false}) async {
-    if (!(medications.isEmpty || forceGetData)) {
-      _update(HomeGetMedicationsSuccessState());
-      return;
-    }
+    if (!(medications.isEmpty || forceGetData)) return;
     _update(HomeGetMedicationsLoadingState());
-    final response = await homeRemoteData.getMedications();
+    final response = await _homeRemoteData.getMedications();
     response.fold((l) {
       _update(HomeGetFailureState(l));
     }, (r) {
@@ -60,12 +57,9 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> getDiscounts({bool forceGetData = false}) async {
-    if (!(discountsData.isEmpty || forceGetData)) {
-      _update(HomeGetDiscountsSuccessState());
-      return;
-    }
+    if (!(discountsData.isEmpty || forceGetData)) return;
     _update(HomeGetDiscountsLoadingState());
-    final response = await homeRemoteData.getDiscount();
+    final response = await _homeRemoteData.getDiscount();
     response.fold((l) {
       _update(HomeGetFailureState(l));
     }, (r) {
@@ -82,29 +76,23 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> getManufacturers({bool forceGetData = false}) async {
-    if (!(manufacturers.isEmpty || forceGetData)) {
-      _update(HomeGetFactoriesSuccessState());
-      return;
-    }
-    _update(HomeGetFactoriesLoadingState());
-    final response = await homeRemoteData.getManufacturers();
+    if (!(manufacturers.isEmpty || forceGetData)) return;
+    _update(HomeGetManufacturersLoadingState());
+    final response = await _homeRemoteData.getManufacturers();
     response.fold((l) {
       _update(HomeGetFailureState(l));
     }, (r) {
       final List temp = r[AppRKeys.data][AppRKeys.manufacturers];
       manufacturers.clear();
       manufacturers.addAll(temp.map((e) => ManufacturerModel.fromJson(e)));
-      _update(HomeGetFactoriesSuccessState());
+      _update(HomeGetManufacturersSuccessState());
     });
   }
 
   Future<void> getEffectCategories({bool forceGetData = false}) async {
-    if (!(effectCategories.isEmpty || forceGetData)) {
-      _update(HomeGetEffectCategoriesSuccessState());
-      return;
-    }
+    if (!(effectCategories.isEmpty || forceGetData)) return;
     _update(HomeGetEffectCategoriesLoadingState());
-    final response = await homeRemoteData.getEffectsCategories();
+    final response = await _homeRemoteData.getEffectsCategories();
     response.fold((l) {
       _update(HomeGetFailureState(l));
     }, (r) {
@@ -115,27 +103,17 @@ class HomeCubit extends Cubit<HomeState> {
     });
   }
 
-  final _titles = [
-    AppStrings.manufacturers,
-    AppStrings.home,
-    AppStrings.pharmacologicalEffect,
-    AppStrings.discounts,
-  ];
-
-  int get indexScreen => _initialIndexScreen;
-
-  void changeScreen(int index) {
-    _initialIndexScreen = index;
-    if (index == 0) {
+  void changeScreen(ScreenShow s) {
+    currentScreen = s;
+    _update(HomeChangeState());
+    if (currentScreen == ScreenShow.manufacturer) {
       getManufacturers();
-    } else if (index == 1) {
+    } else if (currentScreen == ScreenShow.medications) {
       getMedications();
-    } else if (index == 2) {
+    } else if (currentScreen == ScreenShow.effect) {
       getEffectCategories();
     } else {
       getDiscounts();
     }
   }
-
-  String get title => _titles[_initialIndexScreen];
 }

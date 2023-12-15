@@ -7,29 +7,30 @@ import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
+import '../../core/enums/screens.dart';
 
 class CustomNavBar extends StatefulWidget {
   const CustomNavBar({
     super.key,
     required this.onChange,
     required this.list,
-    required this.initialIndex,
+    required this.initialScreen,
   });
 
-  final void Function(int index) onChange;
-  final List<String> list;
-  final int initialIndex;
+  final void Function(ScreenShow currentScreen) onChange;
+  final List<ScreenShow> list;
+  final ScreenShow initialScreen;
 
   @override
   State<CustomNavBar> createState() => _CustomNavBarState();
 }
 
 class _CustomNavBarState extends State<CustomNavBar> {
-  late int index;
+  late ScreenShow currentScreen;
 
   @override
   void initState() {
-    index = widget.initialIndex;
+    currentScreen = widget.initialScreen;
     super.initState();
   }
 
@@ -56,7 +57,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
               children: List.generate(
                 widget.list.length,
                 (index) => Expanded(
-                  child: index == this.index
+                  child: widget.list[index] == currentScreen
                       ? Align(
                           child: SlideInUp(
                             duration: const Duration(milliseconds: 200),
@@ -80,7 +81,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                                             BorderRadius.circular(10)),
                                     child: Align(
                                       child: SvgImage(
-                                        path: widget.list[index],
+                                        path: widget.list[index].pathIcon,
                                         color: AppColor.white,
                                         size: 24,
                                       ),
@@ -100,18 +101,18 @@ class _CustomNavBarState extends State<CustomNavBar> {
             children: List.generate(
               widget.list.length,
               (index) => Expanded(
-                child: index == this.index
+                child: widget.list[index] == currentScreen
                     ? const SizedBox()
                     : InkWell(
                         onTap: () {
                           setState(() {
-                            this.index = index;
+                            currentScreen = widget.list[index];
                           });
-                          widget.onChange(index);
+                          widget.onChange(widget.list[index]);
                         },
                         child: Align(
                           child: SvgImage(
-                            path: widget.list[index],
+                            path: widget.list[index].pathIcon,
                             color: AppColor.white,
                             size: s / 2,
                           ),

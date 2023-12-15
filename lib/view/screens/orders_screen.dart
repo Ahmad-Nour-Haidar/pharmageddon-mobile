@@ -30,11 +30,11 @@ class OrdersScreen extends StatelessWidget {
             : OrdersLoading(onRefresh: () async => cubit.getData());
         return Scaffold(
           appBar: CustomAppBar(title: cubit.title.tr).build(),
-          bottomNavigationBar: CustomNavBar(
-            onChange: (index) => cubit.indexScreen = index,
-            list: AppConstant.ordersList,
-            initialIndex: cubit.indexScreen,
-          ),
+          // bottomNavigationBar: CustomNavBar(
+          //   onChange: (index) => cubit.indexScreen = index,
+          //   list: AppConstant.ordersList,
+          //   initialScreen: cubit.indexScreen,
+          // ),
           body: body,
         );
       },

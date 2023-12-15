@@ -51,6 +51,7 @@ class CartScreen extends StatelessWidget {
                   ),
                   const Gap(10),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Expanded(
                         flex: 5,
