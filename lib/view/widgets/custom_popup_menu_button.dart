@@ -68,8 +68,8 @@ class CustomPopupMenuButton extends StatelessWidget {
                 ),
                 const Gap(20),
                 Text(
-                  AppStrings.profile.tr,
-                  style: AppTextTheme.f18w500black,
+                  AppText.profile.tr,
+                  style: AppTextStyle.f18w500black,
                 )
               ],
             ),
@@ -79,8 +79,8 @@ class CustomPopupMenuButton extends StatelessWidget {
               padding: AppPadding.screenPadding,
               value: AppRoute.cart,
               child: Text(
-                AppStrings.cart.tr,
-                style: AppTextTheme.f18w500black,
+                AppText.cart.tr,
+                style: AppTextStyle.f18w500black,
               ),
             ),
           if (showOrders)
@@ -88,8 +88,8 @@ class CustomPopupMenuButton extends StatelessWidget {
               padding: AppPadding.screenPadding,
               value: AppRoute.orders,
               child: Text(
-                AppStrings.orders.tr,
-                style: AppTextTheme.f18w500black,
+                AppText.orders.tr,
+                style: AppTextStyle.f18w500black,
               ),
             ),
           if (showFavorites)
@@ -97,8 +97,8 @@ class CustomPopupMenuButton extends StatelessWidget {
               padding: AppPadding.screenPadding,
               value: AppRoute.favorites,
               child: Text(
-                AppStrings.favorite.tr,
-                style: AppTextTheme.f18w500black,
+                AppText.favorite.tr,
+                style: AppTextStyle.f18w500black,
               ),
             ),
           if (showReports)
@@ -106,8 +106,8 @@ class CustomPopupMenuButton extends StatelessWidget {
               padding: AppPadding.screenPadding,
               value: AppRoute.reports,
               child: Text(
-                AppStrings.reports.tr,
-                style: AppTextTheme.f18w500black,
+                AppText.reports.tr,
+                style: AppTextStyle.f18w500black,
               ),
             ),
           if (showLogout)
@@ -117,8 +117,8 @@ class CustomPopupMenuButton extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    AppStrings.logOut.tr,
-                    style: AppTextTheme.f18w500black,
+                    AppText.logOut.tr,
+                    style: AppTextStyle.f18w500black,
                   ),
                   const Spacer(),
                   const SvgImage(

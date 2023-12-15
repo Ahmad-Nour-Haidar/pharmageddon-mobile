@@ -66,7 +66,7 @@ class ResetPasswordScreen extends StatelessWidget {
             child: Scaffold(
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
-                title: AppStrings.resetPassword.tr,
+                title: AppText.resetPassword.tr,
                 showOptions: false,
               ).build(),
               body: Form(
@@ -81,7 +81,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     if (cubit.email != null)
                       Text(
                         cubit.message,
-                        style: AppTextTheme.f18w500black,
+                        style: AppTextStyle.f18w500black,
                       ),
                     const Gap(20),
                     SizedBox(
@@ -124,7 +124,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 ? AppSvg.eye
                                 : AppSvg.eyeClose,
                             prefixIcon: AppSvg.user,
-                            hintText: AppStrings.password.tr,
+                            hintText: AppText.password.tr,
                             onFieldSubmitted: (value) {
                               focusNode.requestFocus();
                               return null;
@@ -145,7 +145,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 ? AppSvg.eye
                                 : AppSvg.eyeClose,
                             prefixIcon: AppSvg.user,
-                            hintText: AppStrings.confirm.tr,
+                            hintText: AppText.confirm.tr,
                           ),
                         ],
                       );
@@ -159,8 +159,8 @@ class ResetPasswordScreen extends StatelessWidget {
                           cubit.getVerifyCode();
                         },
                         child: Text(
-                          AppStrings.resendVerifyCode.tr,
-                          style: AppTextTheme.f16w600TextColor2,
+                          AppText.resendVerifyCode.tr,
+                          style: AppTextStyle.f16w600TextColor2,
                         ),
                       ),
                     ),
@@ -170,7 +170,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     if (state is! ResetPasswordLoadingState)
                       CustomButton(
                         onTap: cubit.reset,
-                        text: AppStrings.reset.tr,
+                        text: AppText.reset.tr,
                       ),
                     const Gap(20),
                   ],

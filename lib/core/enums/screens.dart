@@ -3,31 +3,31 @@ import '../constant/app_svg.dart';
 
 enum ScreenShow {
   medications(
-    titleScreen: AppStrings.home,
+    titleScreen: AppText.home,
     pathIcon: AppSvg.all,
   ),
   discount(
-    titleScreen: AppStrings.discounts,
+    titleScreen: AppText.discounts,
     pathIcon: AppSvg.percentage,
   ),
   manufacturer(
-    titleScreen: AppStrings.manufacturers,
+    titleScreen: AppText.manufacturers,
     pathIcon: AppSvg.text,
   ),
   effect(
-    titleScreen: AppStrings.pharmacologicalEffect,
+    titleScreen: AppText.pharmacologicalEffect,
     pathIcon: AppSvg.chemistry,
   ),
   hasBeenSent(
-    titleScreen: AppStrings.hasBeenSent,
+    titleScreen: AppText.hasBeenSent,
     pathIcon: AppSvg.sent,
   ),
   received(
-    titleScreen: AppStrings.received,
+    titleScreen: AppText.received,
     pathIcon: AppSvg.boxCircleCheck,
   ),
   preparing(
-    titleScreen: AppStrings.preparing,
+    titleScreen: AppText.preparing,
     pathIcon: AppSvg.boxOpen,
   );
 

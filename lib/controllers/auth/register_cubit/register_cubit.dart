@@ -66,7 +66,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       if (response[AppRKeys.status] == 400) {
         var s = checkErrorMessages(
             response[AppRKeys.message][AppRKeys.validation_errors]);
-        s = '${AppStrings.field.tr} $s ${AppStrings.alreadyBeenTaken.tr}';
+        s = '${AppText.field.tr} $s ${AppText.alreadyBeenTaken.tr}';
         _update(RegisterFailureState(FailureState(message: s)));
       } else {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);

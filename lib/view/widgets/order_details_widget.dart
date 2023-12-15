@@ -81,23 +81,23 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RowTextSpan(s1: '${AppStrings.name.tr} : ', s2: name),
+              RowTextSpan(s1: '${AppText.name.tr} : ', s2: name),
               RowTextSpan(
-                s1: '${AppStrings.totalQuantity.tr} : ',
+                s1: '${AppText.totalQuantity.tr} : ',
                 s2: widget.model.totalQuantity.toString(),
               ),
               RowTextSpan(
-                s1: '${AppStrings.totalPrice.tr} : ',
-                s2: '${widget.model.totalPrice} ${AppStrings.sp.tr}',
+                s1: '${AppText.totalPrice.tr} : ',
+                s2: '${widget.model.totalPrice} ${AppText.sp.tr}',
               ),
               if (widget.enableEdit)
                 RowTextSpan(
-                  s1: '${AppStrings.priceWhenOrdered.tr} : ',
-                  s2: '${widget.model.priceWhenOrdered} ${AppStrings.sp.tr}',
+                  s1: '${AppText.priceWhenOrdered.tr} : ',
+                  s2: '${widget.model.priceWhenOrdered} ${AppText.sp.tr}',
                 ),
               if (widget.enableEdit)
                 RowTextSpan(
-                  s1: '${AppStrings.discount.tr} : ',
+                  s1: '${AppText.discount.tr} : ',
                   s2: widget.model.hasDiscount.toString(),
                 ),
               if (widget.enableEdit) const Gap(10),
@@ -134,7 +134,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                       child: Text(
                         maxLines: 1,
                         quantity.toString(),
-                        style: AppTextTheme.f16w600primaryColor,
+                        style: AppTextStyle.f16w600primaryColor,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -173,7 +173,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
               color: AppColor.background,
               child: Text(
                 '  ( ${widget.index + 1} )  ',
-                style: AppTextTheme.f20w600green2,
+                style: AppTextStyle.f20w600green2,
               ),
             ),
           ),

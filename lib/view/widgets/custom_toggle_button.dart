@@ -37,8 +37,8 @@ class CustomToggleButton extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    AppStrings.email.tr,
-                    style: AppTextTheme.f20w400gray,
+                    AppText.email.tr,
+                    style: AppTextStyle.f20w400gray,
                   ),
                 ),
               ),
@@ -55,8 +55,8 @@ class CustomToggleButton extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    AppStrings.phone.tr,
-                    style: AppTextTheme.f20w400gray,
+                    AppText.phone.tr,
+                    style: AppTextStyle.f20w400gray,
                   ),
                 ),
               ),

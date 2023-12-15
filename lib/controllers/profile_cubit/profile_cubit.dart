@@ -72,7 +72,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       enableEdit = false;
       await storeUser(r[AppRKeys.data][AppRKeys.user]);
       _update(ProfileSuccessState(
-          SuccessState(message: AppStrings.updatedSuccessfully.tr)));
+          SuccessState(message: AppText.updatedSuccessfully.tr)));
     });
   }
 

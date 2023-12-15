@@ -13,9 +13,9 @@ import 'package:pharmageddon_mobile/view/widgets/order_widget.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/resources/app_text_theme.dart';
-import '../widgets/Custom_pick_data_widget.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_button.dart';
+import '../widgets/custom_pick_date_widget.dart';
 import '../widgets/row_text_span.dart';
 
 class ReportsScreen extends StatelessWidget {
@@ -24,7 +24,7 @@ class ReportsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: AppStrings.reports.tr).build(),
+      appBar: CustomAppBar(title: AppText.reports.tr).build(),
       body: BlocProvider(
         create: (context) => AppInjection.getIt<ReportsCubit>(),
         child: BlocConsumer<ReportsCubit, ReportsState>(
@@ -48,7 +48,7 @@ class ReportsScreen extends StatelessWidget {
             }
             return Column(
               children: [
-                CustomPickDataWidget(
+                CustomPickDateWidget(
                   onChange: cubit.setDateTimeRange,
                   dateTimeRange: cubit.dateTimeRange,
                 ),
@@ -64,19 +64,19 @@ class ReportsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           RowTextSpan(
-                            s1: '${AppStrings.totalOrders.tr} : ',
-                            ts1: AppTextTheme.f15w600black,
+                            s1: '${AppText.totalOrders.tr} : ',
+                            ts1: AppTextStyle.f15w600black,
                             s2: cubit.data.length.toString(),
                           ),
                           RowTextSpan(
-                            s1: '${AppStrings.totalQuantity.tr} : ',
-                            ts1: AppTextTheme.f15w600black,
+                            s1: '${AppText.totalQuantity.tr} : ',
+                            ts1: AppTextStyle.f15w600black,
                             s2: cubit.totalQuantity.toString(),
                           ),
                           RowTextSpan(
-                            s1: '${AppStrings.totalPrice.tr} : ',
-                            ts1: AppTextTheme.f15w600black,
-                            s2: '${cubit.totalPrice} ${AppStrings.sp.tr}',
+                            s1: '${AppText.totalPrice.tr} : ',
+                            ts1: AppTextStyle.f15w600black,
+                            s2: '${cubit.totalPrice} ${AppText.sp.tr}',
                           ),
                         ],
                       ),
@@ -90,7 +90,7 @@ class ReportsScreen extends StatelessWidget {
                             )
                           : CustomButton(
                               onTap: () => cubit.getData(),
-                              text: AppStrings.send.tr,
+                              text: AppText.send.tr,
                               color: AppColor.primaryColor,
                             ),
                     ),

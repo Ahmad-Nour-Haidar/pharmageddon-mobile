@@ -49,7 +49,7 @@ class SearchScreen extends StatelessWidget {
                 },
                 builder: (context, state) {
                   final cubit = SearchCubit.get(context);
-                  var s = '${AppStrings.searchResultsFor.tr} : ';
+                  var s = '${AppText.searchResultsFor.tr} : ';
                   if (state is SearchSuccessState) s += state.value;
                   if (state is SearchNoDataState) s += state.value;
                   Widget widget = const SizedBox();
@@ -77,7 +77,7 @@ class SearchScreen extends StatelessWidget {
                             state is SearchNoDataState)
                           AutoSizeText(
                             s,
-                            style: AppTextTheme.f18w500black,
+                            style: AppTextStyle.f18w500black,
                             maxLines: 1,
                           ),
                         const Gap(10),

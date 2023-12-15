@@ -97,7 +97,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
 
       _update(MedicationDetailsSuccessState(
           state:
-              state ?? SuccessState(message: AppStrings.savedSuccessfully.tr)));
+              state ?? SuccessState(message: AppText.savedSuccessfully.tr)));
     } catch (e) {
       _update(MedicationDetailsFailureState(FailureState()));
     }

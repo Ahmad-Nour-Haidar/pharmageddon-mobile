@@ -1,13 +1,17 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_mobile/core/class/parent_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/enums/screens.dart';
+import 'package:pharmageddon_mobile/core/extensions/update_list.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/home_data.dart';
 import 'package:pharmageddon_mobile/model/effect_category_model.dart';
 import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
+import 'package:pharmageddon_mobile/print.dart';
+
 import '../../model/medication_model.dart';
 import 'home_state.dart';
 
@@ -46,7 +50,7 @@ class HomeCubit extends Cubit<HomeState> {
         final List temp = r[AppRKeys.data][AppRKeys.medicines];
         medications.clear();
         medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
-        medications.shuffle();
+        // medications.shuffle();
         _update(HomeGetMedicationsSuccessState());
         medicationsMap.clear();
         for (final m in medications) {
@@ -115,5 +119,22 @@ class HomeCubit extends Cubit<HomeState> {
     } else {
       getDiscounts();
     }
+  }
+
+  Future<List<MedicationModel>> updateQuantityListMedications(List list) async {
+    final List<MedicationModel> tempList = [];
+    for (final e in list) {
+      final id = e[AppRKeys.medicine_id];
+      final newQuantity = e[AppRKeys.new_quantity];
+      final index = medications.indexWhere((element) => element.id == id);
+      if (index == -1) continue;
+      final model = medications[index];
+      model.availableQuantity = newQuantity;
+      medications.update(index, model);
+      printme.magenta(medications[index].toJson());
+      tempList.add(model);
+    }
+    _update(HomeChangeState());
+    return tempList;
   }
 }

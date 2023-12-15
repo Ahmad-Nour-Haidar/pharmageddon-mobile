@@ -45,7 +45,7 @@ class MedicationDetailsScreen extends StatelessWidget {
           final cubit = MedicationDetailsCubit.get(context);
           return Scaffold(
             appBar: CustomAppBar(
-              title: AppStrings.medicationDetails.tr,
+              title: AppText.medicationDetails.tr,
             ).build(),
             body: ListView(
               padding: AppPadding.screenPaddingAll,
@@ -70,60 +70,60 @@ class MedicationDetailsScreen extends StatelessWidget {
                         children: [
                           const Gap(30),
                           RowTextSpan(
-                            s1: '${AppStrings.scientificName.tr} : ',
+                            s1: '${AppText.scientificName.tr} : ',
                             s2: getMedicationScientificName(cubit.model),
                           ),
                           const Gap(5),
                           RowTextSpan(
-                            s1: '${AppStrings.commercialName.tr} : ',
+                            s1: '${AppText.commercialName.tr} : ',
                             s2: getMedicationCommercialName(cubit.model),
                           ),
                           const Gap(5),
                           RowTextSpan(
-                            s1: '${AppStrings.manufacturer.tr} : ',
+                            s1: '${AppText.manufacturer.tr} : ',
                             s2: getManufacturerName(cubit.model.manufacturer),
                           ),
                           const Gap(5),
                           RowTextSpan(
-                            s1: '${AppStrings.effect.tr} : ',
+                            s1: '${AppText.effect.tr} : ',
                             s2: getEffectCategoryModelName(
                                 cubit.model.effectCategory),
                           ),
                           const Gap(5),
                           RowTextSpan(
-                            s1: '${AppStrings.description.tr} : ',
+                            s1: '${AppText.description.tr} : ',
                             s2: getMedicationModelDescription(cubit.model),
                           ),
                           const Gap(5),
                           RowTextSpan(
-                            s1: '${AppStrings.availableQuantity.tr} : ',
+                            s1: '${AppText.availableQuantity.tr} : ',
                             s2: cubit.model.availableQuantity.toString(),
                           ),
                           const Gap(5),
                           RowTextSpan(
-                            s1: '${AppStrings.price.tr} : ',
-                            s2: '${cubit.model.price} ${AppStrings.sp.tr}',
+                            s1: '${AppText.price.tr} : ',
+                            s2: '${cubit.model.price} ${AppText.sp.tr}',
                           ),
                           if (cubit.model.discount! > 0)
                             RowTextSpan(
-                              s1: '${AppStrings.discount.tr} : ',
+                              s1: '${AppText.discount.tr} : ',
                               s2: '${cubit.model.discount} %',
                             ),
                           if (cubit.model.discount! > 0)
                             RowTextSpan(
-                              s1: '${AppStrings.priceAfterDiscount.tr} : ',
-                              s2: '${cubit.model.priceAfterDiscount} ${AppStrings.sp.tr}',
+                              s1: '${AppText.priceAfterDiscount.tr} : ',
+                              s2: '${cubit.model.priceAfterDiscount} ${AppText.sp.tr}',
                             ),
                           RowTextSpan(
-                            s1: '${AppStrings.expirationDate.tr} : ',
+                            s1: '${AppText.expirationDate.tr} : ',
                             s2: formatYYYYMd(cubit.model.expirationDate),
                           ),
                           const Gap(15),
                           RowTextSpan(
-                            s1: '${AppStrings.totalPrice.tr} : ',
-                            ts1: AppTextTheme.f18w600red,
-                            s2: '${cubit.totalPrice} ${AppStrings.sp.tr}',
-                            ts2: AppTextTheme.f18w400red,
+                            s1: '${AppText.totalPrice.tr} : ',
+                            ts1: AppTextStyle.f18w600red,
+                            s2: '${cubit.totalPrice} ${AppText.sp.tr}',
+                            ts2: AppTextStyle.f18w400red,
                           ),
                           const Gap(30),
                           if (state is MedicationDetailsLoadingState)
@@ -133,7 +133,7 @@ class MedicationDetailsScreen extends StatelessWidget {
                             Center(
                               child: CustomButton(
                                 onTap: cubit.addToCart,
-                                text: AppStrings.saveInCart.tr,
+                                text: AppText.saveInCart.tr,
                                 height: 40,
                                 width: AppSize.width / 2,
                               ),

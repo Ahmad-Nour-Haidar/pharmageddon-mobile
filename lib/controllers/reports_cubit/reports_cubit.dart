@@ -30,7 +30,7 @@ class ReportsCubit extends Cubit<ReportsState> {
   Future<void> getData() async {
     if (dateTimeRange.duration.inDays == 0) {
       _update(ReportsFailureState(
-          FailureState(message: AppStrings.pleaseSelectStartAndEndOfDate.tr)));
+          FailureState(message: AppText.pleaseSelectStartAndEndOfDate.tr)));
       return;
     }
     _update(ReportsLoadingState());

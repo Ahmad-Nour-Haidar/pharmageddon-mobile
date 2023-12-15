@@ -19,7 +19,7 @@ class AppSize {
   // image
   static late double radius;
   static late double radiusImage;
-  static late double widthHeight;
+  // static late double widthHeight;
 
   // card
   static late double widthCard;

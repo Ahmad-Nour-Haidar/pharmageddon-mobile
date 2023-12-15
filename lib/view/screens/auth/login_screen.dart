@@ -63,7 +63,7 @@ class LoginScreen extends StatelessWidget {
             child: Scaffold(
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
-                title: AppStrings.login.tr,
+                title: AppText.login.tr,
                 showArrowBack: false,
                 showOptions: false,
               ).build(),
@@ -92,8 +92,8 @@ class LoginScreen extends StatelessWidget {
                       colorPrefixIcon: AppColor.gray3,
                       prefixIcon: cubit.isEmail ? AppSvg.email : AppSvg.phone,
                       hintText: cubit.isEmail
-                          ? AppStrings.email.tr
-                          : AppStrings.phone.tr,
+                          ? AppText.email.tr
+                          : AppText.phone.tr,
                     ),
                     const Gap(15),
                     BlocSelector<LoginCubit, LoginState,
@@ -109,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                         fillColor: AppColor.white,
                         colorPrefixIcon: AppColor.gray3,
                         prefixIcon: AppSvg.user,
-                        hintText: AppStrings.password.tr,
+                        hintText: AppText.password.tr,
                         onTapSuffix: cubit.showPassword,
                         obscureText: cubit.obscureText,
                         suffixIcon:
@@ -125,8 +125,8 @@ class LoginScreen extends StatelessWidget {
                           pushNamed(AppRoute.checkEmail, context);
                         },
                         child: Text(
-                          AppStrings.forgetPassword.tr,
-                          style: AppTextTheme.f16w600TextColor2,
+                          AppText.forgetPassword.tr,
+                          style: AppTextStyle.f16w600TextColor2,
                         ),
                       ),
                     ),
@@ -136,12 +136,12 @@ class LoginScreen extends StatelessWidget {
                     if (state is! LoginLoadingState)
                       CustomButton(
                         onTap: cubit.login,
-                        text: AppStrings.login.tr,
+                        text: AppText.login.tr,
                       ),
                     const Gap(15),
                     CustomRowTextButton(
-                      text: AppStrings.doNotHaveAnAccount.tr,
-                      btnText: AppStrings.createAccount.tr,
+                      text: AppText.doNotHaveAnAccount.tr,
+                      btnText: AppText.createAccount.tr,
                       onTap: () {
                         pushNamedAndRemoveUntil(AppRoute.register, context);
                       },

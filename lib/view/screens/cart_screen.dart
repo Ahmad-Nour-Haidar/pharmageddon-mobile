@@ -7,7 +7,9 @@ import 'package:pharmageddon_mobile/controllers/cart_cubit/cart_cubit.dart';
 import 'package:pharmageddon_mobile/controllers/cart_cubit/cart_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
+import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
+import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
@@ -15,7 +17,9 @@ import 'package:pharmageddon_mobile/view/widgets/custom_button.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 
-import '../widgets/cart_widget.dart';
+import '../../model/medication_model.dart';
+import '../widgets/cart/cart_widget.dart';
+import '../widgets/cart/table_widget.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -24,7 +28,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: AppStrings.cart.tr,
+        title: AppText.cart.tr,
         showSearch: true,
       ).build(),
       body: BlocProvider(
@@ -41,9 +45,14 @@ class CartScreen extends StatelessWidget {
           builder: (context, state) {
             final cubit = CartCubit.get(context);
             return Padding(
-              padding: AppPadding.screenPaddingAll,
+              padding: AppPadding.screenPadding,
               child: Column(
                 children: [
+                  if (cubit.medicinesQuantityNotAvailable.isNotEmpty)
+                    TableWidget(
+                      data: cubit.medicinesQuantityNotAvailable,
+                    ),
+                  const Gap(15),
                   CartWidgetList(
                     data: cubit.data,
                     onTapRemove: cubit.onTapRemove,
@@ -59,19 +68,19 @@ class CartScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             RowTextSpan(
-                              s1: '${AppStrings.totalMedications.tr} : ',
-                              ts1: AppTextTheme.f15w600black,
+                              s1: '${AppText.totalMedications.tr} : ',
+                              ts1: AppTextStyle.f15w600black,
                               s2: cubit.data.length.toString(),
                             ),
                             RowTextSpan(
-                              s1: '${AppStrings.totalQuantity.tr} : ',
-                              ts1: AppTextTheme.f15w600black,
+                              s1: '${AppText.totalQuantity.tr} : ',
+                              ts1: AppTextStyle.f15w600black,
                               s2: cubit.totalQuantity.toString(),
                             ),
                             RowTextSpan(
-                              s1: '${AppStrings.totalPrice.tr} : ',
-                              ts1: AppTextTheme.f15w600black,
-                              s2: '${cubit.totalPrice} ${AppStrings.sp.tr}',
+                              s1: '${AppText.totalPrice.tr} : ',
+                              ts1: AppTextStyle.f15w600black,
+                              s2: '${cubit.totalPrice} ${AppText.sp.tr}',
                             ),
                           ],
                         ),
@@ -84,12 +93,13 @@ class CartScreen extends StatelessWidget {
                                 color: AppColor.buttonColor)
                             : CustomButton(
                                 onTap: cubit.order,
-                                text: AppStrings.order.tr,
+                                text: AppText.order.tr,
                                 color: AppColor.primaryColor,
                               ),
                       ),
                     ],
                   ),
+                  const Gap(10),
                 ],
               ),
             );

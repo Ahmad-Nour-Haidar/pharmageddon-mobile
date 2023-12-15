@@ -20,14 +20,14 @@ class CustomRowTextButton extends StatelessWidget {
       children: [
         Text(
           text,
-          style: AppTextTheme.f16w600black,
+          style: AppTextStyle.f16w600black,
           textAlign: TextAlign.center,
         ),
         TextButton(
           onPressed: onTap,
           child: Text(
             btnText,
-            style: AppTextTheme.f16w600TextColor2,
+            style: AppTextStyle.f16w600TextColor2,
           ),
         ),
       ],

@@ -38,12 +38,12 @@ class ProfileScreen extends StatelessWidget {
           final cubit = ProfileCubit.get(context);
           return Scaffold(
             floatingActionButton: FloatingActionButton(
-              tooltip: AppStrings.edit.tr,
+              tooltip: AppText.edit.tr,
               onPressed: cubit.onTapEdit,
               child: SvgPicture.asset(AppSvg.userPen),
             ),
             appBar: CustomAppBar(
-              title: AppStrings.profile.tr,
+              title: AppText.profile.tr,
               showLogout: true,
             ).build(),
             body: Form(
@@ -130,7 +130,7 @@ class ProfileScreen extends StatelessWidget {
                   if (state is! ProfileLoadingState && cubit.enableEdit)
                     CustomButton(
                       onTap: cubit.updateUser,
-                      text: AppStrings.edit.tr,
+                      text: AppText.edit.tr,
                     ),
                   const Gap(25),
                   const LanguageWidget(),

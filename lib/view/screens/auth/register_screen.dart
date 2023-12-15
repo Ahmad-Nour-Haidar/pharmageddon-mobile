@@ -57,7 +57,7 @@ class RegisterScreen extends StatelessWidget {
             child: Scaffold(
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
-                title: AppStrings.createAccount.tr,
+                title: AppText.createAccount.tr,
                 showArrowBack: false,
                 showOptions: false,
               ).build(),
@@ -76,7 +76,7 @@ class RegisterScreen extends StatelessWidget {
                       fillColor: AppColor.white,
                       colorPrefixIcon: AppColor.gray3,
                       prefixIcon: AppSvg.email,
-                      hintText: AppStrings.email.tr,
+                      hintText: AppText.email.tr,
                     ),
                     const Gap(15),
                     CustomTextFormField(
@@ -87,7 +87,7 @@ class RegisterScreen extends StatelessWidget {
                       fillColor: AppColor.white,
                       colorPrefixIcon: AppColor.gray3,
                       prefixIcon: AppSvg.phone,
-                      hintText: AppStrings.phone.tr,
+                      hintText: AppText.phone.tr,
                     ),
                     const Gap(15),
                     CustomTextFormField(
@@ -98,7 +98,7 @@ class RegisterScreen extends StatelessWidget {
                       fillColor: AppColor.white,
                       colorPrefixIcon: AppColor.gray3,
                       prefixIcon: AppSvg.user,
-                      hintText: AppStrings.userName.tr,
+                      hintText: AppText.userName.tr,
                     ),
                     const Gap(15),
                     CustomTextFormField(
@@ -109,7 +109,7 @@ class RegisterScreen extends StatelessWidget {
                       fillColor: AppColor.white,
                       colorPrefixIcon: AppColor.gray3,
                       prefixIcon: AppSvg.marker,
-                      hintText: AppStrings.address.tr,
+                      hintText: AppText.address.tr,
                     ),
                     const Gap(15),
                     BlocSelector<RegisterCubit, RegisterState,
@@ -125,7 +125,7 @@ class RegisterScreen extends StatelessWidget {
                         fillColor: AppColor.white,
                         colorPrefixIcon: AppColor.gray3,
                         prefixIcon: AppSvg.user,
-                        hintText: AppStrings.password.tr,
+                        hintText: AppText.password.tr,
                         onTapSuffix: cubit.showPassword,
                         obscureText: cubit.obscureText,
                         suffixIcon:
@@ -138,12 +138,12 @@ class RegisterScreen extends StatelessWidget {
                     if (state is! RegisterLoadingState)
                       CustomButton(
                         onTap: cubit.register,
-                        text: AppStrings.register.tr,
+                        text: AppText.register.tr,
                       ),
                     const Gap(15),
                     CustomRowTextButton(
-                      text: AppStrings.haveAnAccount.tr,
-                      btnText: AppStrings.loginNow.tr,
+                      text: AppText.haveAnAccount.tr,
+                      btnText: AppText.loginNow.tr,
                       onTap: () {
                         // pushNamedAndRemoveUntil(AppRoute.login, context);
                         pushNamedAndRemoveUntil(AppRoute.login, context);

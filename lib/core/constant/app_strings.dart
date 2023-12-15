@@ -1,6 +1,4 @@
-class AppStrings {
-  AppStrings._();
-
+abstract class AppText {
   static const language = 'language';
   static const english = 'english';
   static const arabic = 'arabic';

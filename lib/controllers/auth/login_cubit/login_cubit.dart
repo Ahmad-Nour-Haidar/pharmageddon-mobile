@@ -64,17 +64,17 @@ class LoginCubit extends Cubit<LoginState> {
       _update(LoginFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
-        final s = AppStrings.somethingWentWrong.tr;
+        final s = AppText.somethingWentWrong.tr;
         _update(LoginFailureState(FailureState(message: s)));
       } else if (response[AppRKeys.status] == 403) {
         final s = isEmail
-            ? AppStrings.emailOrPasswordIsWrong.tr
-            : AppStrings.phoneOrPasswordIsWrong.tr;
+            ? AppText.emailOrPasswordIsWrong.tr
+            : AppText.phoneOrPasswordIsWrong.tr;
         _update(LoginFailureState(FailureState(message: s)));
       } else if (response[AppRKeys.status] == 404) {
         _update(LoginNotVerifyState());
       } else if (response[AppRKeys.status] == 405) {
-        final state = FailureState(message: AppStrings.goToTheOtherPlatform.tr);
+        final state = FailureState(message: AppText.goToTheOtherPlatform.tr);
         _update(LoginFailureState(state));
       } else {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);

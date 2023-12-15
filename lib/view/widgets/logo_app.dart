@@ -24,7 +24,7 @@ class LogoApp extends StatelessWidget {
         const Center(
           child: Text(
             'Pharmageddon',
-            style: AppTextTheme.f24w600SecondColor,
+            style: AppTextStyle.f24w600SecondColor,
           ),
         ),
       ],

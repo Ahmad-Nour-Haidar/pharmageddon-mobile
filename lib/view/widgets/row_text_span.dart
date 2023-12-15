@@ -7,8 +7,8 @@ class RowTextSpan extends StatelessWidget {
     super.key,
     required this.s1,
     required this.s2,
-    this.ts1 = AppTextTheme.f16w600black,
-    this.ts2 = AppTextTheme.f16w400black,
+    this.ts1 = AppTextStyle.f16w600black,
+    this.ts2 = AppTextStyle.f16w400black,
   });
 
   final String s1, s2;

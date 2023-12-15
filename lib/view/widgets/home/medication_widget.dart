@@ -85,7 +85,7 @@ class MedicationWidget extends StatelessWidget {
                           ),
                           child: Text(
                             '${model.discount} %',
-                            style: AppTextTheme.f18w500white,
+                            style: AppTextStyle.f18w500white,
                           ),
                         ),
                       ),
@@ -95,13 +95,13 @@ class MedicationWidget extends StatelessWidget {
               const Gap(10),
               AutoSizeText(
                 getMedicationCommercialName(model),
-                style: AppTextTheme.f16w600black,
+                style: AppTextStyle.f16w600black,
                 maxLines: 1,
               ),
               const Gap(3),
               AutoSizeText(
                 getManufacturerName(model.manufacturer),
-                style: AppTextTheme.f15w400black,
+                style: AppTextStyle.f15w400black,
                 maxLines: 1,
               ),
             ],
@@ -134,8 +134,8 @@ class MedicationsListWidget extends StatelessWidget {
                   Padding(
                     padding: AppPadding.symmetric(horizontal: 20, vertical: 5),
                     child: Text(
-                      '${AppStrings.all.tr} : ( ${data.length} )',
-                      style: AppTextTheme.f18w500black,
+                      '${AppText.all.tr} : ( ${data.length} )',
+                      style: AppTextStyle.f18w500black,
                     ),
                   ),
                   Wrap(

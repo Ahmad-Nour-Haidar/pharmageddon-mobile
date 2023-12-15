@@ -54,7 +54,7 @@ class VerifyCodeScreen extends StatelessWidget {
             child: Scaffold(
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
-                title: AppStrings.verifyCode.tr,
+                title: AppText.verifyCode.tr,
                 showOptions: false,
               ).build(),
               body: ListView(
@@ -67,7 +67,7 @@ class VerifyCodeScreen extends StatelessWidget {
                   if (cubit.email != null)
                     Text(
                       cubit.message,
-                      style: AppTextTheme.f18w500black,
+                      style: AppTextStyle.f18w500black,
                     ),
                   const Gap(20),
                   SizedBox(
@@ -98,8 +98,8 @@ class VerifyCodeScreen extends StatelessWidget {
                         cubit.getVerifyCode();
                       },
                       child: Text(
-                        AppStrings.resendVerifyCode.tr,
-                        style: AppTextTheme.f16w600TextColor2,
+                        AppText.resendVerifyCode.tr,
+                        style: AppTextStyle.f16w600TextColor2,
                       ),
                     ),
                   ),
@@ -109,7 +109,7 @@ class VerifyCodeScreen extends StatelessWidget {
                   if (state is! VerifyCodeLoadingState)
                     CustomButton(
                       onTap: cubit.verifyCode,
-                      text: AppStrings.verify.tr,
+                      text: AppText.verify.tr,
                     ),
                   const Gap(20),
                 ],

@@ -39,7 +39,7 @@ class ManufacturerWidget extends StatelessWidget {
           child: AutoSizeText(
             getManufacturerName(model),
             textAlign: TextAlign.center,
-            style: AppTextTheme.f18w500black,
+            style: AppTextStyle.f18w500black,
             maxLines: 3,
           ),
         ),

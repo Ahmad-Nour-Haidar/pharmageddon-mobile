@@ -15,22 +15,22 @@ class ValidateInput {
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
 
   static String _getMessageLength(int mn, int mx) =>
-      '${AppStrings.lengthMustBeBetween.tr} $mn - $mx';
+      '${AppText.lengthMustBeBetween.tr} $mn - $mx';
 
   static String _getMessageNotValid(String field) =>
-      '$field ${AppStrings.notValid.tr}';
+      '$field ${AppText.notValid.tr}';
 
   static String? isEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return AppStrings.thisFieldCantBeEmpty.tr;
+      return AppText.thisFieldCantBeEmpty.tr;
     }
     if (!_hasMatch(value, _regExpEmail)) {
-      return _getMessageNotValid(AppStrings.email.tr);
+      return _getMessageNotValid(AppText.email.tr);
     }
     if (!value.endsWith('@gmail.com')) {
       return isEnglish()
-          ? '${AppStrings.emailMustBeEndWith.tr}: @gmail.com'
-          : '@gmail.com :${AppStrings.emailMustBeEndWith.tr}';
+          ? '${AppText.emailMustBeEndWith.tr}: @gmail.com'
+          : '@gmail.com :${AppText.emailMustBeEndWith.tr}';
     }
     if (value.length < 13 || value.length > 50) {
       return _getMessageLength(13, 50);
@@ -40,26 +40,26 @@ class ValidateInput {
 
   static String? isPassword(String? value) {
     if (value == null || value.isEmpty) {
-      return AppStrings.thisFieldCantBeEmpty.tr;
+      return AppText.thisFieldCantBeEmpty.tr;
     }
     if (value.length < 8 || value.length > 50) {
       return _getMessageLength(8, 50);
     }
     if (!_hasMatch(value, _regExpPassword)) {
-      return AppStrings.passwordMustBeAtLeast8.tr;
+      return AppText.passwordMustBeAtLeast8.tr;
     }
     return null;
   }
 
   static String? isPhone(String? value) {
     if (value == null || value.isEmpty) {
-      return AppStrings.thisFieldCantBeEmpty.tr;
+      return AppText.thisFieldCantBeEmpty.tr;
     }
     // if (value.length < 9 || value.length > 16) {
     //   return _getMessageLength(9, 16);
     // }
     if (!_hasMatch(value, _regExpPhone2)) {
-      return AppStrings.thePhoneNumberMustStartWith.tr;
+      return AppText.thePhoneNumberMustStartWith.tr;
       // return _getMessageNotValid(AppStrings.phone.tr);
     }
     return null;
@@ -67,20 +67,20 @@ class ValidateInput {
 
   static String? isUsername(String? value) {
     if (value == null || value.isEmpty) {
-      return AppStrings.thisFieldCantBeEmpty.tr;
+      return AppText.thisFieldCantBeEmpty.tr;
     }
     if (value.length < 3 || value.length > 50) {
       return _getMessageLength(3, 50);
     }
     if (!_hasMatch(value, _regExpUsername)) {
-      return _getMessageNotValid(AppStrings.userName.tr);
+      return _getMessageNotValid(AppText.userName.tr);
     }
     return null;
   }
 
   static String? isAddress(String? value) {
     if (value == null || value.isEmpty) {
-      return AppStrings.thisFieldCantBeEmpty.tr;
+      return AppText.thisFieldCantBeEmpty.tr;
     }
     if (value.length < 10 || value.length > 200) {
       return _getMessageLength(10, 200);

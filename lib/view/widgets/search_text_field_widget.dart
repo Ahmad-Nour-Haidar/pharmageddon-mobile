@@ -41,7 +41,7 @@ class _SearchTextFieldWidgetState extends State<SearchTextFieldWidget> {
             onSubmitted: widget.onSubmitted,
             decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: AppStrings.search.tr,
+              hintText: AppText.search.tr,
             ),
           ),
         ),

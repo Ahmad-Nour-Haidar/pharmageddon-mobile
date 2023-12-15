@@ -53,10 +53,10 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
       _update(CheckEmailFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 405) {
-        final message = AppStrings.goToTheOtherPlatform.tr;
+        final message = AppText.goToTheOtherPlatform.tr;
         _update(CheckEmailFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 403) {
-        final message = AppStrings.userNotFound.tr;
+        final message = AppText.userNotFound.tr;
         _update(CheckEmailFailureState(FailureState(message: message)));
       } else {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);

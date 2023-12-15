@@ -48,7 +48,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   }
 
   String get message =>
-      '${AppStrings.enterTheVerificationCodeYouReceivedOnGmail.tr}\n$email';
+      '${AppText.enterTheVerificationCodeYouReceivedOnGmail.tr}\n$email';
 
   void onSubmit(String verificationCode) {
     code = verificationCode;
@@ -67,10 +67,10 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       _update(ResetPasswordFailureGetState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
-        final message = AppStrings.verifyCodeNotSentTryAgain.tr;
+        final message = AppText.verifyCodeNotSentTryAgain.tr;
         _update(ResetPasswordFailureGetState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 405) {
-        final message = AppStrings.verifyCodeNotSentTryAgain.tr;
+        final message = AppText.verifyCodeNotSentTryAgain.tr;
         _update(ResetPasswordFailureGetState(FailureState(message: message)));
       } else {
         email = AppLocalData.user!.email;
@@ -85,12 +85,12 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     }
     if (code.length < 6) {
       _update(ResetPasswordFailureState(FailureState(
-          message: AppStrings.enterTheCompleteVerificationCode.tr)));
+          message: AppText.enterTheCompleteVerificationCode.tr)));
       return;
     }
     if (passwordController.text != confirmController.text) {
       _update(ResetPasswordFailureState(
-          FailureState(message: AppStrings.passwordsNoMatch.tr)));
+          FailureState(message: AppText.passwordsNoMatch.tr)));
       return;
     }
     _update(ResetPasswordLoadingState());
@@ -106,13 +106,13 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       _update(ResetPasswordFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
-        final message = AppStrings.somethingWentWrong.tr;
+        final message = AppText.somethingWentWrong.tr;
         _update(ResetPasswordFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 403) {
-        final message = AppStrings.verifyCodeNotCorrect.tr;
+        final message = AppText.verifyCodeNotCorrect.tr;
         _update(ResetPasswordFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 405) {
-        final message = AppStrings.goToTheOtherPlatform.tr;
+        final message = AppText.goToTheOtherPlatform.tr;
         _update(ResetPasswordFailureState(FailureState(message: message)));
       } else {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);

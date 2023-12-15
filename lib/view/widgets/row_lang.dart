@@ -21,24 +21,24 @@ class LanguageWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          AppStrings.language.tr,
-          style: AppTextTheme.f20w600black,
+          AppText.language.tr,
+          style: AppTextStyle.f20w600black,
         ),
         CustomButton(
           onTap: () => controller.changeLang(AppConstant.ar),
-          text: AppStrings.arabic.tr,
+          text: AppText.arabic.tr,
           width: AppSize.width * .24,
           height: 40,
           color: isEnglish() ? AppColor.cardColor : AppColor.green2,
-          textStyle: AppTextTheme.f20w600black,
+          textStyle: AppTextStyle.f20w600black,
         ),
         CustomButton(
           onTap: () => controller.changeLang(AppConstant.en),
-          text: AppStrings.english.tr,
+          text: AppText.english.tr,
           width: AppSize.width * .24,
           height: 40,
           color: isEnglish() ? AppColor.green2 : AppColor.white,
-          textStyle: AppTextTheme.f20w600black,
+          textStyle: AppTextStyle.f20w600black,
         ),
       ],
     );

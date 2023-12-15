@@ -25,7 +25,7 @@ class OrderWidget extends StatelessWidget {
   final bool canPushNamed;
 
   String get paymentStatus {
-    return model.paymentStatus == 0 ? AppStrings.unpaid.tr : AppStrings.paid.tr;
+    return model.paymentStatus == 0 ? AppText.unpaid.tr : AppText.paid.tr;
   }
 
   @override
@@ -47,7 +47,7 @@ class OrderWidget extends StatelessWidget {
               Row(
                 children: [
                   RowTextSpan(
-                    s1: '${AppStrings.id.tr} : ',
+                    s1: '${AppText.id.tr} : ',
                     s2: model.id.toString(),
                   ),
                   const Spacer(),
@@ -56,19 +56,19 @@ class OrderWidget extends StatelessWidget {
                 ],
               ),
               RowTextSpan(
-                s1: '${AppStrings.totalQuantity.tr} : ',
+                s1: '${AppText.totalQuantity.tr} : ',
                 s2: model.totalQuantity.toString(),
               ),
               RowTextSpan(
-                s1: '${AppStrings.totalPrice.tr} : ',
+                s1: '${AppText.totalPrice.tr} : ',
                 s2: model.totalPrice.toString(),
               ),
               RowTextSpan(
-                s1: '${AppStrings.paymentState.tr} : ',
+                s1: '${AppText.paymentState.tr} : ',
                 s2: paymentStatus,
               ),
               RowTextSpan(
-                s1: '${AppStrings.date.tr} : ',
+                s1: '${AppText.date.tr} : ',
                 s2: formatYYYYMd(model.createdAt),
               ),
             ],

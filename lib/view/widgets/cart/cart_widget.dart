@@ -6,14 +6,14 @@ import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/app_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_size.dart';
-import '../../core/constant/app_strings.dart';
-import '../../core/functions/functions.dart';
-import '../../model/cart_model.dart';
-import 'counter_Cart_widget.dart';
-import 'custom_cached_network_image.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_padding.dart';
+import '../../../core/constant/app_size.dart';
+import '../../../core/constant/app_strings.dart';
+import '../../../core/functions/functions.dart';
+import '../../../model/cart_model.dart';
+import '../custom_cached_network_image.dart';
+import 'counter_cart_widget.dart';
 
 class CartWidget extends StatelessWidget {
   const CartWidget({
@@ -51,7 +51,7 @@ class CartWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RowTextSpan(
-                s1: '${AppStrings.name.tr} : ',
+                s1: '${AppText.name.tr} : ',
                 s2: getMedicationCommercialName(
                   model.medicationModel,
                 ),
@@ -61,15 +61,15 @@ class CartWidget extends StatelessWidget {
               //   s2: '${model.medicationModel.availableQuantity}',
               // ),
               RowTextSpan(
-                s1: '${AppStrings.price.tr} : ',
+                s1: '${AppText.price.tr} : ',
                 s2: '${model.medicationModel.priceAfterDiscount}',
               ),
               RowTextSpan(
-                s1: '${AppStrings.quantity.tr} : ',
+                s1: '${AppText.quantity.tr} : ',
                 s2: '${model.quantity}',
               ),
               RowTextSpan(
-                s1: '${AppStrings.totalPrice.tr} : ',
+                s1: '${AppText.totalPrice.tr} : ',
                 s2: '${model.totalPrice}',
               ),
               // const Gap(5),

@@ -10,8 +10,8 @@ import '../../core/constant/app_svg.dart';
 import '../../core/functions/functions.dart';
 import '../../core/resources/app_text_theme.dart';
 
-class CustomPickDataWidget extends StatelessWidget {
-  const CustomPickDataWidget({
+class CustomPickDateWidget extends StatelessWidget {
+  const CustomPickDateWidget({
     super.key,
     required this.onChange,
     required this.dateTimeRange,
@@ -21,7 +21,7 @@ class CustomPickDataWidget extends StatelessWidget {
   final DateTimeRange dateTimeRange;
 
   String get textStart {
-    var s = AppStrings.start.tr;
+    var s = AppText.start.tr;
     if (dateTimeRange.duration.inDays > 0) {
       s = formatYYYYMd(dateTimeRange.start.toString());
     }
@@ -29,7 +29,7 @@ class CustomPickDataWidget extends StatelessWidget {
   }
 
   String get textEnd {
-    var s = AppStrings.end.tr;
+    var s = AppText.end.tr;
     if (dateTimeRange.duration.inDays > 0) {
       s = formatYYYYMd(dateTimeRange.end.toString());
     }
@@ -83,7 +83,7 @@ class CustomPickDataWidget extends StatelessWidget {
               ),
               child: Text(
                 textStart,
-                style: AppTextTheme.f18w500black,
+                style: AppTextStyle.f18w500black,
               ),
             ),
           ),
@@ -105,7 +105,7 @@ class CustomPickDataWidget extends StatelessWidget {
               ),
               child: Text(
                 textEnd,
-                style: AppTextTheme.f18w500black,
+                style: AppTextStyle.f18w500black,
               ),
             ),
           ),

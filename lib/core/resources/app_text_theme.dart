@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constant/app_color.dart';
 
-abstract class AppTextTheme {
+abstract class AppTextStyle {
   static const f18w500black = TextStyle(
     fontSize: 18,
     color: AppColor.black,

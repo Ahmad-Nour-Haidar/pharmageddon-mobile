@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_svg.dart';
-import '../../core/resources/app_text_theme.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_padding.dart';
+import '../../../core/constant/app_svg.dart';
+import '../../../core/resources/app_text_theme.dart';
 
 class CounterCartWidget extends StatefulWidget {
   const CounterCartWidget({
@@ -76,7 +76,7 @@ class _CounterCartWidgetState extends State<CounterCartWidget> {
           child: Text(
             maxLines: 1,
             quantity.toString(),
-            style: AppTextTheme.f16w600primaryColor,
+            style: AppTextStyle.f16w600primaryColor,
             textAlign: TextAlign.center,
           ),
         ),

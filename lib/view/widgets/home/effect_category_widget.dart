@@ -77,7 +77,7 @@ class EffectCategoryWidget extends StatelessWidget {
               Expanded(
                 child: Text(
                   getEffectCategoryModelName(model),
-                  style: AppTextTheme.f20w600black,
+                  style: AppTextStyle.f20w600black,
                   maxLines: 2,
                 ),
               ),

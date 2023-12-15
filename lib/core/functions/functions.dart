@@ -24,7 +24,7 @@ String getCodeLang() =>
 
 Future<void> storeUser(Map<String, dynamic> json) async {
   json['Authorization'] =
-      AppLocalData.user!.authorization ?? json['Authorization'];
+      AppLocalData.user?.authorization ?? json['Authorization'];
   final user = User.fromJson(json);
   final appHive = AppInjection.getIt<AppHive>();
   appHive.store(AppSKeys.userKey, user.toJson());

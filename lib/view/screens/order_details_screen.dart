@@ -25,7 +25,7 @@ class OrderDetailsScreen extends StatelessWidget {
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
     final OrderModel model = args.args[AppKeys.orderModel];
     return Scaffold(
-      appBar: CustomAppBar(title: AppStrings.orderDetails.tr).build(),
+      appBar: CustomAppBar(title: AppText.orderDetails.tr).build(),
       body: BlocProvider(
         create: (context) =>
             AppInjection.getIt<OrderDetailsCubit>()..initial(model),

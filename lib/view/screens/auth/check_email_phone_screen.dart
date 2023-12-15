@@ -53,7 +53,7 @@ class CheckEmailScreen extends StatelessWidget {
             child: Scaffold(
               backgroundColor: AppColor.transparent,
               appBar: CustomAppBar(
-                title: AppStrings.checkEmail.tr,
+                title: AppText.checkEmail.tr,
                 showOptions: false,
               ).build(),
               body: Form(
@@ -81,8 +81,8 @@ class CheckEmailScreen extends StatelessWidget {
                       colorPrefixIcon: AppColor.gray3,
                       prefixIcon: cubit.isEmail ? AppSvg.email : AppSvg.phone,
                       hintText: cubit.isEmail
-                          ? AppStrings.email.tr
-                          : AppStrings.phone.tr,
+                          ? AppText.email.tr
+                          : AppText.phone.tr,
                     ),
                     const Gap(25),
                     if (state is CheckEmailLoadingState)
@@ -90,7 +90,7 @@ class CheckEmailScreen extends StatelessWidget {
                     if (state is! CheckEmailLoadingState)
                       CustomButton(
                         onTap: cubit.check,
-                        text: AppStrings.check.tr,
+                        text: AppText.check.tr,
                       ),
                     const Gap(20),
                   ],

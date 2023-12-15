@@ -22,7 +22,7 @@ class FavoriteScreen extends StatelessWidget {
     cubit.getMedications(forceGetData: true);
     return Scaffold(
       appBar: CustomAppBar(
-        title: AppStrings.favorite.tr,
+        title: AppText.favorite.tr,
         showSearch: true,
       ).build(),
       body: BlocConsumer<FavoriteCubit, FavoriteState>(

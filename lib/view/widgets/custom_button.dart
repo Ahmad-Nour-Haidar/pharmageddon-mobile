@@ -9,7 +9,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.text,
-    this.textStyle = AppTextTheme.f20w600white,
+    this.textStyle = AppTextStyle.f20w600white,
     this.height = 55,
     this.width = double.infinity,
     this.radius = AppSize.radius10,

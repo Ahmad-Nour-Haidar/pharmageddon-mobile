@@ -55,7 +55,7 @@ class CustomAppBar {
           : null,
       title: AutoSizeText(
         title,
-        style: AppTextTheme.f20w600black,
+        style: AppTextStyle.f20w600black,
         maxLines: 1,
       ),
       actions: [
@@ -73,8 +73,8 @@ class CustomAppBar {
                 AwesomeDialog(
                   context: context,
                   dialogType: DialogType.error,
-                  title: AppStrings.logOut.tr,
-                  desc: AppStrings.doYouWantToLogOut.tr,
+                  title: AppText.logOut.tr,
+                  desc: AppText.doYouWantToLogOut.tr,
                   btnCancelOnPress: () {},
                   btnOkOnPress: () {
                     AppInjection.getIt<AuthRemoteData>().logout();
