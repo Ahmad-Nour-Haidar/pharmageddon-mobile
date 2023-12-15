@@ -64,6 +64,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       _update(ProfileFailureState(l));
     }, (r) async {
       final status = r[AppRKeys.status];
+      printme.printFullText(r);
       if (status != 200) {
         _update(ProfileFailureState(FailureState()));
         return;
