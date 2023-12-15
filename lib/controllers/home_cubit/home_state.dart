@@ -3,6 +3,7 @@ import '../../core/class/parent_state.dart';
 abstract class HomeState {}
 
 class HomeInitialState extends HomeState {}
+
 class HomeChangeState extends HomeState {}
 
 class HomeGetFailureState extends HomeState {

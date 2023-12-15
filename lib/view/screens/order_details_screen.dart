@@ -45,8 +45,6 @@ class OrderDetailsScreen extends StatelessWidget {
                     onTapEdit: (bool isEdit) {
                       cubit.isEdit = isEdit;
                     },
-                    totalPrice: cubit.totalPrice,
-                    totalQuantity: cubit.totalQuantity,
                   ),
                   const Gap(10),
                   if (state is OrderDetailsGetLoadingState) const Gap(50),

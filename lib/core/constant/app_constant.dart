@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:pharmageddon_mobile/core/enums/screens.dart';
 
-import 'app_svg.dart';
-
 class AppConstant {
   AppConstant._();
 

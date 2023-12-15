@@ -18,14 +18,10 @@ class TopWidgetOrderDetailsScreen extends StatefulWidget {
     super.key,
     required this.model,
     required this.onTapEdit,
-    required this.totalPrice,
-    required this.totalQuantity,
   });
 
   final OrderModel model;
   final void Function(bool isEdit) onTapEdit;
-  final double totalPrice;
-  final int totalQuantity;
 
   @override
   State<TopWidgetOrderDetailsScreen> createState() =>
@@ -93,13 +89,13 @@ class _TopWidgetOrderDetailsScreenState
           ),
           RowTextSpan(
             s1: '${AppStrings.totalQuantity.tr} : ',
-            s2: widget.totalQuantity.toString(),
+            s2: widget.model.totalQuantity.toString(),
             ts1: AppTextTheme.f18w600black,
             ts2: AppTextTheme.f18w400black,
           ),
           RowTextSpan(
             s1: '${AppStrings.totalPrice.tr} : ',
-            s2: '${widget.totalPrice} ${AppStrings.sp.tr}',
+            s2: '${widget.model.totalPrice} ${AppStrings.sp.tr}',
             ts1: AppTextTheme.f18w600black,
             ts2: AppTextTheme.f18w400black,
           ),
