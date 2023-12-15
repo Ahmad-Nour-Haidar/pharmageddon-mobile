@@ -78,6 +78,9 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   void onTapEdit() {
     enableEdit = !enableEdit;
+    if (!enableEdit) {
+      _file = null;
+    }
     _update(ProfileChangeState());
   }
 

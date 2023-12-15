@@ -16,6 +16,7 @@ import '../../core/constant/app_svg.dart';
 import '../../core/functions/functions.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_form_field.dart';
+import '../widgets/handle_state.dart';
 import '../widgets/row_lang.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -28,7 +29,9 @@ class ProfileScreen extends StatelessWidget {
       create: (context) => AppInjection.getIt<ProfileCubit>()..initial(),
       child: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {
-          // TODO: implement listener
+          if (state is ProfileFailureState) {
+            handleState(state: state.state, context: context);
+          }
         },
         builder: (context, state) {
           final cubit = ProfileCubit.get(context);

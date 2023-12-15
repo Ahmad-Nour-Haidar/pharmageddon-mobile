@@ -10,6 +10,7 @@ import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/model/order_model.dart';
 import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
+import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'package:pharmageddon_mobile/view/widgets/order_details_widget.dart';
 import '../../controllers/order_details_cubit/order_details_state.dart';
 import '../../core/constant/app_color.dart';
@@ -30,6 +31,9 @@ class OrderDetailsScreen extends StatelessWidget {
             AppInjection.getIt<OrderDetailsCubit>()..initial(model),
         child: BlocConsumer<OrderDetailsCubit, OrderDetailsState>(
           listener: (context, state) {
+            if (state is OrderDetailsFailureState) {
+              handleState(state: state.state, context: context);
+            }
             if (state is OrderDetailsSuccessCancelState) {
               Navigator.pop(context);
             }
