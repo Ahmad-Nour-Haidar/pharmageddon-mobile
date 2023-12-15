@@ -64,6 +64,10 @@ abstract class AppText {
   static const youAreOffline = 'youAreOffline';
   static const field = 'field';
   static const alreadyBeenTaken = 'alreadyBeenTaken';
+  static const thisOrderHasCanceledBefore = 'thisOrderHasCanceledBefore';
+  static const orderNotFound = 'orderNotFound';
+  static const orderHasBeenSentSoYouCannotCancelIt = 'orderHasBeenSentSoYouCannotCancelIt';
+  static const orderHasReceivedSoYouCannotCancelIt = 'orderHasReceivedSoYouCannotCancelIt';
   static const enterTheVerificationCodeYouReceivedOnGmail =
       'enterTheVerificationCodeYouReceivedOnGmail';
   static const enterTheCompleteVerificationCode =

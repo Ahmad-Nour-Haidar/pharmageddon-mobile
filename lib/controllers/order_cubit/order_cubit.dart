@@ -34,7 +34,7 @@ class OrderCubit extends Cubit<OrderState> {
     if (!(_preparingOrders.isEmpty || forceGetData)) return;
     _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders(
-      url: AppLink.orderGetAll,
+      url: AppLink.orderGetAllNotCanceled,
     );
     response.fold((l) {
       _update(OrderFailureState(l));

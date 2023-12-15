@@ -123,6 +123,10 @@ class MyTranslation extends Translations {
           AppText.paid: 'Paid',
           AppText.unpaid: 'Un paid',
           AppText.updatedSuccessfully: 'Updated successfully',
+          AppText.thisOrderHasCanceledBefore: 'This order has canceled before.',
+          AppText.orderNotFound: 'Order not found.',
+          AppText.orderHasBeenSentSoYouCannotCancelIt: 'Order has been sent so you cannot cancel it.',
+          AppText.orderHasReceivedSoYouCannotCancelIt: 'Order has received so you cannot cancel it.',
         },
         'ar': {
           AppText.language: 'اللغة',
@@ -242,6 +246,10 @@ class MyTranslation extends Translations {
           AppText.paid: 'مدفوع',
           AppText.unpaid: 'غير مدفوع',
           AppText.updatedSuccessfully: 'تم التعديل بنجاح',
+          AppText.thisOrderHasCanceledBefore: 'تم إلغاء هذا الطلب من قبل.',
+          AppText.orderHasBeenSentSoYouCannotCancelIt: 'تم إرسال الطلب لذلك لا يمكنك إلغاءه.',
+          AppText.orderHasReceivedSoYouCannotCancelIt: 'تم استلام الطلب لذلك لا يمكنك إلغاءه.',
+          AppText.orderNotFound: 'لم يتم العثور على الطلب.',
         },
       };
 }

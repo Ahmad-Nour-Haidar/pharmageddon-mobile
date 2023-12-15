@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:pharmageddon_mobile/core/class/parent_state.dart';
+import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/model/order_model.dart';
 import '../../core/constant/app_request_keys.dart';
@@ -78,32 +81,49 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
 
   Future<void> cancel() async {
     _update(OrderDetailsLoadingCancelState());
-    final data = {AppRKeys.id: model.id};
-    final response = await _orderRemoteData.cancel(data: data);
+    final queryParameters = {AppRKeys.id: model.id};
+    final response =
+        await _orderRemoteData.cancel(queryParameters: queryParameters);
     response.fold((l) {
       _update(OrderDetailsFailureState(l));
     }, (r) {
-      AppInjection.getIt<OrderCubit>().removeFromList(model);
-      _update(OrderDetailsSuccessCancelState());
+      final status = r[AppRKeys.status];
+      if (status == 403) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.orderNotFound.tr,
+        )));
+        AppInjection.getIt<OrderCubit>().removeFromList(model);
+        return;
+      }
+      if (status == 405) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.thisOrderHasCanceledBefore.tr,
+        )));
+        return;
+      }
+      if (status == 406) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.orderHasBeenSentSoYouCannotCancelIt.tr,
+        )));
+        return;
+      }
+      if (status == 408) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.orderHasReceivedSoYouCannotCancelIt.tr,
+        )));
+        return;
+      }
+      if (status == 200) {
+        AppInjection.getIt<OrderCubit>().removeFromList(model);
+        _update(OrderDetailsSuccessCancelState());
+      }
     });
   }
 
   Future<bool> update() async {
     bool isEdit = false;
     _update(OrderDetailsLoadingCancelState());
-    await Future.delayed(const Duration(seconds: 4));
-    final List<Map<String, int>> list = [];
-    for (final e in data) {
-      list.add({
-        AppRKeys.medicine_id: e.medicineId!,
-        AppRKeys.quantity: getQuantityOfMedicine(e),
-      });
-    }
-    final requestData = {AppRKeys.medicines: list};
-    final response = await _orderRemoteData.cancel(data: requestData);
-    response.fold((l) {
-      _update(OrderDetailsFailureState(l));
-    }, (r) {});
+
     return isEdit;
   }
 
