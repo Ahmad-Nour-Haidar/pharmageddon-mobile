@@ -35,8 +35,7 @@ class MyTranslation extends Translations {
           AppText.passwordNotCorrect: 'Password not correct',
           AppText.userNotFound: 'User not found',
           AppText.verifyCodeNotCorrect: 'Verify code not correct',
-          AppText.verifyCodeNotSentTryAgain:
-              'Verify code not sent, Try again!',
+          AppText.verifyCodeNotSentTryAgain: 'Verify code not sent, Try again!',
           AppText.goToTheOtherPlatform: 'Go to the other platform',
           AppText.resendVerifyCode: 'Resend verify code',
           AppText.emailOrPasswordIsWrong: 'Email or password is wrong.',
@@ -118,8 +117,7 @@ class MyTranslation extends Translations {
           AppText.back: 'Back',
           AppText.quantitiesOfSomeMedicinesAreNotAvailable:
               'Quantities of some medicines are not available.',
-          AppText.someOfMedicinesAreExpired:
-              'Some of medicines are expired.',
+          AppText.someOfMedicinesAreExpired: 'Some of medicines are expired.',
           AppText.theOrderHasBeenAddedSuccessfully:
               'The order has been added successfully.',
           AppText.paid: 'Paid',

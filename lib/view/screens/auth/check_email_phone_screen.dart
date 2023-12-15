@@ -80,9 +80,8 @@ class CheckEmailScreen extends StatelessWidget {
                       fillColor: AppColor.white,
                       colorPrefixIcon: AppColor.gray3,
                       prefixIcon: cubit.isEmail ? AppSvg.email : AppSvg.phone,
-                      hintText: cubit.isEmail
-                          ? AppText.email.tr
-                          : AppText.phone.tr,
+                      hintText:
+                          cubit.isEmail ? AppText.email.tr : AppText.phone.tr,
                     ),
                     const Gap(25),
                     if (state is CheckEmailLoadingState)

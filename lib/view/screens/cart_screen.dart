@@ -7,9 +7,7 @@ import 'package:pharmageddon_mobile/controllers/cart_cubit/cart_cubit.dart';
 import 'package:pharmageddon_mobile/controllers/cart_cubit/cart_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
-import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
-import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
@@ -17,7 +15,6 @@ import 'package:pharmageddon_mobile/view/widgets/custom_button.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 
-import '../../model/medication_model.dart';
 import '../widgets/cart/cart_widget.dart';
 import '../widgets/cart/table_widget.dart';
 

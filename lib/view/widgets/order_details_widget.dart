@@ -9,7 +9,6 @@ import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
-import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 

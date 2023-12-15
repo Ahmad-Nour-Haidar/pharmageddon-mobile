@@ -64,8 +64,8 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
 
   void verifyCode() async {
     if (code.length < 6) {
-      _update(VerifyCodeFailureState(FailureState(
-          message: AppText.enterTheCompleteVerificationCode.tr)));
+      _update(VerifyCodeFailureState(
+          FailureState(message: AppText.enterTheCompleteVerificationCode.tr)));
       return;
     }
     _update(VerifyCodeLoadingState());

@@ -96,8 +96,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
       await _cartQuantityData.storeInCart(model.id, quantity);
 
       _update(MedicationDetailsSuccessState(
-          state:
-              state ?? SuccessState(message: AppText.savedSuccessfully.tr)));
+          state: state ?? SuccessState(message: AppText.savedSuccessfully.tr)));
     } catch (e) {
       _update(MedicationDetailsFailureState(FailureState()));
     }

@@ -84,8 +84,8 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       return;
     }
     if (code.length < 6) {
-      _update(ResetPasswordFailureState(FailureState(
-          message: AppText.enterTheCompleteVerificationCode.tr)));
+      _update(ResetPasswordFailureState(
+          FailureState(message: AppText.enterTheCompleteVerificationCode.tr)));
       return;
     }
     if (passwordController.text != confirmController.text) {

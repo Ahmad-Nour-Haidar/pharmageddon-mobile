@@ -29,11 +29,9 @@ class NoneState extends ParentState {
 }
 
 class SuccessState extends ParentState {
-  SuccessState({String? message})
-      : super(message: message ?? AppText.done.tr);
+  SuccessState({String? message}) : super(message: message ?? AppText.done.tr);
 }
 
 class WarningState extends ParentState {
-  WarningState({String? message})
-      : super(message: message ?? AppText.done.tr);
+  WarningState({String? message}) : super(message: message ?? AppText.done.tr);
 }

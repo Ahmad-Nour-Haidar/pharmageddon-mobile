@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -96,7 +95,7 @@ class TableWidget extends StatelessWidget {
                 children: [
                   ...List.generate(
                     data.length - 1,
-                        (index) => _customTableRow(
+                    (index) => _customTableRow(
                       color: AppColor.cardColor,
                       s1: getMedicationCommercialName(data[index]),
                       s2: data[index].availableQuantity.toString(),

@@ -56,16 +56,6 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  final lll = [
-    {"medicine_id": 2, "new_quantity": 90},
-    {"medicine_id": 3, "new_quantity": 0},
-    {"medicine_id": 6, "new_quantity": 1000},
-    {"medicine_id": 7, "new_quantity": 1000},
-    {"medicine_id": 12, "new_quantity": 1000},
-    {"medicine_id": 15, "new_quantity": 140},
-    {"medicine_id": 41, "new_quantity": 1000}
-  ];
-
   Future<void> order() async {
     if (this.data.isEmpty) {
       _update(CartFailureState(
@@ -87,7 +77,7 @@ class CartCubit extends Cubit<CartState> {
       if (status == 404) {
         final List tempList =
             r[AppRKeys.data][AppRKeys.medicines_quantity_not_available];
-        await getMedicationsListNotAvailable(lll);
+        await getMedicationsListNotAvailable(tempList);
         _update(CartFailureState(FailureState(
             message: AppText.quantitiesOfSomeMedicinesAreNotAvailable.tr)));
       } else if (status == 405) {
