@@ -10,7 +10,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitialState());
 
   static FavoriteCubit get(BuildContext context) => BlocProvider.of(context);
-  final favoriteRemoteData = AppInjection.getIt<FavoriteRemoteData>();
+  final _favoriteRemoteData = AppInjection.getIt<FavoriteRemoteData>();
   final List<MedicationModel> medications = [];
 
   void _update(FavoriteState state) {
@@ -28,7 +28,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       return;
     }
     _update(FavoriteLoadingState());
-    final response = await favoriteRemoteData.getFavorites();
+    final response = await _favoriteRemoteData.getFavorites();
     response.fold((l) {
       _update(FavoriteFailureState(l));
     }, (r) {

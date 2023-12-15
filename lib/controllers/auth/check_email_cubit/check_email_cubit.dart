@@ -23,7 +23,7 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
 
   final emPHController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final authRemoteData = AppInjection.getIt<AuthRemoteData>();
+  final _authRemoteData = AppInjection.getIt<AuthRemoteData>();
   bool isEmail = true;
 
   @override
@@ -47,7 +47,7 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
       AppRKeys.em_ph: emPHController.text,
       AppRKeys.role: AppConstant.pharmacist,
     };
-    final response = await authRemoteData.checkEmail(data: data);
+    final response = await _authRemoteData.checkEmail(data: data);
     if (isClosed) return;
     response.fold((l) {
       _update(CheckEmailFailureState(l));

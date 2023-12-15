@@ -86,9 +86,8 @@ class AuthRemoteData {
     );
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>> logout({
-    required String token,
-  }) async {
+  Future<Either<ParentState, Map<String, dynamic>>> logout() async {
+    final token = AppLocalData.user!.authorization!;
     var response = await _crud.deleteData(
       data: {},
       token: token,

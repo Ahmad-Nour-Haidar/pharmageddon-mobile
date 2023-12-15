@@ -127,7 +127,6 @@ class Crud {
     // if (!await checkInternet()) {
     //   return Left(OfflineState(tr));
     // }
-    printme.cyan('nameKey = $nameKey');
     if (token != null) {
       _dio.options.headers.addAll({
         'Authorization': 'Bearer $token',
@@ -140,8 +139,6 @@ class Crud {
         nameKey: await MultipartFile.fromFile(file.path, filename: fileName),
       }.entries);
     }
-    printme.magenta(formData.files);
-    printme.magenta(formData.fields);
     await randomLoading();
     try {
       final response = await _dio.post(linkUrl, data: formData);

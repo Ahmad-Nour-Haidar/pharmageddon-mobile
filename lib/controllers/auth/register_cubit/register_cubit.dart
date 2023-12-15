@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/auth/register_cubit/register_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
-import 'package:pharmageddon_mobile/core/constant/app_local_data.dart';
-
 import '../../../core/class/parent_state.dart';
 import '../../../core/constant/app_request_keys.dart';
 import '../../../core/constant/app_strings.dart';
@@ -29,7 +27,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   final userNameController = TextEditingController();
   final addressController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final authRemoteData = AppInjection.getIt<AuthRemoteData>();
+  final _authRemoteData = AppInjection.getIt<AuthRemoteData>();
   bool obscureText = true;
 
   @override
@@ -60,7 +58,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       AppRKeys.address: addressController.text,
       AppRKeys.role: AppConstant.pharmacist,
     };
-    final response = await authRemoteData.register(data: data);
+    final response = await _authRemoteData.register(data: data);
     if (isClosed) return;
     response.fold((l) {
       _update(RegisterFailureState(l));
@@ -74,18 +72,6 @@ class RegisterCubit extends Cubit<RegisterState> {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);
         _update(RegisterSuccessState());
       }
-    });
-  }
-
-  void logout() async {
-    _update(RegisterLoadingState());
-    final token = AppLocalData.user!.authorization ?? '';
-    final response = await authRemoteData.logout(token: token);
-    if (isClosed) return;
-    response.fold((l) {
-      _update(RegisterFailureState(l));
-    }, (response) async {
-      // handle
     });
   }
 }

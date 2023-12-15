@@ -11,8 +11,8 @@ import '../../core/resources/app_text_theme.dart';
 import '../../core/services/dependency_injection.dart';
 import 'custom_button.dart';
 
-class RowLang extends StatelessWidget {
-  const RowLang({super.key});
+class LanguageWidget extends StatelessWidget {
+  const LanguageWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +29,16 @@ class RowLang extends StatelessWidget {
           text: AppStrings.arabic.tr,
           width: AppSize.width * .24,
           height: 40,
-          color: isEnglish() ? AppColor.gray3 : AppColor.green,
+          color: isEnglish() ? AppColor.cardColor : AppColor.green2,
+          textStyle: AppTextTheme.f20w600black,
         ),
         CustomButton(
           onTap: () => controller.changeLang(AppConstant.en),
           text: AppStrings.english.tr,
           width: AppSize.width * .24,
           height: 40,
-          color: isEnglish() ? AppColor.green : AppColor.gray3,
+          color: isEnglish() ? AppColor.green2 : AppColor.white,
+          textStyle: AppTextTheme.f20w600black,
         ),
       ],
     );

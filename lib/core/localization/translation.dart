@@ -80,7 +80,7 @@ class MyTranslation extends Translations {
           AppStrings.orders: 'Orders',
           AppStrings.reports: 'Reports',
           AppStrings.logOut: 'Log Out',
-          AppStrings.doYouWantToLogOut: 'Do you want to log out?',
+          AppStrings.doYouWantToLogOut: 'Do you want to log out ?',
           AppStrings.yes: 'Yes',
           AppStrings.no: 'No',
           AppStrings.pressBackAgainToExit: 'Press back again to exit',

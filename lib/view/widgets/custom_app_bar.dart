@@ -1,12 +1,18 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
+import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/constant/app_svg.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
+import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/data/remote/auth_data.dart';
 import 'package:pharmageddon_mobile/routes.dart';
+import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
 import 'custom_popup_menu_button.dart';
 
@@ -21,11 +27,8 @@ class CustomAppBar {
     this.showOrders = false,
     this.showFavorites = false,
     this.showReports = false,
-    this.showUserEdit = false,
-    this.onTapEditUser,
   });
 
-  final void Function()? onTapEditUser;
   final String title;
   final bool showArrowBack;
   final bool showOptions;
@@ -35,7 +38,6 @@ class CustomAppBar {
   final bool showFavorites;
   final bool showReports;
   final bool showLogout;
-  final bool showUserEdit;
 
   AppBar build() {
     return AppBar(
@@ -64,11 +66,29 @@ class CustomAppBar {
               icon: SvgPicture.asset(AppSvg.search),
             );
           }),
-        if (showUserEdit)
-          IconButton(
-            onPressed: onTapEditUser,
-            icon: SvgPicture.asset(AppSvg.userPen),
-          ),
+        if (showLogout)
+          Builder(builder: (context) {
+            return IconButton(
+              onPressed: () {
+                AwesomeDialog(
+                  context: context,
+                  dialogType: DialogType.error,
+                  title: AppStrings.logOut.tr,
+                  desc: AppStrings.doYouWantToLogOut.tr,
+                  btnCancelOnPress: () {},
+                  btnOkOnPress: () {
+                    AppInjection.getIt<AuthRemoteData>().logout();
+                    pushNamedAndRemoveUntil(AppRoute.login, context);
+                  },
+                ).show();
+              },
+              icon: const SvgImage(
+                path: AppSvg.exit,
+                color: AppColor.black,
+                size: 20,
+              ),
+            );
+          }),
         if (showOptions)
           CustomPopupMenuButton(
             showCart: showCart,

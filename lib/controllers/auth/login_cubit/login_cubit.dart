@@ -26,7 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
   final emPhController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final authRemoteData = AppInjection.getIt<AuthRemoteData>();
+  final _authRemoteData = AppInjection.getIt<AuthRemoteData>();
   bool obscureText = true;
   bool isEmail = true;
 
@@ -58,7 +58,7 @@ class LoginCubit extends Cubit<LoginState> {
       return;
     }
     _update(LoginLoadingState());
-    final response = await authRemoteData.login(data: data);
+    final response = await _authRemoteData.login(data: data);
     if (isClosed) return;
     response.fold((l) {
       _update(LoginFailureState(l));
@@ -77,7 +77,6 @@ class LoginCubit extends Cubit<LoginState> {
         final state = FailureState(message: AppStrings.goToTheOtherPlatform.tr);
         _update(LoginFailureState(state));
       } else {
-        printme.printFullText(response);
         await storeUser(response[AppRKeys.data][AppRKeys.user]);
         if (AppLocalData.user!.emailVerifiedAt == null) {
           _update(LoginNotVerifyState());

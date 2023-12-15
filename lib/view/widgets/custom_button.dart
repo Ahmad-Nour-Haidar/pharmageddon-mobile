@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
@@ -8,12 +9,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.text,
-    this.textStyle = const TextStyle(
-      fontSize: 20,
-      color: AppColor.white,
-      fontWeight: FontWeight.w600,
-      letterSpacing: 1.0,
-    ),
+    this.textStyle = AppTextTheme.f20w600white,
     this.height = 55,
     this.width = double.infinity,
     this.radius = AppSize.radius10,

@@ -179,4 +179,11 @@ abstract class AppTextTheme {
     color: AppColor.black,
     fontWeight: FontWeight.w600,
   );
+
+  static const f20w600white = TextStyle(
+    fontSize: 20,
+    color: AppColor.white,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.0,
+  );
 }

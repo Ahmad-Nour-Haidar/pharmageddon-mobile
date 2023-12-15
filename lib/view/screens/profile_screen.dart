@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
@@ -36,10 +37,14 @@ class ProfileScreen extends StatelessWidget {
         builder: (context, state) {
           final cubit = ProfileCubit.get(context);
           return Scaffold(
+            floatingActionButton: FloatingActionButton(
+              tooltip: AppStrings.edit.tr,
+              onPressed: cubit.onTapEdit,
+              child: SvgPicture.asset(AppSvg.userPen),
+            ),
             appBar: CustomAppBar(
               title: AppStrings.profile.tr,
-              showUserEdit: true,
-              onTapEditUser: cubit.onTapEdit,
+              showLogout: true,
             ).build(),
             body: Form(
               key: cubit.formKey,
@@ -58,25 +63,15 @@ class ProfileScreen extends StatelessWidget {
                           bottom: 15,
                           left: isEnglish() ? 15 : null,
                           right: isEnglish() ? null : 15,
-                          child: ClipOval(
-                            child: DecoratedBox(
-                              decoration: const BoxDecoration(
-                                color: AppColor.green, // Button color
-                              ),
-                              child: InkWell(
-                                splashColor: AppColor.transparent,
-                                highlightColor: AppColor.transparent,
-                                onTap: cubit.pickImage,
-                                child: const SizedBox(
-                                  width: 35,
-                                  height: 35,
-                                  child: Icon(
-                                    size: 20,
-                                    Icons.edit,
-                                    color: AppColor.white,
-                                  ),
-                                ),
-                              ),
+                          child: Ink(
+                            decoration: const ShapeDecoration(
+                              color: AppColor.green,
+                              shape: CircleBorder(),
+                            ),
+                            child: IconButton(
+                              icon: const Icon(Icons.edit),
+                              color: Colors.white,
+                              onPressed: cubit.pickImage,
                             ),
                           ),
                         ),
@@ -94,7 +89,6 @@ class ProfileScreen extends StatelessWidget {
                     prefixIcon: AppSvg.email,
                     hintText: '',
                   ),
-                  if (cubit.enableEdit) const Gap(15),
                   CustomTextFormField(
                     enabled: cubit.enableEdit,
                     controller: cubit.phoneController,
@@ -124,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
                     controller: cubit.addressController,
                     keyboardType: TextInputType.text,
                     validator: ValidateInput.isAddress,
-                    textInputAction: TextInputAction.next,
+                    textInputAction: TextInputAction.done,
                     fillColor: AppColor.white,
                     colorPrefixIcon: AppColor.gray3,
                     prefixIcon: AppSvg.marker,
@@ -139,8 +133,8 @@ class ProfileScreen extends StatelessWidget {
                       text: AppStrings.edit.tr,
                     ),
                   const Gap(25),
-                  const RowLang(),
-                  const Gap(40),
+                  const LanguageWidget(),
+                  const Gap(100),
                 ],
               ),
             ),

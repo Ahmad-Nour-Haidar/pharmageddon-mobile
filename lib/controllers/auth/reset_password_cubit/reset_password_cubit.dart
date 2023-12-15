@@ -25,7 +25,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
 
   final passwordController = TextEditingController();
   final confirmController = TextEditingController();
-  final authRemoteData = AppInjection.getIt<AuthRemoteData>();
+  final _authRemoteData = AppInjection.getIt<AuthRemoteData>();
   final formKey = GlobalKey<FormState>();
   late String code = '';
   String? email;
@@ -61,7 +61,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       AppRKeys.em_ph: AppLocalData.user!.email,
       AppRKeys.role: AppConstant.pharmacist,
     };
-    final response = await authRemoteData.getVerificationCode(data: data);
+    final response = await _authRemoteData.getVerificationCode(data: data);
     if (isClosed) return;
     response.fold((l) {
       _update(ResetPasswordFailureGetState(l));
@@ -100,7 +100,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       AppRKeys.verification_code: code,
       AppRKeys.role: AppConstant.pharmacist,
     };
-    final response = await authRemoteData.resetPassword(data: data);
+    final response = await _authRemoteData.resetPassword(data: data);
     if (isClosed) return;
     response.fold((l) {
       _update(ResetPasswordFailureState(l));

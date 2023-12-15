@@ -26,7 +26,7 @@ class EffectMedicinesCubit extends Cubit<EffectMedicinesState> {
 
   final List<MedicationModel> medications = [];
 
-  final effectMedicinesRemoteData =
+  final _effectMedicinesRemoteData =
       AppInjection.getIt<EffectMedicinesRemoteData>();
 
   void initial(EffectCategoryModel model) {
@@ -43,7 +43,7 @@ class EffectMedicinesCubit extends Cubit<EffectMedicinesState> {
       AppRKeys.id: model.id,
     };
     _update(EffectMedicinesLoadingState());
-    final response = await effectMedicinesRemoteData.getMedicines(
+    final response = await _effectMedicinesRemoteData.getMedicines(
       queryParameters: queryParameters,
     );
     response.fold((l) {

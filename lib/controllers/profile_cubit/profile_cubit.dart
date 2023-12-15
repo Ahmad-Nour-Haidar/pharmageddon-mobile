@@ -26,7 +26,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   final phoneController = TextEditingController();
   final nameController = TextEditingController();
   final addressController = TextEditingController();
-  File? _file; // image
+  File? _image;
   bool enableEdit = false;
 
   void _update(ProfileState state) {
@@ -52,23 +52,23 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> updateUser() async {
     if (!formKey.currentState!.validate()) return;
+    FocusManager.instance.primaryFocus?.unfocus();
     _update(ProfileLoadingState());
     final data = {
       AppRKeys.username: nameController.text,
       AppRKeys.phone: phoneController.text,
       AppRKeys.address: addressController.text,
     };
-    final response = await _authRemoteData.update(data: data, file: _file);
+    final response = await _authRemoteData.update(data: data, file: _image);
     response.fold((l) {
       _update(ProfileFailureState(l));
     }, (r) async {
       final status = r[AppRKeys.status];
-      printme.printFullText(r);
       if (status != 200) {
         _update(ProfileFailureState(FailureState()));
         return;
       }
-      _file = null;
+      _image = null;
       enableEdit = false;
       await storeUser(r[AppRKeys.data][AppRKeys.user]);
       _update(ProfileSuccessState(
@@ -79,7 +79,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   void onTapEdit() {
     enableEdit = !enableEdit;
     if (!enableEdit) {
-      _file = null;
+      _image = null;
     }
     _update(ProfileChangeState());
   }
@@ -87,9 +87,9 @@ class ProfileCubit extends Cubit<ProfileState> {
   Widget get imageWidget {
     final radius = AppSize.width * .75 / 2;
     final widthHeight = 2 * radius;
-    if (_file != null) {
+    if (_image != null) {
       return Image.file(
-        _file!,
+        _image!,
         width: widthHeight,
         height: widthHeight,
         // fit: BoxFit.fill,
@@ -109,7 +109,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       if (temp == null) return;
       final tempCrop = await _imageHelper.cropImage(file: temp);
       if (tempCrop == null) return;
-      _file = File(tempCrop.path);
+      _image = File(tempCrop.path);
     } catch (e) {
       printme.red(e);
     }

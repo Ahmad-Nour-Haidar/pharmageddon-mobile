@@ -24,7 +24,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
   late String code = '';
   String? email;
 
-  final authRemoteData = AppInjection.getIt<AuthRemoteData>();
+  final _authRemoteData = AppInjection.getIt<AuthRemoteData>();
 
   void initial() {
     getVerifyCode();
@@ -44,7 +44,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
       AppRKeys.em_ph: AppLocalData.user!.email,
       AppRKeys.role: AppConstant.pharmacist,
     };
-    final response = await authRemoteData.getVerificationCode(data: data);
+    final response = await _authRemoteData.getVerificationCode(data: data);
     if (isClosed) return;
     response.fold((l) {
       _update(VerifyCodeFailureState(l));
@@ -74,7 +74,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
       AppRKeys.role: AppConstant.pharmacist,
       AppRKeys.verification_code: code,
     };
-    final response = await authRemoteData.verify(data: data);
+    final response = await _authRemoteData.verify(data: data);
     if (isClosed) return;
     response.fold((l) {
       _update(VerifyCodeFailureState(l));

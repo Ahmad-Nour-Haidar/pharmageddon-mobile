@@ -109,7 +109,6 @@ class CartCubit extends Cubit<CartState> {
     response.fold((l) {
       _update(CartFailureState(l));
     }, (r) {
-      printme.printFullText(r);
       final status = r[AppRKeys.status];
       if (status == 404) {
         _update(CartFailureState(FailureState(
