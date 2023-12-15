@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
+import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/model/medication_model.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_cached_network_image.dart';
@@ -84,8 +85,8 @@ class MedicationWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text(
-                            '${model.discount} %',
-                            style: AppTextStyle.f18w500white,
+                            '${model.discount?.toInt()} %'.trNumber(),
+                            style: AppTextStyle.f20w600white,
                           ),
                         ),
                       ),

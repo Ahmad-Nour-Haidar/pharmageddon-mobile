@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
+import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
@@ -92,27 +93,32 @@ class MedicationDetailsScreen extends StatelessWidget {
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppText.description.tr} : ',
-                            s2: getMedicationModelDescription(cubit.model),
+                            s2: getMedicationModelDescription(cubit.model)
+                                .trNumber(),
                           ),
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppText.availableQuantity.tr} : ',
-                            s2: cubit.model.availableQuantity.toString(),
+                            s2: cubit.model.availableQuantity
+                                .toString()
+                                .trNumber(),
                           ),
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppText.price.tr} : ',
-                            s2: '${cubit.model.price} ${AppText.sp.tr}',
+                            s2: '${cubit.model.price} ${AppText.sp.tr}'
+                                .trNumber(),
                           ),
                           if (cubit.model.discount! > 0)
                             RowTextSpan(
                               s1: '${AppText.discount.tr} : ',
-                              s2: '${cubit.model.discount} %',
+                              s2: '${cubit.model.discount} %'.trNumber(),
                             ),
                           if (cubit.model.discount! > 0)
                             RowTextSpan(
                               s1: '${AppText.priceAfterDiscount.tr} : ',
-                              s2: '${cubit.model.priceAfterDiscount} ${AppText.sp.tr}',
+                              s2: '${cubit.model.priceAfterDiscount} ${AppText.sp.tr}'
+                                  .trNumber(),
                             ),
                           RowTextSpan(
                             s1: '${AppText.expirationDate.tr} : ',

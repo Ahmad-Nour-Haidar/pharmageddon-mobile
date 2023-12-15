@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
+import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';
@@ -42,7 +43,7 @@ class _CounterWidgetState extends State<CounterWidget> {
     if (_counter + x > widget.maxValue) return;
     setState(() {
       _counter += x;
-      _controller.text = _counter.toString();
+      _controller.text = _counter.toString().trNumber();
     });
     widget.onChange(_counter);
   }
@@ -58,7 +59,7 @@ class _CounterWidgetState extends State<CounterWidget> {
     if (x > widget.maxValue) x = widget.maxValue;
     setState(() {
       _counter = x;
-      _controller.text = _counter.toString();
+      _controller.text = _counter.toString().trNumber();
     });
     widget.onChange(_counter);
   }
