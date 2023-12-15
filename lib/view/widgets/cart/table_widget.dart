@@ -97,13 +97,13 @@ class TableWidget extends StatelessWidget {
                     data.length - 1,
                     (index) => _customTableRow(
                       color: AppColor.cardColor,
-                      s1: getMedicationCommercialName(data[index]),
+                      s1: getMCommercialName(data[index]),
                       s2: data[index].availableQuantity.toString(),
                     ),
                   ),
                   _customTableRow(
                     color: AppColor.cardColor,
-                    s1: getMedicationCommercialName(data[data.length - 1]),
+                    s1: getMCommercialName(data[data.length - 1]),
                     s2: data[data.length - 1].availableQuantity.toString(),
                     br1: BorderRadius.only(
                       bottomLeft: Radius.circular(isEnglish() ? 10 : 0),

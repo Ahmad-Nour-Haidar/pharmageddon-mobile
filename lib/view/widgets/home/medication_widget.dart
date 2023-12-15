@@ -94,7 +94,7 @@ class MedicationWidget extends StatelessWidget {
               ),
               const Gap(10),
               AutoSizeText(
-                getMedicationCommercialName(model),
+                getMCommercialName(model),
                 style: AppTextStyle.f16w600black,
                 maxLines: 1,
               ),

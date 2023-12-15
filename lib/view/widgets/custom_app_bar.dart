@@ -72,6 +72,8 @@ class CustomAppBar {
               onPressed: () {
                 AwesomeDialog(
                   context: context,
+                  btnOkText: AppText.ok.tr,
+                  btnCancelText: AppText.cancel.tr,
                   dialogType: DialogType.error,
                   title: AppText.logOut.tr,
                   desc: AppText.doYouWantToLogOut.tr,

@@ -76,7 +76,7 @@ class MedicationDetailsScreen extends StatelessWidget {
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppText.commercialName.tr} : ',
-                            s2: getMedicationCommercialName(cubit.model),
+                            s2: getMCommercialName(cubit.model),
                           ),
                           const Gap(5),
                           RowTextSpan(

@@ -1,7 +1,9 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_svg.dart';
+import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/app_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
@@ -52,7 +54,7 @@ class CartWidget extends StatelessWidget {
             children: [
               RowTextSpan(
                 s1: '${AppText.name.tr} : ',
-                s2: getMedicationCommercialName(
+                s2: getMCommercialName(
                   model.medicationModel,
                 ),
               ),
@@ -87,7 +89,24 @@ class CartWidget extends StatelessWidget {
                   ),
                   const Spacer(),
                   InkWell(
-                    onTap: () => onTapRemove(model.medicationModel.id),
+                    onTap: () {
+                      AwesomeDialog(
+                        context: context,
+                        btnOkText: AppText.ok.tr,
+                        btnCancelText: AppText.cancel.tr,
+                        title: AppText.confirmDeletion.tr,
+                        titleTextStyle: AppTextStyle.f18w600red,
+                        desc: getMCommercialName(model.medicationModel),
+                        descTextStyle: AppTextStyle.f18w500black,
+                        dialogType: DialogType.error,
+                        btnOkOnPress: () {
+                          onTapRemove(model.medicationModel.id);
+                        },
+                        btnCancelOnPress: () {},
+                        btnOkColor: AppColor.red,
+                        btnCancelColor: AppColor.green,
+                      ).show();
+                    },
                     child: const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8.0),
                       child: SvgImage(

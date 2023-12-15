@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
@@ -134,7 +135,22 @@ class _TopWidgetOrderDetailsScreenState
               CustomTextButton(
                 isShow: widget.model.orderStatus == OrderStatus.preparing,
                 isLoading: _isLoadingCancel,
-                onTap: onTapCancel,
+                onTap: () {
+                  AwesomeDialog(
+                    context: context,
+                    btnOkText: AppText.ok.tr,
+                    btnCancelText: AppText.cancel.tr,
+                    title: AppText.confirmCancellation.tr,
+                    titleTextStyle: AppTextStyle.f18w600red,
+                    desc: '${AppText.cancelOrderNo.tr} ${widget.model.id}',
+                    descTextStyle: AppTextStyle.f18w500black,
+                    dialogType: DialogType.error,
+                    btnOkOnPress: onTapCancel,
+                    btnCancelOnPress: () {},
+                    btnOkColor: AppColor.red,
+                    btnCancelColor: AppColor.green,
+                  ).show();
+                },
                 color: AppColor.red,
                 text: AppText.cancel.tr,
                 style: AppTextStyle.f18w500red,

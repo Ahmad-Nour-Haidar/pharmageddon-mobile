@@ -102,8 +102,7 @@ String getMedicationScientificName(MedicationModel? model,
   return s;
 }
 
-String getMedicationCommercialName(MedicationModel? model,
-    {bool split = true}) {
+String getMCommercialName(MedicationModel? model, {bool split = true}) {
   var s = '';
   if (model == null) return s;
   if (split) {

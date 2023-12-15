@@ -96,6 +96,10 @@ abstract class AppText {
   static const availableQuantity = 'availableQuantity';
   static const expirationDate = 'expirationDate';
   static const quantity = 'quantity';
+  static const confirmDeletion = 'confirmDeletion';
+  static const cancelOrderNo = 'cancelOrderNo';
+  static const confirmCancellation = 'confirmCancellation';
+  static const ok = 'ok';
 
   // drawer
   static const profile = 'profile';
