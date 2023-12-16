@@ -43,11 +43,10 @@ class OrderRemoteData {
     return response;
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>> cancel({
+  Future<Either<ParentState, Map<String, dynamic>>> cancelOrder({
     required Map<String, dynamic> queryParameters,
   }) async {
     final token = AppLocalData.user!.authorization!;
-    // todo
     final response = await _crud.getData(
       linkUrl: AppLink.orderDelete,
       token: token,
@@ -55,11 +54,11 @@ class OrderRemoteData {
     );
     return response;
   }
+
   Future<Either<ParentState, Map<String, dynamic>>> deleteMedicineInOrder({
     required Map<String, dynamic> queryParameters,
   }) async {
     final token = AppLocalData.user!.authorization!;
-    // todo
     final response = await _crud.getData(
       linkUrl: AppLink.orderDeleteMedicine,
       token: token,

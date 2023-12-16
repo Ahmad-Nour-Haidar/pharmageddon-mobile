@@ -25,8 +25,6 @@ class OrderWidget extends StatelessWidget {
   final OrderModel model;
   final bool canPushNamed;
 
-
-
   @override
   Widget build(BuildContext context) {
     return Material(

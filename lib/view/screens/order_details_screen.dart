@@ -42,7 +42,7 @@ class OrderDetailsScreen extends StatelessWidget {
             if (state is OrderDetailsSuccessCancelState) {
               Navigator.pop(context);
             }
-            if (state is OrderDetailsCancelAllState) {
+            if (state is OrderDetailsAllCanceledState) {
               showAwesome(context);
             }
           },

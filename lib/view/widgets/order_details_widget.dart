@@ -68,6 +68,13 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
     widget.onEditMedicine(widget.model.medicineId!, quantity);
   }
 
+  double get totalPrice {
+    if (!widget.enableEdit) return widget.model.totalPrice!;
+    var x = widget.model.priceWhenOrdered! * quantity;
+    x -= (x * widget.model.hasDiscount! / 100);
+    return x;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -91,7 +98,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
               ),
               RowTextSpan(
                 s1: '${AppText.totalPrice.tr} : ',
-                s2: '${widget.model.totalPrice} ${AppText.sp.tr}'.trn,
+                s2: '$totalPrice ${AppText.sp.tr}'.trn,
               ),
               if (widget.enableEdit)
                 RowTextSpan(

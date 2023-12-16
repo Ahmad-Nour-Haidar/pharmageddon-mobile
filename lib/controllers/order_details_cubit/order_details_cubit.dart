@@ -139,7 +139,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         return;
       }
       if (status == 201) {
-        _update(OrderDetailsCancelAllState());
+        _update(OrderDetailsAllCanceledState());
       }
       if (status == 200) {
         data.removeWhere((element) => element.medicineId == id);
@@ -151,45 +151,6 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     });
   }
 
-  int getQuantityOfMedicine(OrderDetailsModel model) {
-    return tempQuantity[model.medicineId!] ?? model.totalQuantity!;
-  }
-
-  int get totalQuantity {
-    int x = 0;
-    for (final e in data) {
-      x += getQuantityOfMedicine(e);
-    }
-    if (x == 0) {
-      x = model.totalQuantity!;
-    }
-    return x;
-  }
-
-  double get totalPrice {
-    double x = 0.0;
-    for (final e in data) {
-      double p = e.priceWhenOrdered! * getQuantityOfMedicine(e);
-      x += p;
-    }
-    if (x == 0) {
-      x = model.totalPrice!;
-    }
-    return x;
-  }
-
-  Future<bool> update() async {
-    bool isEdit = false;
-    _update(OrderDetailsLoadingCancelState());
-
-    return isEdit;
-  }
-
-  void onEditMedicine(int id, int newQuantity) {
-    tempQuantity[id] = newQuantity;
-    _update(OrderDetailsChangeState());
-  }
-
   bool get isEdit => _isEdit;
 
   set isEdit(bool value) {
@@ -198,5 +159,19 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
       tempQuantity.clear();
     }
     _update(OrderDetailsChangeState());
+  }
+
+  Future<void> updateOrder() async {
+    isEdit = false;
+    _update(OrderDetailsUpdateOrderLoadingState());
+  }
+
+  void onEditMedicine(int id, int newQuantity) {
+    tempQuantity[id] = newQuantity;
+    _update(OrderDetailsChangeState());
+  }
+
+  int getQuantityOfMedicine(OrderDetailsModel model) {
+    return tempQuantity[model.medicineId!] ?? model.totalQuantity!;
   }
 }

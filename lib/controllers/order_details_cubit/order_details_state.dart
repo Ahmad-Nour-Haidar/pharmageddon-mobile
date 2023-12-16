@@ -24,10 +24,22 @@ class OrderDetailsSuccessCancelState extends OrderDetailsState {}
 // get details
 class OrderDetailsGetLoadingState extends OrderDetailsState {}
 
+// delete medicine
 class OrderDetailsLoadingDeleteMedicineState extends OrderDetailsState {}
+
 class OrderDetailsDeleteMedicineSuccessState extends OrderDetailsState {
   final ParentState state;
 
   OrderDetailsDeleteMedicineSuccessState(this.state);
 }
-class OrderDetailsCancelAllState extends OrderDetailsState {}
+
+class OrderDetailsAllCanceledState extends OrderDetailsState {}
+
+// delete medicine
+class OrderDetailsUpdateOrderLoadingState extends OrderDetailsState {}
+
+class OrderDetailsUpdateOrderSuccessState extends OrderDetailsState {
+  final ParentState state;
+
+  OrderDetailsUpdateOrderSuccessState(this.state);
+}

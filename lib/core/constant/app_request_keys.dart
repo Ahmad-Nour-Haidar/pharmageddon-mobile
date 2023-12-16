@@ -34,5 +34,4 @@ class AppRKeys {
       'medicines_quantity_not_available';
   static const new_quantity = 'new_quantity';
   static const order_id = 'order_id';
-
 }

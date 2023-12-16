@@ -54,10 +54,10 @@ class _TopWidgetOrderDetailsScreenState
   Future<void> onTapDone() async {
     if (_isLoadingCancel) return;
     setState(() => _isLoadingDone = true);
-    _isLoadingDone = await cubit.update();
-    if (!_isLoadingDone) _isEdit = false;
+    await cubit.updateOrder();
+    _isLoadingDone = false;
+    _isEdit = false;
     setState(() {});
-    widget.onTapEdit(_isEdit);
   }
 
   @override
