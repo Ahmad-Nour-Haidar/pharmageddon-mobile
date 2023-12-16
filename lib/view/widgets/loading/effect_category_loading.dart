@@ -29,7 +29,7 @@ class EffectCategoryLoading extends StatelessWidget {
                   (index) => CustomShimmer(
                     child: Container(
                       height: AppSize.widthManufacturer + 30,
-                      width: AppSize.widthManufacturer,
+                      width: AppSize.widthManufacturer.toInt().toDouble(),
                       decoration: BoxDecoration(
                         color: AppColor.white,
                         borderRadius: BorderRadius.circular(AppSize.radius10),

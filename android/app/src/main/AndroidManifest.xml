@@ -8,7 +8,9 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/AppName">
+        android:label="@string/AppName"
+        android:resizeableActivity="false"
+        tools:targetApi="n">
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"

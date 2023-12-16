@@ -24,7 +24,7 @@ class AppWidget {
 
   final addFav = Center(
     child: Lottie.asset(AppLottie.addFav,
-        width: 180, height: 210, fit: BoxFit.fill),
+        width: 200, height: 210, fit: BoxFit.fill),
   );
 
   final reports = Center(

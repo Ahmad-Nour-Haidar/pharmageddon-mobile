@@ -7,6 +7,7 @@ import 'package:pharmageddon_mobile/core/constant/app_text.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/local/cart_quantity_data.dart';
 import 'package:pharmageddon_mobile/data/remote/favorite_data.dart';
+import 'package:pharmageddon_mobile/print.dart';
 import '../../core/class/parent_state.dart';
 import '../../model/medication_model.dart';
 import '../favorite_cubit/favorite_cubit.dart';
@@ -69,10 +70,11 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   Future<void> unFavorite() async {
     model.isFavourite = false;
     _update(MedicationDetailsChangeState());
-    final data = {
+    final queryParameters = {
       AppRKeys.id: model.id,
     };
-    final response = await _favoriteRemoteData.unFavorite(data: data);
+    final response =
+        await _favoriteRemoteData.unFavorite(queryParameters: queryParameters);
     response.fold((l) {
       model.isFavourite = true;
       _update(MedicationDetailsFailureState(l));

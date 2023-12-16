@@ -29,7 +29,7 @@ class ManufacturersLoading extends StatelessWidget {
                   (index) => CustomShimmer(
                     child: Container(
                       height: 100,
-                      width: AppSize.widthManufacturer,
+                      width: AppSize.widthManufacturer.toInt().toDouble(),
                       decoration: BoxDecoration(
                         color: AppColor.white,
                         borderRadius: BorderRadius.circular(AppSize.radius10),

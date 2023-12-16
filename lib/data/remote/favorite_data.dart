@@ -31,12 +31,12 @@ class FavoriteRemoteData {
   }
 
   Future<Either<ParentState, Map<String, dynamic>>> unFavorite({
-    required Map<String, dynamic> data,
+    required Map<String, dynamic> queryParameters,
   }) async {
     final token = AppLocalData.user!.authorization!;
-    final response = await _crud.deleteData(
+    final response = await _crud.getData(
       linkUrl: AppLink.unFavorite,
-      data: data,
+      queryParameters: queryParameters,
       token: token,
     );
     return response;

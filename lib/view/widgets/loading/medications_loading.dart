@@ -28,7 +28,7 @@ class MedicationsLoading extends StatelessWidget {
                 (index) => CustomShimmer(
                   child: Container(
                     height: AppSize.widthCard + 40,
-                    width: AppSize.widthCard,
+                    width: AppSize.widthCard.toInt().toDouble(),
                     decoration: BoxDecoration(
                       color: AppColor.white,
                       borderRadius: BorderRadius.circular(AppSize.radius10),

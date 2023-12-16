@@ -48,7 +48,7 @@ class OrdersLoading extends StatelessWidget {
                       color: AppColor.white,
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    width: width,
+                    width: width.toInt().toDouble(),
                     child: const Text(''),
                   ),
                 ),
