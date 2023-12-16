@@ -5,6 +5,7 @@ import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
+import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
@@ -24,9 +25,7 @@ class OrderWidget extends StatelessWidget {
   final OrderModel model;
   final bool canPushNamed;
 
-  String get paymentStatus {
-    return model.paymentStatus == 0 ? AppText.unpaid.tr : AppText.paid.tr;
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,7 @@ class OrderWidget extends StatelessWidget {
                 children: [
                   RowTextSpan(
                     s1: '${AppText.id.tr} : ',
-                    s2: model.id.toString(),
+                    s2: model.id.toString().trn,
                   ),
                   const Spacer(),
                   AppInjection.getIt<AppWidget>().getOrderIcon(model),
@@ -57,15 +56,15 @@ class OrderWidget extends StatelessWidget {
               ),
               RowTextSpan(
                 s1: '${AppText.totalQuantity.tr} : ',
-                s2: model.totalQuantity.toString(),
+                s2: model.totalQuantity.toString().trn,
               ),
               RowTextSpan(
                 s1: '${AppText.totalPrice.tr} : ',
-                s2: model.totalPrice.toString(),
+                s2: model.totalPrice.toString().trn,
               ),
               RowTextSpan(
                 s1: '${AppText.paymentState.tr} : ',
-                s2: paymentStatus,
+                s2: getPaymentStatus(model),
               ),
               RowTextSpan(
                 s1: '${AppText.date.tr} : ',

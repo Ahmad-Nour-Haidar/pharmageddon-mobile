@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
 import '../../../core/constant/app_color.dart';
@@ -75,7 +76,7 @@ class _CounterCartWidgetState extends State<CounterCartWidget> {
           ),
           child: Text(
             maxLines: 1,
-            quantity.toString(),
+            quantity.toString().trn,
             style: AppTextStyle.f16w600primaryColor,
             textAlign: TextAlign.center,
           ),

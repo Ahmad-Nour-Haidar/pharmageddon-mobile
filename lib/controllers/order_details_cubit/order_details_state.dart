@@ -23,3 +23,11 @@ class OrderDetailsSuccessCancelState extends OrderDetailsState {}
 
 // get details
 class OrderDetailsGetLoadingState extends OrderDetailsState {}
+
+class OrderDetailsLoadingDeleteMedicineState extends OrderDetailsState {}
+class OrderDetailsDeleteMedicineSuccessState extends OrderDetailsState {
+  final ParentState state;
+
+  OrderDetailsDeleteMedicineSuccessState(this.state);
+}
+class OrderDetailsCancelAllState extends OrderDetailsState {}

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pharmageddon_mobile/data/local/app_hive.dart';
 
@@ -9,11 +10,13 @@ import '../../model/effect_category_model.dart';
 import '../../model/manufacturer_model.dart';
 import '../../model/medication_model.dart';
 import '../../model/order_details_model.dart';
+import '../../model/order_model.dart';
 import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
 import '../constant/app_link.dart';
 import '../constant/app_local_data.dart';
 import '../constant/app_storage_keys.dart';
+import '../constant/app_text.dart';
 import '../services/dependency_injection.dart';
 
 bool isEnglish() =>
@@ -205,3 +208,7 @@ String getMedicationModelDescription(MedicationModel? model) {
 
 String getImageUserUrl() =>
     '${AppLink.userImage}/${AppLocalData.user!.imageName}';
+
+String getPaymentStatus(OrderModel model) {
+  return model.paymentStatus == 0 ? AppText.unpaid.tr : AppText.paid.tr;
+}

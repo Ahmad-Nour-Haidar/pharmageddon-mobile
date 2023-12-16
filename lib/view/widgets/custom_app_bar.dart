@@ -84,10 +84,13 @@ class CustomAppBar {
                   },
                 ).show();
               },
-              icon: const SvgImage(
-                path: AppSvg.exit,
-                color: AppColor.black,
-                size: 20,
+              icon: Transform.flip(
+                flipX: !isEnglish(),
+                child: const SvgImage(
+                  path: AppSvg.exit,
+                  color: AppColor.black,
+                  size: 20,
+                ),
               ),
             );
           }),

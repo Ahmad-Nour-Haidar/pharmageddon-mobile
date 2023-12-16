@@ -4,6 +4,7 @@ import 'package:pharmageddon_mobile/core/constant/app_link.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/enums/order_status.dart';
 import 'package:pharmageddon_mobile/core/enums/screens.dart';
+import 'package:pharmageddon_mobile/core/extensions/update_list.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import '../../data/remote/order_data.dart';
 import '../../model/order_model.dart';
@@ -116,9 +117,17 @@ class OrderCubit extends Cubit<OrderState> {
     _update(OrderChangeState());
   }
 
-  Future<void> removeFromList(OrderModel model) async {
+  Future<void> removeOrderFromList(OrderModel model) async {
     if (_preparingOrders.isEmpty) return;
     _preparingOrders.removeWhere((element) => element.id == model.id);
+    _update(OrderSuccessState());
+  }
+
+  Future<void> updateOrderInList(OrderModel model) async {
+    if (_preparingOrders.isEmpty) return;
+    final index =
+        _preparingOrders.indexWhere((element) => element.id == model.id);
+    _preparingOrders.update(index, model);
     _update(OrderSuccessState());
   }
 }

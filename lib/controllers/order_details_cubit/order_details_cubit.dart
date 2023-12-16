@@ -18,7 +18,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
       BlocProvider.of(context);
   final _orderRemoteData = AppInjection.getIt<OrderRemoteData>();
   final List<OrderDetailsModel> data = [];
-  late final OrderModel model;
+  late OrderModel model;
   final Map<int, int> tempQuantity = {};
   bool _isEdit = false;
 
@@ -31,6 +31,124 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     this.model = model;
     _update(OrderDetailsSuccessState());
     getDetails();
+  }
+
+  Future<void> getDetails() async {
+    _update(OrderDetailsGetLoadingState());
+    final queryParameters = {
+      AppRKeys.id: model.id,
+    };
+    final response = await _orderRemoteData.getOrderDetails(
+      queryParameters: queryParameters,
+    );
+    response.fold((l) {
+      _update(OrderDetailsFailureState(l));
+    }, (r) {
+      final List temp =
+          r[AppRKeys.data][AppRKeys.order][AppRKeys.order_details];
+      data.clear();
+      data.addAll(temp.map((e) => OrderDetailsModel.fromJson(e)));
+      _update(OrderDetailsSuccessState());
+    });
+  }
+
+  Future<void> cancel() async {
+    _update(OrderDetailsLoadingCancelState());
+    final queryParameters = {
+      AppRKeys.id: model.id,
+    };
+    final response = await _orderRemoteData.deleteMedicineInOrder(
+        queryParameters: queryParameters);
+    response.fold((l) {
+      _update(OrderDetailsFailureState(l));
+    }, (r) {
+      final status = r[AppRKeys.status];
+      if (status == 403) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.orderNotFound.tr,
+        )));
+        return;
+      }
+      if (status == 405) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.thisOrderHasCanceledBefore.tr,
+        )));
+        return;
+      }
+      if (status == 406) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.orderHasBeenSentSoYouCannotCancelIt.tr,
+        )));
+        return;
+      }
+      if (status == 408) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.orderHasReceivedSoYouCannotCancelIt.tr,
+        )));
+        return;
+      }
+      if (status == 200) {
+        AppInjection.getIt<OrderCubit>().removeOrderFromList(model);
+        _update(OrderDetailsSuccessCancelState());
+      }
+    });
+  }
+
+  Future<void> onTapDeleteMedicine(int id) async {
+    _update(OrderDetailsLoadingDeleteMedicineState());
+    final queryParameters = {
+      AppRKeys.order_id: model.id,
+      AppRKeys.medicine_id: id,
+    };
+    final response = await _orderRemoteData.deleteMedicineInOrder(
+      queryParameters: queryParameters,
+    );
+    response.fold((l) {
+      _update(OrderDetailsFailureState(l));
+    }, (r) async {
+      final status = r[AppRKeys.status];
+      if (status == 403) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.orderNotFound.tr,
+        )));
+        return;
+      }
+      if (status == 405) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.thisOrderHasCanceledBefore.tr,
+        )));
+        return;
+      }
+      if (status == 406) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.orderHasBeenSentSoYouCannotEditIt.tr,
+        )));
+        return;
+      }
+      if (status == 408) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.orderHasReceivedSoYouCannotEditIt.tr,
+        )));
+        return;
+      }
+      if (status == 409) {
+        _update(OrderDetailsFailureState(FailureState(
+          message:
+              AppText.eitherThereIsNoMedicineWithThisIDOrYouHaveNotOrderedIt.tr,
+        )));
+        return;
+      }
+      if (status == 201) {
+        _update(OrderDetailsCancelAllState());
+      }
+      if (status == 200) {
+        data.removeWhere((element) => element.medicineId == id);
+        model = OrderModel.fromJson(r[AppRKeys.data][AppRKeys.order]);
+        await AppInjection.getIt<OrderCubit>().updateOrderInList(model);
+        _update(OrderDetailsDeleteMedicineSuccessState(
+            SuccessState(message: AppText.medicineCanceledSuccessfully.tr)));
+      }
+    });
   }
 
   int getQuantityOfMedicine(OrderDetailsModel model) {
@@ -58,66 +176,6 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
       x = model.totalPrice!;
     }
     return x;
-  }
-
-  Future<void> getDetails() async {
-    _update(OrderDetailsGetLoadingState());
-    final queryParameters = {
-      AppRKeys.id: model.id,
-    };
-    final response = await _orderRemoteData.getOrderDetails(
-      queryParameters: queryParameters,
-    );
-    response.fold((l) {
-      _update(OrderDetailsFailureState(l));
-    }, (r) {
-      final List temp =
-          r[AppRKeys.data][AppRKeys.order][AppRKeys.order_details];
-      data.clear();
-      data.addAll(temp.map((e) => OrderDetailsModel.fromJson(e)));
-      _update(OrderDetailsSuccessState());
-    });
-  }
-
-  Future<void> cancel() async {
-    _update(OrderDetailsLoadingCancelState());
-    final queryParameters = {AppRKeys.id: model.id};
-    final response =
-        await _orderRemoteData.cancel(queryParameters: queryParameters);
-    response.fold((l) {
-      _update(OrderDetailsFailureState(l));
-    }, (r) {
-      final status = r[AppRKeys.status];
-      if (status == 403) {
-        _update(OrderDetailsFailureState(FailureState(
-          message: AppText.orderNotFound.tr,
-        )));
-        AppInjection.getIt<OrderCubit>().removeFromList(model);
-        return;
-      }
-      if (status == 405) {
-        _update(OrderDetailsFailureState(FailureState(
-          message: AppText.thisOrderHasCanceledBefore.tr,
-        )));
-        return;
-      }
-      if (status == 406) {
-        _update(OrderDetailsFailureState(FailureState(
-          message: AppText.orderHasBeenSentSoYouCannotCancelIt.tr,
-        )));
-        return;
-      }
-      if (status == 408) {
-        _update(OrderDetailsFailureState(FailureState(
-          message: AppText.orderHasReceivedSoYouCannotCancelIt.tr,
-        )));
-        return;
-      }
-      if (status == 200) {
-        AppInjection.getIt<OrderCubit>().removeFromList(model);
-        _update(OrderDetailsSuccessCancelState());
-      }
-    });
   }
 
   Future<bool> update() async {

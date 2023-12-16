@@ -8,6 +8,7 @@ import 'package:pharmageddon_mobile/controllers/cart_cubit/cart_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
+import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
@@ -67,17 +68,17 @@ class CartScreen extends StatelessWidget {
                             RowTextSpan(
                               s1: '${AppText.totalMedications.tr} : ',
                               ts1: AppTextStyle.f15w600black,
-                              s2: cubit.data.length.toString(),
+                              s2: cubit.data.length.toString().trn,
                             ),
                             RowTextSpan(
                               s1: '${AppText.totalQuantity.tr} : ',
                               ts1: AppTextStyle.f15w600black,
-                              s2: cubit.totalQuantity.toString(),
+                              s2: cubit.totalQuantity.toString().trn,
                             ),
                             RowTextSpan(
                               s1: '${AppText.totalPrice.tr} : ',
                               ts1: AppTextStyle.f15w600black,
-                              s2: '${cubit.totalPrice} ${AppText.sp.tr}',
+                              s2: '${cubit.totalPrice} ${AppText.sp.tr}'.trn,
                             ),
                           ],
                         ),

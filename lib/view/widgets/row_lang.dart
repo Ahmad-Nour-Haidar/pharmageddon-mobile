@@ -37,7 +37,7 @@ class LanguageWidget extends StatelessWidget {
           text: AppText.english.tr,
           width: AppSize.width * .24,
           height: 40,
-          color: isEnglish() ? AppColor.green2 : AppColor.white,
+          color: isEnglish() ? AppColor.green2 : AppColor.cardColor,
           textStyle: AppTextStyle.f20w600black,
         ),
       ],

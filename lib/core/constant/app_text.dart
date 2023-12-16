@@ -66,10 +66,17 @@ abstract class AppText {
   static const alreadyBeenTaken = 'alreadyBeenTaken';
   static const thisOrderHasCanceledBefore = 'thisOrderHasCanceledBefore';
   static const orderNotFound = 'orderNotFound';
+  static const medicineCanceledSuccessfully = 'medicineCanceledSuccessfully';
+  static const eitherThereIsNoMedicineWithThisIDOrYouHaveNotOrderedIt =
+      'eitherThereIsNoMedicineWithThisIDOrYouHaveNotOrderedIt';
   static const orderHasBeenSentSoYouCannotCancelIt =
       'orderHasBeenSentSoYouCannotCancelIt';
+  static const orderHasBeenSentSoYouCannotEditIt =
+      'orderHasBeenSentSoYouCannotEditIt';
   static const orderHasReceivedSoYouCannotCancelIt =
       'orderHasReceivedSoYouCannotCancelIt';
+  static const orderHasReceivedSoYouCannotEditIt =
+      'orderHasReceivedSoYouCannotEditIt';
   static const enterTheVerificationCodeYouReceivedOnGmail =
       'enterTheVerificationCodeYouReceivedOnGmail';
   static const enterTheCompleteVerificationCode =
@@ -143,6 +150,8 @@ abstract class AppText {
   static const someOfMedicinesAreExpired = 'someOfMedicinesAreExpired';
   static const theOrderHasBeenAddedSuccessfully =
       'theOrderHasBeenAddedSuccessfully';
+  static const medicineHasCanceledAndOrderHasCanceledBecauseThereIsNoMedicinesInTheOrder =
+      'medicineHasCanceledAndOrderHasCanceledBecauseThereIsNoMedicinesInTheOrder';
   static const paid = 'paid';
   static const unpaid = 'unpaid';
   static const enterTheQuantityYouWant = 'enterTheQuantityYouWant';

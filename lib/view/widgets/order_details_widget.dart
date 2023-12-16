@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:pharmageddon_mobile/controllers/order_details_cubit/order_detail
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
+import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
@@ -22,12 +24,14 @@ class OrderDetailsWidget extends StatefulWidget {
     required this.model,
     required this.enableEdit,
     required this.onEditMedicine,
+    required this.onTapDelete,
   });
 
   final int index;
   final OrderDetailsModel model;
   final bool enableEdit;
   final void Function(int id, int newQuantity) onEditMedicine;
+  final void Function(int id) onTapDelete;
 
   @override
   State<OrderDetailsWidget> createState() => _OrderDetailsWidgetState();
@@ -83,23 +87,23 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
               RowTextSpan(s1: '${AppText.name.tr} : ', s2: name),
               RowTextSpan(
                 s1: '${AppText.totalQuantity.tr} : ',
-                s2: widget.model.totalQuantity.toString(),
+                s2: widget.model.totalQuantity.toString().trn,
               ),
               RowTextSpan(
                 s1: '${AppText.totalPrice.tr} : ',
-                s2: '${widget.model.totalPrice} ${AppText.sp.tr}',
+                s2: '${widget.model.totalPrice} ${AppText.sp.tr}'.trn,
               ),
               if (widget.enableEdit)
                 RowTextSpan(
                   s1: '${AppText.priceWhenOrdered.tr} : ',
-                  s2: '${widget.model.priceWhenOrdered} ${AppText.sp.tr}',
+                  s2: '${widget.model.priceWhenOrdered} ${AppText.sp.tr}'.trn,
                 ),
               if (widget.enableEdit)
                 RowTextSpan(
                   s1: '${AppText.discount.tr} : ',
-                  s2: widget.model.hasDiscount.toString(),
+                  s2: '${widget.model.hasDiscount} % '.trn,
                 ),
-              if (widget.enableEdit) const Gap(10),
+              if (widget.enableEdit) const Gap(5),
               if (widget.enableEdit)
                 Row(
                   children: [
@@ -132,7 +136,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                       ),
                       child: Text(
                         maxLines: 1,
-                        quantity.toString(),
+                        quantity.toString().trn,
                         style: AppTextStyle.f16w600primaryColor,
                         textAlign: TextAlign.center,
                       ),
@@ -159,6 +163,20 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                         ),
                       ),
                     ),
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {
+                        showAwesome(context);
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: SvgImage(
+                          path: AppSvg.trash,
+                          color: AppColor.green2,
+                          size: 20,
+                        ),
+                      ),
+                    ),
                   ],
                 )
             ],
@@ -171,7 +189,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
             child: Container(
               color: AppColor.background,
               child: Text(
-                '  ( ${widget.index + 1} )  ',
+                '  ( ${widget.index + 1} )  '.trn,
                 style: AppTextStyle.f20w600green2,
               ),
             ),
@@ -179,6 +197,25 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
         ),
       ],
     );
+  }
+
+  void showAwesome(BuildContext context) {
+    AwesomeDialog(
+      context: context,
+      btnOkText: AppText.ok.tr,
+      btnCancelText: AppText.cancel.tr,
+      title: AppText.confirmDeletion.tr,
+      titleTextStyle: AppTextStyle.f18w600red,
+      desc: name,
+      descTextStyle: AppTextStyle.f18w500black,
+      dialogType: DialogType.error,
+      btnOkOnPress: () {
+        widget.onTapDelete(widget.model.medicineId!);
+      },
+      btnCancelOnPress: () {},
+      btnOkColor: AppColor.red,
+      btnCancelColor: AppColor.green,
+    ).show();
   }
 }
 
@@ -188,11 +225,13 @@ class OrderDetailsList extends StatelessWidget {
     required this.data,
     required this.enableEdit,
     required this.onEditMedicine,
+    required this.onTapDelete,
   });
 
   final List<OrderDetailsModel> data;
   final bool enableEdit;
   final void Function(int id, int newQuantity) onEditMedicine;
+  final void Function(int id) onTapDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -203,6 +242,7 @@ class OrderDetailsList extends StatelessWidget {
           model: data[index],
           enableEdit: enableEdit,
           onEditMedicine: onEditMedicine,
+          onTapDelete: onTapDelete,
         ),
         separatorBuilder: (context, index) => const Gap(0),
         itemCount: data.length,

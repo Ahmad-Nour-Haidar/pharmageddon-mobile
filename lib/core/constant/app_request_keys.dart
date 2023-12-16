@@ -30,7 +30,9 @@ class AppRKeys {
   static const order_details = 'order_details';
   static const start_date = 'start_date';
   static const end_date = 'end_date';
-  static const new_quantity = 'new_quantity';
   static const medicines_quantity_not_available =
       'medicines_quantity_not_available';
+  static const new_quantity = 'new_quantity';
+  static const order_id = 'order_id';
+
 }

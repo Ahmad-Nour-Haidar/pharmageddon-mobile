@@ -124,12 +124,22 @@ class MyTranslation extends Translations {
           AppText.someOfMedicinesAreExpired: 'Some of medicines are expired.',
           AppText.theOrderHasBeenAddedSuccessfully:
               'The order has been added successfully.',
+          AppText.medicineHasCanceledAndOrderHasCanceledBecauseThereIsNoMedicinesInTheOrder:
+              'Medicine has canceled and Order has canceled because there is no medicines in the order',
           AppText.paid: 'Paid',
           AppText.unpaid: 'Un paid',
+          AppText.orderHasReceivedSoYouCannotEditIt:
+              'Order has received so you cannot edit it',
+          AppText.orderHasBeenSentSoYouCannotEditIt:
+              'Order has been sent so you cannot edit it',
           AppText.enterTheQuantityYouWant: 'Enter the quantity you want .',
           AppText.updatedSuccessfully: 'Updated successfully',
           AppText.thisOrderHasCanceledBefore: 'This order has canceled before.',
           AppText.orderNotFound: 'Order not found.',
+          AppText.medicineCanceledSuccessfully:
+              'Medicine canceled successfully',
+          AppText.eitherThereIsNoMedicineWithThisIDOrYouHaveNotOrderedIt:
+              'Either there is no medicine with this ID or you haven\'t ordered it',
           AppText.orderHasBeenSentSoYouCannotCancelIt:
               'Order has been sent so you cannot cancel it.',
           AppText.orderHasReceivedSoYouCannotCancelIt:
@@ -250,10 +260,16 @@ class MyTranslation extends Translations {
           AppText.orderDetails: 'تفاصيل الطلب',
           AppText.cancel: 'الغاء',
           AppText.back: 'تراجع',
+          AppText.orderHasBeenSentSoYouCannotEditIt:
+              'تم إرسال الطلب لذلك لا يمكنك تعديله',
+          AppText.orderHasReceivedSoYouCannotEditIt:
+              'تم استلام الطلب لذلك لا يمكنك تعديله',
           AppText.quantitiesOfSomeMedicinesAreNotAvailable:
               'كميات بعض الأدوية غير متوفرة.',
           AppText.someOfMedicinesAreExpired: 'بعض الأدوية منتهية الصلاحية.',
           AppText.theOrderHasBeenAddedSuccessfully: 'تمت إضافة الطلب بنجاح.',
+          AppText.medicineHasCanceledAndOrderHasCanceledBecauseThereIsNoMedicinesInTheOrder:
+              'تم إلغاء الدواء وتم إلغاء الطلب لعدم وجود أدوية في الطلب',
           AppText.paid: 'مدفوع',
           AppText.unpaid: 'غير مدفوع',
           AppText.updatedSuccessfully: 'تم التعديل بنجاح',
@@ -263,6 +279,9 @@ class MyTranslation extends Translations {
           AppText.orderHasReceivedSoYouCannotCancelIt:
               'تم استلام الطلب لذلك لا يمكنك إلغاءه.',
           AppText.orderNotFound: 'لم يتم العثور على الطلب.',
+          AppText.medicineCanceledSuccessfully: 'تم إلغاء الدواء بنجاح',
+          AppText.eitherThereIsNoMedicineWithThisIDOrYouHaveNotOrderedIt:
+              'إما أنه لا يوجد دواء بهذا المعرف أو أنك لم تطلبه',
           AppText.enterTheQuantityYouWant: 'ادخل الكمية التي تريدها .',
         },
       };

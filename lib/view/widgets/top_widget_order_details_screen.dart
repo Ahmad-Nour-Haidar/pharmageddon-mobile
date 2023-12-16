@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 import '../../controllers/order_details_cubit/order_details_cubit.dart';
 import '../../core/constant/app_color.dart';
@@ -81,7 +82,7 @@ class _TopWidgetOrderDetailsScreenState
             children: [
               RowTextSpan(
                 s1: '${AppText.id.tr} : ',
-                s2: widget.model.id.toString(),
+                s2: widget.model.id.toString().trn,
                 ts1: AppTextStyle.f18w600black,
                 ts2: AppTextStyle.f18w400black,
               ),
@@ -90,19 +91,19 @@ class _TopWidgetOrderDetailsScreenState
           ),
           RowTextSpan(
             s1: '${AppText.totalQuantity.tr} : ',
-            s2: widget.model.totalQuantity.toString(),
+            s2: widget.model.totalQuantity.toString().trn,
             ts1: AppTextStyle.f18w600black,
             ts2: AppTextStyle.f18w400black,
           ),
           RowTextSpan(
             s1: '${AppText.totalPrice.tr} : ',
-            s2: '${widget.model.totalPrice} ${AppText.sp.tr}',
+            s2: '${widget.model.totalPrice} ${AppText.sp.tr}'.trn,
             ts1: AppTextStyle.f18w600black,
             ts2: AppTextStyle.f18w400black,
           ),
           RowTextSpan(
             s1: '${AppText.paymentState.tr} : ',
-            s2: widget.model.paymentStatus.toString(),
+            s2: getPaymentStatus(widget.model),
             ts1: AppTextStyle.f18w600black,
             ts2: AppTextStyle.f18w400black,
           ),

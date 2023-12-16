@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -12,6 +13,7 @@ import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'package:pharmageddon_mobile/view/widgets/order_details_widget.dart';
+import '../../controllers/order_cubit/order_cubit.dart';
 import '../../controllers/order_details_cubit/order_details_state.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/services/dependency_injection.dart';
@@ -34,8 +36,14 @@ class OrderDetailsScreen extends StatelessWidget {
             if (state is OrderDetailsFailureState) {
               handleState(state: state.state, context: context);
             }
+            if (state is OrderDetailsDeleteMedicineSuccessState) {
+              handleState(state: state.state, context: context);
+            }
             if (state is OrderDetailsSuccessCancelState) {
               Navigator.pop(context);
+            }
+            if (state is OrderDetailsCancelAllState) {
+              showAwesome(context);
             }
           },
           builder: (context, state) {
@@ -45,12 +53,18 @@ class OrderDetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   TopWidgetOrderDetailsScreen(
-                    model: model,
+                    model: cubit.model,
                     onTapEdit: (bool isEdit) {
                       cubit.isEdit = isEdit;
                     },
                   ),
                   const Gap(10),
+                  if (state is OrderDetailsLoadingDeleteMedicineState)
+                    const LinearProgressIndicator(
+                      color: AppColor.secondColor,
+                    ),
+                  if (state is OrderDetailsLoadingDeleteMedicineState)
+                    const Gap(10),
                   if (state is OrderDetailsGetLoadingState) const Gap(50),
                   if (state is OrderDetailsGetLoadingState)
                     const SpinKitFoldingCube(color: AppColor.buttonColor),
@@ -58,6 +72,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     data: cubit.data,
                     enableEdit: cubit.isEdit,
                     onEditMedicine: cubit.onEditMedicine,
+                    onTapDelete: cubit.onTapDeleteMedicine,
                   ),
                 ],
               ),
@@ -66,5 +81,22 @@ class OrderDetailsScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void showAwesome(BuildContext context) {
+    final cubit = OrderDetailsCubit.get(context);
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.success,
+      desc: AppText
+          .medicineHasCanceledAndOrderHasCanceledBecauseThereIsNoMedicinesInTheOrder
+          .tr,
+      dismissOnTouchOutside: false,
+      dismissOnBackKeyPress: false,
+      btnOkOnPress: () {
+        AppInjection.getIt<OrderCubit>().removeOrderFromList(cubit.model);
+        Navigator.pop(context);
+      },
+    ).show();
   }
 }
