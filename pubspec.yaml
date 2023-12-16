@@ -58,6 +58,7 @@ dependencies:
   hive_flutter: ^1.1.0
   dev: ^1.0.0
   fl_chart: ^0.65.0
+  fluttertoast: ^8.2.4
 
 dev_dependencies:
   flutter_test:

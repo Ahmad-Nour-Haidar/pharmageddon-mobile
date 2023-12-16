@@ -16,6 +16,7 @@ import 'package:pharmageddon_mobile/view/widgets/loading/medications_loading.dar
 
 import '../../core/constant/app_local_data.dart';
 import '../../core/enums/screens.dart';
+import '../widgets/back_button_wrapper.dart';
 import '../widgets/custom_nav_bar.dart';
 import '../widgets/loading/effect_category_loading.dart';
 
@@ -76,25 +77,27 @@ class HomeScreen extends StatelessWidget {
                 onRefresh: () => cubit.getMedications(forceGetData: true));
           }
         }
-        return Scaffold(
-          bottomNavigationBar: CustomNavBar(
-            initialScreen: cubit.currentScreen,
-            list: AppConstant.homeList,
-            onChange: cubit.changeScreen,
-          ),
-          appBar: CustomAppBar(
-            title: cubit.currentScreen.titleScreen.tr,
-            showArrowBack: false,
-            showSearch: true,
-            showOptions: true,
-            showCart: true,
-            showFavorites: true,
-            showOrders: true,
-            showReports: true,
-          ).build(),
-          body: Padding(
-            padding: AppPadding.screenPadding,
-            child: Column(children: [widget]),
+        return BackButtonWrapper(
+          child: Scaffold(
+            bottomNavigationBar: CustomNavBar(
+              initialScreen: cubit.currentScreen,
+              list: AppConstant.homeList,
+              onChange: cubit.changeScreen,
+            ),
+            appBar: CustomAppBar(
+              title: cubit.currentScreen.titleScreen.tr,
+              showArrowBack: false,
+              showSearch: true,
+              showOptions: true,
+              showCart: true,
+              showFavorites: true,
+              showOrders: true,
+              showReports: true,
+            ).build(),
+            body: Padding(
+              padding: AppPadding.screenPadding,
+              child: Column(children: [widget]),
+            ),
           ),
         );
       },
