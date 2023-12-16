@@ -6,7 +6,7 @@ import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/constant/app_svg.dart';
 import '../../core/functions/functions.dart';
 import '../../core/functions/navigator.dart';

@@ -7,7 +7,7 @@ import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/print.dart';
 
 import '../../core/class/parent_state.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../data/remote/reports_data.dart';
 import '../../model/order_model.dart';
 

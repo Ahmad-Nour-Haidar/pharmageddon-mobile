@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/resources/app_text_theme.dart';
 
 class CustomToggleButton extends StatelessWidget {

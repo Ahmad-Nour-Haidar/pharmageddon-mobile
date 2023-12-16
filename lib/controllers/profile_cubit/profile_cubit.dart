@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/profile_cubit/profile_state.dart';
 import 'package:pharmageddon_mobile/core/class/parent_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_local_data.dart';
-import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
+import 'package:pharmageddon_mobile/core/constant/app_text.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/auth_data.dart';
 import 'package:pharmageddon_mobile/print.dart';

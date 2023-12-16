@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../constant/app_strings.dart';
+import '../constant/app_text.dart';
 import '../functions/functions.dart';
 
 class ValidateInput {

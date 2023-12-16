@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../controllers/search_cubit/search_state.dart';
 import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/resources/app_text_theme.dart';
 import '../../core/services/dependency_injection.dart';
 import '../widgets/app_widget.dart';

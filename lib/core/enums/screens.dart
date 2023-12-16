@@ -1,4 +1,4 @@
-import '../constant/app_strings.dart';
+import '../constant/app_text.dart';
 import '../constant/app_svg.dart';
 
 enum ScreenShow {

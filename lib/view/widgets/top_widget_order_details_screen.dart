@@ -5,7 +5,7 @@ import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 import '../../controllers/order_details_cubit/order_details_cubit.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/enums/order_status.dart';
 import '../../core/functions/functions.dart';
 import '../../core/resources/app_text_theme.dart';
