@@ -145,4 +145,5 @@ abstract class AppText {
       'theOrderHasBeenAddedSuccessfully';
   static const paid = 'paid';
   static const unpaid = 'unpaid';
+  static const enterTheQuantityYouWant = 'enterTheQuantityYouWant';
 }

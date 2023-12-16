@@ -1,11 +1,13 @@
 import 'package:pharmageddon_mobile/controllers/local_controller.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/print.dart';
 
 extension TranslateNumbers on String {
-  trNumber() {
+  String get trn {
     if (AppInjection.getIt<LocaleController>().locale.languageCode ==
         AppConstant.en) return this;
+    // return this;
     const keys = {
       '0': '٠',
       '1': '١',

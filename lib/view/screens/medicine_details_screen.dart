@@ -93,32 +93,28 @@ class MedicationDetailsScreen extends StatelessWidget {
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppText.description.tr} : ',
-                            s2: getMedicationModelDescription(cubit.model)
-                                .trNumber(),
+                            s2: getMedicationModelDescription(cubit.model).trn,
                           ),
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppText.availableQuantity.tr} : ',
-                            s2: cubit.model.availableQuantity
-                                .toString()
-                                .trNumber(),
+                            s2: cubit.model.availableQuantity.toString().trn,
                           ),
                           const Gap(5),
                           RowTextSpan(
                             s1: '${AppText.price.tr} : ',
-                            s2: '${cubit.model.price} ${AppText.sp.tr}'
-                                .trNumber(),
+                            s2: '${cubit.model.price} ${AppText.sp.tr}'.trn,
                           ),
                           if (cubit.model.discount! > 0)
                             RowTextSpan(
                               s1: '${AppText.discount.tr} : ',
-                              s2: '${cubit.model.discount} %'.trNumber(),
+                              s2: '${cubit.model.discount} %'.trn,
                             ),
                           if (cubit.model.discount! > 0)
                             RowTextSpan(
                               s1: '${AppText.priceAfterDiscount.tr} : ',
                               s2: '${cubit.model.priceAfterDiscount} ${AppText.sp.tr}'
-                                  .trNumber(),
+                                  .trn,
                             ),
                           RowTextSpan(
                             s1: '${AppText.expirationDate.tr} : ',
@@ -128,7 +124,7 @@ class MedicationDetailsScreen extends StatelessWidget {
                           RowTextSpan(
                             s1: '${AppText.totalPrice.tr} : ',
                             ts1: AppTextStyle.f18w600red,
-                            s2: '${cubit.totalPrice} ${AppText.sp.tr}',
+                            s2: '${cubit.totalPrice} ${AppText.sp.tr}'.trn,
                             ts2: AppTextStyle.f18w400red,
                           ),
                           const Gap(30),

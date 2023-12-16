@@ -85,7 +85,7 @@ class MedicationWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text(
-                            '${model.discount?.toInt()} %'.trNumber(),
+                            '${model.discount?.toInt()} %'.trn,
                             style: AppTextStyle.f20w600white,
                           ),
                         ),
@@ -138,7 +138,7 @@ class MedicationsListWidget extends StatelessWidget {
                   Padding(
                     padding: AppPadding.symmetric(horizontal: 20, vertical: 5),
                     child: Text(
-                      '${AppText.all.tr} : ( ${data.length} )',
+                      '${AppText.all.tr} : ( ${data.length} )'.trn,
                       style: AppTextStyle.f18w500black,
                     ),
                   ),

@@ -126,6 +126,7 @@ class MyTranslation extends Translations {
               'The order has been added successfully.',
           AppText.paid: 'Paid',
           AppText.unpaid: 'Un paid',
+          AppText.enterTheQuantityYouWant: 'Enter the quantity you want .',
           AppText.updatedSuccessfully: 'Updated successfully',
           AppText.thisOrderHasCanceledBefore: 'This order has canceled before.',
           AppText.orderNotFound: 'Order not found.',
@@ -262,6 +263,7 @@ class MyTranslation extends Translations {
           AppText.orderHasReceivedSoYouCannotCancelIt:
               'تم استلام الطلب لذلك لا يمكنك إلغاءه.',
           AppText.orderNotFound: 'لم يتم العثور على الطلب.',
+          AppText.enterTheQuantityYouWant: 'ادخل الكمية التي تريدها .',
         },
       };
 }

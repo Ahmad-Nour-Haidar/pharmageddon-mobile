@@ -1,10 +1,14 @@
 import 'dart:async';
-
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
+import 'package:pharmageddon_mobile/core/constant/app_strings.dart';
 import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
-
+import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_svg.dart';
@@ -34,7 +38,7 @@ class _CounterWidgetState extends State<CounterWidget> {
   @override
   void initState() {
     _counter = widget.initialValue;
-    _controller.text = widget.initialValue.toString();
+    _controller.text = _counter.toString();
     super.initState();
   }
 
@@ -43,23 +47,26 @@ class _CounterWidgetState extends State<CounterWidget> {
     if (_counter + x > widget.maxValue) return;
     setState(() {
       _counter += x;
-      _controller.text = _counter.toString().trNumber();
+      _controller.text = _counter.toString();
     });
     widget.onChange(_counter);
   }
 
   static const _border = OutlineInputBorder(
-    gapPadding: 0,
-    borderSide: BorderSide(color: AppColor.transparent),
+    gapPadding: 10,
+    borderSide: BorderSide(
+      color: AppColor.secondColor,
+      width: 2,
+    ),
   );
 
-  void changeFromValue() {
-    var x = int.tryParse(_controller.text) ?? 0;
+  void changeFromValue(String? value) {
+    var x = int.tryParse(value ?? '') ?? 0;
     if (x < 0) x = 0;
     if (x > widget.maxValue) x = widget.maxValue;
     setState(() {
       _counter = x;
-      _controller.text = _counter.toString().trNumber();
+      _controller.text = _counter.toString();
     });
     widget.onChange(_counter);
   }
@@ -103,39 +110,18 @@ class _CounterWidgetState extends State<CounterWidget> {
                     ),
                   ),
                 ),
-                // Expanded(
-                //   child: AutoSizeText(
-                //     maxLines: 1,
-                //     _counter.toString(),
-                //     style: AppTextTheme.f18w600white,
-                //     textAlign: TextAlign.center,
-                //   ),
-                // ),
                 Expanded(
-                  child: TextFormField(
-                    controller: _controller,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      // FilteringTextInputFormatter.deny(
-                      //     RegExp(r'^([0-9]|[1-9][0-9]{0,2}|1000)$')),
-                    ],
-                    onFieldSubmitted: (_) => changeFromValue(),
-                    onChanged: (_) => changeFromValue(),
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    scrollPadding: AppPadding.zero,
-                    textAlignVertical: TextAlignVertical.top,
-                    textInputAction: TextInputAction.done,
-                    style: const TextStyle(
-                      color: AppColor.white,
-                      fontSize: 18,
-                    ),
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.all(0),
-                      border: _border,
-                      focusedBorder: _border,
-                      enabledBorder: _border,
-                      constraints: BoxConstraints(maxHeight: 42),
+                  child: InkWell(
+                    onTap: () => showAwesome(context),
+                    child: SizedBox(
+                      height: 42,
+                      child: Center(
+                        child: AutoSizeText(
+                          maxLines: 1,
+                          _counter.toString().trn,
+                          style: AppTextStyle.f18w600white,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -170,5 +156,47 @@ class _CounterWidgetState extends State<CounterWidget> {
         ),
       ),
     );
+  }
+
+  void showAwesome(BuildContext context) {
+    AwesomeDialog(
+      bodyHeaderDistance: 0.0,
+      padding: AppPadding.padding15,
+      context: context,
+      dialogType: DialogType.noHeader,
+      body: Column(
+        children: [
+          Text(
+            AppText.enterTheQuantityYouWant.tr,
+            style: AppTextStyle.f18w600black,
+          ),
+          const Gap(15),
+          TextField(
+            autofocus: true,
+            controller: _controller,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              // FilteringTextInputFormatter.deny(
+              //     RegExp(r'^([0-9]|[1-9][0-9]{0,2}|1000)$')),
+            ],
+            // onFieldSubmitted: (_) => changeFromValue(_),
+            onChanged: (_) => changeFromValue(_),
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.center,
+            scrollPadding: AppPadding.zero,
+            textAlignVertical: TextAlignVertical.top,
+            textInputAction: TextInputAction.done,
+            style: AppTextStyle.f18w600black,
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.all(0),
+              border: _border,
+              focusedBorder: _border,
+              enabledBorder: _border,
+              constraints: BoxConstraints(maxHeight: 42),
+            ),
+          ),
+        ],
+      ),
+    ).show();
   }
 }
