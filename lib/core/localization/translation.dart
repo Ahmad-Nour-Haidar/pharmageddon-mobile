@@ -30,7 +30,7 @@ class MyTranslation extends Translations {
           AppText.thePhoneNumberMustStartWith:
               'The phone number must start with 09 and have a total of 10 digits',
           AppText.passwordMustBeAtLeast8:
-              'Password must be at least 8 characters and contain a mix of uppercase and lowercase letters, numbers, and special characters.',
+              'Password must be at least 8 characters and contain a mix of uppercase and lowercase letters, numbers, and special characters',
           AppText.doNotHaveAnAccount: 'Don\'t have an account ?',
           AppText.passwordNotCorrect: 'Password not correct',
           AppText.userNotFound: 'User not found',
@@ -38,8 +38,8 @@ class MyTranslation extends Translations {
           AppText.verifyCodeNotSentTryAgain: 'Verify code not sent, Try again!',
           AppText.goToTheOtherPlatform: 'Go to the other platform',
           AppText.resendVerifyCode: 'Resend verify code',
-          AppText.emailOrPasswordIsWrong: 'Email or password is wrong.',
-          AppText.phoneOrPasswordIsWrong: 'Phone or password is wrong.',
+          AppText.emailOrPasswordIsWrong: 'Email or password is wrong',
+          AppText.phoneOrPasswordIsWrong: 'Phone or password is wrong',
           AppText.forgetPassword: 'Forget Password',
           AppText.check: 'Check',
           AppText.checkEmail: 'Check email',
@@ -56,7 +56,7 @@ class MyTranslation extends Translations {
           AppText.enterTheVerificationCodeYouReceivedOnGmail:
               'Enter the verification code you received on Gmail',
           AppText.enterTheCompleteVerificationCode:
-              'Enter the complete verification code.',
+              'Enter the complete verification code',
           AppText.verify: 'Verify',
           AppText.verifyCode: 'Verify Code',
           AppText.price: 'Price',
@@ -119,11 +119,12 @@ class MyTranslation extends Translations {
           AppText.orderDetails: 'Order Details',
           AppText.cancel: 'Cancel',
           AppText.back: 'Back',
+          AppText.iReceivedIt: 'I received it',
           AppText.quantitiesOfSomeMedicinesAreNotAvailable:
-              'Quantities of some medicines are not available.',
-          AppText.someOfMedicinesAreExpired: 'Some of medicines are expired.',
+              'Quantities of some medicines are not available',
+          AppText.someOfMedicinesAreExpired: 'Some of medicines are expired',
           AppText.theOrderHasBeenAddedSuccessfully:
-              'The order has been added successfully.',
+              'The order has been added successfully',
           AppText.medicineHasCanceledAndOrderHasCanceledBecauseThereIsNoMedicinesInTheOrder:
               'Medicine has canceled and Order has canceled because there is no medicines in the order',
           AppText.paid: 'Paid',
@@ -132,18 +133,24 @@ class MyTranslation extends Translations {
               'Order has received so you cannot edit it',
           AppText.orderHasBeenSentSoYouCannotEditIt:
               'Order has been sent so you cannot edit it',
-          AppText.enterTheQuantityYouWant: 'Enter the quantity you want .',
+          AppText.enterTheQuantityYouWant: 'Enter the quantity you want',
           AppText.updatedSuccessfully: 'Updated successfully',
-          AppText.thisOrderHasCanceledBefore: 'This order has canceled before.',
-          AppText.orderNotFound: 'Order not found.',
+          AppText.thisOrderHasCanceledBefore: 'This order has canceled before',
+          AppText.orderNotFound: 'Order not found',
+          AppText.areYouReallyReceivedThisOrder:
+              'Are you really received this order',
+          AppText.thisOrderHasAlreadyBeenReceived:
+              'This order has already been received',
+          AppText.thisOrderHasAlreadyBeenCanceled:
+              'This order has already been canceled',
           AppText.medicineCanceledSuccessfully:
               'Medicine canceled successfully',
           AppText.eitherThereIsNoMedicineWithThisIDOrYouHaveNotOrderedIt:
               'Either there is no medicine with this ID or you haven\'t ordered it',
           AppText.orderHasBeenSentSoYouCannotCancelIt:
-              'Order has been sent so you cannot cancel it.',
+              'Order has been sent so you cannot cancel it',
           AppText.orderHasReceivedSoYouCannotCancelIt:
-              'Order has received so you cannot cancel it.',
+              'Order has received so you cannot cancel it',
         },
         'ar': {
           AppText.language: 'اللغة',
@@ -172,7 +179,7 @@ class MyTranslation extends Translations {
           AppText.thePhoneNumberMustStartWith:
               'يجب أن يبدأ رقم الهاتف بالرقم 09 وأن يتكون من 10 أرقام',
           AppText.passwordMustBeAtLeast8:
-              'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل وأن تحتوي على مزيج من الأحرف الكبيرة والصغيرة والأرقام والأحرف الخاصة.',
+              'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل وأن تحتوي على مزيج من الأحرف الكبيرة والصغيرة والأرقام والأحرف الخاصة',
           AppText.passwordNotCorrect: 'كلمة المرور غير صحيحة',
           AppText.userNotFound: 'لم يتم العثور على المستخدم',
           AppText.verifyCodeNotCorrect: 'رمز التحقق غير صحيح',
@@ -200,7 +207,7 @@ class MyTranslation extends Translations {
           AppText.alreadyBeenTaken: 'بالفعل تم اخذها.',
           AppText.enterTheVerificationCodeYouReceivedOnGmail:
               'أدخل رمز التحقق الذي تلقيته على Gmail',
-          AppText.enterTheCompleteVerificationCode: 'ادخل كامل رمز التحقق.',
+          AppText.enterTheCompleteVerificationCode: 'ادخل كامل رمز التحقق',
           AppText.price: 'السعر',
           AppText.totalPrice: 'السعر الاجمالي',
           AppText.priceWhenOrdered: 'السعر وقت الطلب',
@@ -260,6 +267,11 @@ class MyTranslation extends Translations {
           AppText.orderDetails: 'تفاصيل الطلب',
           AppText.cancel: 'الغاء',
           AppText.back: 'تراجع',
+          AppText.iReceivedIt: 'استلمته',
+          AppText.thisOrderHasAlreadyBeenReceived:
+              'لقد تم استلام هذا الطلب من قبل',
+          AppText.thisOrderHasAlreadyBeenCanceled:
+              'لقد تم إلغاء هذا الطلب من قبل',
           AppText.orderHasBeenSentSoYouCannotEditIt:
               'تم إرسال الطلب لذلك لا يمكنك تعديله',
           AppText.orderHasReceivedSoYouCannotEditIt:
@@ -273,16 +285,17 @@ class MyTranslation extends Translations {
           AppText.paid: 'مدفوع',
           AppText.unpaid: 'غير مدفوع',
           AppText.updatedSuccessfully: 'تم التعديل بنجاح',
-          AppText.thisOrderHasCanceledBefore: 'تم إلغاء هذا الطلب من قبل.',
+          AppText.thisOrderHasCanceledBefore: 'تم إلغاء هذا الطلب من قبل',
           AppText.orderHasBeenSentSoYouCannotCancelIt:
-              'تم إرسال الطلب لذلك لا يمكنك إلغاءه.',
+              'تم إرسال الطلب لذلك لا يمكنك إلغاءه',
           AppText.orderHasReceivedSoYouCannotCancelIt:
-              'تم استلام الطلب لذلك لا يمكنك إلغاءه.',
-          AppText.orderNotFound: 'لم يتم العثور على الطلب.',
+              'تم استلام الطلب لذلك لا يمكنك إلغاءه',
+          AppText.orderNotFound: 'لم يتم العثور على الطلب',
+          AppText.areYouReallyReceivedThisOrder: 'هل تلقيت هذا الطلب',
           AppText.medicineCanceledSuccessfully: 'تم إلغاء الدواء بنجاح',
           AppText.eitherThereIsNoMedicineWithThisIDOrYouHaveNotOrderedIt:
               'إما أنه لا يوجد دواء بهذا المعرف أو أنك لم تطلبه',
-          AppText.enterTheQuantityYouWant: 'ادخل الكمية التي تريدها .',
+          AppText.enterTheQuantityYouWant: 'ادخل الكمية التي تريدها',
         },
       };
 }

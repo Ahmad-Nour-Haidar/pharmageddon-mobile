@@ -35,7 +35,7 @@ class OrderDetailsDeleteMedicineSuccessState extends OrderDetailsState {
 
 class OrderDetailsAllCanceledState extends OrderDetailsState {}
 
-// delete medicine
+// update order
 class OrderDetailsUpdateOrderLoadingState extends OrderDetailsState {}
 
 class OrderDetailsUpdateOrderSuccessState extends OrderDetailsState {
@@ -43,3 +43,7 @@ class OrderDetailsUpdateOrderSuccessState extends OrderDetailsState {
 
   OrderDetailsUpdateOrderSuccessState(this.state);
 }
+
+// change status
+
+class OrderDetailsUpdateStatusOrderSuccessState extends OrderDetailsState {}

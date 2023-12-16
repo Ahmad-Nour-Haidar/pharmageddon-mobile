@@ -81,7 +81,12 @@ abstract class AppText {
       'enterTheVerificationCodeYouReceivedOnGmail';
   static const enterTheCompleteVerificationCode =
       'enterTheCompleteVerificationCode';
+  static const areYouReallyReceivedThisOrder = 'areYouReallyReceivedThisOrder';
   static const somethingWentWrong = 'somethingWentWrong';
+  static const thisOrderHasAlreadyBeenReceived =
+      'thisOrderHasAlreadyBeenReceived';
+  static const thisOrderHasAlreadyBeenCanceled =
+      'thisOrderHasAlreadyBeenCanceled';
   static const savedSuccessfully = 'savedSuccessfully';
 
   // medicine details
@@ -145,6 +150,7 @@ abstract class AppText {
   static const orderDetails = 'orderDetails';
   static const cancel = 'cancel';
   static const back = 'back';
+  static const iReceivedIt = 'iReceivedIt';
   static const quantitiesOfSomeMedicinesAreNotAvailable =
       'quantitiesOfSomeMedicinesAreNotAvailable';
   static const someOfMedicinesAreExpired = 'someOfMedicinesAreExpired';

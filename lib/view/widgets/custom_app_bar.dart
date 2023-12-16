@@ -74,7 +74,7 @@ class CustomAppBar {
                   context: context,
                   btnOkText: AppText.ok.tr,
                   btnCancelText: AppText.cancel.tr,
-                  dialogType: DialogType.error,
+                  dialogType: DialogType.question,
                   title: AppText.logOut.tr,
                   desc: AppText.doYouWantToLogOut.tr,
                   btnCancelOnPress: () {},

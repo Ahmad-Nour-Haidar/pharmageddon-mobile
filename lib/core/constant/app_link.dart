@@ -65,6 +65,7 @@ class AppLink {
   // order
   static const order = '$_serverApi/order/create';
   static const orderUpdate = '$_serverApi/order/update';
+  static const orderUpdateStatus = '$_serverApi/order/update_status';
   static const orderGetAll = '$_serverApi/order/get_all';
   static const orderGetAllNotCanceled =
       '$_serverApi/order/get_all_not_canceled';

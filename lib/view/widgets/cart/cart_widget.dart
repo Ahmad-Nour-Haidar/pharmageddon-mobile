@@ -99,7 +99,7 @@ class CartWidget extends StatelessWidget {
                         titleTextStyle: AppTextStyle.f18w600red,
                         desc: getMCommercialName(model.medicationModel),
                         descTextStyle: AppTextStyle.f18w500black,
-                        dialogType: DialogType.error,
+                        dialogType: DialogType.question,
                         btnOkOnPress: () {
                           onTapRemove(model.medicationModel.id);
                         },

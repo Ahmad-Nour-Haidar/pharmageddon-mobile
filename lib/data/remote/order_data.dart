@@ -32,6 +32,18 @@ class OrderRemoteData {
     return response;
   }
 
+  Future<Either<ParentState, Map<String, dynamic>>> updateOrderStatus({
+    required Map<String, dynamic> data,
+  }) async {
+    final token = AppLocalData.user!.authorization!;
+    final response = await _crud.postData(
+      linkUrl: AppLink.orderUpdateStatus,
+      token: token,
+      data: data,
+    );
+    return response;
+  }
+
   Future<Either<ParentState, Map<String, dynamic>>> getOrders({
     required String url,
   }) async {

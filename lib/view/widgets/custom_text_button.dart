@@ -3,28 +3,27 @@ import 'package:flutter/material.dart';
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,
-    required this.isShow,
     required this.isLoading,
     required this.onTap,
     required this.color,
     required this.text,
     required this.style,
+    this.width = 70,
   });
 
-  final bool isShow;
   final bool isLoading;
   final void Function() onTap;
   final Color color;
   final TextStyle style;
   final String text;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
-    if (!isShow) return const SizedBox();
     if (isLoading) {
       return SizedBox(
         height: 40,
-        width: 70,
+        width: width,
         child: Center(
           child: SizedBox(
             height: 22,
@@ -42,12 +41,9 @@ class CustomTextButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(5),
       child: SizedBox(
         height: 40,
-        width: 70,
+        width: width,
         child: Center(
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(text, style: style),
-          ),
+          child: Text(text, style: style),
         ),
       ),
     );

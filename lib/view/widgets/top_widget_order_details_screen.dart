@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 import '../../controllers/order_details_cubit/order_details_cubit.dart';
@@ -19,12 +20,10 @@ class TopWidgetOrderDetailsScreen extends StatefulWidget {
   const TopWidgetOrderDetailsScreen({
     super.key,
     required this.model,
-    required this.onTapEdit,
     required this.enableEdit,
   });
 
   final OrderModel model;
-  final void Function(bool isEdit) onTapEdit;
   final bool enableEdit;
 
   @override
@@ -37,9 +36,10 @@ class _TopWidgetOrderDetailsScreenState
   late final OrderDetailsCubit cubit;
   bool _isLoadingCancel = false;
   bool _isLoadingDone = false;
+  bool _isLoadingReceived = false;
 
   void onTapEdit(bool value) {
-    widget.onTapEdit(value);
+    cubit.isEdit = value;
   }
 
   Future<void> onTapCancel() async {
@@ -49,12 +49,18 @@ class _TopWidgetOrderDetailsScreenState
     setState(() => _isLoadingCancel = false);
   }
 
+  Future<void> onTapReceived() async {
+    setState(() => _isLoadingReceived = true);
+    await cubit.updateOrderStatus(AppConstant.received);
+    setState(() => _isLoadingReceived = false);
+  }
+
   Future<void> onTapDone() async {
     if (_isLoadingCancel) return;
     setState(() => _isLoadingDone = true);
     await cubit.updateOrder();
     _isLoadingDone = false;
-    widget.onTapEdit(false);
+    onTapEdit(false);
     setState(() {});
   }
 
@@ -114,52 +120,83 @@ class _TopWidgetOrderDetailsScreenState
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CustomTextButton(
-                isShow: widget.model.orderStatus == OrderStatus.preparing,
-                isLoading: _isLoadingDone,
-                onTap: () {
-                  widget.enableEdit ? onTapDone() : onTapEdit(true);
-                },
-                color: AppColor.green3,
-                text: widget.enableEdit ? AppText.done.tr : AppText.edit.tr,
-                style: AppTextStyle.f18w500green3,
-              ),
-              if (widget.enableEdit)
+              if (widget.model.orderStatus == OrderStatus.hasBeenSent)
                 CustomTextButton(
-                  isShow: widget.model.orderStatus == OrderStatus.preparing,
+                  isLoading: _isLoadingReceived,
+                  onTap: () {
+                    showAwesomeReceived(context);
+                  },
+                  color: AppColor.secondColor,
+                  text: AppText.iReceivedIt.tr,
+                  style: AppTextStyle.f18w500secondColor,
+                ),
+              if (widget.model.orderStatus == OrderStatus.preparing)
+                CustomTextButton(
+                  isLoading: _isLoadingDone,
+                  onTap: () {
+                    widget.enableEdit ? onTapDone() : onTapEdit(true);
+                  },
+                  color: AppColor.green3,
+                  text: widget.enableEdit ? AppText.done.tr : AppText.edit.tr,
+                  style: AppTextStyle.f18w500green3,
+                ),
+              if (widget.enableEdit &&
+                  widget.model.orderStatus == OrderStatus.preparing)
+                CustomTextButton(
                   isLoading: false,
                   onTap: () => onTapEdit(false),
                   color: AppColor.green3,
                   text: AppText.back.tr,
                   style: AppTextStyle.f18w500green3,
                 ),
-              CustomTextButton(
-                isShow: widget.model.orderStatus == OrderStatus.preparing,
-                isLoading: _isLoadingCancel,
-                onTap: () {
-                  AwesomeDialog(
-                    context: context,
-                    btnOkText: AppText.ok.tr,
-                    btnCancelText: AppText.cancel.tr,
-                    title: AppText.confirmCancellation.tr,
-                    titleTextStyle: AppTextStyle.f18w600red,
-                    desc: '${AppText.cancelOrderNo.tr} ${widget.model.id}'.trn,
-                    descTextStyle: AppTextStyle.f18w500black,
-                    dialogType: DialogType.error,
-                    btnOkOnPress: onTapCancel,
-                    btnCancelOnPress: () {},
-                    btnOkColor: AppColor.red,
-                    btnCancelColor: AppColor.green,
-                  ).show();
-                },
-                color: AppColor.red,
-                text: AppText.cancel.tr,
-                style: AppTextStyle.f18w500red,
-              ),
+              if (widget.model.orderStatus == OrderStatus.preparing)
+                CustomTextButton(
+                  isLoading: _isLoadingCancel,
+                  onTap: () {
+                    showAwesomeCancel(context);
+                  },
+                  color: AppColor.red,
+                  text: AppText.cancel.tr,
+                  style: AppTextStyle.f18w500red,
+                ),
             ],
           )
         ],
       ),
     );
+  }
+
+  void showAwesomeCancel(BuildContext context) {
+    AwesomeDialog(
+      context: context,
+      btnOkText: AppText.ok.tr,
+      btnCancelText: AppText.cancel.tr,
+      title: AppText.confirmCancellation.tr,
+      titleTextStyle: AppTextStyle.f18w600red,
+      desc: '${AppText.cancelOrderNo.tr} ${widget.model.id}'.trn,
+      descTextStyle: AppTextStyle.f18w500black,
+      dialogType: DialogType.question,
+      btnOkOnPress: onTapCancel,
+      btnCancelOnPress: () {},
+      btnOkColor: AppColor.red,
+      btnCancelColor: AppColor.green,
+    ).show();
+  }
+
+  void showAwesomeReceived(BuildContext context) {
+    AwesomeDialog(
+      context: context,
+      btnOkText: AppText.yes.tr,
+      btnCancelText: AppText.no.tr,
+      title: AppText.confirm.tr,
+      titleTextStyle: AppTextStyle.f18w500green,
+      desc: AppText.areYouReallyReceivedThisOrder.tr,
+      descTextStyle: AppTextStyle.f18w500black,
+      dialogType: DialogType.question,
+      btnOkOnPress: onTapReceived,
+      btnCancelOnPress: () {},
+      btnOkColor: AppColor.green,
+      btnCancelColor: AppColor.red,
+    ).show();
   }
 }

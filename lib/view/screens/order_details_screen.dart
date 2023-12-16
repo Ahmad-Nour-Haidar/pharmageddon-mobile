@@ -42,6 +42,8 @@ class OrderDetailsScreen extends StatelessWidget {
               handleState(state: state.state, context: context);
             } else if (state is OrderDetailsSuccessCancelState) {
               Navigator.pop(context);
+            } else if (state is OrderDetailsUpdateStatusOrderSuccessState) {
+              Navigator.pop(context);
             } else if (state is OrderDetailsAllCanceledState) {
               showAwesome(context);
             }
@@ -60,9 +62,6 @@ class OrderDetailsScreen extends StatelessWidget {
                     const Gap(15),
                   TopWidgetOrderDetailsScreen(
                     model: cubit.model,
-                    onTapEdit: (bool isEdit) {
-                      cubit.isEdit = isEdit;
-                    },
                     enableEdit: cubit.isEdit,
                   ),
                   const Gap(10),

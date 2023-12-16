@@ -173,7 +173,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                     const Spacer(),
                     InkWell(
                       onTap: () {
-                        showAwesome(context);
+                        showAwesomeDeleteMedicine(context);
                       },
                       child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -206,7 +206,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
     );
   }
 
-  void showAwesome(BuildContext context) {
+  void showAwesomeDeleteMedicine(BuildContext context) {
     AwesomeDialog(
       context: context,
       btnOkText: AppText.ok.tr,
@@ -215,7 +215,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
       titleTextStyle: AppTextStyle.f18w600red,
       desc: name,
       descTextStyle: AppTextStyle.f18w500black,
-      dialogType: DialogType.error,
+      dialogType: DialogType.question,
       btnOkOnPress: () {
         widget.onTapDelete(widget.model.medicineId!);
       },

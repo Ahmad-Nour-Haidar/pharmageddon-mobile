@@ -253,6 +253,52 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     });
   }
 
+  Future<void> updateOrderStatus(String status) async {
+    _update(OrderDetailsUpdateOrderLoadingState());
+    final requestData = {
+      AppRKeys.id: model.id,
+      AppRKeys.order_status: status,
+    };
+    final response =
+        await _orderRemoteData.updateOrderStatus(data: requestData);
+    response.fold((l) {
+      _update(OrderDetailsFailureState(l));
+    }, (r) async {
+      final status = r[AppRKeys.status];
+      if (status == 403) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.orderNotFound.tr,
+        )));
+        // to update Order List
+        AppInjection.getIt<OrderCubit>().getAll(
+          forceGetData: true,
+          showState: false,
+        );
+        return;
+      }
+      if (status == 405) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.thisOrderHasAlreadyBeenCanceled.tr,
+        )));
+        return;
+      }
+      if (status == 408) {
+        _update(OrderDetailsFailureState(FailureState(
+          message: AppText.thisOrderHasAlreadyBeenReceived.tr,
+        )));
+        return;
+      }
+      if (status == 200) {
+        await AppInjection.getIt<OrderCubit>().getAll(
+          forceGetData: true,
+          showState: false,
+        );
+        _update(OrderDetailsUpdateStatusOrderSuccessState());
+        return;
+      }
+    });
+  }
+
   Future<void> getMedicationsListNotAvailable(List<dynamic> list) async {
     final data = await AppInjection.getIt<HomeCubit>()
         .updateQuantityListMedications(list);
