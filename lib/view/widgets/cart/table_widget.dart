@@ -1,6 +1,6 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_padding.dart';
 import '../../../core/constant/app_size.dart';
@@ -23,17 +23,21 @@ class TableWidget extends StatelessWidget {
     TextStyle ts = AppTextStyle.f15w400black,
     required BorderRadius borderRadius,
   }) {
-    return Container(
-      padding: AppPadding.padding7,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: borderRadius,
-        border: Border.all(
-          color: AppColor.secondColor,
-          width: 2,
+    return Expanded(
+      child: Container(
+        padding: AppPadding.padding5,
+        width: AppSize.width,
+        height: 40,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: borderRadius,
+          border: Border.all(
+            color: AppColor.secondColor,
+            width: 2,
+          ),
         ),
+        child: FittedBox(child: Text(s, style: ts)),
       ),
-      child: Text(s, style: ts),
     );
   }
 
@@ -48,30 +52,30 @@ class TableWidget extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Expanded(
-          child: _cell(
-            s: s1,
-            ts: ts1,
-            borderRadius: br1,
-            color: color,
-          ),
+        _cell(
+          s: s1,
+          ts: ts1,
+          borderRadius: br1,
+          color: color,
         ),
-        Expanded(
-          child: _cell(
-            s: s2,
-            ts: ts2,
-            borderRadius: br2,
-            color: color,
-          ),
+        _cell(
+          s: s2,
+          ts: ts2,
+          borderRadius: br2,
+          color: color,
         ),
       ],
     );
   }
 
+  double get height {
+    return min(AppSize.height * .25, (data.length + 1) * 40);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: AppSize.height * .25,
+      height: height,
       child: Column(
         children: [
           _customTableRow(
