@@ -90,7 +90,7 @@ class MedicationWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )
+                    ),
                 ],
               ),
               const Gap(10),
