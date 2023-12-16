@@ -47,7 +47,7 @@ class _TopWidgetOrderDetailsScreenState
   Future<void> onTapCancel() async {
     if (_isLoadingDone) return;
     setState(() => _isLoadingCancel = true);
-    await cubit.cancel();
+    await cubit.cancelOrder();
     setState(() => _isLoadingCancel = false);
   }
 
@@ -119,7 +119,9 @@ class _TopWidgetOrderDetailsScreenState
               CustomTextButton(
                 isShow: widget.model.orderStatus == OrderStatus.preparing,
                 isLoading: _isLoadingDone,
-                onTap: () => _isEdit ? onTapDone : onTapEdit(true),
+                onTap: () {
+                  _isEdit ? onTapDone() : onTapEdit(true);
+                },
                 color: AppColor.green3,
                 text: _isEdit ? AppText.done.tr : AppText.edit.tr,
                 style: AppTextStyle.f18w500green3,

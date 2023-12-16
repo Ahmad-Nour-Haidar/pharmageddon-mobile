@@ -44,7 +44,7 @@ class CartQuantityData {
   }
 
   Future<Map<String, List<Map<String, int>>>> dataToRequest() async {
-    final List<Map<String, int>> list = _cart.entries.map((entry) {
+    final list = _cart.entries.map((entry) {
       return {
         AppRKeys.medicine_id: entry.key,
         AppRKeys.quantity: entry.value,

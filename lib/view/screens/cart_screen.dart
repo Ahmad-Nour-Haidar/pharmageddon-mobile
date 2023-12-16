@@ -50,7 +50,8 @@ class CartScreen extends StatelessWidget {
                     TableWidget(
                       data: cubit.medicinesQuantityNotAvailable,
                     ),
-                  const Gap(15),
+                  if (cubit.medicinesQuantityNotAvailable.isNotEmpty)
+                    const Gap(15),
                   CartWidgetList(
                     data: cubit.data,
                     onTapRemove: cubit.onTapRemove,

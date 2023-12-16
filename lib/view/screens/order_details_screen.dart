@@ -17,6 +17,7 @@ import '../../controllers/order_cubit/order_cubit.dart';
 import '../../controllers/order_details_cubit/order_details_state.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/services/dependency_injection.dart';
+import '../widgets/cart/table_widget.dart';
 import '../widgets/top_widget_order_details_screen.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
@@ -35,14 +36,13 @@ class OrderDetailsScreen extends StatelessWidget {
           listener: (context, state) {
             if (state is OrderDetailsFailureState) {
               handleState(state: state.state, context: context);
-            }
-            if (state is OrderDetailsDeleteMedicineSuccessState) {
+            } else if (state is OrderDetailsDeleteMedicineSuccessState) {
               handleState(state: state.state, context: context);
-            }
-            if (state is OrderDetailsSuccessCancelState) {
+            } else if (state is OrderDetailsUpdateOrderSuccessState) {
+              handleState(state: state.state, context: context);
+            } else if (state is OrderDetailsSuccessCancelState) {
               Navigator.pop(context);
-            }
-            if (state is OrderDetailsAllCanceledState) {
+            } else if (state is OrderDetailsAllCanceledState) {
               showAwesome(context);
             }
           },
@@ -52,6 +52,12 @@ class OrderDetailsScreen extends StatelessWidget {
               padding: AppPadding.screenPaddingAll,
               child: Column(
                 children: [
+                  if (cubit.medicinesQuantityNotAvailable.isNotEmpty)
+                    TableWidget(
+                      data: cubit.medicinesQuantityNotAvailable,
+                    ),
+                  if (cubit.medicinesQuantityNotAvailable.isNotEmpty)
+                    const Gap(15),
                   TopWidgetOrderDetailsScreen(
                     model: cubit.model,
                     onTapEdit: (bool isEdit) {
