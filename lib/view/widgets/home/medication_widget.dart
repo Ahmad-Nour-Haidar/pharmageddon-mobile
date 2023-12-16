@@ -74,8 +74,8 @@ class MedicationWidget extends StatelessWidget {
                   ),
                   if (model.discount! > 0)
                     Positioned(
-                      top: 12,
-                      left: -5,
+                      top: -3,
+                      left: -15,
                       child: Transform.rotate(
                         angle: -pi / 4,
                         child: Container(
