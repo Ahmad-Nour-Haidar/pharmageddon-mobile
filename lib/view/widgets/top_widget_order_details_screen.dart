@@ -20,10 +20,12 @@ class TopWidgetOrderDetailsScreen extends StatefulWidget {
     super.key,
     required this.model,
     required this.onTapEdit,
+    required this.enableEdit,
   });
 
   final OrderModel model;
   final void Function(bool isEdit) onTapEdit;
+  final bool enableEdit;
 
   @override
   State<TopWidgetOrderDetailsScreen> createState() =>
@@ -35,13 +37,9 @@ class _TopWidgetOrderDetailsScreenState
   late final OrderDetailsCubit cubit;
   bool _isLoadingCancel = false;
   bool _isLoadingDone = false;
-  bool _isEdit = false;
 
   void onTapEdit(bool value) {
-    setState(() {
-      _isEdit = value;
-    });
-    widget.onTapEdit(_isEdit);
+    widget.onTapEdit(value);
   }
 
   Future<void> onTapCancel() async {
@@ -56,7 +54,7 @@ class _TopWidgetOrderDetailsScreenState
     setState(() => _isLoadingDone = true);
     await cubit.updateOrder();
     _isLoadingDone = false;
-    _isEdit = false;
+    widget.onTapEdit(false);
     setState(() {});
   }
 
@@ -120,13 +118,13 @@ class _TopWidgetOrderDetailsScreenState
                 isShow: widget.model.orderStatus == OrderStatus.preparing,
                 isLoading: _isLoadingDone,
                 onTap: () {
-                  _isEdit ? onTapDone() : onTapEdit(true);
+                  widget.enableEdit ? onTapDone() : onTapEdit(true);
                 },
                 color: AppColor.green3,
-                text: _isEdit ? AppText.done.tr : AppText.edit.tr,
+                text: widget.enableEdit ? AppText.done.tr : AppText.edit.tr,
                 style: AppTextStyle.f18w500green3,
               ),
-              if (_isEdit)
+              if (widget.enableEdit)
                 CustomTextButton(
                   isShow: widget.model.orderStatus == OrderStatus.preparing,
                   isLoading: false,
@@ -145,7 +143,7 @@ class _TopWidgetOrderDetailsScreenState
                     btnCancelText: AppText.cancel.tr,
                     title: AppText.confirmCancellation.tr,
                     titleTextStyle: AppTextStyle.f18w600red,
-                    desc: '${AppText.cancelOrderNo.tr} ${widget.model.id}',
+                    desc: '${AppText.cancelOrderNo.tr} ${widget.model.id}'.trn,
                     descTextStyle: AppTextStyle.f18w500black,
                     dialogType: DialogType.error,
                     btnOkOnPress: onTapCancel,

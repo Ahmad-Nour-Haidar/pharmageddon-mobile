@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
+import 'package:pharmageddon_mobile/controllers/order_cubit/order_cubit.dart';
 import 'package:pharmageddon_mobile/core/class/parent_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
@@ -56,7 +57,7 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  Future<void> order() async {
+  Future<void> createOrder() async {
     if (this.data.isEmpty) {
       _update(CartFailureState(
         WarningState(message: AppText.yourBillIsEmpty.tr),
@@ -83,11 +84,21 @@ class CartCubit extends Cubit<CartState> {
         _update(CartFailureState(
             FailureState(message: AppText.someOfMedicinesAreExpired.tr)));
       } else {
+        this.data.clear();
+        _cartQuantityData.deleteAllCart();
         _update(CartSuccessState(SuccessState(
             message: AppText.theOrderHasBeenAddedSuccessfully.tr)));
-        _cartQuantityData.deleteAllCart();
-        _initialData();
+        // to update Order List
+        AppInjection.getIt<OrderCubit>().getAll(
+          forceGetData: true,
+          showState: false,
+        );
       }
+      // to update Home List Medications
+      AppInjection.getIt<HomeCubit>().getMedications(
+        forceGetData: true,
+        showState: false,
+      );
     });
   }
 

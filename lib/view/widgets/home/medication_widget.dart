@@ -74,11 +74,13 @@ class MedicationWidget extends StatelessWidget {
                   ),
                   if (model.discount! > 0)
                     Positioned(
-                      top: -3,
+                      top: -15,
                       left: -15,
                       child: Transform.rotate(
                         angle: -pi / 4,
                         child: Container(
+                          height: 50,
+                          alignment: Alignment.bottomCenter,
                           padding: AppPadding.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
                             color: AppColor.red.withOpacity(.9),

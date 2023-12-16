@@ -64,8 +64,8 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     final queryParameters = {
       AppRKeys.id: model.id,
     };
-    final response = await _orderRemoteData.deleteMedicineInOrder(
-        queryParameters: queryParameters);
+    final response =
+        await _orderRemoteData.cancelOrder(queryParameters: queryParameters);
     response.fold((l) {
       _update(OrderDetailsFailureState(l));
     }, (r) {
@@ -74,31 +74,33 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderNotFound.tr,
         )));
-        return;
       } else if (status == 405) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.thisOrderHasCanceledBefore.tr,
         )));
-        return;
       } else if (status == 406) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderHasBeenSentSoYouCannotCancelIt.tr,
         )));
-        return;
       } else if (status == 408) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderHasReceivedSoYouCannotCancelIt.tr,
         )));
-        return;
       } else if (status == 200) {
+        // to update Order List
         AppInjection.getIt<OrderCubit>().removeOrderFromList(model);
         _update(OrderDetailsSuccessCancelState());
+        // to update Home List Medications
+        AppInjection.getIt<HomeCubit>().getMedications(
+          forceGetData: true,
+          showState: false,
+        );
       }
     });
   }
 
   Future<void> onTapDeleteMedicine(int id) async {
-    _update(OrderDetailsLoadingDeleteMedicineState());
+    _update(OrderDetailsDeleteMedicineLoadingState());
     final queryParameters = {
       AppRKeys.order_id: model.id,
       AppRKeys.medicine_id: id,
@@ -115,35 +117,52 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
           message: AppText.orderNotFound.tr,
         )));
         return;
-      } else if (status == 405) {
+      }
+      if (status == 405) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.thisOrderHasCanceledBefore.tr,
         )));
         return;
-      } else if (status == 406) {
+      }
+      if (status == 406) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderHasBeenSentSoYouCannotEditIt.tr,
         )));
         return;
-      } else if (status == 408) {
+      }
+      if (status == 408) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderHasReceivedSoYouCannotEditIt.tr,
         )));
         return;
-      } else if (status == 409) {
+      }
+      if (status == 409) {
         _update(OrderDetailsFailureState(FailureState(
           message:
               AppText.eitherThereIsNoMedicineWithThisIDOrYouHaveNotOrderedIt.tr,
         )));
         return;
-      } else if (status == 201) {
+      }
+      if (status == 201) {
         _update(OrderDetailsAllCanceledState());
-      } else if (status == 200) {
+        // to update Home List Medications
+        AppInjection.getIt<HomeCubit>().getMedications(
+          forceGetData: true,
+          showState: false,
+        );
+        return;
+      }
+      if (status == 200) {
         data.removeWhere((element) => element.medicineId == id);
         model = OrderModel.fromJson(r[AppRKeys.data][AppRKeys.order]);
         await AppInjection.getIt<OrderCubit>().updateOrderInList(model);
         _update(OrderDetailsDeleteMedicineSuccessState(
             SuccessState(message: AppText.medicineCanceledSuccessfully.tr)));
+        // to update Home List Medications
+        AppInjection.getIt<HomeCubit>().getMedications(
+          forceGetData: true,
+          showState: false,
+        );
       }
     });
   }
@@ -159,6 +178,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     isEdit = false;
     medicinesQuantityNotAvailable.clear();
     _update(OrderDetailsUpdateOrderLoadingState());
+    if (_tempQuantity.isEmpty) return;
     final List<Map<String, int>> list = [];
     for (final e in data) {
       final q = _tempQuantity[e.medicineId] ?? e.totalQuantity;
@@ -167,6 +187,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         AppRKeys.quantity: q!,
       });
     }
+    _tempQuantity.clear();
     final requestData = {
       AppRKeys.id: model.id,
       AppRKeys.medicines: list,
@@ -180,29 +201,40 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderNotFound.tr,
         )));
+        // to update Order List
+        AppInjection.getIt<OrderCubit>().getAll(
+          forceGetData: true,
+          showState: false,
+        );
         return;
-      } else if (status == 404) {
+      }
+      if (status == 404) {
         final List tempList =
             r[AppRKeys.data][AppRKeys.medicines_quantity_not_available];
         await getMedicationsListNotAvailable(tempList);
         _update(OrderDetailsFailureState(FailureState(
             message: AppText.quantitiesOfSomeMedicinesAreNotAvailable.tr)));
-      } else if (status == 405) {
+        return;
+      }
+      if (status == 405) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.thisOrderHasCanceledBefore.tr,
         )));
         return;
-      } else if (status == 406) {
+      }
+      if (status == 406) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderHasBeenSentSoYouCannotEditIt.tr,
         )));
         return;
-      } else if (status == 408) {
+      }
+      if (status == 408) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderHasReceivedSoYouCannotEditIt.tr,
         )));
         return;
-      } else if (status == 200) {
+      }
+      if (status == 200) {
         model = OrderModel.fromJson(r[AppRKeys.data][AppRKeys.order]);
         await AppInjection.getIt<OrderCubit>().updateOrderInList(model);
         final List temp =
@@ -211,6 +243,12 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         data.addAll(temp.map((e) => OrderDetailsModel.fromJson(e)));
         _update(OrderDetailsUpdateOrderSuccessState(
             SuccessState(message: AppText.updatedSuccessfully.tr)));
+        // to update Home List Medications
+        AppInjection.getIt<HomeCubit>().getMedications(
+          forceGetData: true,
+          showState: false,
+        );
+        return;
       }
     });
   }

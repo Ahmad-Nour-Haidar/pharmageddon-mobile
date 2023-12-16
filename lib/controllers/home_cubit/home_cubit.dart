@@ -25,18 +25,24 @@ class HomeCubit extends Cubit<HomeState> {
   final List<ManufacturerModel> manufacturers = [];
   final List<EffectCategoryModel> effectCategories = [];
   var currentScreen = ScreenShow.medications;
+  bool showState = true;
 
   void _update(HomeState state) {
     if (isClosed) return;
+    // emit(showState ? state : HomeChangeState());
     emit(state);
   }
 
   void initial() {
-    getMedications();
+    getMedications(showState: true);
   }
 
-  Future<void> getMedications({bool forceGetData = false}) async {
+  Future<void> getMedications({
+    bool forceGetData = false,
+    bool showState = true,
+  }) async {
     if (!(medications.isEmpty || forceGetData)) return;
+    this.showState = showState;
     _update(HomeGetMedicationsLoadingState());
     final response = await _homeRemoteData.getMedications();
     response.fold((l) {
@@ -57,6 +63,7 @@ class HomeCubit extends Cubit<HomeState> {
         }
       }
     });
+    this.showState = true;
   }
 
   Future<void> getDiscounts({bool forceGetData = false}) async {
@@ -112,7 +119,7 @@ class HomeCubit extends Cubit<HomeState> {
     if (currentScreen == ScreenShow.manufacturer) {
       getManufacturers();
     } else if (currentScreen == ScreenShow.medications) {
-      getMedications();
+      getMedications(showState: true);
     } else if (currentScreen == ScreenShow.effect) {
       getEffectCategories();
     } else {

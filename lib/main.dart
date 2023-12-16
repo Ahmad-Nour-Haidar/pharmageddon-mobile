@@ -62,4 +62,5 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// assets/images/background_mobile.jpg
+/// todo:
+/// get name in not available quantity

@@ -124,7 +124,7 @@ class RegisterScreen extends StatelessWidget {
                         textInputAction: TextInputAction.done,
                         fillColor: AppColor.white,
                         colorPrefixIcon: AppColor.gray3,
-                        prefixIcon: AppSvg.user,
+                        prefixIcon: AppSvg.lock,
                         hintText: AppText.password.tr,
                         onTapSuffix: cubit.showPassword,
                         obscureText: cubit.obscureText,

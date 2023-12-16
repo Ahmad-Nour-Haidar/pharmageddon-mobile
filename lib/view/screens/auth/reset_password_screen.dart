@@ -123,7 +123,7 @@ class ResetPasswordScreen extends StatelessWidget {
                             suffixIcon: cubit.obscureText
                                 ? AppSvg.eye
                                 : AppSvg.eyeClose,
-                            prefixIcon: AppSvg.user,
+                            prefixIcon: AppSvg.lock,
                             hintText: AppText.password.tr,
                             onFieldSubmitted: (value) {
                               focusNode.requestFocus();
@@ -144,7 +144,7 @@ class ResetPasswordScreen extends StatelessWidget {
                             suffixIcon: cubit.obscureText
                                 ? AppSvg.eye
                                 : AppSvg.eyeClose,
-                            prefixIcon: AppSvg.user,
+                            prefixIcon: AppSvg.lock,
                             hintText: AppText.confirm.tr,
                           ),
                         ],

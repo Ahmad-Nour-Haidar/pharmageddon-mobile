@@ -21,18 +21,23 @@ class OrderCubit extends Cubit<OrderState> {
   final List<OrderModel> _hasBeenSentOrders = [];
   final List<OrderModel> _receivedOrders = [];
   var currentScreen = ScreenShow.preparing;
+  bool showState = true;
 
   void _update(OrderState state) {
     if (isClosed) return;
-    emit(state);
+    emit(showState ? state : OrderChangeState());
   }
 
   void initial() {
     getAll();
   }
 
-  Future<void> getAll({bool forceGetData = false}) async {
-    if (!(_preparingOrders.isEmpty || forceGetData)) return;
+  Future<void> getAll({
+    bool forceGetData = false,
+    bool showState = true,
+  }) async {
+    if (!(data.isEmpty || forceGetData)) return;
+    this.showState = showState;
     _update(OrderLoadingState());
     final response = await _orderRemoteData.getOrders(
       url: AppLink.orderGetAllNotCanceled,
@@ -56,6 +61,7 @@ class OrderCubit extends Cubit<OrderState> {
       }
       _update(OrderSuccessState());
     });
+    this.showState = true;
   }
 
   Future<void> getPreparing({bool forceGetData = false}) async {

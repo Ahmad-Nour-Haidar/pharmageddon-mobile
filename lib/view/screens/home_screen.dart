@@ -64,17 +64,17 @@ class HomeScreen extends StatelessWidget {
               onRefresh: () => cubit.getManufacturers(forceGetData: true));
           if (state is HomeGetManufacturersLoadingState) {
             widget = ManufacturersLoading(
-                onRefresh: () => cubit.getMedications(forceGetData: true));
+                onRefresh: () => cubit.getManufacturers(forceGetData: true));
           }
         }
         // 3
         if (cubit.currentScreen == ScreenShow.effect) {
           widget = EffectCategoriesListWidget(
               data: cubit.effectCategories,
-              onRefresh: () => cubit.getManufacturers(forceGetData: true));
+              onRefresh: () => cubit.getEffectCategories(forceGetData: true));
           if (state is HomeGetEffectCategoriesLoadingState) {
             widget = EffectCategoryLoading(
-                onRefresh: () => cubit.getMedications(forceGetData: true));
+                onRefresh: () => cubit.getEffectCategories(forceGetData: true));
           }
         }
         return BackButtonWrapper(

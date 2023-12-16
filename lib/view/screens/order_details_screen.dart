@@ -63,13 +63,14 @@ class OrderDetailsScreen extends StatelessWidget {
                     onTapEdit: (bool isEdit) {
                       cubit.isEdit = isEdit;
                     },
+                    enableEdit: cubit.isEdit,
                   ),
                   const Gap(10),
-                  if (state is OrderDetailsLoadingDeleteMedicineState)
+                  if (state is OrderDetailsDeleteMedicineLoadingState)
                     const LinearProgressIndicator(
                       color: AppColor.secondColor,
                     ),
-                  if (state is OrderDetailsLoadingDeleteMedicineState)
+                  if (state is OrderDetailsDeleteMedicineLoadingState)
                     const Gap(10),
                   if (state is OrderDetailsGetLoadingState) const Gap(50),
                   if (state is OrderDetailsGetLoadingState)

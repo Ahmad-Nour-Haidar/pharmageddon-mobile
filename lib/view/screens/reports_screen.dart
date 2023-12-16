@@ -56,6 +56,7 @@ class ReportsScreen extends StatelessWidget {
                 Expanded(child: body),
                 const Gap(10),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     const Gap(15),
                     Expanded(

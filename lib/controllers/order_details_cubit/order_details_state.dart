@@ -25,7 +25,7 @@ class OrderDetailsSuccessCancelState extends OrderDetailsState {}
 class OrderDetailsGetLoadingState extends OrderDetailsState {}
 
 // delete medicine
-class OrderDetailsLoadingDeleteMedicineState extends OrderDetailsState {}
+class OrderDetailsDeleteMedicineLoadingState extends OrderDetailsState {}
 
 class OrderDetailsDeleteMedicineSuccessState extends OrderDetailsState {
   final ParentState state;
