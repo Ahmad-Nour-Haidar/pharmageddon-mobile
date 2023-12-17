@@ -39,28 +39,30 @@ class CustomPickDateWidget extends StatelessWidget {
   void show(BuildContext context) async {
     DateTimeRange? timeRange;
     timeRange = await showDateRangePicker(
-        context: context,
-        initialEntryMode: DatePickerEntryMode.input,
-        initialDateRange: DateTimeRange(
-          start: DateTime.now().subtract(const Duration(days: 7)),
-          end: DateTime.now(),
-        ),
-        firstDate: DateTime(2020),
-        lastDate: DateTime.now(),
-        builder: (context, child) {
-          return Theme(
-            data: Theme.of(context).copyWith(
-              colorScheme: const ColorScheme.light(
-                primary: AppColor.secondColor,
-                onPrimary: AppColor.white,
-                onSurface: AppColor.secondColor,
-                background: AppColor.secondColor,
-                onSecondary: AppColor.black,
-              ),
+      context: context,
+      initialEntryMode: DatePickerEntryMode.calendar,
+      initialDateRange: DateTimeRange(
+        start: DateTime.now().subtract(const Duration(days: 7)),
+        end: DateTime.now(),
+      ),
+      firstDate: DateTime(2020),
+      lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: AppColor.secondColor,
+              onPrimary: AppColor.white,
+              onSurface: AppColor.secondColor,
+              background: AppColor.secondColor,
+              onSecondary: AppColor.black,
             ),
-            child: child!,
-          );
-        });
+          ),
+          child: child!,
+        );
+      },
+      keyboardType: TextInputType.url,
+    );
     if (timeRange != null) {
       onChange(timeRange);
     }

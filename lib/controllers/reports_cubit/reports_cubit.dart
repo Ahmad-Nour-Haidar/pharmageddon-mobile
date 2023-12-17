@@ -44,6 +44,7 @@ class ReportsCubit extends Cubit<ReportsState> {
     }, (r) {
       final status = r[AppRKeys.status];
       if (status == 403) {
+        data.clear();
       } else {
         final List temp = r[AppRKeys.data][AppRKeys.orders];
         data.clear();
