@@ -129,6 +129,7 @@ class MyTranslation extends Translations {
               'Medicine has canceled and Order has canceled because there is no medicines in the order',
           AppText.paid: 'Paid',
           AppText.unpaid: 'Un paid',
+          AppText.newW: 'new',
           AppText.orderHasReceivedSoYouCannotEditIt:
               'Order has received so you cannot edit it',
           AppText.orderHasBeenSentSoYouCannotEditIt:
@@ -277,13 +278,14 @@ class MyTranslation extends Translations {
           AppText.orderHasReceivedSoYouCannotEditIt:
               'تم استلام الطلب لذلك لا يمكنك تعديله',
           AppText.quantitiesOfSomeMedicinesAreNotAvailable:
-              'كميات بعض الأدوية غير متوفرة.',
-          AppText.someOfMedicinesAreExpired: 'بعض الأدوية منتهية الصلاحية.',
-          AppText.theOrderHasBeenAddedSuccessfully: 'تمت إضافة الطلب بنجاح.',
+              'كميات بعض الأدوية غير متوفرة',
+          AppText.someOfMedicinesAreExpired: 'بعض الأدوية منتهية الصلاحية',
+          AppText.theOrderHasBeenAddedSuccessfully: 'تمت إضافة الطلب بنجاح',
           AppText.medicineHasCanceledAndOrderHasCanceledBecauseThereIsNoMedicinesInTheOrder:
               'تم إلغاء الدواء وتم إلغاء الطلب لعدم وجود أدوية في الطلب',
           AppText.paid: 'مدفوع',
           AppText.unpaid: 'غير مدفوع',
+          AppText.newW: 'جديد',
           AppText.updatedSuccessfully: 'تم التعديل بنجاح',
           AppText.thisOrderHasCanceledBefore: 'تم إلغاء هذا الطلب من قبل',
           AppText.orderHasBeenSentSoYouCannotCancelIt:

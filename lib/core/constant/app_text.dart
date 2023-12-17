@@ -160,5 +160,6 @@ abstract class AppText {
       'medicineHasCanceledAndOrderHasCanceledBecauseThereIsNoMedicinesInTheOrder';
   static const paid = 'paid';
   static const unpaid = 'unpaid';
+  static const newW = 'newW';
   static const enterTheQuantityYouWant = 'enterTheQuantityYouWant';
 }

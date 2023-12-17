@@ -74,21 +74,48 @@ class MedicationWidget extends StatelessWidget {
                   ),
                   if (model.discount! > 0)
                     Positioned(
-                      top: -15,
-                      left: -15,
+                      top: -20,
+                      left: -20,
                       child: Transform.rotate(
                         angle: -pi / 4,
                         child: Container(
-                          height: 50,
+                          height: 60,
+                          width: 60,
                           alignment: Alignment.bottomCenter,
                           padding: AppPadding.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
                             color: AppColor.red.withOpacity(.9),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Text(
-                            '${model.discount?.toInt()} %'.trn,
-                            style: AppTextStyle.f20w600white,
+                          child: FittedBox(
+                            child: Text(
+                              '${model.discount?.toInt()} %'.trn,
+                              style: AppTextStyle.f20w600white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  if (isNew(model))
+                    Positioned(
+                      top: -20,
+                      right: -20,
+                      child: Transform.rotate(
+                        angle: pi / 4,
+                        child: Container(
+                          height: 60,
+                          width: 60,
+                          alignment: Alignment.bottomCenter,
+                          padding: AppPadding.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                            color: AppColor.red.withOpacity(.9),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: FittedBox(
+                            child: Text(
+                              AppText.newW.tr,
+                              style: AppTextStyle.f20w600white,
+                            ),
                           ),
                         ),
                       ),
