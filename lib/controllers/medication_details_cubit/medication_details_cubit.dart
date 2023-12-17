@@ -62,6 +62,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
       } else {
         final json = r[AppRKeys.data][AppRKeys.favourite_medicine];
         model = MedicationModel.fromJson(json);
+
         // this to update medications list
         AppInjection.getIt<HomeCubit>().updateMedicationModel(model);
         _update(MedicationDetailsSuccessState());
