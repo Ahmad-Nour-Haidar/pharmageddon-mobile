@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/reports_cubit/reports_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
+import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/app_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
@@ -67,17 +68,17 @@ class ReportsScreen extends StatelessWidget {
                           RowTextSpan(
                             s1: '${AppText.totalOrders.tr} : ',
                             ts1: AppTextStyle.f15w600black,
-                            s2: cubit.data.length.toString(),
+                            s2: cubit.data.length.toString().trn,
                           ),
                           RowTextSpan(
                             s1: '${AppText.totalQuantity.tr} : ',
                             ts1: AppTextStyle.f15w600black,
-                            s2: cubit.totalQuantity.toString(),
+                            s2: cubit.totalQuantity.toString().trn,
                           ),
                           RowTextSpan(
                             s1: '${AppText.totalPrice.tr} : ',
                             ts1: AppTextStyle.f15w600black,
-                            s2: '${cubit.totalPrice} ${AppText.sp.tr}',
+                            s2: '${cubit.totalPrice} ${AppText.sp.tr}'.trn,
                           ),
                         ],
                       ),

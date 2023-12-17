@@ -35,8 +35,7 @@ class ReportsCubit extends Cubit<ReportsState> {
     _update(ReportsLoadingState());
     final queryParameters = {
       AppRKeys.start_date: dateTimeRange.start,
-      // AppRKeys.end_date: dateTimeRange.end,
-      AppRKeys.end_date: '2023-12-14 00:00:00.000',
+      AppRKeys.end_date: dateTimeRange.end,
     };
     final response =
         await _reportsRemoteData.getReports(queryParameters: queryParameters);
