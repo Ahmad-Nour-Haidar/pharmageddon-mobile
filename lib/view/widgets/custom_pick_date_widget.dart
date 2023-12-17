@@ -37,8 +37,7 @@ class CustomPickDateWidget extends StatelessWidget {
   }
 
   void show(BuildContext context) async {
-    DateTimeRange? timeRange;
-    timeRange = await showDateRangePicker(
+    final timeRange = await showDateRangePicker(
       context: context,
       initialEntryMode: DatePickerEntryMode.calendar,
       initialDateRange: DateTimeRange(
@@ -61,7 +60,6 @@ class CustomPickDateWidget extends StatelessWidget {
           child: child!,
         );
       },
-      keyboardType: TextInputType.url,
     );
     if (timeRange != null) {
       onChange(timeRange);

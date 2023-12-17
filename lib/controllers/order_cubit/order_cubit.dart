@@ -25,7 +25,8 @@ class OrderCubit extends Cubit<OrderState> {
 
   void _update(OrderState state) {
     if (isClosed) return;
-    emit(showState ? state : OrderChangeState());
+    // emit(showState ? state : OrderChangeState());
+    emit(state);
   }
 
   void initial() {
@@ -133,6 +134,7 @@ class OrderCubit extends Cubit<OrderState> {
     if (_preparingOrders.isEmpty) return;
     final index =
         _preparingOrders.indexWhere((element) => element.id == model.id);
+    if (index == -1) return;
     _preparingOrders.update(index, model);
     _update(OrderSuccessState());
   }

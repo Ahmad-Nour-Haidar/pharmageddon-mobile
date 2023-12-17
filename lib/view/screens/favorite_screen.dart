@@ -19,7 +19,7 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = FavoriteCubit.get(context);
-    cubit.getMedications(forceGetData: true);
+    cubit.getFavorites(forceGetData: true);
     return Scaffold(
       appBar: CustomAppBar(
         title: AppText.favorite.tr,
@@ -39,12 +39,12 @@ class FavoriteScreen extends StatelessWidget {
           switch (state.runtimeType) {
             case FavoriteLoadingState:
               widget = MedicationsLoading(
-                  onRefresh: () => cubit.getMedications(forceGetData: true));
+                  onRefresh: () => cubit.getFavorites(forceGetData: true));
               break;
             case FavoriteSuccessState:
               widget = MedicationsListWidget(
                 data: cubit.medications,
-                onRefresh: () => cubit.getMedications(forceGetData: true),
+                onRefresh: () => cubit.getFavorites(forceGetData: true),
               );
               break;
             case FavoriteNoDataState:

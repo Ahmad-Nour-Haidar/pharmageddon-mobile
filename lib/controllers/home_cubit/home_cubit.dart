@@ -10,6 +10,7 @@ import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/home_data.dart';
 import 'package:pharmageddon_mobile/model/effect_category_model.dart';
 import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
+import 'package:pharmageddon_mobile/print.dart';
 
 import '../../model/medication_model.dart';
 import 'home_state.dart';
@@ -21,7 +22,7 @@ class HomeCubit extends Cubit<HomeState> {
   final _homeRemoteData = AppInjection.getIt<HomeRemoteData>();
 
   final List<MedicationModel> medications = [], discountsData = [];
-  final Map<int, MedicationModel> medicationsMap = {};
+  final Map<int?, MedicationModel> medicationsMap = {};
   final List<ManufacturerModel> manufacturers = [];
   final List<EffectCategoryModel> effectCategories = [];
   var currentScreen = ScreenShow.medications;
@@ -59,7 +60,7 @@ class HomeCubit extends Cubit<HomeState> {
         _update(HomeGetMedicationsSuccessState());
         medicationsMap.clear();
         for (final m in medications) {
-          medicationsMap[m.id ?? 0] = m;
+          medicationsMap[m.id] = m;
         }
       }
     });
@@ -137,9 +138,19 @@ class HomeCubit extends Cubit<HomeState> {
       final model = medications[index];
       model.availableQuantity = newQuantity;
       medications.update(index, model);
+      medicationsMap[model.id] = model;
       tempList.add(model);
     }
     _update(HomeChangeState());
     return tempList;
+  }
+
+  void updateMedicationModel(MedicationModel model) {
+    final index = medications.indexWhere((element) => element.id == model.id);
+    printme.cyan(index);
+    if (index == -1) return;
+    medications.update(index, model);
+    medicationsMap[model.id] = model;
+    _update(HomeChangeState());
   }
 }

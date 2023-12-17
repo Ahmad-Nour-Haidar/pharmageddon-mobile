@@ -19,10 +19,10 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   }
 
   void initial() {
-    getMedications();
+    getFavorites();
   }
 
-  Future<void> getMedications({bool forceGetData = false}) async {
+  Future<void> getFavorites({bool forceGetData = false}) async {
     if (!(medications.isEmpty || forceGetData)) {
       _update(FavoriteSuccessState());
       return;

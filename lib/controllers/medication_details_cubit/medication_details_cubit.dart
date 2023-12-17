@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
@@ -61,6 +62,8 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
       } else {
         final json = r[AppRKeys.data][AppRKeys.favourite_medicine];
         model = MedicationModel.fromJson(json);
+        // this to update medications list
+        AppInjection.getIt<HomeCubit>().updateMedicationModel(model);
         _update(MedicationDetailsSuccessState());
       }
     });
@@ -84,7 +87,8 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
         final json = r[AppRKeys.data][AppRKeys.favourite_medicine];
         model = MedicationModel.fromJson(json);
         _update(MedicationDetailsSuccessState());
-
+        // this to update medications list
+        AppInjection.getIt<HomeCubit>().updateMedicationModel(model);
         // this to update favorite screen if it active
         AppInjection.getIt<FavoriteCubit>().removeFromList(model);
       }
@@ -95,7 +99,6 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     _update(MedicationDetailsLoadingState());
     try {
       await _cartQuantityData.storeInCart(model.id, quantity);
-
       _update(MedicationDetailsSuccessState(
           state: state ?? SuccessState(message: AppText.savedSuccessfully.tr)));
     } catch (e) {
