@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_text.dart';
@@ -26,6 +27,7 @@ class CustomPopupMenuButton extends StatelessWidget {
   final bool showOrders;
   final bool showFavorites;
   final bool showReports;
+
   // final bool showLogout;
 
   void onSelected(String value, BuildContext context) {
@@ -39,7 +41,8 @@ class CustomPopupMenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton(
       icon: SvgPicture.asset(AppSvg.options),
-      offset: const Offset(0, 0),
+      offset: const Offset(15, 0),
+      constraints: BoxConstraints(maxWidth: AppSize.width / 2),
       color: AppColor.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -50,26 +53,28 @@ class CustomPopupMenuButton extends StatelessWidget {
           PopupMenuItem(
             padding: AppPadding.screenPaddingAll,
             value: AppRoute.profile,
-            child: Row(
-              children: [
-                Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
+            child: FittedBox(
+              child: Row(
+                children: [
+                  Container(
+                    clipBehavior: Clip.hardEdge,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: CustomCachedNetworkImage(
+                      width: 60,
+                      height: 60,
+                      imageUrl: getImageUserUrl(),
+                      errorWidget: ErrorWidgetShow.user,
+                    ),
                   ),
-                  child: CustomCachedNetworkImage(
-                    width: 60,
-                    height: 60,
-                    imageUrl: getImageUserUrl(),
-                    errorWidget: ErrorWidgetShow.user,
-                  ),
-                ),
-                const Gap(20),
-                Text(
-                  AppText.profile.tr,
-                  style: AppTextStyle.f18w500black,
-                )
-              ],
+                  const Gap(20),
+                  Text(
+                    AppText.profile.tr,
+                    style: AppTextStyle.f18w500black,
+                  )
+                ],
+              ),
             ),
           ),
           if (showCart)

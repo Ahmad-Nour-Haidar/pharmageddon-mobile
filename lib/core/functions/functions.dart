@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pharmageddon_mobile/data/local/app_hive.dart';
-import 'package:pharmageddon_mobile/print.dart';
 
 import '../../controllers/local_controller.dart';
 import '../../model/effect_category_model.dart';

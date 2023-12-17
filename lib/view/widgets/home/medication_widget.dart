@@ -79,12 +79,12 @@ class MedicationWidget extends StatelessWidget {
                       child: Transform.rotate(
                         angle: -pi / 4,
                         child: Container(
-                          height: 60,
-                          width: 60,
+                          height: 50,
+                          width: 50,
                           alignment: Alignment.bottomCenter,
                           padding: AppPadding.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
-                            color: AppColor.red.withOpacity(.9),
+                            color: AppColor.red.withOpacity(.8),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: FittedBox(
@@ -103,12 +103,12 @@ class MedicationWidget extends StatelessWidget {
                       child: Transform.rotate(
                         angle: pi / 4,
                         child: Container(
-                          height: 60,
-                          width: 60,
+                          height: 50,
+                          width: 50,
                           alignment: Alignment.bottomCenter,
                           padding: AppPadding.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
-                            color: AppColor.red.withOpacity(.9),
+                            color: AppColor.red.withOpacity(.8),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: FittedBox(
