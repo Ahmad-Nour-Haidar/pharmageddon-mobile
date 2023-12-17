@@ -10,7 +10,7 @@ class AppSize {
     // card
     widthCard = ((width - 50) / 2);
     heightCard = widthCard + 60;
-    widthManufacturer = (AppSize.width * .40).toInt() * 1.0;
+    widthManufacturer = (AppSize.width - 70) * .5;
     // radius = (AppSize.width / 2) - 50;
     // radiusImage = radius - 5;
     // widthHeight = radiusImage * 2;
@@ -19,6 +19,7 @@ class AppSize {
   // image
   static late double radius;
   static late double radiusImage;
+
   // static late double widthHeight;
 
   // card

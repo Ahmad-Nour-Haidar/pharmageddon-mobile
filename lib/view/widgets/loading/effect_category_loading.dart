@@ -22,7 +22,7 @@ class EffectCategoryLoading extends StatelessWidget {
           children: [
             Center(
               child: Wrap(
-                spacing: 50,
+                spacing: 30,
                 runSpacing: 20,
                 children: List.generate(
                   getRandom(),

@@ -36,6 +36,12 @@ class _CounterCartWidgetState extends State<CounterCartWidget> {
     super.initState();
   }
 
+  @override
+  void didUpdateWidget(covariant CounterCartWidget oldWidget) {
+    quantity = widget.initialValue;
+    super.didUpdateWidget(oldWidget);
+  }
+
   void change(int x) {
     if (quantity + x < 1) return;
     if (quantity + x > widget.maxValue) return;

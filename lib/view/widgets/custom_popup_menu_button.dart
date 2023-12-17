@@ -41,7 +41,7 @@ class CustomPopupMenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton(
       icon: SvgPicture.asset(AppSvg.options),
-      offset: const Offset(15, 0),
+      offset: const Offset(0, 0),
       constraints: BoxConstraints(maxWidth: AppSize.width / 2),
       color: AppColor.white,
       shape: RoundedRectangleBorder(
