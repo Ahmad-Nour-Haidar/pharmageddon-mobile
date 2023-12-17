@@ -91,7 +91,7 @@ class ReportsScreen extends StatelessWidget {
                               color: AppColor.buttonColor,
                             )
                           : CustomButton(
-                              onTap: () => cubit.getData(),
+                              onTap: cubit.getData,
                               text: AppText.send.tr,
                               color: AppColor.primaryColor,
                             ),

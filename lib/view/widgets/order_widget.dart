@@ -27,6 +27,7 @@ class OrderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tag = UniqueKey();
     return Material(
       color: AppColor.white,
       borderRadius: BorderRadius.circular(10),
@@ -34,23 +35,28 @@ class OrderWidget extends StatelessWidget {
       child: InkWell(
         onTap: !canPushNamed
             ? null
-            : () => pushNamed(AppRoute.ordersDetails, context,
-                arguments: {AppKeys.orderModel: model}),
+            : () => pushNamed(AppRoute.ordersDetails, context, arguments: {
+                  AppKeys.orderModel: model,
+                  AppKeys.tag: tag,
+                }),
         child: Padding(
           padding: AppPadding.padding10,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  RowTextSpan(
-                    s1: '${AppText.id.tr} : ',
-                    s2: model.id.toString().trn,
-                  ),
-                  const Spacer(),
-                  AppInjection.getIt<AppWidget>().getOrderIcon(model),
-                  const Gap(10),
-                ],
+              Hero(
+                tag: tag,
+                child: Row(
+                  children: [
+                    RowTextSpan(
+                      s1: '${AppText.id.tr} : ',
+                      s2: model.id.toString().trn,
+                    ),
+                    const Spacer(),
+                    AppInjection.getIt<AppWidget>().getOrderIcon(model),
+                    const Gap(10),
+                  ],
+                ),
               ),
               RowTextSpan(
                 s1: '${AppText.totalQuantity.tr} : ',

@@ -2,7 +2,9 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
+import 'package:pharmageddon_mobile/core/constant/app_keys.dart';
 import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
+import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 import '../../controllers/order_details_cubit/order_details_cubit.dart';
 import '../../core/constant/app_color.dart';
@@ -72,6 +74,8 @@ class _TopWidgetOrderDetailsScreenState
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    final tag = args.args[AppKeys.tag];
     return Container(
       padding: AppPadding.padding7,
       decoration: BoxDecoration(
@@ -81,17 +85,20 @@ class _TopWidgetOrderDetailsScreenState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              RowTextSpan(
-                s1: '${AppText.id.tr} : ',
-                s2: widget.model.id.toString().trn,
-                ts1: AppTextStyle.f18w600black,
-                ts2: AppTextStyle.f18w400black,
-              ),
-              AppInjection.getIt<AppWidget>().getOrderIcon(widget.model),
-            ],
+          Hero(
+            tag: tag,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RowTextSpan(
+                  s1: '${AppText.id.tr} : ',
+                  s2: widget.model.id.toString().trn,
+                  ts1: AppTextStyle.f18w600black,
+                  ts2: AppTextStyle.f18w400black,
+                ),
+                AppInjection.getIt<AppWidget>().getOrderIcon(widget.model),
+              ],
+            ),
           ),
           RowTextSpan(
             s1: '${AppText.totalQuantity.tr} : ',
