@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
-
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_text.dart';
@@ -21,14 +19,14 @@ class CustomPopupMenuButton extends StatelessWidget {
     required this.showOrders,
     required this.showFavorites,
     required this.showReports,
-    required this.showLogout,
+    // required this.showLogout,
   });
 
   final bool showCart;
   final bool showOrders;
   final bool showFavorites;
   final bool showReports;
-  final bool showLogout;
+  // final bool showLogout;
 
   void onSelected(String value, BuildContext context) {
     if (value == AppRoute.logout) {
@@ -110,25 +108,25 @@ class CustomPopupMenuButton extends StatelessWidget {
                 style: AppTextStyle.f18w500black,
               ),
             ),
-          if (showLogout)
-            PopupMenuItem(
-              padding: AppPadding.screenPadding,
-              value: AppRoute.logout,
-              child: Row(
-                children: [
-                  Text(
-                    AppText.logOut.tr,
-                    style: AppTextStyle.f18w500black,
-                  ),
-                  const Spacer(),
-                  const SvgImage(
-                    path: AppSvg.exit,
-                    color: AppColor.primaryColor,
-                    size: 24,
-                  ),
-                ],
-              ),
-            ),
+          // if (showLogout)
+          //   PopupMenuItem(
+          //     padding: AppPadding.screenPadding,
+          //     value: AppRoute.logout,
+          //     child: Row(
+          //       children: [
+          //         Text(
+          //           AppText.logOut.tr,
+          //           style: AppTextStyle.f18w500black,
+          //         ),
+          //         const Spacer(),
+          //         const SvgImage(
+          //           path: AppSvg.exit,
+          //           color: AppColor.primaryColor,
+          //           size: 24,
+          //         ),
+          //       ],
+          //     ),
+          //   ),
         ];
       },
     );

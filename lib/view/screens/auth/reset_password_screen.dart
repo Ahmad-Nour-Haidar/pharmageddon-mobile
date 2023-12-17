@@ -47,9 +47,6 @@ class ResetPasswordScreen extends StatelessWidget {
             pushNamedAndRemoveUntil(AppRoute.home, context);
           }
         },
-        buildWhen: (previous, current) {
-          return current is! ResetPasswordChangeShowPasswordState;
-        },
         builder: (context, state) {
           final cubit = ResetPasswordCubit.get(context);
           final focusNode = FocusNode();
@@ -104,52 +101,40 @@ class ResetPasswordScreen extends StatelessWidget {
                       ),
                     ),
                     const Gap(15),
-                    BlocSelector<ResetPasswordCubit, ResetPasswordState,
-                            ResetPasswordChangeShowPasswordState>(
-                        selector: (state) {
-                      return ResetPasswordChangeShowPasswordState();
-                    }, builder: (context, state) {
-                      return Column(
-                        children: [
-                          CustomTextFormField(
-                            controller: cubit.passwordController,
-                            keyboardType: TextInputType.visiblePassword,
-                            validator: ValidateInput.isPassword,
-                            textInputAction: TextInputAction.next,
-                            fillColor: AppColor.white,
-                            colorPrefixIcon: AppColor.gray3,
-                            onTapSuffix: cubit.showPassword,
-                            obscureText: cubit.obscureText,
-                            suffixIcon: cubit.obscureText
-                                ? AppSvg.eye
-                                : AppSvg.eyeClose,
-                            prefixIcon: AppSvg.lock,
-                            hintText: AppText.password.tr,
-                            onFieldSubmitted: (value) {
-                              focusNode.requestFocus();
-                              return null;
-                            },
-                          ),
-                          const Gap(15),
-                          CustomTextFormField(
-                            controller: cubit.confirmController,
-                            focusNode: focusNode,
-                            keyboardType: TextInputType.visiblePassword,
-                            validator: ValidateInput.isPassword,
-                            textInputAction: TextInputAction.done,
-                            fillColor: AppColor.white,
-                            colorPrefixIcon: AppColor.gray3,
-                            onTapSuffix: cubit.showPassword,
-                            obscureText: cubit.obscureText,
-                            suffixIcon: cubit.obscureText
-                                ? AppSvg.eye
-                                : AppSvg.eyeClose,
-                            prefixIcon: AppSvg.lock,
-                            hintText: AppText.confirm.tr,
-                          ),
-                        ],
-                      );
-                    }),
+                    CustomTextFormField(
+                      controller: cubit.passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      validator: ValidateInput.isPassword,
+                      textInputAction: TextInputAction.next,
+                      fillColor: AppColor.white,
+                      colorPrefixIcon: AppColor.gray3,
+                      onTapSuffix: cubit.showPassword,
+                      obscureText: cubit.obscureText,
+                      suffixIcon:
+                          cubit.obscureText ? AppSvg.eye : AppSvg.eyeClose,
+                      prefixIcon: AppSvg.lock,
+                      hintText: AppText.password.tr,
+                      onFieldSubmitted: (value) {
+                        focusNode.requestFocus();
+                        return null;
+                      },
+                    ),
+                    const Gap(15),
+                    CustomTextFormField(
+                      controller: cubit.confirmController,
+                      focusNode: focusNode,
+                      keyboardType: TextInputType.visiblePassword,
+                      validator: ValidateInput.isPassword,
+                      textInputAction: TextInputAction.done,
+                      fillColor: AppColor.white,
+                      colorPrefixIcon: AppColor.gray3,
+                      onTapSuffix: cubit.showPassword,
+                      obscureText: cubit.obscureText,
+                      suffixIcon:
+                          cubit.obscureText ? AppSvg.eye : AppSvg.eyeClose,
+                      prefixIcon: AppSvg.lock,
+                      hintText: AppText.confirm.tr,
+                    ),
                     Align(
                       alignment: isEnglish()
                           ? Alignment.centerRight
@@ -165,13 +150,10 @@ class ResetPasswordScreen extends StatelessWidget {
                       ),
                     ),
                     const Gap(25),
-                    if (state is ResetPasswordLoadingState)
+                    if (cubit.isLoading)
                       const SpinKitThreeBounce(color: AppColor.buttonColor),
-                    if (state is! ResetPasswordLoadingState)
-                      CustomButton(
-                        onTap: cubit.reset,
-                        text: AppText.reset.tr,
-                      ),
+                    if (!cubit.isLoading)
+                      CustomButton(onTap: cubit.reset, text: AppText.reset.tr),
                     const Gap(20),
                   ],
                 ),

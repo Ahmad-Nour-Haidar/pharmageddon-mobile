@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-
 import '../../../controllers/auth/check_email_cubit/check_email_cubit.dart';
 import '../../../controllers/auth/check_email_cubit/check_email_state.dart';
 import '../../../core/class/validation.dart';

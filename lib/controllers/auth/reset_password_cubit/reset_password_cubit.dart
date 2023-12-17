@@ -7,6 +7,7 @@ import '../../../core/constant/app_constant.dart';
 import '../../../core/constant/app_local_data.dart';
 import '../../../core/constant/app_request_keys.dart';
 import '../../../core/constant/app_text.dart';
+import '../../../core/enums/status_request.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/services/dependency_injection.dart';
 import '../../../data/remote/auth_data.dart';
@@ -30,6 +31,9 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   late String code = '';
   String? email;
   bool obscureText = true;
+  var statusRequest = StatusRequest.none;
+
+  bool get isLoading => statusRequest == StatusRequest.loading;
 
   void initial() async {
     getVerifyCode();
@@ -80,9 +84,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   }
 
   void reset() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
+    if (!formKey.currentState!.validate()) return;
     if (code.length < 6) {
       _update(ResetPasswordFailureState(
           FailureState(message: AppText.enterTheCompleteVerificationCode.tr)));
@@ -93,7 +95,9 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
           FailureState(message: AppText.passwordsNoMatch.tr)));
       return;
     }
+    statusRequest = StatusRequest.loading;
     _update(ResetPasswordLoadingState());
+    FocusManager.instance.primaryFocus?.unfocus();
     final data = {
       AppRKeys.em_ph: AppLocalData.user!.email,
       AppRKeys.password: passwordController.text,
@@ -101,7 +105,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       AppRKeys.role: AppConstant.pharmacist,
     };
     final response = await _authRemoteData.resetPassword(data: data);
-    if (isClosed) return;
+    statusRequest = StatusRequest.none;
     response.fold((l) {
       _update(ResetPasswordFailureState(l));
     }, (response) async {

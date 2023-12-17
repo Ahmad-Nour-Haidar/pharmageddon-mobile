@@ -1,0 +1,4 @@
+enum StatusRequest {
+  none,
+  loading,
+}

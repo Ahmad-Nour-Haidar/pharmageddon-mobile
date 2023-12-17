@@ -7,7 +7,6 @@ import 'package:pharmageddon_mobile/core/constant/app_text.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/local/cart_quantity_data.dart';
 import 'package:pharmageddon_mobile/data/remote/favorite_data.dart';
-import 'package:pharmageddon_mobile/print.dart';
 import '../../core/class/parent_state.dart';
 import '../../model/medication_model.dart';
 import '../favorite_cubit/favorite_cubit.dart';

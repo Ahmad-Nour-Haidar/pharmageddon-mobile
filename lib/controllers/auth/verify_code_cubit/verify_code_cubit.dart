@@ -69,6 +69,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
       return;
     }
     _update(VerifyCodeLoadingState());
+    FocusManager.instance.primaryFocus?.unfocus();
     final data = {
       AppRKeys.em_ph: AppLocalData.user!.email,
       AppRKeys.role: AppConstant.pharmacist,

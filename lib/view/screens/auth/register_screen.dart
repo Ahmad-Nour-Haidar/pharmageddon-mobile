@@ -39,9 +39,6 @@ class RegisterScreen extends StatelessWidget {
             pushNamed(AppRoute.verifyCode, context);
           }
         },
-        buildWhen: (previous, current) {
-          return current is! RegisterChangeShowPasswordState;
-        },
         builder: (context, state) {
           final cubit = RegisterCubit.get(context);
           return Container(
@@ -112,30 +109,24 @@ class RegisterScreen extends StatelessWidget {
                       hintText: AppText.address.tr,
                     ),
                     const Gap(15),
-                    BlocSelector<RegisterCubit, RegisterState,
-                        RegisterChangeShowPasswordState>(selector: (state) {
-                      return RegisterChangeShowPasswordState();
-                      // return selected state based on the provided state.
-                    }, builder: (context, state) {
-                      return CustomTextFormField(
-                        controller: cubit.passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        validator: ValidateInput.isPassword,
-                        textInputAction: TextInputAction.done,
-                        fillColor: AppColor.white,
-                        colorPrefixIcon: AppColor.gray3,
-                        prefixIcon: AppSvg.lock,
-                        hintText: AppText.password.tr,
-                        onTapSuffix: cubit.showPassword,
-                        obscureText: cubit.obscureText,
-                        suffixIcon:
-                            cubit.obscureText ? AppSvg.eye : AppSvg.eyeClose,
-                      );
-                    }),
+                    CustomTextFormField(
+                      controller: cubit.passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      validator: ValidateInput.isPassword,
+                      textInputAction: TextInputAction.done,
+                      fillColor: AppColor.white,
+                      colorPrefixIcon: AppColor.gray3,
+                      prefixIcon: AppSvg.lock,
+                      hintText: AppText.password.tr,
+                      onTapSuffix: cubit.showPassword,
+                      obscureText: cubit.obscureText,
+                      suffixIcon:
+                          cubit.obscureText ? AppSvg.eye : AppSvg.eyeClose,
+                    ),
                     const Gap(25),
-                    if (state is RegisterLoadingState)
+                    if (cubit.isLoading)
                       const SpinKitThreeBounce(color: AppColor.buttonColor),
-                    if (state is! RegisterLoadingState)
+                    if (!cubit.isLoading)
                       CustomButton(
                         onTap: cubit.register,
                         text: AppText.register.tr,
@@ -145,7 +136,6 @@ class RegisterScreen extends StatelessWidget {
                       text: AppText.haveAnAccount.tr,
                       btnText: AppText.loginNow.tr,
                       onTap: () {
-                        // pushNamedAndRemoveUntil(AppRoute.login, context);
                         pushNamedAndRemoveUntil(AppRoute.login, context);
                       },
                     ),

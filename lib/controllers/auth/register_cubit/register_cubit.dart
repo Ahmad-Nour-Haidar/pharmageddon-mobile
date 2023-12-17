@@ -6,6 +6,7 @@ import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import '../../../core/class/parent_state.dart';
 import '../../../core/constant/app_request_keys.dart';
 import '../../../core/constant/app_text.dart';
+import '../../../core/enums/status_request.dart';
 import '../../../core/functions/check_errors.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/services/dependency_injection.dart';
@@ -29,7 +30,9 @@ class RegisterCubit extends Cubit<RegisterState> {
   final formKey = GlobalKey<FormState>();
   final _authRemoteData = AppInjection.getIt<AuthRemoteData>();
   bool obscureText = true;
+  var statusRequest = StatusRequest.none;
 
+  bool get isLoading => statusRequest == StatusRequest.loading;
   @override
   Future<void> close() {
     emailController.dispose();
@@ -46,10 +49,10 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   void register() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
+    if (!formKey.currentState!.validate()) return;
+    statusRequest = StatusRequest.loading;
     _update(RegisterLoadingState());
+    FocusManager.instance.primaryFocus?.unfocus();
     final data = {
       AppRKeys.email: emailController.text,
       AppRKeys.username: userNameController.text,
@@ -59,7 +62,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       AppRKeys.role: AppConstant.pharmacist,
     };
     final response = await _authRemoteData.register(data: data);
-    if (isClosed) return;
+    statusRequest = StatusRequest.none;
     response.fold((l) {
       _update(RegisterFailureState(l));
     }, (response) async {

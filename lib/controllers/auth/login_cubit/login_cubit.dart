@@ -7,6 +7,7 @@ import '../../../core/class/parent_state.dart';
 import '../../../core/constant/app_local_data.dart';
 import '../../../core/constant/app_request_keys.dart';
 import '../../../core/constant/app_text.dart';
+import '../../../core/enums/status_request.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/services/dependency_injection.dart';
 import '../../../data/remote/auth_data.dart';
@@ -16,6 +17,10 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitialState());
 
   static LoginCubit get(BuildContext context) => BlocProvider.of(context);
+
+  var statusRequest = StatusRequest.none;
+
+  bool get isLoading => statusRequest == StatusRequest.loading;
 
   void _update(LoginState state) {
     if (isClosed) return;
@@ -41,24 +46,26 @@ class LoginCubit extends Cubit<LoginState> {
     _update(LoginChangeShowPasswordState());
   }
 
-  void changeIsEmail(bool isEmail) {
-    if (this.isEmail == isEmail) return;
-    this.isEmail = isEmail;
+  void changeIsEmail(bool value) {
+    if (isLoading) return;
+    if (isEmail == value) return;
+    isEmail = value;
     _update(LoginChangeState());
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 
   void login() async {
+    if (!formKey.currentState!.validate()) return;
+    statusRequest = StatusRequest.loading;
+    _update(LoginLoadingState());
+    FocusManager.instance.primaryFocus?.unfocus();
     final data = {
       AppRKeys.em_ph: emPhController.text,
       AppRKeys.role: AppConstant.pharmacist,
       AppRKeys.password: passwordController.text,
     };
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
-    _update(LoginLoadingState());
     final response = await _authRemoteData.login(data: data);
-    if (isClosed) return;
+    statusRequest = StatusRequest.none;
     response.fold((l) {
       _update(LoginFailureState(l));
     }, (response) async {

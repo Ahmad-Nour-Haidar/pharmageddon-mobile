@@ -35,9 +35,7 @@ class AppHive {
     return value;
   }
 
-  Future<void> delete({
-    required String key,
-  }) async {
+  Future<void> delete(String key) async {
     await _box?.delete(key);
     // printme.magenta(_box?.length);
     // printme.cyan(_box?.toMap());

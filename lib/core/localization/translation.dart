@@ -200,8 +200,8 @@ class MyTranslation extends Translations {
           AppText.forgetPassword: 'نسيت كلمة المرور',
           AppText.resendVerifyCode: 'إعادة إرسال رمز التحقق',
           AppText.emailOrPasswordIsWrong:
-              'البريد الإلكتروني أو كلمة المرور خاطئة.',
-          AppText.phoneOrPasswordIsWrong: 'الهاتف أو كلمة المرور خاطئة.',
+              'البريد الإلكتروني أو كلمة المرور خاطئة',
+          AppText.phoneOrPasswordIsWrong: 'الهاتف أو كلمة المرور خاطئة',
           AppText.doNotHaveAnAccount: 'ليس لديك حساب ؟',
           AppText.field: 'حقل',
           AppText.alreadyBeenTaken: 'بالفعل تم اخذها.',

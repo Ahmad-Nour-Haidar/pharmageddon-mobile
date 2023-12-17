@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
+import 'package:pharmageddon_mobile/core/constant/app_storage_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
 import 'package:pharmageddon_mobile/core/constant/app_svg.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/data/local/app_hive.dart';
 import 'package:pharmageddon_mobile/data/remote/auth_data.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
@@ -70,19 +72,7 @@ class CustomAppBar {
           Builder(builder: (context) {
             return IconButton(
               onPressed: () {
-                AwesomeDialog(
-                  context: context,
-                  btnOkText: AppText.ok.tr,
-                  btnCancelText: AppText.cancel.tr,
-                  dialogType: DialogType.question,
-                  title: AppText.logOut.tr,
-                  desc: AppText.doYouWantToLogOut.tr,
-                  btnCancelOnPress: () {},
-                  btnOkOnPress: () {
-                    AppInjection.getIt<AuthRemoteData>().logout();
-                    pushNamedAndRemoveUntil(AppRoute.login, context);
-                  },
-                ).show();
+                showAwesomeLogout(context);
               },
               icon: Transform.flip(
                 flipX: !isEnglish(),
@@ -100,9 +90,29 @@ class CustomAppBar {
             showOrders: showOrders,
             showFavorites: showFavorites,
             showReports: showReports,
-            showLogout: showLogout,
+            // showLogout: showLogout,
           ),
       ],
     );
+  }
+
+  void showAwesomeLogout(BuildContext context) {
+    AwesomeDialog(
+      context: context,
+      btnOkText: AppText.ok.tr,
+      btnCancelText: AppText.cancel.tr,
+      dialogType: DialogType.question,
+      title: AppText.logOut.tr,
+      desc: AppText.doYouWantToLogOut.tr,
+      btnCancelOnPress: () {},
+      btnOkOnPress: () {
+        AppInjection.getIt<AuthRemoteData>().logout();
+        final appHive = AppInjection.getIt<AppHive>();
+        appHive.delete(AppSKeys.cartKey);
+        appHive.delete(AppSKeys.userKey);
+        appHive.delete(AppSKeys.langKey);
+        pushNamedAndRemoveUntil(AppRoute.login, context);
+      },
+    ).show();
   }
 }

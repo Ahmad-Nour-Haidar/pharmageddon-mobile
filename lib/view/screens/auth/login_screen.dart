@@ -45,9 +45,6 @@ class LoginScreen extends StatelessWidget {
             pushNamed(AppRoute.home, context);
           }
         },
-        buildWhen: (previous, current) {
-          return current is! LoginChangeShowPasswordState;
-        },
         builder: (context, state) {
           final cubit = LoginCubit.get(context);
           return Container(
@@ -55,9 +52,7 @@ class LoginScreen extends StatelessWidget {
               color: AppColor.background,
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage(
-                  AppImage.backgroundMobile,
-                ),
+                image: AssetImage(AppImage.backgroundMobile),
               ),
             ),
             child: Scaffold(
@@ -95,26 +90,20 @@ class LoginScreen extends StatelessWidget {
                           cubit.isEmail ? AppText.email.tr : AppText.phone.tr,
                     ),
                     const Gap(15),
-                    BlocSelector<LoginCubit, LoginState,
-                        LoginChangeShowPasswordState>(selector: (state) {
-                      return LoginChangeShowPasswordState();
-                      // return selected state based on the provided state.
-                    }, builder: (context, state) {
-                      return CustomTextFormField(
-                        controller: cubit.passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        validator: ValidateInput.isPassword,
-                        textInputAction: TextInputAction.done,
-                        fillColor: AppColor.white,
-                        colorPrefixIcon: AppColor.gray3,
-                        prefixIcon: AppSvg.lock,
-                        hintText: AppText.password.tr,
-                        onTapSuffix: cubit.showPassword,
-                        obscureText: cubit.obscureText,
-                        suffixIcon:
-                            cubit.obscureText ? AppSvg.eye : AppSvg.eyeClose,
-                      );
-                    }),
+                    CustomTextFormField(
+                      controller: cubit.passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      validator: ValidateInput.isPassword,
+                      textInputAction: TextInputAction.done,
+                      fillColor: AppColor.white,
+                      colorPrefixIcon: AppColor.gray3,
+                      prefixIcon: AppSvg.lock,
+                      hintText: AppText.password.tr,
+                      onTapSuffix: cubit.showPassword,
+                      obscureText: cubit.obscureText,
+                      suffixIcon:
+                          cubit.obscureText ? AppSvg.eye : AppSvg.eyeClose,
+                    ),
                     Align(
                       alignment: isEnglish()
                           ? Alignment.centerRight
@@ -130,13 +119,10 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     const Gap(25),
-                    if (state is LoginLoadingState)
+                    if (cubit.isLoading)
                       const SpinKitThreeBounce(color: AppColor.buttonColor),
-                    if (state is! LoginLoadingState)
-                      CustomButton(
-                        onTap: cubit.login,
-                        text: AppText.login.tr,
-                      ),
+                    if (!cubit.isLoading)
+                      CustomButton(onTap: cubit.login, text: AppText.login.tr),
                     const Gap(15),
                     CustomRowTextButton(
                       text: AppText.doNotHaveAnAccount.tr,
