@@ -16,6 +16,7 @@ import 'package:pharmageddon_mobile/view/widgets/order_details_widget.dart';
 import '../../controllers/order_cubit/order_cubit.dart';
 import '../../controllers/order_details_cubit/order_details_state.dart';
 import '../../core/constant/app_color.dart';
+import '../../core/constant/app_size.dart';
 import '../../core/services/dependency_injection.dart';
 import '../widgets/cart/table_widget.dart';
 import '../widgets/top_widget_order_details_screen.dart';
@@ -51,7 +52,7 @@ class OrderDetailsScreen extends StatelessWidget {
           builder: (context, state) {
             final cubit = OrderDetailsCubit.get(context);
             return Padding(
-              padding: AppPadding.screenPaddingAll,
+              padding: AppPadding.screenPadding,
               child: Column(
                 children: [
                   if (cubit.dataNotAvailable.isNotEmpty)
@@ -77,6 +78,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     onEditMedicine: cubit.onEditMedicine,
                     onTapDelete: cubit.onTapDeleteMedicine,
                   ),
+                  const Gap(AppSize.screenPadding)
                 ],
               ),
             );

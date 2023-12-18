@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pharmageddon_mobile/core/constant/app_keys.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
@@ -12,6 +13,7 @@ import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_cu
 import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_state.dart';
 import '../../core/constant/app_lottie.dart';
 import '../../core/constant/app_padding.dart';
+import '../../core/constant/app_size.dart';
 import '../../core/services/dependency_injection.dart';
 import '../widgets/home/medication_widget.dart';
 import '../widgets/loading/medications_loading.dart';
@@ -69,12 +71,9 @@ class ManufacturerMedicinesScreen extends StatelessWidget {
                 title: getManufacturerName(cubit.model),
               ).build(),
               body: Padding(
-                padding: AppPadding.screenPaddingAll,
+                padding: AppPadding.screenPadding,
                 child: Column(
-                  children: [
-                    // Text(),
-                    widget,
-                  ],
+                  children: [widget, const Gap(AppSize.screenPadding)],
                 ),
               ),
             );

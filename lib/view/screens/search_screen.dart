@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../controllers/search_cubit/search_state.dart';
 import '../../core/constant/app_padding.dart';
+import '../../core/constant/app_size.dart';
 import '../../core/constant/app_text.dart';
 import '../../core/resources/app_text_theme.dart';
 import '../../core/services/dependency_injection.dart';
@@ -67,7 +68,7 @@ class SearchScreen extends StatelessWidget {
                       break;
                   }
                   return Padding(
-                    padding: AppPadding.screenPaddingAll,
+                    padding: AppPadding.screenPadding,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -82,6 +83,7 @@ class SearchScreen extends StatelessWidget {
                           ),
                         const Gap(10),
                         widget,
+                        const Gap(AppSize.screenPadding)
                       ],
                     ),
                   );

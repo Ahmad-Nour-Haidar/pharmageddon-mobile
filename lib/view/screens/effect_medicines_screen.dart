@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
@@ -62,9 +64,9 @@ class EffectMedicinesScreen extends StatelessWidget {
               appBar: CustomAppBar(title: getEffectCategoryModelName(model))
                   .build(),
               body: Padding(
-                padding: AppPadding.screenPaddingAll,
+                padding: AppPadding.screenPadding,
                 child: Column(
-                  children: [widget],
+                  children: [widget, const Gap(AppSize.screenPadding)],
                 ),
               ),
             );

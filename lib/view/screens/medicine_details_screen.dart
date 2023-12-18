@@ -49,7 +49,7 @@ class MedicationDetailsScreen extends StatelessWidget {
               title: AppText.medicationDetails.tr,
             ).build(),
             body: ListView(
-              padding: AppPadding.screenPaddingAll,
+              padding: AppPadding.screenPadding,
               children: [
                 MedicationImage(
                   isFav: cubit.model.isFavourite!,

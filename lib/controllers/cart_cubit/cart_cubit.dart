@@ -75,7 +75,6 @@ class CartCubit extends Cubit<CartState> {
     }, (r) async {
       final status = r[AppRKeys.status];
       if (status == 404) {
-        // todo
         final List tempList =
             r[AppRKeys.data][AppRKeys.medicines_quantity_not_available];
         dataNotAvailable.clear();

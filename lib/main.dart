@@ -54,6 +54,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/// todo:
-/// get name in not available quantity
