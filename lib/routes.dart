@@ -15,8 +15,12 @@ import 'package:pharmageddon_mobile/view/screens/orders_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/profile_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/reports_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/search_screen.dart';
+import 'package:pharmageddon_mobile/view/screens/splash_screen.dart';
 
 abstract class AppRoute {
+  // splash
+  static const splash = '/splash';
+
   // auth
   static const login = '/login';
   static const register = '/register';
@@ -52,6 +56,9 @@ abstract class AppRoute {
 }
 
 final Map<String, Widget Function(BuildContext)> routes = {
+  // splash
+  AppRoute.splash: (_) => const SplashScreen(),
+
   // auth
   AppRoute.register: (_) => const RegisterScreen(),
   AppRoute.login: (_) => const LoginScreen(),
