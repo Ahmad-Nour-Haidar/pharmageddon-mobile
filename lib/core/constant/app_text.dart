@@ -149,6 +149,7 @@ abstract class AppText {
   static const pleaseSelectStartAndEndOfDate = 'pleaseSelectStartAndEndOfDate';
   static const orderDetails = 'orderDetails';
   static const cancel = 'cancel';
+  static const cancelOrder = 'cancelOrder';
   static const back = 'back';
   static const iReceivedIt = 'iReceivedIt';
   static const quantitiesOfSomeMedicinesAreNotAvailable =

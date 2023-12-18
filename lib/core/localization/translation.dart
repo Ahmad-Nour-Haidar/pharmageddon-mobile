@@ -118,6 +118,7 @@ class MyTranslation extends Translations {
               'Please select start and end of date',
           AppText.orderDetails: 'Order Details',
           AppText.cancel: 'Cancel',
+          AppText.cancelOrder: 'Cancel order',
           AppText.back: 'Back',
           AppText.iReceivedIt: 'I received it',
           AppText.quantitiesOfSomeMedicinesAreNotAvailable:
@@ -267,6 +268,7 @@ class MyTranslation extends Translations {
               'الرجاء تحديد بداية ونهاية التاريخ',
           AppText.orderDetails: 'تفاصيل الطلب',
           AppText.cancel: 'الغاء',
+          AppText.cancelOrder: 'الغاء الطلب',
           AppText.back: 'تراجع',
           AppText.iReceivedIt: 'استلمته',
           AppText.thisOrderHasAlreadyBeenReceived:

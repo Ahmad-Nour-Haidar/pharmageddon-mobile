@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Pharmageddon',
+        title: isEnglish() ? 'Pharmageddon' : 'فارماجيدون',
         locale: AppInjection.getIt<LocaleController>().locale,
         translations: MyTranslation(),
         theme: themeData(),

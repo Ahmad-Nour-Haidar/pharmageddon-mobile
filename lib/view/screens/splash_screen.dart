@@ -28,8 +28,9 @@ class _SplashScreenState extends State<SplashScreen> {
     if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
       initialRoute = AppRoute.home;
     }
-    await Future.delayed(const Duration(seconds: 4));
-    pushNamedAndRemoveUntil(initialRoute, context);
+    Future.delayed(const Duration(seconds: 3), () {
+      pushNamedAndRemoveUntil(initialRoute, context);
+    });
   }
 
   @override
@@ -38,8 +39,8 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         color: AppColor.cardColor,
         child: FadeIn(
-          duration: const Duration(milliseconds: 2000),
-          delay: const Duration(milliseconds: 1000),
+          duration: const Duration(milliseconds: 1500),
+          delay: const Duration(milliseconds: 500),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

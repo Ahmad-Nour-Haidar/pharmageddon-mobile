@@ -9,6 +9,7 @@ import '../../controllers/local_controller.dart';
 import '../../model/effect_category_model.dart';
 import '../../model/manufacturer_model.dart';
 import '../../model/medication_model.dart';
+import '../../model/medicines_quantity_not_available_model.dart';
 import '../../model/order_details_model.dart';
 import '../../model/order_model.dart';
 import '../../model/user_model.dart';
@@ -106,6 +107,26 @@ String getMedicationScientificName(MedicationModel? model,
 }
 
 String getMCommercialName(MedicationModel? model, {bool split = true}) {
+  var s = '';
+  if (model == null) return s;
+  if (split) {
+    if (isEnglish()) {
+      s = model.englishCommercialName.toString().split(' ').take(2).join(' ');
+    } else {
+      s = model.arabicCommercialName.toString().split(' ').take(2).join(' ');
+    }
+    return s;
+  }
+  if (isEnglish()) {
+    s = model.englishCommercialName.toString();
+  } else {
+    s = model.arabicCommercialName.toString();
+  }
+  return s;
+}
+
+String getMNotCommercialName(MedicinesQuantityNotAvailableModel? model,
+    {bool split = true}) {
   var s = '';
   if (model == null) return s;
   if (split) {

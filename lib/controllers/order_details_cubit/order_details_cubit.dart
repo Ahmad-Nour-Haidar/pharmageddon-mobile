@@ -7,7 +7,7 @@ import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/model/order_model.dart';
 import '../../core/constant/app_request_keys.dart';
 import '../../data/remote/order_data.dart';
-import '../../model/medication_model.dart';
+import '../../model/medicines_quantity_not_available_model.dart';
 import '../../model/order_details_model.dart';
 import '../home_cubit/home_cubit.dart';
 import '../order_cubit/order_cubit.dart';
@@ -27,7 +27,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
   final Map<int, int> _tempQuantity = {};
 
   // this used if there medicines quantity not available
-  final List<MedicationModel> medicinesQuantityNotAvailable = [];
+  final List<MedicinesQuantityNotAvailableModel> dataNotAvailable = [];
 
   void _update(OrderDetailsState state) {
     if (isClosed) return;
@@ -176,7 +176,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
 
   Future<void> updateOrder() async {
     isEdit = false;
-    medicinesQuantityNotAvailable.clear();
+    dataNotAvailable.clear();
     _update(OrderDetailsUpdateOrderLoadingState());
     if (_tempQuantity.isEmpty) return;
     final List<Map<String, int>> list = [];
@@ -209,9 +209,14 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         return;
       }
       if (status == 404) {
+        // todo
         final List tempList =
             r[AppRKeys.data][AppRKeys.medicines_quantity_not_available];
-        await getMedicationsListNotAvailable(tempList);
+        dataNotAvailable.clear();
+        dataNotAvailable.addAll(tempList
+            .map((e) => MedicinesQuantityNotAvailableModel.fromJson(e)));
+        AppInjection.getIt<HomeCubit>()
+            .updateQuantityListMedications(dataNotAvailable);
         _update(OrderDetailsFailureState(FailureState(
             message: AppText.quantitiesOfSomeMedicinesAreNotAvailable.tr)));
         return;
@@ -297,13 +302,6 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         return;
       }
     });
-  }
-
-  Future<void> getMedicationsListNotAvailable(List<dynamic> list) async {
-    final data = await AppInjection.getIt<HomeCubit>()
-        .updateQuantityListMedications(list);
-    medicinesQuantityNotAvailable.clear();
-    medicinesQuantityNotAvailable.addAll(data);
   }
 
   void onEditMedicine(int id, int newQuantity) {

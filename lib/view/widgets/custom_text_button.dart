@@ -36,16 +36,6 @@ class CustomTextButton extends StatelessWidget {
         ),
       );
     }
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(5),
-      child: SizedBox(
-        height: 40,
-        width: width,
-        child: Center(
-          child: Text(text, style: style),
-        ),
-      ),
-    );
+    return TextButton(onPressed: onTap, child: Text(text, style: style));
   }
 }

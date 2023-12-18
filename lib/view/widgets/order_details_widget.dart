@@ -62,7 +62,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
 
   void change(int x) {
     if (quantity + x < 1) return;
-    if (quantity + x > 500) return;
+    if (quantity + x > 200) return;
     quantity += x;
     setState(() {});
     widget.onEditMedicine(widget.model.medicineId!, quantity);

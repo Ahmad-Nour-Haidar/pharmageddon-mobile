@@ -40,30 +40,37 @@ class _TopWidgetOrderDetailsScreenState
   bool _isLoadingDone = false;
   bool _isLoadingReceived = false;
 
+  void _update() => mounted ? setState(() {}) : null;
+
   void onTapEdit(bool value) {
     cubit.isEdit = value;
   }
 
   Future<void> onTapCancel() async {
     if (_isLoadingDone) return;
-    setState(() => _isLoadingCancel = true);
+    _isLoadingCancel = true;
+    _update();
     await cubit.cancelOrder();
-    setState(() => _isLoadingCancel = false);
+    _isLoadingCancel = false;
+    _update();
   }
 
   Future<void> onTapReceived() async {
-    setState(() => _isLoadingReceived = true);
+    _isLoadingReceived = true;
+    _update();
     await cubit.updateOrderStatus(AppConstant.received);
-    setState(() => _isLoadingReceived = false);
+    _isLoadingReceived = false;
+    _update();
   }
 
   Future<void> onTapDone() async {
     if (_isLoadingCancel) return;
-    setState(() => _isLoadingDone = true);
+    _isLoadingDone = true;
+    _update();
     await cubit.updateOrder();
     _isLoadingDone = false;
     onTapEdit(false);
-    setState(() {});
+    _update();
   }
 
   @override
@@ -163,7 +170,7 @@ class _TopWidgetOrderDetailsScreenState
                     showAwesomeCancel(context);
                   },
                   color: AppColor.red,
-                  text: AppText.cancel.tr,
+                  text: AppText.cancelOrder.tr,
                   style: AppTextStyle.f18w500red,
                 ),
             ],

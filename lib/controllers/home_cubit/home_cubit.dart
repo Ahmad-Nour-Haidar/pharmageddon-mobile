@@ -10,9 +10,9 @@ import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/home_data.dart';
 import 'package:pharmageddon_mobile/model/effect_category_model.dart';
 import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
-import 'package:pharmageddon_mobile/print.dart';
 
 import '../../model/medication_model.dart';
+import '../../model/medicines_quantity_not_available_model.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -128,26 +128,23 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<List<MedicationModel>> updateQuantityListMedications(List list) async {
-    final List<MedicationModel> tempList = [];
-    for (final e in list) {
-      final id = e[AppRKeys.medicine_id];
-      final newQuantity = e[AppRKeys.new_quantity];
+  void updateQuantityListMedications(
+      List<MedicinesQuantityNotAvailableModel> data) {
+    for (final e in data) {
+      final id = e.medicineId;
+      final newQuantity = e.newQuantity;
       final index = medications.indexWhere((element) => element.id == id);
       if (index == -1) continue;
       final model = medications[index];
       model.availableQuantity = newQuantity;
       medications.update(index, model);
       medicationsMap[model.id] = model;
-      tempList.add(model);
     }
     _update(HomeChangeState());
-    return tempList;
   }
 
   void updateMedicationModel(MedicationModel model) {
     final index = medications.indexWhere((element) => element.id == model.id);
-    printme.cyan(index);
     if (index == -1) return;
     medications.update(index, model);
     medicationsMap[model.id] = model;

@@ -7,7 +7,7 @@ import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/resources/app_text_theme.dart';
-import '../../../model/medication_model.dart';
+import '../../../model/medicines_quantity_not_available_model.dart';
 
 class TableWidget extends StatelessWidget {
   const TableWidget({
@@ -15,7 +15,7 @@ class TableWidget extends StatelessWidget {
     required this.data,
   });
 
-  final List<MedicationModel> data;
+  final List<MedicinesQuantityNotAvailableModel> data;
 
   Widget _cell({
     required String s,
@@ -101,14 +101,14 @@ class TableWidget extends StatelessWidget {
                     data.length - 1,
                     (index) => _customTableRow(
                       color: AppColor.cardColor,
-                      s1: getMCommercialName(data[index]),
-                      s2: data[index].availableQuantity.toString(),
+                      s1: getMNotCommercialName(data[index]),
+                      s2: data[index].newQuantity.toString(),
                     ),
                   ),
                   _customTableRow(
                     color: AppColor.cardColor,
-                    s1: getMCommercialName(data[data.length - 1]),
-                    s2: data[data.length - 1].availableQuantity.toString(),
+                    s1: getMNotCommercialName(data[data.length - 1]),
+                    s2: data[data.length - 1].newQuantity.toString(),
                     br1: BorderRadius.only(
                       bottomLeft: Radius.circular(isEnglish() ? 10 : 0),
                       bottomRight: Radius.circular(isEnglish() ? 0 : 10),

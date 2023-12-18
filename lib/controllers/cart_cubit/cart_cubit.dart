@@ -9,10 +9,10 @@ import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/local/cart_quantity_data.dart';
-import 'package:pharmageddon_mobile/model/medication_model.dart';
 import 'package:pharmageddon_mobile/print.dart';
 import '../../data/remote/order_data.dart';
 import '../../model/cart_model.dart';
+import '../../model/medicines_quantity_not_available_model.dart';
 import 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
@@ -26,7 +26,7 @@ class CartCubit extends Cubit<CartState> {
   bool _isSendingRequest = false;
 
   // this used if there medicines quantity not available
-  final List<MedicationModel> medicinesQuantityNotAvailable = [];
+  final List<MedicinesQuantityNotAvailableModel> dataNotAvailable = [];
 
   void _update(CartState state) {
     if (isClosed) return;
@@ -64,7 +64,7 @@ class CartCubit extends Cubit<CartState> {
       ));
       return;
     }
-    medicinesQuantityNotAvailable.clear();
+    dataNotAvailable.clear();
     _isSendingRequest = true;
     _update(CartLoadingState());
     final data = await _cartQuantityData.dataToRequest();
@@ -75,9 +75,14 @@ class CartCubit extends Cubit<CartState> {
     }, (r) async {
       final status = r[AppRKeys.status];
       if (status == 404) {
+        // todo
         final List tempList =
             r[AppRKeys.data][AppRKeys.medicines_quantity_not_available];
-        await getMedicationsListNotAvailable(tempList);
+        dataNotAvailable.clear();
+        dataNotAvailable.addAll(tempList
+            .map((e) => MedicinesQuantityNotAvailableModel.fromJson(e)));
+        AppInjection.getIt<HomeCubit>()
+            .updateQuantityListMedications(dataNotAvailable);
         _update(CartFailureState(FailureState(
             message: AppText.quantitiesOfSomeMedicinesAreNotAvailable.tr)));
       } else if (status == 405) {
@@ -123,7 +128,7 @@ class CartCubit extends Cubit<CartState> {
     try {
       _cartQuantityData.storeInCart(id, 0);
       data.removeWhere((element) => element.medicationModel.id == id);
-      medicinesQuantityNotAvailable.removeWhere((element) => element.id == id);
+      dataNotAvailable.removeWhere((element) => element.medicineId == id);
       _update(CartSuccessState(null));
     } catch (e) {
       _update(CartFailureState(null));
@@ -141,12 +146,5 @@ class CartCubit extends Cubit<CartState> {
     } catch (e) {
       _update(CartFailureState(null));
     }
-  }
-
-  Future<void> getMedicationsListNotAvailable(List<dynamic> list) async {
-    final data = await AppInjection.getIt<HomeCubit>()
-        .updateQuantityListMedications(list);
-    medicinesQuantityNotAvailable.clear();
-    medicinesQuantityNotAvailable.addAll(data);
   }
 }

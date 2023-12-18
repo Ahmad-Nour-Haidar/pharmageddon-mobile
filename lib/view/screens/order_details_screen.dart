@@ -54,12 +54,9 @@ class OrderDetailsScreen extends StatelessWidget {
               padding: AppPadding.screenPaddingAll,
               child: Column(
                 children: [
-                  if (cubit.medicinesQuantityNotAvailable.isNotEmpty)
-                    TableWidget(
-                      data: cubit.medicinesQuantityNotAvailable,
-                    ),
-                  if (cubit.medicinesQuantityNotAvailable.isNotEmpty)
-                    const Gap(15),
+                  if (cubit.dataNotAvailable.isNotEmpty)
+                    TableWidget(data: cubit.dataNotAvailable),
+                  if (cubit.dataNotAvailable.isNotEmpty) const Gap(15),
                   TopWidgetOrderDetailsScreen(
                     model: cubit.model,
                     enableEdit: cubit.isEdit,
