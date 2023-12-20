@@ -16,7 +16,6 @@ class AppColor {
   static const primaryColor = Color(0xFF528AC8);
   static const secondColor = Color(0xFF00538B);
   static const green2 = Color(0xFF00C5A2);
-  static const buttonColor = Color(0xFF528AC8);
   static const cardColor = Color(0xFFCDE5FF);
   static const snackbarColor = Color(0xFFffab00);
   static const Color red = Color(0xFFFF0000);

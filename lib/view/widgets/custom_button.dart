@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
     this.height = 55,
     this.width = double.infinity,
     this.radius = AppSize.radius10,
-    this.color = AppColor.buttonColor,
+    this.color = AppColor.primaryColor,
   });
 
   final void Function() onTap;

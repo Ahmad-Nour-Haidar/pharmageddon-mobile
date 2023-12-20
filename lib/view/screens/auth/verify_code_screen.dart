@@ -62,7 +62,7 @@ class VerifyCodeScreen extends StatelessWidget {
                   const LogoApp(),
                   const Gap(30),
                   if (state is VerifyCodeLoadingGetState)
-                    const SpinKitFoldingCube(color: AppColor.buttonColor),
+                    const SpinKitFoldingCube(color: AppColor.primaryColor),
                   if (cubit.email != null)
                     Text(
                       cubit.message,
@@ -104,7 +104,7 @@ class VerifyCodeScreen extends StatelessWidget {
                   ),
                   const Gap(25),
                   if (state is VerifyCodeLoadingState)
-                    const SpinKitThreeBounce(color: AppColor.buttonColor),
+                    const SpinKitThreeBounce(color: AppColor.primaryColor),
                   if (state is! VerifyCodeLoadingState)
                     CustomButton(
                       onTap: cubit.verifyCode,

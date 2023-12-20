@@ -71,7 +71,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     const Gap(10),
                   if (state is OrderDetailsGetLoadingState) const Gap(50),
                   if (state is OrderDetailsGetLoadingState)
-                    const SpinKitFoldingCube(color: AppColor.buttonColor),
+                    const SpinKitFoldingCube(color: AppColor.primaryColor),
                   OrderDetailsList(
                     data: cubit.data,
                     enableEdit: cubit.isEdit,

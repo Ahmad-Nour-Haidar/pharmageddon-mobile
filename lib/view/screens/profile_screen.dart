@@ -126,7 +126,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   const Gap(25),
                   if (state is ProfileLoadingState)
-                    const SpinKitThreeBounce(color: AppColor.buttonColor),
+                    const SpinKitThreeBounce(color: AppColor.primaryColor),
                   if (state is! ProfileLoadingState && cubit.enableEdit)
                     CustomButton(
                       onTap: cubit.updateUser,

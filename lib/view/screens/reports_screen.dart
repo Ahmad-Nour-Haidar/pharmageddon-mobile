@@ -88,7 +88,7 @@ class ReportsScreen extends StatelessWidget {
                       flex: 3,
                       child: state is ReportsLoadingState
                           ? const SpinKitThreeBounce(
-                              color: AppColor.buttonColor,
+                              color: AppColor.primaryColor,
                             )
                           : CustomButton(
                               onTap: cubit.getData,
