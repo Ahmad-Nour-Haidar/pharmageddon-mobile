@@ -61,12 +61,12 @@ class ProfileScreen extends StatelessWidget {
                       if (cubit.enableEdit)
                         Positioned(
                           bottom: 15,
-                          left: isEnglish() ? 15 : null,
-                          right: isEnglish() ? null : 15,
-                          child: Ink(
-                            decoration: const ShapeDecoration(
+                          left: isEnglish() ? 0 : null,
+                          right: isEnglish() ? null : 0,
+                          child: Container(
+                            decoration: const BoxDecoration(
                               color: AppColor.green,
-                              shape: CircleBorder(),
+                              shape: BoxShape.circle,
                             ),
                             child: IconButton(
                               icon: const Icon(Icons.edit),

@@ -7,10 +7,10 @@ class EffectCategoryModel {
 
   EffectCategoryModel(
       {this.id,
-        this.arabicName,
-        this.englishName,
-        this.imageName,
-        this.active});
+      this.arabicName,
+      this.englishName,
+      this.imageName,
+      this.active});
 
   EffectCategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
