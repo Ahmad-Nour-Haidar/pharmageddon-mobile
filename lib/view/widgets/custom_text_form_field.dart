@@ -3,6 +3,7 @@ import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
 import '../../core/constant/app_color.dart';
+import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_size.dart';
 import '../../core/functions/functions.dart';
 
@@ -60,7 +61,7 @@ class CustomTextFormField extends StatelessWidget {
     if (textDirection != null) {
       return textDirection!;
     }
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       return TextDirection.ltr;
     }
     return TextDirection.rtl;

@@ -105,9 +105,7 @@ class LoginScreen extends StatelessWidget {
                           cubit.obscureText ? AppSvg.eye : AppSvg.eyeClose,
                     ),
                     Align(
-                      alignment: isEnglish()
-                          ? Alignment.centerRight
-                          : Alignment.centerLeft,
+                      alignment: alignment(),
                       child: TextButton(
                         onPressed: () {
                           pushNamed(AppRoute.checkEmail, context);

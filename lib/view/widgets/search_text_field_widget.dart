@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
 import '../../core/constant/app_color.dart';
+import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_text.dart';
 import '../../core/constant/app_svg.dart';
 import '../../core/functions/functions.dart';
@@ -26,7 +27,7 @@ class _SearchTextFieldWidgetState extends State<SearchTextFieldWidget> {
         IconButton(
           onPressed: () => Navigator.pop(context),
           icon: SvgImage(
-            path: isEnglish() ? AppSvg.arrowLeft : AppSvg.arrowRight,
+            path: AppConstant.isEnglish ? AppSvg.arrowLeft : AppSvg.arrowRight,
             color: AppColor.black,
             size: 26,
           ),

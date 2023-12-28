@@ -6,7 +6,6 @@ import '../../core/constant/app_color.dart';
 import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_size.dart';
 import '../../core/constant/app_text.dart';
-import '../../core/functions/functions.dart';
 import '../../core/resources/app_text_theme.dart';
 import '../../core/services/dependency_injection.dart';
 import 'custom_button.dart';
@@ -29,7 +28,7 @@ class LanguageWidget extends StatelessWidget {
           text: AppText.arabic.tr,
           width: AppSize.width * .24,
           height: 40,
-          color: isEnglish() ? AppColor.cardColor : AppColor.green2,
+          color: AppConstant.isEnglish ? AppColor.cardColor : AppColor.green2,
           textStyle: AppTextStyle.f20w600black,
         ),
         CustomButton(
@@ -37,7 +36,7 @@ class LanguageWidget extends StatelessWidget {
           text: AppText.english.tr,
           width: AppSize.width * .24,
           height: 40,
-          color: isEnglish() ? AppColor.green2 : AppColor.cardColor,
+          color: AppConstant.isEnglish ? AppColor.green2 : AppColor.cardColor,
           textStyle: AppTextStyle.f20w600black,
         ),
       ],

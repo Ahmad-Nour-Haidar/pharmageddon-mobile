@@ -18,7 +18,7 @@ class ManufacturerMedicinesCubit extends Cubit<ManufacturerMedicinesState> {
   final List<MedicationModel> medications = [];
 
   final _effectMedicinesRemoteData =
-      AppInjection.getIt<FactoryMedicinesRemoteData>();
+      AppInjection.getIt<ManufacturerMedicinesRemoteData>();
 
   void _update(ManufacturerMedicinesState state) {
     if (isClosed) return;

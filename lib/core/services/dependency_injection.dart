@@ -55,7 +55,7 @@ abstract class AppInjection {
     getIt.registerLazySingleton(() => HomeRemoteData());
     getIt.registerLazySingleton(() => SearchRemoteData());
     getIt.registerLazySingleton(() => FavoriteRemoteData());
-    getIt.registerLazySingleton(() => FactoryMedicinesRemoteData());
+    getIt.registerLazySingleton(() => ManufacturerMedicinesRemoteData());
     getIt.registerLazySingleton(() => EffectMedicinesRemoteData());
     getIt.registerLazySingleton(() => OrderRemoteData());
     final cartQuantityData = await CartQuantityData.getInstance();

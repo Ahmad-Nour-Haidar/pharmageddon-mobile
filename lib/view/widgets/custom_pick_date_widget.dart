@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
 import '../../core/constant/app_color.dart';
+import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_text.dart';
 import '../../core/constant/app_svg.dart';
@@ -90,7 +91,9 @@ class CustomPickDateWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: SvgImage(
-              path: isEnglish() ? AppSvg.arrowFillRight : AppSvg.arrowFillLeft,
+              path: AppConstant.isEnglish
+                  ? AppSvg.arrowFillRight
+                  : AppSvg.arrowFillLeft,
               color: AppColor.green2,
               size: 32,
             ),

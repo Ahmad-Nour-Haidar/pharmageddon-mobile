@@ -89,9 +89,7 @@ class VerifyCodeScreen extends StatelessWidget {
                     ),
                   ),
                   Align(
-                    alignment: isEnglish()
-                        ? Alignment.centerRight
-                        : Alignment.centerLeft,
+                    alignment: alignment(),
                     child: TextButton(
                       onPressed: () {
                         cubit.getVerifyCode();

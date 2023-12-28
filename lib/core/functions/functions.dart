@@ -20,9 +20,6 @@ import '../constant/app_storage_keys.dart';
 import '../constant/app_text.dart';
 import '../services/dependency_injection.dart';
 
-bool isEnglish() =>
-    AppInjection.getIt<LocaleController>().locale == AppConstant.localEn;
-
 String getCodeLang() =>
     AppInjection.getIt<LocaleController>().locale.languageCode;
 
@@ -53,14 +50,15 @@ void initialUser() {
 String formatYYYYMd(String? s) {
   final date = DateTime.tryParse(s ?? '');
   if (date == null) return ' --- ';
-  final pattern = isEnglish() ? 'yyyy - M - d' : 'd - M - yyyy';
+  final pattern = AppConstant.isEnglish ? 'yyyy - M - d' : 'd - M - yyyy';
   return Jiffy.parseFromDateTime(date).format(pattern: pattern);
 }
 
 String formatYYYYMdEEEE(String? s) {
   final date = DateTime.tryParse(s ?? '');
   if (date == null) return ' --- ';
-  final pattern = isEnglish() ? 'EEEE , yyyy - M - d' : 'EEEE , d - M - yyyy';
+  final pattern =
+      AppConstant.isEnglish ? 'EEEE , yyyy - M - d' : 'EEEE , d - M - yyyy';
   return Jiffy.parseFromDateTime(date).format(pattern: pattern);
 }
 
@@ -77,7 +75,7 @@ TextDirection getTextDirection(String value) {
 }
 
 TextDirection getTextDirectionOnLang() {
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     return TextDirection.ltr;
   } else {
     return TextDirection.rtl;
@@ -91,14 +89,14 @@ String getMedicationScientificName(MedicationModel? model,
   var s = '';
   if (model == null) return s;
   if (split) {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       s = model.englishScientificName.toString().split(' ').take(2).join(' ');
     } else {
       s = model.arabicScientificName.toString().split(' ').take(2).join(' ');
     }
     return s;
   }
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishScientificName.toString();
   } else {
     s = model.arabicScientificName.toString();
@@ -110,14 +108,14 @@ String getMCommercialName(MedicationModel? model, {bool split = true}) {
   var s = '';
   if (model == null) return s;
   if (split) {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       s = model.englishCommercialName.toString().split(' ').take(2).join(' ');
     } else {
       s = model.arabicCommercialName.toString().split(' ').take(2).join(' ');
     }
     return s;
   }
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishCommercialName.toString();
   } else {
     s = model.arabicCommercialName.toString();
@@ -130,14 +128,14 @@ String getMNotCommercialName(MedicinesQuantityNotAvailableModel? model,
   var s = '';
   if (model == null) return s;
   if (split) {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       s = model.englishCommercialName.toString().split(' ').take(2).join(' ');
     } else {
       s = model.arabicCommercialName.toString().split(' ').take(2).join(' ');
     }
     return s;
   }
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishCommercialName.toString();
   } else {
     s = model.arabicCommercialName.toString();
@@ -149,7 +147,7 @@ String getOrderDetailsModelName(OrderDetailsModel? model, {bool split = true}) {
   var s = '';
   if (model == null) return s;
   if (split) {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       s = model.medicineEnglishCommercialName
           .toString()
           .split(' ')
@@ -164,7 +162,7 @@ String getOrderDetailsModelName(OrderDetailsModel? model, {bool split = true}) {
     }
     return s;
   }
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.medicineEnglishCommercialName.toString();
   } else {
     s = model.medicineArabicCommercialName.toString();
@@ -181,14 +179,14 @@ String getManufacturerName(ManufacturerModel? model, {bool split = true}) {
   var s = '';
   if (model == null) return s;
   if (split) {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       s = model.englishName.toString().split(' ').take(2).join(' ');
     } else {
       s = model.arabicName.toString().split(' ').take(2).join(' ');
     }
     return s;
   }
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishName.toString();
   } else {
     s = model.arabicName.toString();
@@ -201,14 +199,14 @@ String getEffectCategoryModelName(EffectCategoryModel? model,
   var s = '';
   if (model == null) return s;
   if (split) {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       s = model.englishName.toString().split(' ').take(2).join(' ');
     } else {
       s = model.arabicName.toString().split(' ').take(2).join(' ');
     }
     return s;
   }
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishName.toString();
   } else {
     s = model.arabicName.toString();
@@ -219,7 +217,7 @@ String getEffectCategoryModelName(EffectCategoryModel? model,
 String getMedicationModelDescription(MedicationModel? model) {
   var s = '';
   if (model == null) return s;
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishDescription.toString();
   } else {
     s = model.arabicDescription.toString();
@@ -239,3 +237,6 @@ String getImageUserUrl() =>
 String getPaymentStatus(OrderModel model) {
   return model.paymentStatus == 0 ? AppText.unpaid.tr : AppText.paid.tr;
 }
+
+Alignment alignment() =>
+    AppConstant.isEnglish ? Alignment.centerLeft : Alignment.centerRight;

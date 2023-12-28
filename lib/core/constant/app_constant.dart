@@ -13,6 +13,8 @@ class AppConstant {
 
   static const localEn = Locale(en);
 
+  static bool isEnglish = false;
+
   // static const localAr = Locale(ar);
 
   static const homeList = [

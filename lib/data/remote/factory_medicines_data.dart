@@ -6,7 +6,7 @@ import '../../core/constant/app_link.dart';
 import '../../core/services/dependency_injection.dart';
 import '../crud_dio.dart';
 
-class FactoryMedicinesRemoteData {
+class ManufacturerMedicinesRemoteData {
   final _crud = AppInjection.getIt<Crud>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getMedicines({

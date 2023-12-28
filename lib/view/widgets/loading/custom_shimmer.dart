@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/constant/app_color.dart';
-import '../../../core/functions/functions.dart';
+import '../../../core/constant/app_constant.dart';
 import '../../../generate_material_color.dart';
 
 class CustomShimmer extends StatelessWidget {
@@ -18,7 +18,8 @@ class CustomShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      direction: isEnglish() ? ShimmerDirection.ltr : ShimmerDirection.rtl,
+      direction:
+          AppConstant.isEnglish ? ShimmerDirection.ltr : ShimmerDirection.rtl,
       baseColor: baseColor ?? AppColor.white,
       highlightColor: generateMaterialColor(color: AppColor.cardColor),
       child: child,

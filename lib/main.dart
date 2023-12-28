@@ -9,6 +9,7 @@ import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 import 'controllers/local_controller.dart';
 import 'controllers/order_cubit/order_cubit.dart';
+import 'core/constant/app_constant.dart';
 import 'core/functions/functions.dart';
 import 'core/localization/translation.dart';
 import 'core/resources/theme_manager.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: isEnglish() ? 'Pharmageddon' : 'فارماجيدون',
+        title: AppConstant.isEnglish ? 'Pharmageddon' : 'فارماجيدون',
         locale: AppInjection.getIt<LocaleController>().locale,
         translations: MyTranslation(),
         theme: themeData(),

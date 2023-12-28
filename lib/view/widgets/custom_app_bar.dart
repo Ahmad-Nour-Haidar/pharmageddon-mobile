@@ -7,7 +7,6 @@ import 'package:pharmageddon_mobile/core/constant/app_color.dart';
 import 'package:pharmageddon_mobile/core/constant/app_storage_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
 import 'package:pharmageddon_mobile/core/constant/app_svg.dart';
-import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/core/functions/navigator.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
@@ -16,6 +15,7 @@ import 'package:pharmageddon_mobile/data/remote/auth_data.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
+import '../../core/constant/app_constant.dart';
 import 'custom_popup_menu_button.dart';
 
 class CustomAppBar {
@@ -50,8 +50,9 @@ class CustomAppBar {
           ? Builder(builder: (context) {
               return IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: SvgPicture.asset(
-                    isEnglish() ? AppSvg.arrowLeft : AppSvg.arrowRight),
+                icon: SvgPicture.asset(AppConstant.isEnglish
+                    ? AppSvg.arrowLeft
+                    : AppSvg.arrowRight),
               );
             })
           : null,
@@ -75,7 +76,7 @@ class CustomAppBar {
                 showAwesomeLogout(context);
               },
               icon: Transform.flip(
-                flipX: !isEnglish(),
+                flipX: !AppConstant.isEnglish,
                 child: const SvgImage(
                   path: AppSvg.exit,
                   color: AppColor.black,

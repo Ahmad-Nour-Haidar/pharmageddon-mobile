@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_constant.dart';
 import '../../../core/constant/app_padding.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_text.dart';
@@ -83,12 +84,12 @@ class TableWidget extends StatelessWidget {
             s1: AppText.name.tr,
             s2: AppText.availableQuantity.tr,
             br1: BorderRadius.only(
-              topLeft: Radius.circular(isEnglish() ? 10 : 0),
-              topRight: Radius.circular(isEnglish() ? 0 : 10),
+              topLeft: Radius.circular(AppConstant.isEnglish ? 10 : 0),
+              topRight: Radius.circular(AppConstant.isEnglish ? 0 : 10),
             ),
             br2: BorderRadius.only(
-              topLeft: Radius.circular(isEnglish() ? 0 : 10),
-              topRight: Radius.circular(isEnglish() ? 10 : 0),
+              topLeft: Radius.circular(AppConstant.isEnglish ? 0 : 10),
+              topRight: Radius.circular(AppConstant.isEnglish ? 10 : 0),
             ),
             ts1: AppTextStyle.f15w600black,
             ts2: AppTextStyle.f15w600black,
@@ -110,12 +111,16 @@ class TableWidget extends StatelessWidget {
                     s1: getMNotCommercialName(data[data.length - 1]),
                     s2: data[data.length - 1].newQuantity.toString(),
                     br1: BorderRadius.only(
-                      bottomLeft: Radius.circular(isEnglish() ? 10 : 0),
-                      bottomRight: Radius.circular(isEnglish() ? 0 : 10),
+                      bottomLeft:
+                          Radius.circular(AppConstant.isEnglish ? 10 : 0),
+                      bottomRight:
+                          Radius.circular(AppConstant.isEnglish ? 0 : 10),
                     ),
                     br2: BorderRadius.only(
-                      bottomLeft: Radius.circular(isEnglish() ? 0 : 10),
-                      bottomRight: Radius.circular(isEnglish() ? 10 : 0),
+                      bottomLeft:
+                          Radius.circular(AppConstant.isEnglish ? 0 : 10),
+                      bottomRight:
+                          Radius.circular(AppConstant.isEnglish ? 10 : 0),
                     ),
                   ),
                 ],

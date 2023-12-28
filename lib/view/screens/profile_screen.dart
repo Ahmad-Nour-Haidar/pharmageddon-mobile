@@ -12,9 +12,9 @@ import '../../controllers/profile_cubit/profile_cubit.dart';
 import '../../controllers/profile_cubit/profile_state.dart';
 import '../../core/class/validation.dart';
 import '../../core/constant/app_color.dart';
+import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_size.dart';
 import '../../core/constant/app_svg.dart';
-import '../../core/functions/functions.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_form_field.dart';
 import '../widgets/handle_state.dart';
@@ -61,8 +61,8 @@ class ProfileScreen extends StatelessWidget {
                       if (cubit.enableEdit)
                         Positioned(
                           bottom: 15,
-                          left: isEnglish() ? 0 : null,
-                          right: isEnglish() ? null : 0,
+                          left: AppConstant.isEnglish ? 0 : null,
+                          right: AppConstant.isEnglish ? null : 0,
                           child: Container(
                             decoration: const BoxDecoration(
                               color: AppColor.green,
