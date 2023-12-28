@@ -56,7 +56,6 @@ class HomeCubit extends Cubit<HomeState> {
         final List temp = r[AppRKeys.data][AppRKeys.medicines];
         medications.clear();
         medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
-        // medications.shuffle();
         _update(HomeGetMedicationsSuccessState());
         medicationsMap.clear();
         for (final m in medications) {
