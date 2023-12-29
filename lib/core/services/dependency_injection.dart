@@ -20,7 +20,7 @@ import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
 import '../../data/local/app_hive.dart';
 import '../../data/local/cart_quantity_data.dart';
-import '../../data/remote/app_firbase.dart';
+import '../../data/remote/app_firebase.dart';
 import '../../data/remote/auth_data.dart';
 import '../../data/remote/effect_medicines_data.dart';
 import '../../data/remote/factory_medicines_data.dart';
@@ -44,12 +44,14 @@ abstract class AppInjection {
     initialUser();
 
     /// start
+    final appFirebase = await AppFirebase.getInstance();
+    getIt.registerLazySingleton(() => appFirebase);
     final localeController = await LocaleController.getInstance();
     getIt.registerLazySingleton(() => localeController);
     getIt.registerLazySingleton(() => MyBlocObserver());
 
     /// data
-    getIt.registerLazySingleton(() => Crud());
+    getIt.registerLazySingleton(() => CrudDio());
     getIt.registerLazySingleton(() => AuthRemoteData());
     getIt.registerLazySingleton(() => HomeRemoteData());
     getIt.registerLazySingleton(() => SearchRemoteData());
@@ -61,8 +63,6 @@ abstract class AppInjection {
     getIt.registerLazySingleton(() => ImageHelper());
     final cartQuantityData = await CartQuantityData.getInstance();
     getIt.registerLazySingleton(() => cartQuantityData);
-    final appFirebase = await AppFirebase.getInstance();
-    getIt.registerLazySingleton(() => appFirebase);
 
     /// controllers
     // auth

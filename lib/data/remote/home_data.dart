@@ -7,7 +7,7 @@ import '../../core/services/dependency_injection.dart';
 import '../crud_dio.dart';
 
 class HomeRemoteData {
-  final _crud = AppInjection.getIt<Crud>();
+  final _crud = AppInjection.getIt<CrudDio>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getMedications() async {
     final token = AppLocalData.user?.authorization;

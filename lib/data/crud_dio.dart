@@ -7,7 +7,7 @@ import 'package:pharmageddon_mobile/print.dart';
 
 import '../core/functions/random_loading.dart';
 
-class Crud {
+class CrudDio {
   final Map<String, String> _headers = {
     "Content-Type": "application/json",
     "Charset": "utf-8",
@@ -19,7 +19,7 @@ class Crud {
 
   static late final Dio _dio;
 
-  Crud() {
+  CrudDio() {
     _dio = Dio(BaseOptions(headers: _headers));
   }
 

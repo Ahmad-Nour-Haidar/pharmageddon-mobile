@@ -7,7 +7,7 @@ import '../../core/services/dependency_injection.dart';
 import '../crud_dio.dart';
 
 class ReportsRemoteData {
-  final _crud = AppInjection.getIt<Crud>();
+  final _crud = AppInjection.getIt<CrudDio>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getReports({
     required Map<String, dynamic> queryParameters,

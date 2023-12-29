@@ -10,7 +10,7 @@ import '../../core/services/dependency_injection.dart';
 import '../crud_dio.dart';
 
 class AuthRemoteData {
-  final _crud = AppInjection.getIt<Crud>();
+  final _crud = AppInjection.getIt<CrudDio>();
 
   Future<Either<ParentState, Map<String, dynamic>>> login({
     required Map<String, dynamic> data,

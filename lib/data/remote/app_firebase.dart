@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:pharmageddon_mobile/controllers/local_controller.dart';
-import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/print.dart';
 
 import '../../core/constant/app_local_data.dart';
@@ -21,7 +20,6 @@ class AppFirebase {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     _requestPermissionNotification();
-    setTopics();
   }
 
   Future<void> _requestPermissionNotification() async {
@@ -36,22 +34,26 @@ class AppFirebase {
     );
   }
 
-  Future<void> setTopics() async {
+  Future<void> setTopics(String codeLang) async {
     final id = AppLocalData.user?.id.toString() ?? '0';
-    final codeLang = AppInjection.getIt<LocaleController>().locale.languageCode;
-    final oneTopic = '$codeLang-$id';
-    final allTopics = '$codeLang-all-users';
-    printme.cyan(oneTopic);
-    printme.cyan(allTopics);
     try {
-      await FirebaseMessaging.instance.deleteToken();
-      await FirebaseMessaging.instance.subscribeToTopic(oneTopic);
-      await FirebaseMessaging.instance.subscribeToTopic(allTopics);
+      if (codeLang == AppConstant.en) {
+        await FirebaseMessaging.instance.subscribeToTopic('en-$id');
+        await FirebaseMessaging.instance.subscribeToTopic('en-all-users');
+        await FirebaseMessaging.instance.unsubscribeFromTopic('ar-$id');
+        await FirebaseMessaging.instance.unsubscribeFromTopic('ar-all-users');
+      } else {
+        await FirebaseMessaging.instance.subscribeToTopic('ar-$id');
+        await FirebaseMessaging.instance.subscribeToTopic('ar-all-users');
+        await FirebaseMessaging.instance.unsubscribeFromTopic('en-$id');
+        await FirebaseMessaging.instance.unsubscribeFromTopic('en-all-users');
+      }
     } catch (e) {
       printme.red(e);
     }
   }
 
+  // when logout
   Future<void> deleteTopics() async {
     try {
       await FirebaseMessaging.instance.deleteToken();
