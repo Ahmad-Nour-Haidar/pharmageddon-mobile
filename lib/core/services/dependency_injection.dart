@@ -1,6 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../controllers/auth/check_email_cubit/check_email_cubit.dart';
 import '../../controllers/auth/login_cubit/login_cubit.dart';
 import '../../controllers/auth/register_cubit/register_cubit.dart';
@@ -21,8 +19,8 @@ import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
 import '../../data/local/app_hive.dart';
 import '../../data/local/cart_quantity_data.dart';
+import '../../data/remote/app_firbase.dart';
 import '../../data/remote/auth_data.dart';
-import '../../data/remote/cart_data.dart';
 import '../../data/remote/effect_medicines_data.dart';
 import '../../data/remote/factory_medicines_data.dart';
 import '../../data/remote/favorite_data.dart';
@@ -33,16 +31,16 @@ import '../../data/remote/search_data.dart';
 import '../../my_bloc_observer.dart';
 import '../../view/widgets/app_widget.dart';
 import '../class/image_helper.dart';
+import '../functions/functions.dart';
 
 abstract class AppInjection {
   static final getIt = GetIt.instance;
 
   static Future<void> initial() async {
     /// storage
-    final sharedPreferences = await SharedPreferences.getInstance();
-    getIt.registerLazySingleton(() => sharedPreferences);
     final appHive = await AppHive.getInstance();
     getIt.registerLazySingleton(() => appHive);
+    initialUser();
 
     /// start
     final localeController = await LocaleController.getInstance();
@@ -58,11 +56,12 @@ abstract class AppInjection {
     getIt.registerLazySingleton(() => ManufacturerMedicinesRemoteData());
     getIt.registerLazySingleton(() => EffectMedicinesRemoteData());
     getIt.registerLazySingleton(() => OrderRemoteData());
-    final cartQuantityData = await CartQuantityData.getInstance();
-    getIt.registerLazySingleton(() => cartQuantityData);
-    getIt.registerLazySingleton(() => CartRemoteData());
     getIt.registerLazySingleton(() => ReportsRemoteData());
     getIt.registerLazySingleton(() => ImageHelper());
+    final cartQuantityData = await CartQuantityData.getInstance();
+    getIt.registerLazySingleton(() => cartQuantityData);
+    final appFirebase = await AppFirebase.getInstance();
+    getIt.registerLazySingleton(() => appFirebase);
 
     /// controllers
     // auth

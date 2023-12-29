@@ -23,43 +23,14 @@ import 'core/services/dependency_injection.dart';
 import 'firebase_options.dart';
 import 'my_bloc_observer.dart';
 
-Future<void> requestPermissionNotification() async {
-  await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
-}
-
-Future<void> init() async {
-  await requestPermissionNotification();
-  final topic = AppLocalData.user?.id.toString() ?? '-';
-  await FirebaseMessaging.instance.deleteToken();
-  await FirebaseMessaging.instance.subscribeToTopic(topic);
-  await FirebaseMessaging.instance.subscribeToTopic("all-users");
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    printme.blue(message.data);
-  });
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  await Hive.initFlutter();
-  await AppInjection.initial();
-  initialUser();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  init();
+  await AppInjection.initial();
 
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
   printme.red(AppLocalData.user?.id);

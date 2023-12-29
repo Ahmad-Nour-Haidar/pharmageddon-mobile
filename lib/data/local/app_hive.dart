@@ -7,6 +7,7 @@ class AppHive {
   late final Box? _box;
 
   static Future<AppHive> getInstance() async {
+    await Hive.initFlutter();
     final appHive = AppHive._();
     await appHive._initial();
     return appHive;
