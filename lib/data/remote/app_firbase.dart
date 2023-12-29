@@ -20,11 +20,8 @@ class AppFirebase {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    await _requestPermissionNotification();
-    await setTopics();
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      printme.blue(message.data);
-    });
+    _requestPermissionNotification();
+    setTopics();
   }
 
   Future<void> _requestPermissionNotification() async {
@@ -44,6 +41,8 @@ class AppFirebase {
     final codeLang = AppInjection.getIt<LocaleController>().locale.languageCode;
     final oneTopic = '$codeLang-$id';
     final allTopics = '$codeLang-all-users';
+    printme.cyan(oneTopic);
+    printme.cyan(allTopics);
     try {
       await FirebaseMessaging.instance.deleteToken();
       await FirebaseMessaging.instance.subscribeToTopic(oneTopic);

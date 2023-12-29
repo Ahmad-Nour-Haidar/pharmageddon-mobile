@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../core/class/parent_state.dart';
@@ -17,11 +18,6 @@ void handleState({
           backgroundColor: AppColor.red,
           gravity: ToastGravity.TOP,
         );
-        // CustomSnackBar(
-        //   context: context,
-        //   typeSnackBar: TypeSnackBar.error,
-        //   message: state.message,
-        // ).show();
         return;
       }
     case ServerFailureState:
@@ -32,11 +28,6 @@ void handleState({
           backgroundColor: AppColor.red,
           gravity: ToastGravity.TOP,
         );
-        // CustomSnackBar(
-        //   context: context,
-        //   typeSnackBar: TypeSnackBar.error,
-        //   message: state.message,
-        // ).show();
         return;
       }
     case FailureState:
@@ -47,11 +38,6 @@ void handleState({
           backgroundColor: AppColor.red,
           gravity: ToastGravity.TOP,
         );
-        // CustomSnackBar(
-        //   context: context,
-        //   typeSnackBar: TypeSnackBar.warning,
-        //   message: state.message,
-        // ).show();
         return;
       }
     case SuccessState:
@@ -62,11 +48,6 @@ void handleState({
           backgroundColor: AppColor.green,
           gravity: ToastGravity.TOP,
         );
-        // CustomSnackBar(
-        //   context: context,
-        //   typeSnackBar: TypeSnackBar.success,
-        //   message: state.message,
-        // ).show();
         return;
       }
     case WarningState:
@@ -77,11 +58,21 @@ void handleState({
           backgroundColor: AppColor.contentColorYellow,
           gravity: ToastGravity.TOP,
         );
-        // CustomSnackBar(
-        //   context: context,
-        //   typeSnackBar: TypeSnackBar.warning,
-        //   message: state.message,
-        // ).show();
+        return;
+      }
+    case ShowNotification:
+      {
+        Fluttertoast.showToast(
+          msg: state.message,
+          fontSize: 18,
+          backgroundColor: AppColor.contentColorYellow,
+          gravity: ToastGravity.TOP,
+        );
+        return;
+        AwesomeDialog(
+          context: context,
+          title: state.message,
+        ).show();
         return;
       }
   }

@@ -1,26 +1,22 @@
-import 'dart:convert';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pharmageddon_mobile/controllers/favorite_cubit/favorite_cubit.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
+import 'package:pharmageddon_mobile/controllers/notification_cubit/notification_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_local_data.dart';
 import 'package:pharmageddon_mobile/core/constant/app_size.dart';
 import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/routes.dart';
+import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'controllers/local_controller.dart';
+import 'controllers/notification_cubit/notification_cubit.dart';
 import 'controllers/order_cubit/order_cubit.dart';
 import 'core/constant/app_constant.dart';
-import 'core/functions/functions.dart';
 import 'core/localization/translation.dart';
 import 'core/resources/theme_manager.dart';
 import 'core/services/dependency_injection.dart';
-import 'firebase_options.dart';
 import 'my_bloc_observer.dart';
 
 void main() async {
@@ -49,15 +45,26 @@ class MyApp extends StatelessWidget {
             create: (context) => AppInjection.getIt<HomeCubit>()..initial()),
         BlocProvider(create: (context) => AppInjection.getIt<FavoriteCubit>()),
         BlocProvider(create: (context) => AppInjection.getIt<OrderCubit>()),
+        BlocProvider(
+          create: (context) =>
+              AppInjection.getIt<NotificationCubit>()..initial(),
+        ),
       ],
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: AppConstant.isEnglish ? 'Pharmageddon' : 'فارماجيدون',
-        locale: AppInjection.getIt<LocaleController>().locale,
-        translations: MyTranslation(),
-        theme: themeData(),
-        routes: routes,
-        initialRoute: AppRoute.splash,
+      child: BlocListener<NotificationCubit, NotificationState>(
+        listener: (context, state) {
+          if (state is NewNotification) {
+            handleState(state: state.state, context: context);
+          }
+        },
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: AppConstant.isEnglish ? 'Pharmageddon' : 'فارماجيدون',
+          locale: AppInjection.getIt<LocaleController>().locale,
+          translations: MyTranslation(),
+          theme: themeData(),
+          routes: routes,
+          initialRoute: AppRoute.splash,
+        ),
       ),
     );
   }

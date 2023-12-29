@@ -11,6 +11,7 @@ import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
 import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
+import '../../controllers/notification_cubit/notification_cubit.dart';
 import '../../controllers/order_cubit/order_cubit.dart';
 import '../../controllers/order_details_cubit/order_details_cubit.dart';
 import '../../controllers/profile_cubit/profile_cubit.dart';
@@ -72,12 +73,6 @@ abstract class AppInjection {
     getIt.registerFactory(() => VerifyCodeCubit());
     getIt.registerFactory(() => ProfileCubit());
 
-    // favorite => <singleton>
-    getIt.registerLazySingleton(() => FavoriteCubit());
-
-    // home => <singleton>
-    getIt.registerLazySingleton(() => HomeCubit());
-
     // medication details
     getIt.registerFactory(() => MedicationDetailsCubit());
 
@@ -96,11 +91,21 @@ abstract class AppInjection {
     // reports
     getIt.registerFactory(() => ReportsCubit());
 
+    // order details
+    getIt.registerFactory(() => OrderDetailsCubit());
+
+    /// singleton
+    // favorite
+    getIt.registerLazySingleton(() => FavoriteCubit());
+
+    // home
+    getIt.registerLazySingleton(() => HomeCubit());
+
     // order
     getIt.registerLazySingleton(() => OrderCubit());
 
-    // order details
-    getIt.registerFactory(() => OrderDetailsCubit());
+    // notification
+    getIt.registerLazySingleton(() => NotificationCubit());
 
     // widgets
     getIt.registerLazySingleton(() => AppWidget());
