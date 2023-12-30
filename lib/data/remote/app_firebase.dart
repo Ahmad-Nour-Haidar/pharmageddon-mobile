@@ -35,7 +35,7 @@ class AppFirebase {
   }
 
   Future<void> setTopics(String codeLang) async {
-    final id = AppLocalData.user?.id.toString() ?? '0';
+    final id = AppLocalData.user?.id ?? 0;
     try {
       if (codeLang == AppConstant.en) {
         await FirebaseMessaging.instance.subscribeToTopic('en-$id');

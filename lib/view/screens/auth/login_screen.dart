@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/data/remote/app_firebase.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 
 import '../../../controllers/auth/login_cubit/login_cubit.dart';
@@ -43,6 +44,7 @@ class LoginScreen extends StatelessWidget {
           }
           if (state is LoginSuccessState) {
             pushNamed(AppRoute.home, context);
+            AppInjection.getIt<AppFirebase>().setTopics('en');
           }
         },
         builder: (context, state) {

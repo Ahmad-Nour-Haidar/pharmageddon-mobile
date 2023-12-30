@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +12,7 @@ import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'controllers/local_controller.dart';
+import 'controllers/notification_controller.dart';
 import 'controllers/notification_cubit/notification_cubit.dart';
 import 'controllers/order_cubit/order_cubit.dart';
 import 'core/constant/app_constant.dart';
@@ -30,6 +32,50 @@ void main() async {
 
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
   printme.red(AppLocalData.user?.id);
+
+  AwesomeNotifications().initialize(
+    null,
+    [
+      NotificationChannel(
+        channelGroupKey: 'basic_channel_group',
+        channelKey: 'basic_channel',
+        channelName: 'Basic notifications',
+        channelDescription: 'Notification channel for basic tests',
+        importance: NotificationImportance.Max,
+      ),
+    ],
+    channelGroups: [
+      NotificationChannelGroup(
+        channelGroupKey: 'basic_channel_group',
+        channelGroupName: 'Basic group',
+      ),
+    ],
+  );
+
+  AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+    if (!isAllowed) {
+      AwesomeNotifications().requestPermissionToSendNotifications();
+    }
+  });
+
+  AwesomeNotifications().setListeners(
+    onActionReceivedMethod: (ReceivedAction receivedAction) async {
+      NotificationController.onActionReceivedMethod(receivedAction);
+    },
+    onNotificationCreatedMethod:
+        (ReceivedNotification receivedNotification) async {
+      NotificationController.onNotificationCreatedMethod(receivedNotification);
+    },
+    onNotificationDisplayedMethod:
+        (ReceivedNotification receivedNotification) async {
+      NotificationController.onNotificationDisplayedMethod(
+          receivedNotification);
+    },
+    onDismissActionReceivedMethod: (ReceivedAction receivedAction) async {
+      NotificationController.onDismissActionReceivedMethod(receivedAction);
+    },
+  );
+
   runApp(const MyApp());
 }
 
@@ -46,8 +92,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AppInjection.getIt<FavoriteCubit>()),
         BlocProvider(create: (context) => AppInjection.getIt<OrderCubit>()),
         BlocProvider(
-          create: (context) =>
-              AppInjection.getIt<NotificationCubit>()..initial(),
+          create: (context) => AppInjection.getIt<NotificationCubit>()..init(),
         ),
       ],
       child: BlocListener<NotificationCubit, NotificationState>(

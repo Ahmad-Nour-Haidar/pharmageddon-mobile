@@ -13,6 +13,7 @@ class AppColor {
   static const black = Color(0xFF000000);
   static const background = Color(0xFFA2DBFA);
   static const blue = Color(0xFF0000FF);
+  static const blue2 = Color(0xFF00bfff);
   static const primaryColor = Color(0xFF528AC8);
   static const secondColor = Color(0xFF00538B);
   static const green2 = Color(0xFF00C5A2);
