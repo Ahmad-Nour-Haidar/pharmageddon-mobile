@@ -59,7 +59,6 @@ void main() async {
   }
   FirebaseMessaging.onMessage.listen(_firebaseMessaging);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  AppFirebase.setTopics(AppConstant.en);
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
   AwesomeNotifications().initialize(
     null,

@@ -54,7 +54,7 @@ class LoginCubit extends Cubit<LoginState> {
     FocusManager.instance.primaryFocus?.unfocus();
   }
 
-  void login() async {
+  Future<void> login() async {
     if (!formKey.currentState!.validate()) return;
     statusRequest = StatusRequest.loading;
     _update(LoginLoadingState());
@@ -69,26 +69,29 @@ class LoginCubit extends Cubit<LoginState> {
     response.fold((l) {
       _update(LoginFailureState(l));
     }, (response) async {
-      if (response[AppRKeys.status] == 402) {
+      final status = response[AppRKeys.status];
+      if (status == 402) {
         final s = AppText.somethingWentWrong.tr;
         _update(LoginFailureState(FailureState(message: s)));
-      } else if (response[AppRKeys.status] == 403) {
+      } else if (status == 403) {
         final s = isEmail
             ? AppText.emailOrPasswordIsWrong.tr
             : AppText.phoneOrPasswordIsWrong.tr;
         _update(LoginFailureState(FailureState(message: s)));
-      } else if (response[AppRKeys.status] == 404) {
+      } else if (status == 404) {
         _update(LoginNotVerifyState());
-      } else if (response[AppRKeys.status] == 405) {
+      } else if (status == 405) {
         final state = FailureState(message: AppText.goToTheOtherPlatform.tr);
         _update(LoginFailureState(state));
-      } else {
+      } else if (status == 200) {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);
         if (AppLocalData.user!.emailVerifiedAt == null) {
           _update(LoginNotVerifyState());
         } else {
           _update(LoginSuccessState());
         }
+      } else {
+        _update(LoginFailureState(FailureState()));
       }
     });
   }

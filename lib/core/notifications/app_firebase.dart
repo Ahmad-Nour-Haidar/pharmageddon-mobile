@@ -64,7 +64,7 @@ class AppFirebase {
       content: NotificationContent(
         id: Random().nextInt(1000),
         channelKey: AppNKeys.channelKey,
-        groupKey: AppNKeys.groupKey,
+        // groupKey: AppNKeys.groupKey,
         actionType: ActionType.Default,
         title: title,
         body: body,
@@ -84,6 +84,14 @@ class AppFirebase {
     );
   }
 
+  // 1 Create an order
+  // 2 Modify an order
+  // 3 Cancellation of a medication included in an order
+  // 4 Cancel an order
+  // 5 Send an order
+  // 6 Receiving an order
+  // 7 Pay an order
+  // 8 Create a medicine
   static Future<void> _handleActions(String action) async {
     if (action == '4' || action == '5' || action == '6' || action == '7') {
       AppInjection.getIt<OrderCubit>().getAll(

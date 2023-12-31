@@ -37,7 +37,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
   String get message =>
       '${AppText.enterTheVerificationCodeYouReceivedOnGmail.tr}\n$email';
 
-  void getVerifyCode() async {
+  Future<void> getVerifyCode() async {
     email = null;
     _update(VerifyCodeLoadingGetState());
     final data = {
@@ -49,15 +49,18 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
     response.fold((l) {
       _update(VerifyCodeFailureState(l));
     }, (response) async {
-      if (response[AppRKeys.status] == 402) {
+      final status = response[AppRKeys.status];
+      if (status == 402) {
         final message = AppText.verifyCodeNotSentTryAgain.tr;
         _update(VerifyCodeFailureState(FailureState(message: message)));
-      } else if (response[AppRKeys.status] == 405) {
+      } else if (status == 405) {
         final message = AppText.verifyCodeNotSentTryAgain.tr;
         _update(VerifyCodeFailureGetState(FailureState(message: message)));
-      } else {
+      } else if (status == 200) {
         email = AppLocalData.user!.email;
         _update(VerifyCodeSuccessGetState());
+      } else {
+        _update(VerifyCodeFailureState(FailureState()));
       }
     });
   }
@@ -80,13 +83,15 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
     response.fold((l) {
       _update(VerifyCodeFailureState(l));
     }, (response) async {
-      if (response[AppRKeys.status] == 403 ||
-          response[AppRKeys.status] == 402) {
+      final status = response[AppRKeys.status];
+      if (status == 403 || status == 402) {
         final message = AppText.verifyCodeNotCorrect.tr;
         _update(VerifyCodeFailureState(FailureState(message: message)));
-      } else {
+      } else if (status == 200) {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);
         _update(VerifyCodeSuccessState());
+      } else {
+        _update(VerifyCodeFailureState(FailureState()));
       }
     });
   }

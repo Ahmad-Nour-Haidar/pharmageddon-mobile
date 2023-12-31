@@ -33,6 +33,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   var statusRequest = StatusRequest.none;
 
   bool get isLoading => statusRequest == StatusRequest.loading;
+
   @override
   Future<void> close() {
     emailController.dispose();
@@ -66,14 +67,17 @@ class RegisterCubit extends Cubit<RegisterState> {
     response.fold((l) {
       _update(RegisterFailureState(l));
     }, (response) async {
-      if (response[AppRKeys.status] == 400) {
+      final status = response[AppRKeys.status];
+      if (status == 400) {
         var s = checkErrorMessages(
             response[AppRKeys.message][AppRKeys.validation_errors]);
         s = '${AppText.field.tr} $s ${AppText.alreadyBeenTaken.tr}';
         _update(RegisterFailureState(FailureState(message: s)));
-      } else {
+      } else if (status == 200) {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);
         _update(RegisterSuccessState());
+      } else {
+        _update(RegisterFailureState(FailureState()));
       }
     });
   }

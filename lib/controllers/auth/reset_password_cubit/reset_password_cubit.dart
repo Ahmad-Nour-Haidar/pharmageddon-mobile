@@ -70,15 +70,18 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     response.fold((l) {
       _update(ResetPasswordFailureGetState(l));
     }, (response) async {
-      if (response[AppRKeys.status] == 402) {
+      final status = response[AppRKeys.status];
+      if (status == 402) {
         final message = AppText.verifyCodeNotSentTryAgain.tr;
         _update(ResetPasswordFailureGetState(FailureState(message: message)));
-      } else if (response[AppRKeys.status] == 405) {
+      } else if (status == 405) {
         final message = AppText.verifyCodeNotSentTryAgain.tr;
         _update(ResetPasswordFailureGetState(FailureState(message: message)));
-      } else {
+      } else if (status == 200) {
         email = AppLocalData.user!.email;
         _update(ResetPasswordSuccessGetState());
+      } else {
+        _update(ResetPasswordFailureGetState(FailureState()));
       }
     });
   }
@@ -109,18 +112,21 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     response.fold((l) {
       _update(ResetPasswordFailureState(l));
     }, (response) async {
-      if (response[AppRKeys.status] == 402) {
+      final status = response[AppRKeys.status];
+      if (status == 402) {
         final message = AppText.somethingWentWrong.tr;
         _update(ResetPasswordFailureState(FailureState(message: message)));
-      } else if (response[AppRKeys.status] == 403) {
+      } else if (status == 403) {
         final message = AppText.verifyCodeNotCorrect.tr;
         _update(ResetPasswordFailureState(FailureState(message: message)));
-      } else if (response[AppRKeys.status] == 405) {
+      } else if (status == 405) {
         final message = AppText.goToTheOtherPlatform.tr;
         _update(ResetPasswordFailureState(FailureState(message: message)));
-      } else {
+      } else if (status == 200) {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);
         _update(ResetPasswordSuccessState());
+      } else {
+        _update(ResetPasswordFailureGetState(FailureState()));
       }
     });
   }
