@@ -36,9 +36,6 @@ class CartScreen extends StatelessWidget {
             if (state is CartFailureState) {
               handleState(state: state.state, context: context);
             }
-            if (state is CartSuccessState) {
-              handleState(state: state.state, context: context);
-            }
           },
           builder: (context, state) {
             final cubit = CartCubit.get(context);

@@ -8,17 +8,17 @@ import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
-import '../../controllers/profile_cubit/profile_cubit.dart';
-import '../../controllers/profile_cubit/profile_state.dart';
-import '../../core/class/validation.dart';
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_constant.dart';
-import '../../core/constant/app_size.dart';
-import '../../core/constant/app_svg.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/custom_text_form_field.dart';
-import '../widgets/handle_state.dart';
-import '../widgets/row_lang.dart';
+import '../../../controllers/profile_cubit/profile_cubit.dart';
+import '../../../controllers/profile_cubit/profile_state.dart';
+import '../../../core/class/validation.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_constant.dart';
+import '../../../core/constant/app_size.dart';
+import '../../../core/constant/app_svg.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/custom_text_form_field.dart';
+import '../../widgets/handle_state.dart';
+import '../../widgets/row_lang.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

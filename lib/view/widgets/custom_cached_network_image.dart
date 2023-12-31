@@ -46,6 +46,9 @@ class CustomCachedNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (imageUrl.endsWith('null')) {
+      return errorWidgetImp;
+    }
     return Container(
       height: height,
       width: width,

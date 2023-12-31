@@ -26,7 +26,7 @@ String getCodeLang() =>
 Future<void> storeUser(Map<String, dynamic> json) async {
   final user = User.fromJson(json);
   final appHive = AppInjection.getIt<AppHive>();
-  appHive.store(AppSKeys.userKey, user.toJson());
+  await appHive.store(AppSKeys.userKey, user.toJson());
   AppLocalData.user = user;
   // printme.yellowAccent(AppLocalData.user);
 }

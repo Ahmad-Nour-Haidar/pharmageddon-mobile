@@ -5,7 +5,6 @@ import 'package:pharmageddon_mobile/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_mobile/controllers/home_cubit/home_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
 import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
-import 'package:pharmageddon_mobile/print.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'package:pharmageddon_mobile/view/widgets/home/effect_category_widget.dart';
@@ -14,7 +13,6 @@ import 'package:pharmageddon_mobile/view/widgets/home/medication_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/manufacturers_loading.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/medications_loading.dart';
 
-import '../../core/constant/app_local_data.dart';
 import '../../core/enums/screens.dart';
 import '../widgets/back_button_wrapper.dart';
 import '../widgets/custom_nav_bar.dart';
@@ -25,7 +23,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    printme.cyan(AppLocalData.user?.authorization);
     return BlocConsumer<HomeCubit, HomeState>(
       buildWhen: (previous, current) {
         return current is! HomeGetFailureState;

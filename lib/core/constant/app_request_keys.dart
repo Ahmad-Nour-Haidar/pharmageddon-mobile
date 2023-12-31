@@ -16,6 +16,7 @@ class AppRKeys {
   static const message = 'message';
   static const verification_code = 'verification_code';
   static const data = 'data';
+  static const action = 'action';
   static const address = 'address';
   static const validation_errors = 'validation_errors';
   static const medicines = 'medicines';

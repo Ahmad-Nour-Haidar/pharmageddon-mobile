@@ -12,7 +12,7 @@ import 'package:pharmageddon_mobile/view/screens/manufacturer_medicines_screen.d
 import 'package:pharmageddon_mobile/view/screens/medicine_details_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/order_details_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/orders_screen.dart';
-import 'package:pharmageddon_mobile/view/screens/profile_screen.dart';
+import 'package:pharmageddon_mobile/view/screens/auth/profile_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/reports_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/search_screen.dart';
 import 'package:pharmageddon_mobile/view/screens/splash_screen.dart';

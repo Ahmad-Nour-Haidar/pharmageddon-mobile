@@ -5,8 +5,8 @@ import 'package:pharmageddon_mobile/data/local/app_hive.dart';
 
 import '../core/constant/app_constant.dart';
 import '../core/constant/app_storage_keys.dart';
+import '../core/notifications/app_firebase.dart';
 import '../core/services/dependency_injection.dart';
-import '../data/remote/app_firebase.dart';
 
 class LocaleController extends GetxController {
   LocaleController._();
@@ -28,8 +28,8 @@ class LocaleController extends GetxController {
     await _appHive.store(AppSKeys.langKey, codeLang);
     await Jiffy.setLocale(codeLang);
     AppConstant.isEnglish = locale.languageCode == AppConstant.en;
-    Get.updateLocale(_locale);
-    AppInjection.getIt<AppFirebase>().setTopics(locale.languageCode);
+    Get.updateLocale(locale);
+    AppFirebase.setTopics(locale.languageCode);
   }
 
   Future<void> initial() async {
@@ -43,6 +43,6 @@ class LocaleController extends GetxController {
     }
     AppConstant.isEnglish = locale.languageCode == AppConstant.en;
     await Jiffy.setLocale(locale.languageCode);
-    AppInjection.getIt<AppFirebase>().setTopics(locale.languageCode);
+    AppFirebase.setTopics(locale.languageCode);
   }
 }

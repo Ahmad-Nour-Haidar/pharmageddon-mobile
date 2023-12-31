@@ -152,6 +152,7 @@ abstract class AppText {
   static const cancelOrder = 'cancelOrder';
   static const back = 'back';
   static const iReceivedIt = 'iReceivedIt';
+  static const newOrder = 'New Order';
   static const quantitiesOfSomeMedicinesAreNotAvailable =
       'quantitiesOfSomeMedicinesAreNotAvailable';
   static const someOfMedicinesAreExpired = 'someOfMedicinesAreExpired';

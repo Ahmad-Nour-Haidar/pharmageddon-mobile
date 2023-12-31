@@ -17,7 +17,6 @@ import '../../../core/constant/app_text.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/resources/app_text_theme.dart';
 import '../../../core/services/dependency_injection.dart';
-import '../../../data/remote/app_firebase.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/logo_app.dart';
@@ -39,7 +38,6 @@ class VerifyCodeScreen extends StatelessWidget {
           }
           if (state is VerifyCodeSuccessState) {
             pushNamedAndRemoveUntil(AppRoute.home, context);
-            AppInjection.getIt<AppFirebase>().setTopics('en');
           }
         },
         builder: (context, state) {

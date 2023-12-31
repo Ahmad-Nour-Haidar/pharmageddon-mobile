@@ -11,7 +11,6 @@ import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
 import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
-import '../../controllers/notification_cubit/notification_cubit.dart';
 import '../../controllers/order_cubit/order_cubit.dart';
 import '../../controllers/order_details_cubit/order_details_cubit.dart';
 import '../../controllers/profile_cubit/profile_cubit.dart';
@@ -20,7 +19,6 @@ import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
 import '../../data/local/app_hive.dart';
 import '../../data/local/cart_quantity_data.dart';
-import '../../data/remote/app_firebase.dart';
 import '../../data/remote/auth_data.dart';
 import '../../data/remote/effect_medicines_data.dart';
 import '../../data/remote/factory_medicines_data.dart';
@@ -44,8 +42,8 @@ abstract class AppInjection {
     initialUser();
 
     /// start
-    final appFirebase = await AppFirebase.getInstance();
-    getIt.registerLazySingleton(() => appFirebase);
+    // final appFirebase = await AppFirebase.getInstance();
+    // getIt.registerLazySingleton(() => appFirebase);
     final localeController = await LocaleController.getInstance();
     getIt.registerLazySingleton(() => localeController);
     getIt.registerLazySingleton(() => MyBlocObserver());
@@ -103,9 +101,6 @@ abstract class AppInjection {
 
     // order
     getIt.registerLazySingleton(() => OrderCubit());
-
-    // notification
-    getIt.registerLazySingleton(() => NotificationCubit());
 
     // widgets
     getIt.registerLazySingleton(() => AppWidget());

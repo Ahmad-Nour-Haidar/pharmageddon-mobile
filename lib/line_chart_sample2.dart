@@ -1,8 +1,6 @@
-import 'dart:math';
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:pharmageddon_mobile/print.dart';
+
 import 'core/constant/app_color.dart';
 
 class LineChartSample2 extends StatefulWidget {
@@ -20,68 +18,51 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   bool showAvg = false;
 
-  final _s = ScrollController(initialScrollOffset: 500);
-
-  @override
-  void initState() {
-    // _s.addListener(() { });
-    // _s.jumpTo(100);
-    super.initState();
-  }
-
-  final List<FlSpot> spots = List.generate(
-      10,
-      (index) =>
-          FlSpot((index + 2).toDouble(), (index * (Random().nextInt(5) + 1))));
-
   @override
   Widget build(BuildContext context) {
-    // return TwoDimensionalChildBuilderDelegate(builder: builder);
-    // return TwoDimensionalScrollable(
-    //   viewportBuilder: (context, verticalPosition, horizontalPosition) {
-    //     printme.cyan('12');
-    //     return Container(
-    //       color: AppColor.primaryColor,
-    //       child: const SizedBox(
-    //           width: 1000,
-    //           height: 1000,
-    //           child: Text(
-    //               'nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()\nvertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()vertical()7878787878787878')),
-    //     );
-    //   },
-    //   horizontalDetails: ScrollableDetails.horizontal(
-    //     physics: const BouncingScrollPhysics(),
-    //   ),
-    //   verticalDetails: ScrollableDetails.vertical(
-    //     physics: BouncingScrollPhysics(),
-    //   ),
-    // );
-
-    return SingleChildScrollView(
-      child: SizedBox(
-        height: 1000,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Container(
-            padding: const EdgeInsets.all(8.0),
-            width: spots.length * 100,
+    return Stack(
+      children: <Widget>[
+        AspectRatio(
+          aspectRatio: 1.70,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              right: 18,
+              left: 12,
+              top: 24,
+              bottom: 12,
+            ),
             child: LineChart(
               showAvg ? avgData() : mainData(),
             ),
           ),
         ),
-      ),
+        SizedBox(
+          width: 60,
+          height: 34,
+          child: TextButton(
+            onPressed: () {
+              setState(() {
+                showAvg = !showAvg;
+              });
+            },
+            child: Text(
+              'avg',
+              style: TextStyle(
+                fontSize: 12,
+                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      // fontWeight: FontWeight.r,
-      fontSize: 15,
-      letterSpacing: 1,
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
     );
-    return Text((value.toInt()).toString(),
-        style: style, textAlign: TextAlign.left);
     Widget text;
     switch (value.toInt()) {
       case 2:
@@ -106,12 +87,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      // fontWeight: FontWeight.r,
+      fontWeight: FontWeight.bold,
       fontSize: 15,
-      letterSpacing: 1,
     );
-    return Text((value.toInt() % 5).toString(),
-        style: style, textAlign: TextAlign.left);
     String text;
     switch (value.toInt()) {
       case 1:
@@ -131,7 +109,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
   }
 
   LineChartData mainData() {
-    printme.magenta(spots);
     return LineChartData(
       gridData: FlGridData(
         show: true,
@@ -140,13 +117,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
           return const FlLine(
-            color: AppColor.red,
+            color: AppColor.mainGridLineColor,
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
           return const FlLine(
-            color: AppColor.red,
+            color: AppColor.mainGridLineColor,
             strokeWidth: 1,
           );
         },
@@ -178,17 +155,24 @@ class _LineChartSample2State extends State<LineChartSample2> {
       ),
       borderData: FlBorderData(
         show: true,
-        border: Border.all(color: AppColor.red),
+        border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
-      maxX: (spots.length + 10) * 1.0,
+      maxX: 11,
       minY: 0,
-      maxY: 50,
+      maxY: 6,
       lineBarsData: [
         LineChartBarData(
-          spots: spots,
+          spots: const [
+            FlSpot(0, 3),
+            FlSpot(2.6, 2),
+            FlSpot(4.9, 5),
+            FlSpot(6.8, 3.1),
+            FlSpot(8, 4),
+            FlSpot(9.5, 3),
+            FlSpot(11, 4),
+          ],
           isCurved: true,
-          // isCurved: false,
           gradient: LinearGradient(
             colors: gradientColors,
           ),

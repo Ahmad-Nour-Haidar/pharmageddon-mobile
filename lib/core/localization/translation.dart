@@ -153,8 +153,10 @@ class MyTranslation extends Translations {
               'Order has been sent so you cannot cancel it',
           AppText.orderHasReceivedSoYouCannotCancelIt:
               'Order has received so you cannot cancel it',
+          AppText.newOrder: AppText.newOrder,
         },
         'ar': {
+          AppText.newOrder: 'طلب جديد',
           AppText.language: 'اللغة',
           AppText.arabic: 'عربي',
           AppText.english: 'English',

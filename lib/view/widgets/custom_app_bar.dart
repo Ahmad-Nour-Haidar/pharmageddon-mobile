@@ -16,7 +16,7 @@ import 'package:pharmageddon_mobile/routes.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
 import '../../core/constant/app_constant.dart';
-import '../../data/remote/app_firebase.dart';
+import '../../core/notifications/app_firebase.dart';
 import 'custom_popup_menu_button.dart';
 
 class CustomAppBar {
@@ -113,7 +113,7 @@ class CustomAppBar {
         appHive.delete(AppSKeys.cartKey);
         appHive.delete(AppSKeys.userKey);
         appHive.delete(AppSKeys.langKey);
-        AppInjection.getIt<AppFirebase>().deleteTopics();
+        AppFirebase.deleteTopics();
         pushNamedAndRemoveUntil(AppRoute.login, context);
       },
     ).show();

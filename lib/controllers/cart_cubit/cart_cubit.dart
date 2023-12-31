@@ -7,6 +7,7 @@ import 'package:pharmageddon_mobile/controllers/order_cubit/order_cubit.dart';
 import 'package:pharmageddon_mobile/core/class/parent_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/constant/app_text.dart';
+import 'package:pharmageddon_mobile/core/notifications/app_firebase.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/local/cart_quantity_data.dart';
 import 'package:pharmageddon_mobile/print.dart';
@@ -87,15 +88,18 @@ class CartCubit extends Cubit<CartState> {
       } else if (status == 405) {
         _update(CartFailureState(
             FailureState(message: AppText.someOfMedicinesAreExpired.tr)));
-      } else {
+      } else if (status == 200) {
         this.data.clear();
         _cartQuantityData.deleteAllCart();
-        _update(CartSuccessState(SuccessState(
-            message: AppText.theOrderHasBeenAddedSuccessfully.tr)));
+        _update(CartSuccessState());
         // to update Order List
         AppInjection.getIt<OrderCubit>().getAll(
           forceGetData: true,
           showState: false,
+        );
+        AppFirebase.handleNotification(
+          titleNotification: AppText.newOrder.tr,
+          bodyNotification: AppText.theOrderHasBeenAddedSuccessfully.tr,
         );
       }
       // to update Home List Medications
@@ -128,7 +132,7 @@ class CartCubit extends Cubit<CartState> {
       _cartQuantityData.storeInCart(id, 0);
       data.removeWhere((element) => element.medicationModel.id == id);
       dataNotAvailable.removeWhere((element) => element.medicineId == id);
-      _update(CartSuccessState(null));
+      _update(CartSuccessState());
     } catch (e) {
       _update(CartFailureState(null));
     }
@@ -141,7 +145,7 @@ class CartCubit extends Cubit<CartState> {
       final index =
           data.indexWhere((element) => element.medicationModel.id == id);
       data[index].quantity = newQuantity;
-      _update(CartSuccessState(null));
+      _update(CartSuccessState());
     } catch (e) {
       _update(CartFailureState(null));
     }

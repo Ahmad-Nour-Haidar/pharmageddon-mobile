@@ -6,11 +6,7 @@ class CartInitialState extends CartState {}
 
 class CartLoadingState extends CartState {}
 
-class CartSuccessState extends CartState {
-  final ParentState state;
-
-  CartSuccessState(ParentState? state) : state = state ?? NoneState();
-}
+class CartSuccessState extends CartState {}
 
 class CartChangeState extends CartState {}
 
