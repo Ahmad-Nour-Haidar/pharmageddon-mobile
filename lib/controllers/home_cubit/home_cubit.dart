@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmageddon_mobile/core/class/parent_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/enums/screens.dart';
 import 'package:pharmageddon_mobile/core/extensions/update_list.dart';
@@ -30,7 +29,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   void _update(HomeState state) {
     if (isClosed) return;
-    // emit(showState ? state : HomeChangeState());
+    if (showState == false && state is HomeGetFailureState) return;
     emit(state);
   }
 
@@ -50,9 +49,7 @@ class HomeCubit extends Cubit<HomeState> {
       _update(HomeGetFailureState(l));
     }, (r) {
       final status = r[AppRKeys.status];
-      if (status == 401) {
-        _update(HomeGetFailureState(FailureState()));
-      } else {
+      if (status == 200) {
         final List temp = r[AppRKeys.data][AppRKeys.medicines];
         medications.clear();
         medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
@@ -61,6 +58,8 @@ class HomeCubit extends Cubit<HomeState> {
         for (final m in medications) {
           medicationsMap[m.id] = m;
         }
+      } else {
+        _update(HomeChangeState());
       }
     });
     this.showState = true;
@@ -74,13 +73,13 @@ class HomeCubit extends Cubit<HomeState> {
       _update(HomeGetFailureState(l));
     }, (r) {
       final status = r[AppRKeys.status];
-      if (status == 401) {
-        _update(HomeGetFailureState(FailureState()));
-      } else {
+      if (status == 200) {
         final List temp = r[AppRKeys.data][AppRKeys.medicines];
         discountsData.clear();
         discountsData.addAll(temp.map((e) => MedicationModel.fromJson(e)));
         _update(HomeGetDiscountsSuccessState());
+      } else {
+        _update(HomeChangeState());
       }
     });
   }
@@ -92,9 +91,12 @@ class HomeCubit extends Cubit<HomeState> {
     response.fold((l) {
       _update(HomeGetFailureState(l));
     }, (r) {
-      final List temp = r[AppRKeys.data][AppRKeys.manufacturers];
-      manufacturers.clear();
-      manufacturers.addAll(temp.map((e) => ManufacturerModel.fromJson(e)));
+      final status = r[AppRKeys.status];
+      if (status == 200) {
+        final List temp = r[AppRKeys.data][AppRKeys.manufacturers];
+        manufacturers.clear();
+        manufacturers.addAll(temp.map((e) => ManufacturerModel.fromJson(e)));
+      }
       _update(HomeGetManufacturersSuccessState());
     });
   }
@@ -106,9 +108,13 @@ class HomeCubit extends Cubit<HomeState> {
     response.fold((l) {
       _update(HomeGetFailureState(l));
     }, (r) {
-      final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
-      effectCategories.clear();
-      effectCategories.addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
+      final status = r[AppRKeys.status];
+      if (status == 200) {
+        final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
+        effectCategories.clear();
+        effectCategories
+            .addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
+      }
       _update(HomeGetEffectCategoriesSuccessState());
     });
   }

@@ -44,11 +44,9 @@ class ReportsCubit extends Cubit<ReportsState> {
       _update(ReportsFailureState(l));
     }, (r) {
       final status = r[AppRKeys.status];
-      if (status == 403) {
-        data.clear();
-      } else {
+      data.clear();
+      if (status == 200) {
         final List temp = r[AppRKeys.data][AppRKeys.orders];
-        data.clear();
         data.addAll(temp.map((e) => OrderModel.fromJson(e)));
       }
       _update(ReportsSuccessState());

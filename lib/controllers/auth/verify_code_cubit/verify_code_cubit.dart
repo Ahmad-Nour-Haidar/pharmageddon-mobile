@@ -30,9 +30,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
     getVerifyCode();
   }
 
-  void onSubmit(String verificationCode) {
-    code = verificationCode;
-  }
+  void onSubmit(String verificationCode) => code = verificationCode;
 
   String get message =>
       '${AppText.enterTheVerificationCodeYouReceivedOnGmail.tr}\n$email';

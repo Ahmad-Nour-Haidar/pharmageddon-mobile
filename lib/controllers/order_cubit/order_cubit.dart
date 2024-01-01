@@ -25,6 +25,7 @@ class OrderCubit extends Cubit<OrderState> {
 
   void _update(OrderState state) {
     if (isClosed) return;
+    if (state is OrderFailureState && !showState) return;
     emit(state);
   }
 
@@ -45,71 +46,26 @@ class OrderCubit extends Cubit<OrderState> {
     response.fold((l) {
       _update(OrderFailureState(l));
     }, (r) {
-      final List temp = r[AppRKeys.data][AppRKeys.orders];
-      _preparingOrders.clear();
-      _hasBeenSentOrders.clear();
-      _receivedOrders.clear();
-      for (final e in temp) {
-        final order = OrderModel.fromJson(e);
-        if (order.orderStatus == OrderStatus.preparing) {
-          _preparingOrders.add(order);
-        } else if (order.orderStatus == OrderStatus.hasBeenSent) {
-          _hasBeenSentOrders.add(order);
-        } else {
-          _receivedOrders.add(order);
+      final status = r[AppRKeys.status];
+      if (status == 200) {
+        final List temp = r[AppRKeys.data][AppRKeys.orders];
+        _preparingOrders.clear();
+        _hasBeenSentOrders.clear();
+        _receivedOrders.clear();
+        for (final e in temp) {
+          final order = OrderModel.fromJson(e);
+          if (order.orderStatus == OrderStatus.preparing) {
+            _preparingOrders.add(order);
+          } else if (order.orderStatus == OrderStatus.hasBeenSent) {
+            _hasBeenSentOrders.add(order);
+          } else {
+            _receivedOrders.add(order);
+          }
         }
       }
       _update(OrderSuccessState());
     });
     this.showState = true;
-  }
-
-  Future<void> getPreparing({bool forceGetData = false}) async {
-    if (!(_preparingOrders.isEmpty || forceGetData)) return;
-    _update(OrderLoadingState());
-    final response = await _orderRemoteData.getOrders(
-      url: AppLink.orderGetAllPreparing,
-    );
-    response.fold((l) {
-      _update(OrderFailureState(l));
-    }, (r) {
-      final List temp = r[AppRKeys.data][AppRKeys.orders];
-      _preparingOrders.clear();
-      _preparingOrders.addAll(temp.map((e) => OrderModel.fromJson(e)));
-      _update(OrderSuccessState());
-    });
-  }
-
-  Future<void> getHasBeenSent({bool forceGetData = false}) async {
-    if (!(_hasBeenSentOrders.isEmpty || forceGetData)) return;
-    _update(OrderLoadingState());
-    final response = await _orderRemoteData.getOrders(
-      url: AppLink.orderGetAllSent,
-    );
-    response.fold((l) {
-      _update(OrderFailureState(l));
-    }, (r) {
-      final List temp = r[AppRKeys.data][AppRKeys.orders];
-      _hasBeenSentOrders.clear();
-      _hasBeenSentOrders.addAll(temp.map((e) => OrderModel.fromJson(e)));
-      _update(OrderSuccessState());
-    });
-  }
-
-  Future<void> getReceived({bool forceGetData = false}) async {
-    if (!(_receivedOrders.isEmpty || forceGetData)) return;
-    _update(OrderLoadingState());
-    final response = await _orderRemoteData.getOrders(
-      url: AppLink.orderGetAllReceived,
-    );
-    response.fold((l) {
-      _update(OrderFailureState(l));
-    }, (r) {
-      final List temp = r[AppRKeys.data][AppRKeys.orders];
-      _receivedOrders.clear();
-      _receivedOrders.addAll(temp.map((e) => OrderModel.fromJson(e)));
-      _update(OrderSuccessState());
-    });
   }
 
   List<OrderModel> get data {

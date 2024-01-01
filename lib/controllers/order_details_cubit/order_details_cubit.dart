@@ -51,11 +51,16 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     response.fold((l) {
       _update(OrderDetailsFailureState(l));
     }, (r) {
-      final List temp =
-          r[AppRKeys.data][AppRKeys.order][AppRKeys.order_details];
-      data.clear();
-      data.addAll(temp.map((e) => OrderDetailsModel.fromJson(e)));
-      _update(OrderDetailsSuccessState());
+      final status = r[AppRKeys.status];
+      if (status == 200) {
+        final List temp =
+            r[AppRKeys.data][AppRKeys.order][AppRKeys.order_details];
+        data.clear();
+        data.addAll(temp.map((e) => OrderDetailsModel.fromJson(e)));
+        _update(OrderDetailsSuccessState());
+      } else {
+        _update(OrderDetailsChangeState());
+      }
     });
   }
 
@@ -93,6 +98,8 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
           forceGetData: true,
           showState: false,
         );
+      } else {
+        _update(OrderDetailsChangeState());
       }
     });
   }
@@ -114,41 +121,30 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderNotFound.tr,
         )));
-        return;
-      }
-      if (status == 405) {
+      } else if (status == 405) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.thisOrderHasCanceledBefore.tr,
         )));
-        return;
-      }
-      if (status == 406) {
+      } else if (status == 406) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderHasBeenSentSoYouCannotEditIt.tr,
         )));
-        return;
-      }
-      if (status == 408) {
+      } else if (status == 408) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderHasReceivedSoYouCannotEditIt.tr,
         )));
-        return;
-      }
-      if (status == 409) {
+      } else if (status == 409) {
         _update(OrderDetailsFailureState(FailureState(
           message:
               AppText.eitherThereIsNoMedicineWithThisIDOrYouHaveNotOrderedIt.tr,
         )));
-        return;
-      }
-      if (status == 201) {
+      } else if (status == 201) {
         _update(OrderDetailsAllCanceledState());
         // to update Home List Medications
         AppInjection.getIt<HomeCubit>().getMedications(
           forceGetData: true,
           showState: false,
         );
-        return;
       }
       if (status == 200) {
         data.removeWhere((element) => element.medicineId == id);
@@ -161,6 +157,8 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
           forceGetData: true,
           showState: false,
         );
+      } else {
+        _update(OrderDetailsChangeState());
       }
     });
   }
@@ -204,9 +202,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
           forceGetData: true,
           showState: false,
         );
-        return;
-      }
-      if (status == 404) {
+      } else if (status == 404) {
         final List tempList =
             r[AppRKeys.data][AppRKeys.medicines_quantity_not_available];
         dataNotAvailable.clear();
@@ -216,27 +212,19 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
             .updateQuantityListMedications(dataNotAvailable);
         _update(OrderDetailsFailureState(FailureState(
             message: AppText.quantitiesOfSomeMedicinesAreNotAvailable.tr)));
-        return;
-      }
-      if (status == 405) {
+      } else if (status == 405) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.thisOrderHasCanceledBefore.tr,
         )));
-        return;
-      }
-      if (status == 406) {
+      } else if (status == 406) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderHasBeenSentSoYouCannotEditIt.tr,
         )));
-        return;
-      }
-      if (status == 408) {
+      } else if (status == 408) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.orderHasReceivedSoYouCannotEditIt.tr,
         )));
-        return;
-      }
-      if (status == 200) {
+      } else if (status == 200) {
         model = OrderModel.fromJson(r[AppRKeys.data][AppRKeys.order]);
         await AppInjection.getIt<OrderCubit>().updateOrderInList(model);
         final List temp =
@@ -250,7 +238,8 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
           forceGetData: true,
           showState: false,
         );
-        return;
+      } else {
+        _update(OrderDetailsChangeState());
       }
     });
   }
@@ -276,27 +265,22 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
           forceGetData: true,
           showState: false,
         );
-        return;
-      }
-      if (status == 405) {
+      } else if (status == 405) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.thisOrderHasAlreadyBeenCanceled.tr,
         )));
-        return;
-      }
-      if (status == 408) {
+      } else if (status == 408) {
         _update(OrderDetailsFailureState(FailureState(
           message: AppText.thisOrderHasAlreadyBeenReceived.tr,
         )));
-        return;
-      }
-      if (status == 200) {
+      } else if (status == 200) {
         await AppInjection.getIt<OrderCubit>().getAll(
           forceGetData: true,
           showState: false,
         );
         _update(OrderDetailsUpdateStatusOrderSuccessState());
-        return;
+      } else {
+        _update(OrderDetailsChangeState());
       }
     });
   }

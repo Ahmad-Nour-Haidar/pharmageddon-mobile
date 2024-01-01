@@ -57,15 +57,15 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
       model.isFavourite = false;
       _update(MedicationDetailsFailureState(l));
     }, (r) {
-      if (r[AppRKeys.status] == 404) {
-        _update(MedicationDetailsFailureState(FailureState()));
-      } else {
+      if (r[AppRKeys.status] == 200) {
         final json = r[AppRKeys.data][AppRKeys.favourite_medicine];
         model = MedicationModel.fromJson(json);
 
         // this to update medications list
         AppInjection.getIt<HomeCubit>().updateMedicationModel(model);
         _update(MedicationDetailsSuccessState());
+      } else {
+        _update(MedicationDetailsFailureState(FailureState()));
       }
     });
   }
@@ -83,8 +83,6 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
       _update(MedicationDetailsFailureState(l));
     }, (r) {
       if (r[AppRKeys.status] == 404) {
-        _update(MedicationDetailsFailureState(FailureState()));
-      } else {
         final json = r[AppRKeys.data][AppRKeys.favourite_medicine];
         model = MedicationModel.fromJson(json);
         _update(MedicationDetailsSuccessState());
@@ -92,6 +90,8 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
         AppInjection.getIt<HomeCubit>().updateMedicationModel(model);
         // this to update favorite screen if it active
         AppInjection.getIt<FavoriteCubit>().removeFromList(model);
+      } else {
+        _update(MedicationDetailsFailureState(FailureState()));
       }
     });
   }

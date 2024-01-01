@@ -101,6 +101,8 @@ class CartCubit extends Cubit<CartState> {
           titleNotification: AppText.newOrder.tr,
           bodyNotification: AppText.theOrderHasBeenAddedSuccessfully.tr,
         );
+      } else {
+        _update(CartFailureState(FailureState()));
       }
       // to update Home List Medications
       AppInjection.getIt<HomeCubit>().getMedications(

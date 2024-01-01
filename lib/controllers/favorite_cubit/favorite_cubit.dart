@@ -32,9 +32,12 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     response.fold((l) {
       _update(FavoriteFailureState(l));
     }, (r) {
-      final List temp = r[AppRKeys.data][AppRKeys.favourite_medicines];
-      medications.clear();
-      medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
+      final status = r[AppRKeys.status];
+      if (status == 200) {
+        final List temp = r[AppRKeys.data][AppRKeys.favourite_medicines];
+        medications.clear();
+        medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
+      }
       if (medications.isEmpty) {
         _update(FavoriteNoDataState());
       } else {

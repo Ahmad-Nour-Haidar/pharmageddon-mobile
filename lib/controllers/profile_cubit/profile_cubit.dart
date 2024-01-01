@@ -64,15 +64,15 @@ class ProfileCubit extends Cubit<ProfileState> {
       _update(ProfileFailureState(l));
     }, (r) async {
       final status = r[AppRKeys.status];
-      if (status != 200) {
+      if (status == 200) {
+        _image = null;
+        enableEdit = false;
+        await storeUser(r[AppRKeys.data][AppRKeys.user]);
+        _update(ProfileSuccessState(
+            SuccessState(message: AppText.updatedSuccessfully.tr)));
+      } else {
         _update(ProfileFailureState(FailureState()));
-        return;
       }
-      _image = null;
-      enableEdit = false;
-      await storeUser(r[AppRKeys.data][AppRKeys.user]);
-      _update(ProfileSuccessState(
-          SuccessState(message: AppText.updatedSuccessfully.tr)));
     });
   }
 
