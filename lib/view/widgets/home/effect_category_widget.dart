@@ -65,6 +65,7 @@ class EffectCategoryWidget extends StatelessWidget {
                     width: AppSize.widthManufacturer,
                     height: AppSize.widthManufacturer - 30,
                     imageUrl: url,
+                    radius: 10,
                     errorWidget: ErrorWidgetShow.picture,
                   ),
                 ),

@@ -61,9 +61,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
 
   Future<void> cancelOrder() async {
     _update(OrderDetailsLoadingCancelState());
-    final queryParameters = {
-      AppRKeys.id: model.id,
-    };
+    final queryParameters = {AppRKeys.id: model.id};
     final response =
         await _orderRemoteData.cancelOrder(queryParameters: queryParameters);
     response.fold((l) {

@@ -38,6 +38,7 @@ class MedicationImage extends StatelessWidget {
               CustomCachedNetworkImage(
                 width: width,
                 height: height,
+                radius: 10,
                 imageUrl: getUrlImageMedication(model),
                 errorWidget: ErrorWidgetShow.picture,
               ),

@@ -64,6 +64,7 @@ class CustomPopupMenuButton extends StatelessWidget {
                     child: CustomCachedNetworkImage(
                       width: 60,
                       height: 60,
+                      radius: 30,
                       imageUrl: getImageUserUrl(),
                       errorWidget: ErrorWidgetShow.user,
                     ),

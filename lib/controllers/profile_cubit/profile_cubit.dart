@@ -98,6 +98,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     return CustomCachedNetworkImage(
       width: widthHeight,
       height: widthHeight,
+      radius: 10,
       imageUrl: getImageUserUrl(),
       errorWidget: ErrorWidgetShow.user,
     );

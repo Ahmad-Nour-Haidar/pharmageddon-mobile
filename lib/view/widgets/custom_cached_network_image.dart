@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_mobile/core/constant/app_color.dart';
@@ -11,33 +13,30 @@ class CustomCachedNetworkImage extends StatelessWidget {
     super.key,
     required this.width,
     required this.height,
+    required this.radius,
     required this.imageUrl,
     required this.errorWidget,
   });
 
-  final double width, height;
+  final double width, height, radius;
   final String imageUrl;
   final ErrorWidgetShow errorWidget;
 
   Widget get errorWidgetImp {
-    late String path;
-    if (errorWidget == ErrorWidgetShow.picture) {
-      path = AppSvg.picture;
-    } else {
-      path = AppSvg.user;
-    }
+    final path =
+        errorWidget == ErrorWidgetShow.picture ? AppSvg.picture : AppSvg.user;
     final widget = Container(
       width: width,
-      height: width,
+      height: height,
       decoration: BoxDecoration(
         color: AppColor.gray4,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(radius),
       ),
       child: Align(
         child: SvgImage(
           path: path,
           color: AppColor.white,
-          size: width / 2,
+          size: min(width / 2, height / 2),
         ),
       ),
     );
@@ -54,7 +53,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
       width: width,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(radius),
       ),
       child: CachedNetworkImage(
         httpHeaders: const {
@@ -65,6 +64,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
             const Center(child: CircularProgressIndicator()),
         fit: BoxFit.cover,
         width: width,
+        height: height,
         imageUrl: imageUrl,
         errorWidget: (context, url, error) {
           return errorWidgetImp;

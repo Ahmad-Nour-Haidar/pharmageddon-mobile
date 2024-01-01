@@ -25,7 +25,6 @@ class OrderCubit extends Cubit<OrderState> {
 
   void _update(OrderState state) {
     if (isClosed) return;
-    // emit(showState ? state : OrderChangeState());
     emit(state);
   }
 

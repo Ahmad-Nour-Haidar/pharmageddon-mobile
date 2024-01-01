@@ -56,7 +56,6 @@ dependencies:
   lottie: ^2.7.0
   awesome_dialog: ^3.1.0
   hive_flutter: ^1.1.0
-  dev: ^1.0.0
   fl_chart: ^0.65.0
   fluttertoast: ^8.2.4
   firebase_core: ^2.24.2
@@ -73,8 +72,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  hive_generator: ^2.0.1
-  build_runner: ^2.4.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

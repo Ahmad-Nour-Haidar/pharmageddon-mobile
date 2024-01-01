@@ -38,6 +38,7 @@ class CartWidget extends StatelessWidget {
           child: CustomCachedNetworkImage(
             width: 200,
             height: 85,
+            radius: 10,
             imageUrl: getUrlImageMedication(model.medicationModel),
             errorWidget: ErrorWidgetShow.picture,
           ),

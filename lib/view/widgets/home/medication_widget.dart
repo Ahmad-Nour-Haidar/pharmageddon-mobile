@@ -67,6 +67,7 @@ class MedicationWidget extends StatelessWidget {
                       child: CustomCachedNetworkImage(
                         width: AppSize.widthCard,
                         height: AppSize.widthCard,
+                        radius: 10,
                         imageUrl: getUrlImageMedication(model),
                         errorWidget: ErrorWidgetShow.picture,
                       ),
