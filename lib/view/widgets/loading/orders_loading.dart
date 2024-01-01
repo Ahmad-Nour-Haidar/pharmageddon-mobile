@@ -28,7 +28,7 @@ class OrdersLoading extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: onRefresh,
       child: ListView.separated(
-        padding: AppPadding.screenPaddingAll,
+        padding: AppPadding.zero,
         itemBuilder: (context, index) {
           return Container(
             padding: AppPadding.padding10,

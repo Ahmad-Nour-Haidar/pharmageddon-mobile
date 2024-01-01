@@ -48,7 +48,7 @@ class FavoriteScreen extends StatelessWidget {
               );
               break;
             case FavoriteNoDataState:
-              widget = AppInjection.getIt<AppWidget>().addFav;
+              widget = Expanded(child: AppInjection.getIt<AppWidget>().addFav);
               break;
           }
           return Padding(

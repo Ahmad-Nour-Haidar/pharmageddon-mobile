@@ -30,6 +30,8 @@ class CustomAppBar {
     this.showOrders = false,
     this.showFavorites = false,
     this.showReports = false,
+    this.showPieChart = false,
+    this.onTapPieChart,
   });
 
   final String title;
@@ -41,6 +43,8 @@ class CustomAppBar {
   final bool showFavorites;
   final bool showReports;
   final bool showLogout;
+  final bool showPieChart;
+  final void Function()? onTapPieChart;
 
   AppBar build() {
     return AppBar(
@@ -94,6 +98,15 @@ class CustomAppBar {
             showReports: showReports,
             // showLogout: showLogout,
           ),
+        if (showPieChart)
+          IconButton(
+            onPressed: onTapPieChart,
+            icon: const SvgImage(
+              path: AppSvg.pie,
+              color: AppColor.black,
+              size: 20,
+            ),
+          )
       ],
     );
   }

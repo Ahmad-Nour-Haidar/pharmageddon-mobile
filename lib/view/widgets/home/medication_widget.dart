@@ -56,21 +56,12 @@ class MedicationWidget extends StatelessWidget {
                 children: [
                   Hero(
                     tag: tag,
-                    child: ClipRRect(
-                      clipBehavior: Clip.hardEdge,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(2),
-                        bottomRight: Radius.circular(2),
-                      ),
-                      child: CustomCachedNetworkImage(
-                        width: AppSize.widthCard,
-                        height: AppSize.widthCard,
-                        radius: 10,
-                        imageUrl: getUrlImageMedication(model),
-                        errorWidget: ErrorWidgetShow.picture,
-                      ),
+                    child: CustomCachedNetworkImage(
+                      width: AppSize.widthCard,
+                      height: AppSize.widthCard,
+                      radius: 10,
+                      imageUrl: getUrlImageMedication(model),
+                      errorWidget: ErrorWidgetShow.picture,
                     ),
                   ),
                   if (model.discount! > 0)
@@ -160,7 +151,7 @@ class MedicationsListWidget extends StatelessWidget {
         onRefresh: onRefresh,
         child: data.isEmpty
             ? ListView(children: [
-                const Gap(100),
+                Gap(AppSize.width / 2),
                 AppInjection.getIt<AppWidget>().noData
               ])
             : ListView(

@@ -101,12 +101,12 @@ class OrderListWidget extends StatelessWidget {
       child: data.isEmpty
           ? ListView(
               children: [
-                const Gap(100),
+                const Gap(150),
                 AppInjection.getIt<AppWidget>().noData
               ],
             )
           : ListView.separated(
-              padding: AppPadding.screenPaddingAll,
+              padding: AppPadding.zero,
               itemBuilder: (context, index) => OrderWidget(
                 model: data[index],
                 canPushNamed: canPushNamed,

@@ -29,6 +29,7 @@ class AppSvg {
   static const options = '$root/options.svg';
   static const phone = '$root/phone.svg';
   static const picture = '$root/picture.svg';
+  static const pie = '$root/pie.svg';
   static const plus = '$root/plus.svg';
   static const search = '$root/search.svg';
   static const sent = '$root/sent.svg';

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_mobile/core/functions/functions.dart';
 
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../controllers/search_cubit/search_state.dart';
@@ -52,20 +53,18 @@ class SearchScreen extends StatelessWidget {
                   final cubit = SearchCubit.get(context);
                   var s = '${AppText.searchResultsFor.tr} : ';
                   if (state is SearchSuccessState) s += state.value;
-                  if (state is SearchNoDataState) s += state.value;
                   Widget widget = const SizedBox();
-                  switch (state.runtimeType) {
-                    case SearchLoadingState:
-                      widget = MedicationsLoading(onRefresh: () async {});
-                      break;
-                    case SearchSuccessState:
-                      widget = MedicationsListWidget(
-                          data: cubit.medications, onRefresh: () async {});
-                      break;
-                    case SearchNoDataState:
-                      widget =
-                          AppInjection.getIt<AppWidget>().noDataAfterSearch;
-                      break;
+                  if (state is SearchLoadingState) {
+                    widget = MedicationsLoading(onRefresh: () async {});
+                  } else if (state is SearchSuccessState &&
+                      cubit.medications.isNotEmpty) {
+                    widget = MedicationsListWidget(
+                        data: cubit.medications, onRefresh: () async {});
+                  } else if (state is SearchSuccessState &&
+                      cubit.medications.isEmpty) {
+                    widget = Expanded(
+                      child: AppInjection.getIt<AppWidget>().noDataAfterSearch,
+                    );
                   }
                   return Padding(
                     padding: AppPadding.screenPadding,
@@ -73,14 +72,14 @@ class SearchScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        const Gap(10),
-                        if (state is SearchSuccessState ||
-                            state is SearchNoDataState)
-                          AutoSizeText(
+                        Align(
+                          alignment: alignment(),
+                          child: AutoSizeText(
                             s,
                             style: AppTextStyle.f18w500black,
                             maxLines: 1,
                           ),
+                        ),
                         const Gap(10),
                         widget,
                         const Gap(AppSize.screenPadding)

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
@@ -73,7 +72,6 @@ class CustomPickDateWidget extends StatelessWidget {
       onTap: () => show(context),
       child: Row(
         children: [
-          const Gap(15),
           Expanded(
             child: Container(
               alignment: Alignment.center,
@@ -112,7 +110,6 @@ class CustomPickDateWidget extends StatelessWidget {
               ),
             ),
           ),
-          const Gap(15),
         ],
       ),
     );

@@ -32,6 +32,7 @@ class ReportsCubit extends Cubit<ReportsState> {
           FailureState(message: AppText.pleaseSelectStartAndEndOfDate.tr)));
       return;
     }
+    showPieChart = false;
     _update(ReportsLoadingState());
     final queryParameters = {
       AppRKeys.start_date: dateTimeRange.start,
@@ -73,5 +74,12 @@ class ReportsCubit extends Cubit<ReportsState> {
       p += element.totalPrice!;
     }
     return p;
+  }
+
+  bool showPieChart = false;
+
+  void changeShowPieChart() {
+    showPieChart = !showPieChart;
+    _update(ReportsChangeState());
   }
 }
