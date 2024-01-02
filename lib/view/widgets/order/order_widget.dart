@@ -13,7 +13,7 @@ import 'package:pharmageddon_mobile/model/order_model.dart';
 import 'package:pharmageddon_mobile/routes.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 
-import 'app_widget.dart';
+import '../app_widget.dart';
 
 class OrderWidget extends StatelessWidget {
   const OrderWidget({

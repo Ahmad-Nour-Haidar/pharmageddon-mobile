@@ -145,8 +145,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
           forceGetData: true,
           showState: false,
         );
-      }
-      if (status == 200) {
+      } else if (status == 200) {
         data.removeWhere((element) => element.medicineId == id);
         model = OrderModel.fromJson(r[AppRKeys.data][AppRKeys.order]);
         await AppInjection.getIt<OrderCubit>().updateOrderInList(model);

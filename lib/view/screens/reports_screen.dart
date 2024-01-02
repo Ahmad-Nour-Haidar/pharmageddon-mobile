@@ -11,14 +11,14 @@ import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/view/widgets/app_widget.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/orders_loading.dart';
-import 'package:pharmageddon_mobile/view/widgets/order_widget.dart';
+import 'package:pharmageddon_mobile/view/widgets/order/order_widget.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/resources/app_text_theme.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_button.dart';
-import '../widgets/custom_pick_date_widget.dart';
-import '../widgets/custom_pie_chart.dart';
+import '../widgets/report/custom_pick_date_widget.dart';
+import '../widgets/report/custom_pie_chart.dart';
 import '../widgets/row_text_span.dart';
 
 class ReportsScreen extends StatelessWidget {

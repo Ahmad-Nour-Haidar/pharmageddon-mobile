@@ -36,23 +36,18 @@ class FavoriteScreen extends StatelessWidget {
         },
         builder: (context, state) {
           Widget widget = const SizedBox();
-          switch (state.runtimeType) {
-            case FavoriteLoadingState:
-              widget = MedicationsLoading(
-                  onRefresh: () => cubit.getFavorites(forceGetData: true));
-              break;
-            case FavoriteSuccessState:
-              widget = MedicationsListWidget(
-                data: cubit.medications,
-                onRefresh: () => cubit.getFavorites(forceGetData: true),
-              );
-              break;
-            case FavoriteNoDataState:
-              widget = Expanded(child: AppInjection.getIt<AppWidget>().addFav);
-              break;
+          if (state is FavoriteSuccessState) {
+            widget = MedicationsListWidget(
+              data: cubit.medications,
+              onRefresh: () => cubit.getFavorites(forceGetData: true),
+              onEmpty: AppInjection.getIt<AppWidget>().addFav,
+            );
+          } else if (state is FavoriteLoadingState) {
+            widget = MedicationsLoading(
+                onRefresh: () => cubit.getFavorites(forceGetData: true));
           }
           return Padding(
-            padding: AppPadding.screenPadding,
+            padding: AppPadding.screenPaddingNoTop,
             child: Column(children: [widget]),
           );
         },

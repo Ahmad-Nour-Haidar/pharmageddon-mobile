@@ -5,6 +5,12 @@ abstract class AppPadding {
   static const screenPadding =
       EdgeInsets.symmetric(horizontal: AppSize.screenPadding);
   static const screenPaddingAll = EdgeInsets.all(AppSize.screenPadding);
+  static const screenPaddingNoTop = EdgeInsets.fromLTRB(
+    AppSize.screenPadding,
+    0,
+    AppSize.screenPadding,
+    AppSize.screenPadding,
+  );
   static const zero = EdgeInsets.all(0);
   static const padding5 = EdgeInsets.all(5);
   static const padding7 = EdgeInsets.all(7);

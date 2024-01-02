@@ -1,11 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:pharmageddon_mobile/core/constant/app_text.dart';
+import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 
-import '../../core/constant/app_color.dart';
-import '../../core/functions/functions.dart';
-import '../../core/resources/app_text_theme.dart';
-import '../../model/order_model.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/functions/functions.dart';
+import '../../../core/resources/app_text_theme.dart';
+import '../../../model/order_model.dart';
 
 class CustomPieChart extends StatefulWidget {
   const CustomPieChart({super.key, required this.data});
@@ -48,12 +51,13 @@ class _CustomPieChartState extends State<CustomPieChart> {
                     if (touchedIndex >= 0 &&
                         touchedIndex < widget.data.length) {
                       selectedSection =
-                          formatYYYYMd(widget.data[touchedIndex].createdAt);
+                          '${formatYYYYMd(widget.data[touchedIndex].createdAt)}\n${widget.data[touchedIndex].totalPrice} ${AppText.sp.tr}'
+                              .trn;
                     }
                   });
                 },
               ),
-              sectionsSpace: 0,
+              sectionsSpace: 2,
               sections: List.generate(widget.data.length, (index) {
                 final isTouched = index == touchedIndex;
                 final fontSize = isTouched ? 22.0 : 14.0;
@@ -61,7 +65,7 @@ class _CustomPieChartState extends State<CustomPieChart> {
                 const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
                 return PieChartSectionData(
                   value: widget.data[index].totalPrice,
-                  title: widget.data[index].totalPrice.toString(),
+                  title: widget.data[index].totalPrice.toString().trn,
                   showTitle: true,
                   radius: radius,
                   color: AppColor.get(index),

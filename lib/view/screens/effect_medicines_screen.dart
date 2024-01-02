@@ -38,27 +38,14 @@ class EffectMedicinesScreen extends StatelessWidget {
           },
           builder: (context, state) {
             final cubit = EffectMedicinesCubit.get(context);
-            Widget widget = const SizedBox();
-            switch (state.runtimeType) {
-              case EffectMedicinesLoadingState:
-                widget = MedicationsLoading(
-                    onRefresh: () => cubit.getMedications(forceGetData: true));
-                break;
-              case EffectMedicinesFailureState:
-                widget = MedicationsLoading(
-                    onRefresh: () => cubit.getMedications(forceGetData: true));
-                break;
-              case EffectMedicinesSuccessState:
-                widget = MedicationsListWidget(
-                  data: cubit.medications,
-                  onRefresh: () => cubit.getMedications(forceGetData: true),
-                );
-                break;
-              // other
-              default:
-                widget = MedicationsLoading(
-                    onRefresh: () => cubit.getMedications(forceGetData: true));
-                break;
+            Widget widget = MedicationsLoading(
+                onRefresh: () => cubit.getMedications(forceGetData: true));
+            if (state is EffectMedicinesSuccessState) {
+              widget = MedicationsListWidget(
+                data: cubit.medications,
+                onRefresh: () => cubit.getMedications(forceGetData: true),
+                onEmpty: null,
+              );
             }
             return Scaffold(
               appBar: CustomAppBar(title: getEffectCategoryModelName(model))

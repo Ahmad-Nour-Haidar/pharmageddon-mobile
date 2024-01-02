@@ -8,7 +8,6 @@ import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../controllers/search_cubit/search_state.dart';
 import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_size.dart';
 import '../../core/constant/app_text.dart';
 import '../../core/resources/app_text_theme.dart';
 import '../../core/services/dependency_injection.dart';
@@ -56,18 +55,15 @@ class SearchScreen extends StatelessWidget {
                   Widget widget = const SizedBox();
                   if (state is SearchLoadingState) {
                     widget = MedicationsLoading(onRefresh: () async {});
-                  } else if (state is SearchSuccessState &&
-                      cubit.medications.isNotEmpty) {
+                  } else if (state is SearchSuccessState) {
                     widget = MedicationsListWidget(
-                        data: cubit.medications, onRefresh: () async {});
-                  } else if (state is SearchSuccessState &&
-                      cubit.medications.isEmpty) {
-                    widget = Expanded(
-                      child: AppInjection.getIt<AppWidget>().noDataAfterSearch,
-                    );
+                        onEmpty:
+                            AppInjection.getIt<AppWidget>().noDataAfterSearch,
+                        data: cubit.medications,
+                        onRefresh: () async {});
                   }
                   return Padding(
-                    padding: AppPadding.screenPadding,
+                    padding: AppPadding.screenPaddingNoTop,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -82,7 +78,6 @@ class SearchScreen extends StatelessWidget {
                         ),
                         const Gap(10),
                         widget,
-                        const Gap(AppSize.screenPadding)
                       ],
                     ),
                   );

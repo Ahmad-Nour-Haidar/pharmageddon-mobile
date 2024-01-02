@@ -6,17 +6,17 @@ import 'package:pharmageddon_mobile/core/constant/app_keys.dart';
 import 'package:pharmageddon_mobile/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
-import '../../controllers/order_details_cubit/order_details_cubit.dart';
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_text.dart';
-import '../../core/enums/order_status.dart';
-import '../../core/functions/functions.dart';
-import '../../core/resources/app_text_theme.dart';
-import '../../core/services/dependency_injection.dart';
-import '../../model/order_model.dart';
-import 'app_widget.dart';
-import 'custom_text_button.dart';
+import '../../../controllers/order_details_cubit/order_details_cubit.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_padding.dart';
+import '../../../core/constant/app_text.dart';
+import '../../../core/enums/order_status.dart';
+import '../../../core/functions/functions.dart';
+import '../../../core/resources/app_text_theme.dart';
+import '../../../core/services/dependency_injection.dart';
+import '../../../model/order_model.dart';
+import '../app_widget.dart';
+import '../custom_text_button.dart';
 
 class TopWidgetOrderDetailsScreen extends StatefulWidget {
   const TopWidgetOrderDetailsScreen({

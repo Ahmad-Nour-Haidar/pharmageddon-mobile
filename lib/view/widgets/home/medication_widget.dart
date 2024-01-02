@@ -139,10 +139,12 @@ class MedicationsListWidget extends StatelessWidget {
     super.key,
     required this.data,
     required this.onRefresh,
+    required this.onEmpty,
   });
 
   final List<MedicationModel> data;
   final Future<void> Function() onRefresh;
+  final Widget? onEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -152,17 +154,16 @@ class MedicationsListWidget extends StatelessWidget {
         child: data.isEmpty
             ? ListView(children: [
                 Gap(AppSize.width / 2),
-                AppInjection.getIt<AppWidget>().noData
+                onEmpty ?? AppInjection.getIt<AppWidget>().noData
               ])
             : ListView(
+                padding: AppPadding.zero,
                 children: [
-                  Padding(
-                    padding: AppPadding.symmetric(horizontal: 20, vertical: 5),
-                    child: Text(
-                      '${AppText.all.tr} : ( ${data.length} )'.trn,
-                      style: AppTextStyle.f18w500black,
-                    ),
+                  Text(
+                    '${AppText.all.tr} : ( ${data.length} )'.trn,
+                    style: AppTextStyle.f18w500black,
                   ),
+                  const Gap(5),
                   Wrap(
                     spacing: 20,
                     runSpacing: 20,

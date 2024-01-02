@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/reports_cubit/reports_state.dart';
 import 'package:pharmageddon_mobile/core/constant/app_request_keys.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
+import 'package:pharmageddon_mobile/print.dart';
 
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_text.dart';
@@ -34,6 +35,7 @@ class ReportsCubit extends Cubit<ReportsState> {
     }
     showPieChart = false;
     _update(ReportsLoadingState());
+    printme.magenta(dateTimeRange);
     final queryParameters = {
       AppRKeys.start_date: dateTimeRange.start,
       AppRKeys.end_date: dateTimeRange.end,

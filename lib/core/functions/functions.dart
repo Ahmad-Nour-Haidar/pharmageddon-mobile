@@ -48,10 +48,14 @@ void initialUser() {
 }
 
 String formatYYYYMd(String? s) {
+  // s = '2023-12-31T12:39:19+03:00';
+  // final ddd = DateTime.parse('2023-12-31T00:45:15+03:00');
+  // printme.red(ddd.day);
   final date = DateTime.tryParse(s ?? '');
   if (date == null) return ' --- ';
   final pattern = AppConstant.isEnglish ? 'yyyy - M - d' : 'd - M - yyyy';
   return Jiffy.parseFromDateTime(date).format(pattern: pattern);
+  // return Jiffy.parseFromDateTime(date).yMMMMEEEEdjm;
 }
 
 String formatYYYYMdEEEE(String? s) {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmageddon_mobile/core/class/parent_state.dart';
 import 'package:pharmageddon_mobile/core/services/dependency_injection.dart';
 import 'package:pharmageddon_mobile/data/remote/search_data.dart';
 import 'package:pharmageddon_mobile/model/medication_model.dart';
@@ -31,15 +30,11 @@ class SearchCubit extends Cubit<SearchState> {
     response.fold((l) {
       _update(SearchFailureState(l));
     }, (r) {
-      if (r[AppRKeys.status] == 403) {
-        _update(SearchSuccessState(value));
-      } else if (r[AppRKeys.status] == 200) {
+      medications.clear();
+      if (r[AppRKeys.status] == 200) {
         final List temp = r[AppRKeys.data][AppRKeys.medicines];
-        medications.clear();
         medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
         _update(SearchSuccessState(value));
-      } else {
-        _update(SearchFailureState(FailureState()));
       }
     });
   }

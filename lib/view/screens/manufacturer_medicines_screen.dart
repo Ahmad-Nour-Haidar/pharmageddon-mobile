@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:lottie/lottie.dart';
 import 'package:pharmageddon_mobile/core/constant/app_keys.dart';
 import 'package:pharmageddon_mobile/core/functions/functions.dart';
 import 'package:pharmageddon_mobile/model/manufacturer_model.dart';
@@ -11,7 +10,6 @@ import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
 
 import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_cubit.dart';
 import '../../controllers/manufacturer_medicines_cubit/manufacturer_medicines_state.dart';
-import '../../core/constant/app_lottie.dart';
 import '../../core/constant/app_padding.dart';
 import '../../core/constant/app_size.dart';
 import '../../core/services/dependency_injection.dart';
@@ -41,30 +39,14 @@ class ManufacturerMedicinesScreen extends StatelessWidget {
           },
           builder: (context, state) {
             final cubit = ManufacturerMedicinesCubit.get(context);
-            Widget widget = const SizedBox();
-            switch (state.runtimeType) {
-              case FactoryMedicinesLoadingState:
-                widget = MedicationsLoading(
-                    onRefresh: () => cubit.getMedications(forceGetData: true));
-                break;
-              case FactoryMedicinesFailureState:
-                widget = MedicationsLoading(
-                    onRefresh: () => cubit.getMedications(forceGetData: true));
-                break;
-              case FactoryMedicinesSuccessState:
-                widget = MedicationsListWidget(
-                  data: cubit.medications,
-                  onRefresh: () => cubit.getMedications(forceGetData: true),
-                );
-                break;
-              // other
-              case FactoryMedicinesNoDataState:
-                widget = Center(child: Lottie.asset(AppLottie.noData));
-                break;
-              default:
-                widget = MedicationsLoading(
-                    onRefresh: () => cubit.getMedications(forceGetData: true));
-                break;
+            Widget widget = MedicationsLoading(
+                onRefresh: () => cubit.getMedications(forceGetData: true));
+            if (state is FactoryMedicinesSuccessState) {
+              widget = MedicationsListWidget(
+                onEmpty: null,
+                data: cubit.medications,
+                onRefresh: () => cubit.getMedications(forceGetData: true),
+              );
             }
             return Scaffold(
               appBar: CustomAppBar(

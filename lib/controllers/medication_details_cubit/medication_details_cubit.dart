@@ -73,16 +73,14 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   Future<void> unFavorite() async {
     model.isFavourite = false;
     _update(MedicationDetailsChangeState());
-    final queryParameters = {
-      AppRKeys.id: model.id,
-    };
+    final queryParameters = {AppRKeys.id: model.id};
     final response =
         await _favoriteRemoteData.unFavorite(queryParameters: queryParameters);
     response.fold((l) {
       model.isFavourite = true;
       _update(MedicationDetailsFailureState(l));
     }, (r) {
-      if (r[AppRKeys.status] == 404) {
+      if (r[AppRKeys.status] == 200) {
         final json = r[AppRKeys.data][AppRKeys.favourite_medicine];
         model = MedicationModel.fromJson(json);
         _update(MedicationDetailsSuccessState());

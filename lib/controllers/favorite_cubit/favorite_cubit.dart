@@ -38,21 +38,13 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         medications.clear();
         medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       }
-      if (medications.isEmpty) {
-        _update(FavoriteNoDataState());
-      } else {
-        _update(FavoriteSuccessState());
-      }
+      _update(FavoriteSuccessState());
     });
   }
 
   Future<void> removeFromList(MedicationModel model) async {
     if (medications.isEmpty) return;
     medications.removeWhere((element) => element.id == model.id);
-    if (medications.isEmpty) {
-      _update(FavoriteNoDataState());
-    } else {
-      _update(FavoriteSuccessState());
-    }
+    _update(FavoriteSuccessState());
   }
 }

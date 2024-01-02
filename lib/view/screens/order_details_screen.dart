@@ -12,14 +12,14 @@ import 'package:pharmageddon_mobile/model/order_model.dart';
 import 'package:pharmageddon_mobile/model/screen_arguments.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/handle_state.dart';
-import 'package:pharmageddon_mobile/view/widgets/order_details_widget.dart';
+import 'package:pharmageddon_mobile/view/widgets/order/order_details_widget.dart';
 import '../../controllers/order_cubit/order_cubit.dart';
 import '../../controllers/order_details_cubit/order_details_state.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
 import '../../core/services/dependency_injection.dart';
 import '../widgets/cart/table_widget.dart';
-import '../widgets/top_widget_order_details_screen.dart';
+import '../widgets/order/top_widget_order_details_screen.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   const OrderDetailsScreen({super.key});

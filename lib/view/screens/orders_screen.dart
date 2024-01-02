@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_mobile/controllers/order_cubit/order_cubit.dart';
 import 'package:pharmageddon_mobile/core/constant/app_constant.dart';
+import 'package:pharmageddon_mobile/core/constant/app_padding.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_app_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/custom_nav_bar.dart';
 import 'package:pharmageddon_mobile/view/widgets/loading/orders_loading.dart';
-import 'package:pharmageddon_mobile/view/widgets/order_widget.dart';
+import 'package:pharmageddon_mobile/view/widgets/order/order_widget.dart';
 
 import '../../controllers/order_cubit/order_state.dart';
 import '../../core/services/dependency_injection.dart';
@@ -38,7 +39,10 @@ class OrdersScreen extends StatelessWidget {
             list: AppConstant.ordersList,
             initialScreen: cubit.currentScreen,
           ),
-          body: body,
+          body: Padding(
+            padding: AppPadding.screenPaddingNoTop,
+            child: body,
+          ),
         );
       },
     );

@@ -38,6 +38,7 @@ class HomeScreen extends StatelessWidget {
         // 1
         if (cubit.currentScreen == ScreenShow.medications) {
           widget = MedicationsListWidget(
+              onEmpty: null,
               data: cubit.medications,
               onRefresh: () => cubit.getMedications(forceGetData: true));
           if (state is HomeGetMedicationsLoadingState) {
@@ -47,6 +48,7 @@ class HomeScreen extends StatelessWidget {
         }
         if (cubit.currentScreen == ScreenShow.discount) {
           widget = MedicationsListWidget(
+              onEmpty: null,
               data: cubit.discountsData,
               onRefresh: () => cubit.getDiscounts(forceGetData: true));
           if (state is HomeGetDiscountsLoadingState) {

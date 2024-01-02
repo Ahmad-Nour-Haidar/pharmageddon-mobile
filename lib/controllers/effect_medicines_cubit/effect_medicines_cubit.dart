@@ -49,10 +49,12 @@ class EffectMedicinesCubit extends Cubit<EffectMedicinesState> {
     response.fold((l) {
       _update(EffectMedicinesFailureState(l));
     }, (r) {
-      final List temp = r[AppRKeys.data][AppRKeys.medicines];
-      medications.clear();
-      medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
-      medications.shuffle();
+      final status = r[AppRKeys.status];
+      if (status == 200) {
+        final List temp = r[AppRKeys.data][AppRKeys.medicines];
+        medications.clear();
+        medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
+      }
       _update(EffectMedicinesSuccessState());
     });
   }

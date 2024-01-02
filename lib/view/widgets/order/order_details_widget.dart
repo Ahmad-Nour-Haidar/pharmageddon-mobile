@@ -14,8 +14,8 @@ import 'package:pharmageddon_mobile/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_mobile/view/widgets/row_text_span.dart';
 import 'package:pharmageddon_mobile/view/widgets/svg_image.dart';
 
-import '../../core/constant/app_svg.dart';
-import '../../model/order_details_model.dart';
+import '../../../core/constant/app_svg.dart';
+import '../../../model/order_details_model.dart';
 
 class OrderDetailsWidget extends StatefulWidget {
   const OrderDetailsWidget({

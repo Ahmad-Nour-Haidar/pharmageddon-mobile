@@ -10,8 +10,6 @@ class FavoriteSuccessState extends FavoriteState {}
 
 class FavoriteChangeState extends FavoriteState {}
 
-class FavoriteNoDataState extends FavoriteState {}
-
 class FavoriteFailureState extends FavoriteState {
   final ParentState state;
 

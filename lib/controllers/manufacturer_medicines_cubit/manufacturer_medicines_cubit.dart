@@ -51,11 +51,7 @@ class ManufacturerMedicinesCubit extends Cubit<ManufacturerMedicinesState> {
         medications.clear();
         medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       }
-      if (medications.isEmpty) {
-        _update(FactoryMedicinesNoDataState());
-      } else {
-        _update(FactoryMedicinesSuccessState());
-      }
+      _update(FactoryMedicinesSuccessState());
     });
   }
 }
