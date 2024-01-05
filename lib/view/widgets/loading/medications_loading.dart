@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_padding.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/functions/functions.dart';
 import 'custom_shimmer.dart';
@@ -19,10 +20,11 @@ class MedicationsLoading extends StatelessWidget {
       child: RefreshIndicator(
         onRefresh: onRefresh,
         child: ListView(
+          padding: AppPadding.zero,
           children: [
             Wrap(
               spacing: 20,
-              runSpacing: 10,
+              runSpacing: 20,
               children: List.generate(
                 getRandom(),
                 (index) => CustomShimmer(

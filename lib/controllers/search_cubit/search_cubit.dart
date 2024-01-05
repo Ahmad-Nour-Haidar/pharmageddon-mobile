@@ -30,12 +30,13 @@ class SearchCubit extends Cubit<SearchState> {
     response.fold((l) {
       _update(SearchFailureState(l));
     }, (r) {
+      // printme.printFullText(r);
       medications.clear();
       if (r[AppRKeys.status] == 200) {
         final List temp = r[AppRKeys.data][AppRKeys.medicines];
         medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
-        _update(SearchSuccessState(value));
       }
+      _update(SearchSuccessState(value));
     });
   }
 }
