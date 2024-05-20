@@ -7,15 +7,15 @@ user experience.
 
 ## Table of Contents
 
-- [Features](#features)
-- [App Preview](#app-preview)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Team Members](#team-members)
-- [Contributing](#contributing)
-- [License](#license)
+- [✨ Features](#features)
+- [📱 App Preview](#app-preview)
+- [⚙️ Installation](#installation)
+- [🚀 Usage](#usage)
+- [👥 Team Members](#team-members)
+- [🤝 Contributing](#contributing)
+- [📄 License](#license)
 
-## Features
+## ✨ Features
 
 - **Secure Authentication**: Login and registration with secure authentication.
 - **Medicine Browsing**: Browse and search for medications with detailed descriptions and
@@ -25,7 +25,7 @@ user experience.
 - **Multi Language Support**: Choose your preferred application language.
 - **Firebase Notifications**: Receive real-time notifications about your orders and app updates.
 
-## App Preview
+## 📱 App Preview
 
 ### Authentication
 
@@ -69,7 +69,7 @@ user experience.
 
 ![Notifications](app-preview/phr2.png)
 
-## Installation
+## ⚙️ Installation
 
 1. **Clone the repository**:
     ```bash
@@ -91,7 +91,7 @@ user experience.
     flutter run
     ```
 
-## Usage
+## 🚀 Usage
 
 1. **Register or Login**: Open the app and either log in with your existing account or create a new
    one.
@@ -102,7 +102,7 @@ user experience.
    updates.
 5. **View Analytics**: Analyze your order history and details.
 
-## Team Members
+## 👥 Team Members
 
 | S.No. | Team Member Name  | GitHub                                                     | Technology      |
 |-------|-------------------|------------------------------------------------------------|-----------------|
@@ -110,7 +110,7 @@ user experience.
 | 2.    | Ayman Albonny     | [@Ayman2023bo](https://github.com/Ayman2023bo)             | Flutter Mobile  |
 | 3.    | Osama Saddik      | [@osamasaddik](https://github.com/osamasaddik)             | Laravel Backend |
 
-## Contributing
+## 🤝 Contributing
 
 We welcome contributions to enhance the Pharmageddon app. Here’s how you can help:
 
@@ -135,6 +135,6 @@ Please ensure your pull request adheres to the following guidelines:
 - Ensure the code follows the existing style and conventions.
 - Include screenshots or demos of the new feature or fix if applicable.
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
