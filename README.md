@@ -7,13 +7,13 @@ user experience.
 
 ## Table of Contents
 
-- [✨ Features](#features)
-- [📱 App Preview](#app-preview)
-- [⚙️ Installation](#installation)
-- [🚀 Usage](#usage)
-- [👥 Team Members](#team-members)
-- [🤝 Contributing](#contributing)
-- [📄 License](#license)
+- [✨ Features](#-features)
+- [📱 App Preview](#-app-preview)
+- [⚙️ Installation](#-installation)
+- [🚀 Usage](#-usage)
+- [👥 Team Members](#-team-members)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
 
 ## ✨ Features
 
@@ -29,43 +29,43 @@ user experience.
 
 ### Authentication
 
-##### Secure login and registration process for users.
+#### Secure login and registration process for users.
 
 ![Authentication](app-preview/phr1.png)
 
 ### Medication - Manufacturer Browsing
 
-##### Browse through medications and view manufacturer details and effects.
+#### Browse through medications and view manufacturer details and effects.
 
 ![Medication Browsing](app-preview/phr5.png)
 
 ### Medication Details
 
-##### Read all details, mark as favorite, select quantity, and add to cart.
+#### Read all details, mark as favorite, select quantity, and add to cart.
 
 ![Medication Details](app-preview/phr3.png)
 
 ### Cart Management
 
-##### Manage your cart, edit quantities, and place orders.
+#### Manage your cart, edit quantities, and place orders.
 
 ![Cart Management](app-preview/phr7.png)
 
 ### Order Tracking
 
-##### Track the status of your orders in real-time.
+#### Track the status of your orders in real-time.
 
 ![Order Tracking](app-preview/phr6.png)
 
 ### Order Details and Analytics
 
-##### View detailed order information and analytics.
+#### View detailed order information and analytics.
 
 ![Order Details and Analytics](app-preview/phr4.png)
 
 ### Notifications - Profile
 
-##### Receive real-time notifications from Firebase.
+#### Receive real-time notifications from Firebase.
 
 ![Notifications](app-preview/phr2.png)
 
