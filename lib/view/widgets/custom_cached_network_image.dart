@@ -60,8 +60,9 @@ class CustomCachedNetworkImage extends StatelessWidget {
           "Connection": "Keep-Alive",
           "Keep-Alive": "timeout=5",
         },
-        placeholder: (context, url) =>
-            const Center(child: CircularProgressIndicator()),
+        placeholder: (context, url) => const Center(
+          child: CircularProgressIndicator(),
+        ),
         fit: BoxFit.cover,
         width: width,
         height: height,
