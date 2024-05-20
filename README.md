@@ -100,7 +100,7 @@ Receive real-time notifications from Firebase.
 | S.No. | Team Member Name  | GitHub                                                     | Technology      |
 |-------|-------------------|------------------------------------------------------------|-----------------|
 | 1.    | Ahmad Nour Haidar | [@Ahmad-Nour-Haidar](https://github.com/Ahmad-Nour-Haidar) | Flutter Mobile  |
-| 1.    | Ayman             | as                                                         | Flutter Mobile  |
+| 1.    | Ayman Albonny     | [@Ayman2023bo](https://github.com/Ayman2023bo)             | Flutter Mobile  |
 | 2.    | Osama Saddik      | [@osamasaddik](https://github.com/osamasaddik)             | Laravel Backend |
 
 ## Contributing
