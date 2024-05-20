@@ -29,38 +29,45 @@ user experience.
 
 ### Authentication
 
+##### Secure login and registration process for users.
+
 ![Authentication](app-preview/phr1.png)
-Secure login and registration process for users.
 
 ### Medication - Manufacturer Browsing
 
+##### Browse through medications and view manufacturer details and effects.
+
 ![Medication Browsing](app-preview/phr5.png)
-Browse through medications and view manufacturer details and effects.
 
 ### Medication Details
 
+##### Read all details, mark as favorite, select quantity, and add to cart.
+
 ![Medication Details](app-preview/phr3.png)
-Read all details, mark as favorite, select quantity, and add to cart.
 
 ### Cart Management
 
+##### Manage your cart, edit quantities, and place orders.
+
 ![Cart Management](app-preview/phr7.png)
-Manage your cart, edit quantities, and place orders.
 
 ### Order Tracking
 
+##### Track the status of your orders in real-time.
+
 ![Order Tracking](app-preview/phr6.png)
-Track the status of your orders in real-time.
 
 ### Order Details and Analytics
 
+##### View detailed order information and analytics.
+
 ![Order Details and Analytics](app-preview/phr4.png)
-View detailed order information and analytics.
 
 ### Notifications - Profile
 
+##### Receive real-time notifications from Firebase.
+
 ![Notifications](app-preview/phr2.png)
-Receive real-time notifications from Firebase.
 
 ## Installation
 
@@ -100,8 +107,8 @@ Receive real-time notifications from Firebase.
 | S.No. | Team Member Name  | GitHub                                                     | Technology      |
 |-------|-------------------|------------------------------------------------------------|-----------------|
 | 1.    | Ahmad Nour Haidar | [@Ahmad-Nour-Haidar](https://github.com/Ahmad-Nour-Haidar) | Flutter Mobile  |
-| 1.    | Ayman Albonny     | [@Ayman2023bo](https://github.com/Ayman2023bo)             | Flutter Mobile  |
-| 2.    | Osama Saddik      | [@osamasaddik](https://github.com/osamasaddik)             | Laravel Backend |
+| 2.    | Ayman Albonny     | [@Ayman2023bo](https://github.com/Ayman2023bo)             | Flutter Mobile  |
+| 3.    | Osama Saddik      | [@osamasaddik](https://github.com/osamasaddik)             | Laravel Backend |
 
 ## Contributing
 
