@@ -1,4 +1,4 @@
-# Pharmageddon Application
+# Pharmageddon Mobile Application
 
 Pharmageddon is a mobile application designed for pharmacies to streamline the process of browsing,
 ordering, and tracking medications. The app offers features such as secure authentication, detailed
